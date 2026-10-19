@@ -2,7 +2,8 @@
 
 This programme map now has an authored first-draft lesson set in the app: 20 modules and 84 lessons total (8 in Module 1, 4 in each other module). The sequence and lesson count are a working draft; review with beginners and qualified art educators is still required.
 
-## Current implementation status\n\n- All 20 modules are interactive in the app.\n- Module 7 includes a Colour Lab sequence and the app has a separate local experiment journal.\n- Lesson text is a first draft, not yet validated by learner research or expert review.\n- Progress and notes are browser-local; there is no account or cloud sync.\n\n## Programme map
+## Current implementation status\n\n- All 20 modules are interactive in the app.
+- Open Studio, six Master Workshops and Portfolio notes are available as separate app sections.\n- Module 7 includes a Colour Lab sequence and the app has a separate local experiment journal.\n- Lesson text is a first draft, not yet validated by learner research or expert review.\n- Progress and notes are browser-local; there is no account or cloud sync.\n\n## Programme map
 
 | # | Module | Main outcomes |
 |---:|---|---|
