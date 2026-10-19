@@ -8,6 +8,8 @@ Work through these four stages in order. Do not move to the next stage while the
 
 **Goal:** make the mixer stable, coherent and testable as a standalone learning tool before adding more features.
 
+**Work completed in this pass (not yet locally executed):** extracted a pure whole-percentage share calculation, wired the displayed A/B/C shares to it, added edge-case tests for three-pigment share totals and limits, and updated the README. The stage remains open until checks and interaction review are actually run.
+
 - [ ] Verify task selection: Portrait, Landscape and Still Life, including each task's study categories.
 - [ ] Verify two-pigment selection, proportion controls, swapping pigments and displayed mixture shares.
 - [ ] Verify optional third pigment, its percentage and the distribution of the remaining share between pigments A and B.
