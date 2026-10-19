@@ -39,3 +39,21 @@
 .oil-mixer button:focus-visible,.oil-mixer select:focus-visible,.oil-mixer input:focus-visible{outline:2px solid #72765a;outline-offset:3px}
 @media(max-width:700px){.oil-mixer-workspace{grid-template-columns:1fr}.oil-mixer-result{order:-1}.oil-mixer-swatch{min-height:150px}.oil-mixer-heading{gap:12px}.oil-mixer-mark{flex-basis:36px;width:36px;height:36px;font-size:20px}.oil-mixer-ratio-heading{align-items:flex-start;flex-direction:column;gap:3px}}
 @media(prefers-reduced-motion:reduce){.oil-mixer-preset,.oil-mixer-swatch{transition:none}}
+
+.oil-mixer-step{display:flex;align-items:flex-start;gap:12px;margin-top:26px}
+.oil-mixer-step-number{display:grid;place-items:center;flex:0 0 30px;width:30px;height:30px;border:1px solid #c9c3b6;border-radius:50%;font-size:11px;color:#72765a;font-variant-numeric:tabular-nums}
+.oil-mixer-step h3{margin:1px 0 4px;font-size:16px;font-weight:600;letter-spacing:-.02em}
+.oil-mixer-step p{margin:0;color:#77766c;font-size:12px;line-height:1.5}
+.oil-mixer-step-next{margin-top:28px}
+.oil-mixer-task-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:16px}
+.oil-mixer-task{display:flex;flex-direction:column;align-items:flex-start;gap:8px;min-height:108px;padding:16px;border:1px solid #d5d0c4;background:#fbf9f4;color:#34352f;text-align:left;cursor:pointer;transition:background .15s,border-color .15s,color .15s}
+.oil-mixer-task strong{font-size:15px;font-weight:600}
+.oil-mixer-task span{color:#77766c;font-size:11px;line-height:1.5}
+.oil-mixer-task:hover,.oil-mixer-task.is-active{border-color:#777b61;background:#e7e5d8}
+.oil-mixer-task.is-active strong{color:#454936}
+.oil-mixer-third-control{display:flex;flex-direction:column;gap:16px;padding:16px;border:1px dashed #c9c3b6;background:#efebe1}
+.oil-mixer-add-third{align-self:flex-start;border:1px solid #bdb8aa;background:#fbf9f4;color:#4c4e42;padding:10px 14px;font:inherit;font-size:12px;cursor:pointer}
+.oil-mixer-add-third:hover,.oil-mixer-add-third.is-active{border-color:#777b61;background:#e1e2d4}
+.oil-mixer-third-control .oil-mixer-ratio{margin:0;padding-top:14px}
+@media(max-width:700px){.oil-mixer-task-list{grid-template-columns:1fr}.oil-mixer-task{min-height:0}.oil-mixer-step-next{margin-top:23px}}
+@media(prefers-reduced-motion:reduce){.oil-mixer-task,.oil-mixer-add-third{transition:none}}
