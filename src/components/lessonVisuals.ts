@@ -26,9 +26,9 @@ const topicRules: Array<{ kind: VisualKind; pattern: RegExp }> = [
   { kind: "perspective", pattern: /перспектив|горизонт|точк[аи] сход|глубин|уровень глаз/ },
   { kind: "composition", pattern: /композиц|миниатюр|фокус|акцент|баланс|кадр|расположен/ },
   { kind: "proportion", pattern: /пропорц|измер|масштаб|ось|наклон|конструкц|отношени размеров/ },
+  { kind: "negative-space", pattern: /негативн|отрицательн.*простран|пуст(?:ой|ые|ого|ых|ым) промежут|пространств(?:о|а|е|ом)? вокруг|пространств вокруг предмет/ },
   { kind: "line", pattern: /лини|контур|силуэт|нажим|штрих|край|обвод/ },
   { kind: "paint", pattern: /кист|краск|масл|акварел|живопис|мазок|холст|грунт|сло[ий]/ },
-  { kind: "negative-space", pattern: /негативн|отрицательн.*простран|пуст(?:ой|ые|ого|ых|ым) промежут|пространств вокруг/ },
   { kind: "shape", pattern: /прост(?:ая|ых|ую|ые) форм|геометр|круг|овал|цилиндр|куб|шар|форм[аыуе]/ }
 ];
 
@@ -67,6 +67,11 @@ export function classifyLesson(lesson: Lesson): VisualKind {
   const title = lesson.title.toLowerCase();
   const titleMatch = topicRules.find((rule) => rule.pattern.test(title));
   if (titleMatch) return titleMatch.kind;
+
+  // A deliberately broad lesson title must not inherit a narrow topic from its objective.
+  if (/^общ(?:ие|ий|ая|ее)\b|^основные принципы\b|^учимся смотреть\b|^введение\b/.test(title.trim())) {
+    return "general";
+  }
 
   const objective = lesson.objective.toLowerCase();
   const objectiveMatch = objectiveRules.find((rule) => rule.pattern.test(objective));
