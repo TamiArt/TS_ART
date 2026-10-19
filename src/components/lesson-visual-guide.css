@@ -1,0 +1,18 @@
+.lesson-visual-guide { margin: 24px 0 28px; padding: 22px; border: 1px solid #e4ded2; background: #f4f0e7; }
+.lesson-visual-heading { display:flex; align-items:flex-start; justify-content:space-between; gap:16px; margin-bottom:18px; }
+.lesson-visual-heading h2 { margin:7px 0 8px; font-family:var(--serif); font-size:26px; font-weight:500; line-height:1.25; }
+.lesson-visual-heading p { max-width:650px; margin:0; color:#777267; font-size:12px; line-height:1.8; }
+.lesson-visual-stamp { flex:0 0 auto; display:grid; place-items:center; width:47px; height:47px; border:1px solid #c9c0af; border-radius:50%; color:#9a755a; font-size:10px; letter-spacing:.7px; }
+.lesson-visual-stages { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:11px; }
+.lesson-visual-stage { min-width:0; display:flex; flex-direction:column; border:1px solid #e1d9ca; background:#fffdf7; }
+.lesson-visual-stage-top { display:flex; align-items:center; justify-content:space-between; gap:6px; padding:10px 11px 0; }
+.lesson-visual-stage-top>span { display:grid; place-items:center; width:27px; height:27px; border-radius:50%; background:#e8e1d4; color:#7d725f; font-size:11px; }
+.lesson-visual-stage-top small { color:#9b8a76; font-size:9px; text-transform:uppercase; letter-spacing:.8px; }
+.lesson-visual-svg { display:block; width:100%; max-width:190px; height:auto; margin:0 auto; padding:4px 7px; }
+.lesson-visual-stage>p { flex:1; margin:0; padding:12px; border-top:1px solid #eee8dd; color:#57564d; font-size:11px; line-height:1.7; }
+.lesson-visual-footer { display:flex; gap:11px; align-items:flex-start; margin-top:13px; padding:13px 15px; background:#e9e5d9; }
+.lesson-visual-footer-mark { flex:0 0 auto; color:#9a9b79; font-size:19px; line-height:1.2; }
+.lesson-visual-footer p { margin:0; color:#706d61; font-size:11px; line-height:1.7; }
+.lesson-visual-footer strong { color:#4d4b42; font-weight:600; }
+@media(max-width:900px) { .lesson-visual-stages { grid-template-columns:repeat(2,minmax(0,1fr)); } .lesson-visual-svg { max-width:220px; } }
+@media(max-width:560px) { .lesson-visual-guide { padding:15px; margin:19px 0 22px; } .lesson-visual-heading h2 { font-size:23px; } .lesson-visual-heading p { font-size:12px; } .lesson-visual-stages { grid-template-columns:1fr; gap:10px; } .lesson-visual-stage { display:grid; grid-template-columns:1fr 112px; grid-template-rows:auto 1fr; } .lesson-visual-stage-top { grid-column:1 / -1; padding:10px 11px 0; } .lesson-visual-svg { grid-column:2; grid-row:2; align-self:center; width:112px; padding:0 4px; } .lesson-visual-stage>p { grid-column:1; grid-row:2; align-self:center; border-top:0; padding:10px 11px; font-size:12px; } .lesson-visual-footer { padding:11px; } }
