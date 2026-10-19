@@ -1,7 +1,7 @@
 import type { Lesson } from "../data/types";
 
 export type VisualKind =
-  | "line" | "shape" | "proportion" | "tone" | "perspective"
+  | "line" | "shape" | "negative-space" | "proportion" | "tone" | "perspective"
   | "composition" | "colour" | "portrait" | "landscape"
   | "still-life" | "paint" | "general";
 
@@ -23,12 +23,14 @@ const topicRules: Array<{ kind: VisualKind; pattern: RegExp }> = [
   { kind: "proportion", pattern: /пропорц|измер|масштаб|ось|наклон|конструкц|отношени размеров/ },
   { kind: "line", pattern: /лини|контур|силуэт|нажим|штрих|край|обвод/ },
   { kind: "paint", pattern: /кист|краск|масл|акварел|живопис|мазок|холст|грунт|сло[ий]/ },
-  { kind: "shape", pattern: /форм|геометр|круг|овал|цилиндр|куб|шар/ }
+  { kind: "negative-space", pattern: /негативн|отрицательн.*простран|пуст(?:ой|ые|ого|ых|ым) промежут|пространств вокруг/ },
+  { kind: "shape", pattern: /прост(?:ая|ых|ую|ые) форм|геометр|круг|овал|цилиндр|куб|шар|форм[аыуе]/ }
 ];
 
 const visualPrinciples: Record<VisualKind, string> = {
   line: "Пусть линия показывает форму, а не просто обводит её.",
   shape: "Сначала большие простые формы — детали добавляй после проверки.",
+  "negative-space": "Смотри на промежутки вокруг предмета как на самостоятельные формы.",
   proportion: "Сверяй размеры частей друг с другом до уточнения контура.",
   tone: "Сравнивай светлое и тёмное; объём строится отношениями тонов.",
   perspective: "Проверяй направления линий и положение уровня глаз.",
@@ -60,7 +62,7 @@ export function buildLessonVisualStages(lesson: Lesson): LessonVisualStage[] {
 
 export function getVisualKindLabel(kind: VisualKind): string {
   const labels: Record<VisualKind, string> = {
-    line: "Линия и контур", shape: "Простые формы", proportion: "Пропорции", tone: "Свет и тон",
+    line: "Линия и контур", shape: "Простые формы", "negative-space": "Пустые промежутки", proportion: "Пропорции", tone: "Свет и тон",
     perspective: "Перспектива", composition: "Композиция", colour: "Цвет", portrait: "Портрет",
     landscape: "Пейзаж", "still-life": "Натюрморт", paint: "Живописная техника", general: "Общий учебный пример"
   };
