@@ -10,7 +10,7 @@
 - [x] Master Workshops provides six guided visual investigations linked to curriculum lessons.
 - [x] Portfolio supports artwork metadata, optional safe HTTP(S) links, deletion and TXT export; file uploads are intentionally not implemented.
 - [x] Vitest curriculum integrity tests and GitHub Actions checks are configured.
-- [ ] Confirm CI test, type-check and production-build results; fix any failures.
+- [x] GitHub Actions passed type-check, curriculum integrity tests and production build on the latest application commit.
 - [ ] Perform manual mobile, keyboard, screen-reader and browser checks.
 - [ ] Review lessons with beginner learners and qualified art educators before calling content validated.
 
