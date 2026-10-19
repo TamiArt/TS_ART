@@ -145,7 +145,7 @@ export default function OilPaintMixer() {
           </div>
 
           <div className="oil-mixer-ratio">
-            <div className="oil-mixer-ratio-heading"><label htmlFor="oil-mix-ratio">Соотношение A и B</label><strong>{firstPercent}% / {100 - firstPercent}%</strong></div>
+            <div className="oil-mixer-ratio-heading"><label htmlFor="oil-mix-ratio">Соотношение A и B</label><strong>{firstPercent}% / {100 - firstPercent}% от остатка A+B</strong></div>
             <input id="oil-mix-ratio" type="range" min="0" max="100" step="1" value={firstPercent} onChange={(event) => { setFirstPercent(Number(event.target.value)); setRecipeId(""); }} aria-label={`Доля пигмента A среди A и B: ${firstPercent} процентов`} />
             <div className="oil-mixer-range-labels"><span>Больше {first.name}</span><span>Больше {second.name}</span></div>
           </div>
