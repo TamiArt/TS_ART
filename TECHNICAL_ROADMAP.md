@@ -77,6 +77,13 @@ This stage starts only after stages 1–3 are complete. Prioritize work by risk 
 
 **Exit criteria:** model changes are documented and tested; automated and manual QA results are recorded honestly; no known critical defects remain; remaining release decisions are explicit.
 
+## Latest UX changes on `feat/oil-paint-mixer-qa-hardening`
+
+- [x] Increase key reading text slightly across navigation, lesson instructions, self-checks and reflection fields while keeping the existing visual system.
+- [x] Add an in-lesson **Next lesson** action; moving forward stores the current reflection and loads the next lesson without returning to the lesson list.
+- [x] Disable forward navigation on the final lesson and keep the current lesson marked complete only when the user explicitly marks it complete.
+- [ ] Run the app checks and verify lesson-to-lesson navigation, reflection retention, final-lesson state and responsive typography in a browser.
+
 ## Current application baseline
 
 - React + TypeScript + Vite.
