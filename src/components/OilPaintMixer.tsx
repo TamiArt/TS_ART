@@ -46,10 +46,10 @@ function getPigment(id: string): Pigment {
   return pigments.find((pigment) => pigment.id === id) ?? pigments[0];
 }
 
-function mixRgb(first: string, second: string, firstPercent: number): string {
+export function mixPigmentHex(first: string, second: string, firstPercent: number): string {
   const a = first.replace("#", "");
   const b = second.replace("#", "");
-  const weight = firstPercent / 100;
+  const weight = Math.max(0, Math.min(100, firstPercent)) / 100;
   const channels = [0, 2, 4].map((index) => {
     const left = Number.parseInt(a.slice(index, index + 2), 16);
     const right = Number.parseInt(b.slice(index, index + 2), 16);
@@ -67,7 +67,7 @@ export default function OilPaintMixer() {
 
   const first = getPigment(firstId);
   const second = getPigment(secondId);
-  const mixed = useMemo(() => mixRgb(first.hex, second.hex, firstPercent), [first.hex, second.hex, firstPercent]);
+  const mixed = useMemo(() => mixPigmentHex(first.hex, second.hex, firstPercent), [first.hex, second.hex, firstPercent]);
   const secondPercent = 100 - firstPercent;
 
   const chooseRecipe = (id: string) => {
