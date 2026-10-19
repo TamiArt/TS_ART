@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { allLessons } from "../data/curriculum";
-import { buildLessonVisualStages, classifyLesson, getVisualPrinciple } from "./lessonVisuals";
+import { buildLessonVisualStages, classifyLesson, classifyVisualAction, getVisualPrinciple } from "./lessonVisuals";
 
 describe("lesson visual guides", () => {
   it("creates one ordered visual stage for every written instruction in all lessons", () => {
@@ -9,6 +9,7 @@ describe("lesson visual guides", () => {
       expect(stages).toHaveLength(lesson.steps.length);
       expect(stages.map((stage) => stage.number)).toEqual(lesson.steps.map((_, index) => index + 1));
       expect(stages.every((stage) => stage.instruction.trim().length > 0)).toBe(true);
+      expect(stages.every((stage) => Boolean(stage.action))).toBe(true);
       expect(stages.every((stage) => stage.drawingStage >= 1 && stage.drawingStage <= 4)).toBe(true);
       expect(stages[0]?.label).toBe("Начало");
       expect(stages.at(-1)?.label).toBe("Проверь");
@@ -16,6 +17,18 @@ describe("lesson visual guides", () => {
         stages.slice(1, -1).map((stage) => `Этап ${stage.number}`)
       );
     }
+  });
+
+  it("matches visual action to the actual instruction", () => {
+    expect(classifyVisualAction("Поставь предмет на уровне глаз.")).toBe("place");
+    expect(classifyVisualAction("Проследи взглядом внешний край предмета.")).toBe("observe");
+    expect(classifyVisualAction("Наметь силуэт лёгкой линией.")).toBe("outline");
+    expect(classifyVisualAction("Сравни наклоны и выступы с натурой.")).toBe("compare");
+    expect(classifyVisualAction("Измерь высоту и ширину предмета.")).toBe("measure");
+    expect(classifyVisualAction("Сделай три линии одним движением.")).toBe("practice");
+    expect(classifyVisualAction("Запиши одно наблюдение.")).toBe("record");
+    expect(classifyVisualAction("Различи свет и тень.")).toBe("shade");
+    expect(classifyVisualAction("Смешай два пигмента.")).toBe("mix");
   });
 
   it("classifies core art topics into the matching visual family", () => {
