@@ -27,3 +27,19 @@ export function mixPigmentHex(
 
   return `#${channels.join("")}`;
 }
+
+/**
+ * Return whole-percentage shares for the UI. A and B divide the portion
+ * left after C; the three displayed values always add up to 100.
+ */
+export function getPigmentShares(
+  firstPercent: number,
+  thirdPercent = 0,
+  includeThird = false
+): [number, number, number] {
+  const firstShare = Math.max(0, Math.min(100, firstPercent));
+  const thirdShare = includeThird ? Math.max(0, Math.min(60, thirdPercent)) : 0;
+  const remainingShare = 100 - thirdShare;
+  const firstWeight = Math.round(remainingShare * firstShare / 100);
+  return [firstWeight, remainingShare - firstWeight, thirdShare];
+}
