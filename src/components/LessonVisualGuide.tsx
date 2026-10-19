@@ -6,7 +6,7 @@ type VisualKind = "line" | "shape" | "proportion" | "tone" | "perspective" | "co
 function classifyLesson(lesson: Lesson): VisualKind {
   const text = `${lesson.title} ${lesson.objective} ${lesson.materials} ${lesson.steps.join(" ")}`.toLowerCase();
   if (/портрет|лиц|глаз|нос|губ|голов|череп|skin|portrait/.test(text)) return "portrait";
-  if (/пейзаж|небо|дерев|гор|горизонт|обла|landscape/.test(text)) return "landscape";
+  if (/пейзаж|небо|дерев|гор|обла|landscape/.test(text)) return "landscape";
   if (/натюрморт|чаш|бутыл|яблок|драпиров|still.life/.test(text)) return "still-life";
   if (/цвет|колорит|палитр|пигмент|оттен|тепл|холодн|насыщ|colour|color/.test(text)) return "colour";
   if (/свет|тень|тон|светлот|контраст|монохром|штрихов|объём|объем/.test(text)) return "tone";
@@ -72,7 +72,7 @@ const stageLabels = ["Основа", "Построение", "Уточнение
 
 export default function LessonVisualGuide({ lesson }: { lesson: Lesson }) {
   const kind = classifyLesson(lesson);
-  const stages = lesson.steps.slice(0, 4);
+  const stages = lesson.steps;
   return (
     <section className="lesson-visual-guide" aria-labelledby="lesson-visual-title">
       <div className="lesson-visual-heading">
@@ -87,7 +87,7 @@ export default function LessonVisualGuide({ lesson }: { lesson: Lesson }) {
         {stages.map((step, index) => (
           <article className="lesson-visual-stage" key={`${lesson.id}-visual-${index}`}>
             <div className="lesson-visual-stage-top"><span>{String(index + 1).padStart(2, "0")}</span><small>{stageLabels[index] ?? "Этап"}</small></div>
-            <VisualDrawing kind={kind} stage={index + 1} />
+            <VisualDrawing kind={kind} stage={Math.min(index + 1, 4)} />
             <p>{step}</p>
           </article>
         ))}
