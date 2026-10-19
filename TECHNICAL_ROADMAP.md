@@ -1,8 +1,8 @@
 # TS·ART Studio — Technical Roadmap
 
 ## Current state
-- [x] React + TypeScript + Vite app on `feat/full-curriculum-colour-lab`.
-- [!] Recovery note: the `main` file tree has been restored to its original README-only state after unintended file writes; cleanup commits remain in history. Do not merge this branch until branch history is reviewed.
+- [x] This working branch, `feat/studio-completion-quality-gates`, was created from the current `main` HEAD (`805247d`) and keeps `main` unchanged.
+- [x] React + TypeScript + Vite app with a complete first-draft curriculum and studio features.
 - [x] Responsive dashboard, lesson reader, module selector, learning path, mini-studio and visual journal.
 - [x] All 20 curriculum modules have authored first-draft content: 84 lessons total (8 in Module 1; 4 in each remaining module).
 - [x] Lesson completion and reflections persist in browser `localStorage`; journal exports to TXT.
@@ -10,8 +10,10 @@
 - [x] Open Studio supports personal project briefs, status changes, deletion and TXT export.
 - [x] Master Workshops provides six guided visual investigations linked to curriculum lessons.
 - [x] Portfolio supports artwork metadata, optional safe HTTP(S) links, deletion and TXT export; file uploads are intentionally not implemented.
-- [x] Vitest curriculum integrity tests and GitHub Actions checks are configured.
-- [x] GitHub Actions passed type-check, curriculum integrity tests and production build on the latest application commit.
+- [x] Vitest curriculum integrity tests and persistence validation tests are configured.
+- [x] Persistence boundary now filters unknown/duplicate lesson IDs, malformed reflections and invalid studio records; blocked or malformed local storage falls back safely.
+- [x] GitHub Actions passed type-check, curriculum integrity tests and production build before the persistence hardening change.
+- [ ] Confirm GitHub Actions for the latest persistence-hardening commit.
 - [ ] Perform manual mobile, keyboard, screen-reader and browser checks.
 - [ ] Review lessons with beginner learners and qualified art educators before calling content validated.
 
@@ -45,8 +47,8 @@
 - On conflicts, keep only the newer intended complete file version; do not merge old and new versions.
 
 ## Next steps
-1. Verify GitHub Actions: `npm run check`, `npm run test`, `npm run build`; fix failures.
-2. Manually test module navigation, progress, storage migration, journal export, Colour Lab CRUD, Open Studio status changes and portfolio links on phone and desktop.
+1. Confirm GitHub Actions for the latest persistence-hardening commit: `npm run check`, `npm run test`, `npm run build`; fix any failures.
+2. Manually test module navigation, progress, corrupted/stale local storage, journal export, Colour Lab CRUD, Open Studio status changes and portfolio links on phone and desktop.
 3. Improve accessibility and add browser-level interaction tests.
 4. Review lesson accuracy, sequencing, safety notes and beginner comprehension; revise from observed feedback.
 5. Add licensed diagrams/reference media only where they materially improve instruction.

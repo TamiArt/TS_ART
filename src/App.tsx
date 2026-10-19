@@ -1,32 +1,16 @@
 import { useEffect, useMemo, useState, type FormEvent, type ReactNode } from "react";
 import { allLessons, curriculum, type Lesson } from "./data/curriculum";
+import OilPaintMixer from "./components/OilPaintMixer";
+import {
+  readSavedState,
+  STORAGE_KEY,
+  type ColourTest,
+  type PortfolioItem,
+  type SavedState,
+  type StudioProject
+} from "./data/persistence";
 
 type Page = "home" | "learn" | "practice" | "journal" | "path" | "colourlab" | "openstudio" | "workshops" | "portfolio";
-type ColourTest = { id: string; question: string; pigments: string; ratio: string; medium: string; support: string; wetObservation: string; dryObservation: string; result: string; nextStep: string; createdAt: string };
-type StudioProject = { id: string; title: string; question: string; medium: string; constraint: string; nextStep: string; status: "active" | "paused" | "complete"; createdAt: string };
-type PortfolioItem = { id: string; title: string; medium: string; year: string; description: string; link: string; createdAt: string };
-type SavedState = { completed: string[]; journal: string; reflections: Record<string, string>; colourTests: ColourTest[]; projects: StudioProject[]; portfolio: PortfolioItem[] };
-
-const STORAGE_KEY = "ts-art-studio:v1";
-const readSavedState = (): SavedState => {
-  try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    if (raw) {
-      const parsed = JSON.parse(raw) as Partial<SavedState>;
-      return {
-        completed: Array.isArray(parsed.completed) ? parsed.completed : [],
-        journal: typeof parsed.journal === "string" ? parsed.journal : "",
-        reflections: parsed.reflections && typeof parsed.reflections === "object" ? parsed.reflections : {},
-        colourTests: Array.isArray(parsed.colourTests) ? parsed.colourTests : [],
-        projects: Array.isArray(parsed.projects) ? parsed.projects : [],
-        portfolio: Array.isArray(parsed.portfolio) ? parsed.portfolio : []
-      };
-    }
-  } catch {
-    // A blocked or malformed local storage must not prevent the learning interface from opening.
-  }
-  return { completed: [], journal: "", reflections: {}, colourTests: [], projects: [], portfolio: [] };
-};
 
 const icons: Record<Page, string> = {
   home: "⌂", learn: "▤", practice: "✳", journal: "✎", path: "↗", colourlab: "◉", openstudio: "✳", workshops: "◈", portfolio: "▧"
@@ -318,6 +302,7 @@ function ColourLabPage({ tests, onAdd, onDelete }: { tests: ColourTest[]; onAdd:
   return <div className="page-wrap inner-page colour-lab-page">
     <PageIntro eyebrow="QI FLOW · COLOUR LAB" title={<>Цвет — это <em>исследование.</em></>} description="Записывай реальные пробы смешения, чтобы понимать, что именно сработало в твоих материалах. Результат относится к конкретным пигментам и условиям, а не является универсальным рецептом." />
     <div className="colour-lab-intro"><div className="colour-lab-symbol">◉</div><div><span className="eyebrow">ПРИНЦИП ЛАБОРАТОРИИ</span><h2>Сначала наблюдение, потом вывод.</h2><p>Отмечай название пигмента и производителя, если они известны. Разделяй гипотезу, результат во влажном состоянии и цвет после высыхания. Если данных нет, так и запиши — не угадывай.</p></div></div>
+    <OilPaintMixer />
     <div className="colour-lab-grid">
       <form className="colour-test-form" onSubmit={saveTest}>
         <div className="panel-header"><span>НОВЫЙ ОПЫТ</span><span>LOCAL NOTES</span></div>
