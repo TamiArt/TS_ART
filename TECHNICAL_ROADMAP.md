@@ -139,6 +139,10 @@ This stage starts only after stages 1–3 are complete. Prioritize work by risk 
 
 ## Visual tutorial hardening
 
+- [x] Fix topic classification precedence so “Рисуем пространство вокруг предмета” resolves to `negative-space`.
+- [x] Keep explicitly broad titles such as “Общие принципы” in `general` instead of inferring a narrow topic from objective keywords.
+- [x] Add regression tests for both classification failures.
+
 - [x] Extract topic classification, stage generation and topic-specific learning principles into a pure module.
 - [x] Remove the duplicate `classifyVisualAction` export in `src/components/lessonVisuals.ts`; keep exactly one declaration.
 - [ ] Before committing TypeScript changes, check for duplicate function/variable declarations and confirm type-check catches no redeclaration errors.
