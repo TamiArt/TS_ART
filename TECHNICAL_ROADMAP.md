@@ -140,12 +140,14 @@ This stage starts only after stages 1–3 are complete. Prioritize work by risk 
 ## Visual tutorial hardening
 
 - [x] Extract topic classification, stage generation and topic-specific learning principles into a pure module.
+- [x] Classify each instruction by action and render a corresponding diagram for observation, placing, outlining, measuring, comparison, shading, filling, mixing, selecting, recording, practice or review.
+- [x] Add regression tests for instruction-to-visual-action matching.
 - [x] Prioritize the lesson title when selecting a visual family; use narrower objective matching as a fallback so generic words like “форма” and “пространство” do not force a misleading topic.
 - [x] Add regression tests for generic lesson classification and title-over-objective priority.
 - [x] Add curriculum-wide unit tests: each of the 84 lessons must render one ordered visual stage per written step.
 - [x] Test the classifier against portrait, landscape, still life, colour, tone, perspective, composition, proportion, line and paint examples.
 - [x] Give the final review stage a distinct completion marker on every lesson, including lessons with fewer than four steps; label intermediate stages distinctly and improve small-screen reading sizes.
 - [x] Vercel production build status is `success` for commit `0f7122c6a27d7cdcb8ece2e472ef13f90dcbcc75`, including the final-step marker and distinct stage-label fixes.
-- [ ] Confirm unit-test execution from CI; the available status API has not surfaced a test-run result for the current branch tip, and the new classifier regression tests are awaiting execution.
+- [ ] Confirm unit-test execution from CI; execution of the new instruction-action tests is not yet confirmed.
 - [ ] Inspect representative lesson screenshots in a browser; the available browser reader could not access the preview URL.
-- Known limitation: the illustrations are topic-family schematics reused across related lessons, not 84 separately art-directed drawings. They are explicitly presented as visual aids rather than exact model answers.
+- Known limitation: action-specific diagrams now vary by written step, but many still use generic objects rather than custom illustrations for each lesson. Do not call this block complete until lesson-specific examples and browser screenshots have been reviewed.
