@@ -2,7 +2,7 @@
 
 ## Development order
 
-Work through the stages in order. Do not start a later stage while the current stage still has unresolved blocking issues. Keep all work on `feat/oil-paint-mixer-colourlab` (or a new feature branch created from the verified current branch); never change `main` unless explicitly requested.
+Work through these four stages in order. Do not move to the next stage while the current stage has unresolved blocking issues. Keep work on `feat/oil-paint-mixer-colourlab` (or a new feature branch created from the verified current branch); never change `main` unless explicitly requested.
 
 ### 1. Finish the Oil Paint Mixer — CURRENT STAGE
 
@@ -11,7 +11,7 @@ Work through the stages in order. Do not start a later stage while the current s
 - [ ] Verify task selection: Portrait, Landscape and Still Life, including each task's study categories.
 - [ ] Verify two-pigment selection, proportion controls, swapping pigments and displayed mixture shares.
 - [ ] Verify optional third pigment, its percentage and the distribution of the remaining share between pigments A and B.
-- [ ] Check boundary values, empty/default selections, labels and accessible control names.
+- [ ] Check boundary values, default selections, labels, accessible control names and responsive layout.
 - [ ] Fix any interaction, calculation, visual or responsive-layout defects found.
 - [ ] Run type-check, unit tests and production build; fix failures and report only observed results.
 - [ ] Keep the RGB preview limitation visible: screen interpolation is an educational approximation, not a physically accurate oil-paint prediction.
@@ -30,19 +30,7 @@ Work through the stages in order. Do not start a later stage while the current s
 
 **Exit criteria:** mixer-to-form transfer works end to end; a confirmed experiment survives reload and appears correctly in the journal/export; existing Colour Lab functionality still works.
 
-### 3. Improve the Mixing Model
-
-**Goal:** make the learning model more useful while clearly distinguishing a digital approximation from a real paint result.
-
-- [ ] Separate the calculated screen preview from the user's observed physical mixture.
-- [ ] Evaluate a more suitable pigment-mixing approach; document assumptions, limitations and trade-offs before implementation.
-- [ ] Plan how transparency, tinting strength, opacity and manufacturer/product-specific paints could be represented without inventing unsupported material data.
-- [ ] Allow experiment records to capture actual observations independently of the calculated HEX value.
-- [ ] Add tests and documentation for the chosen model; retain a clear caveat wherever the model cannot predict a real mixture reliably.
-
-**Exit criteria:** the selected model is documented, its claims are appropriately limited, and tests cover its supported behavior.
-
-### 4. Finish the Curriculum
+### 3. Finish the Curriculum
 
 **Goal:** turn the current first draft into a coherent beginner learning route.
 
@@ -55,30 +43,34 @@ Work through the stages in order. Do not start a later stage while the current s
 
 **Exit criteria:** the learning sequence and lesson structure have been reviewed, material issues are addressed, and remaining draft/review status is explicit.
 
-### 5. Quality Assurance for the Application
+### 4. Everything Else
 
-**Goal:** validate the integrated application after the feature work and curriculum review.
+This stage starts only after stages 1–3 are complete. Prioritize work by risk and value, and split it into small verifiable blocks.
 
+**Mixing model**
+- [ ] Separate the calculated screen preview from the user's observed physical mixture.
+- [ ] Evaluate a more suitable pigment-mixing approach; document assumptions, limitations and trade-offs before implementation.
+- [ ] Plan how transparency, tinting strength, opacity and manufacturer/product-specific paints could be represented without inventing unsupported material data.
+- [ ] Add tests and documentation for any selected model; keep its limitations explicit.
+
+**Application quality assurance**
 - [ ] Run type-check, unit/integrity tests and production build on the final candidate commit.
-- [ ] Test primary user journeys across lessons, progress, Mini Studio, Visual Journal, Colour Lab/mixer, workshops, Open Studio and portfolio.
+- [ ] Test primary journeys across lessons, progress, Mini Studio, Visual Journal, Colour Lab/mixer, workshops, Open Studio and portfolio.
 - [ ] Verify local save, reload, edit/delete where supported, and TXT exports.
 - [ ] Check responsive layouts on desktop and mobile sizes.
 - [ ] Check keyboard navigation, focus visibility, accessible names, contrast and screen-reader behavior.
 - [ ] Fix critical and high-priority defects and rerun affected checks.
 - [ ] Record what was actually tested and what remains unverified.
 
-**Exit criteria:** automated checks pass; key manual journeys are documented; no known critical defects remain. Do not claim browser/device coverage that was not actually performed.
-
-### 6. Everything Else
-
-Only after stages 1–5 are complete:
-
+**Remaining product and release work**
 - [ ] Improve remaining tools and polish cross-application consistency.
 - [ ] Add licensed diagrams or reference media where they materially improve instruction.
 - [ ] Prepare portfolio, workshops and personal-project flows for regular use.
 - [ ] Finalize README, in-app guidance and user-facing documentation.
 - [ ] Define production acceptance criteria and prepare deployment.
 - [ ] Consider accounts, backups, cloud sync or server storage only after documenting scope, privacy, security and cost. No paid or required paid services.
+
+**Exit criteria:** model changes are documented and tested; automated and manual QA results are recorded honestly; no known critical defects remain; remaining release decisions are explicit.
 
 ## Current application baseline
 
