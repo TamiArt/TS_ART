@@ -57,3 +57,10 @@
 .oil-mixer-third-control .oil-mixer-ratio{margin:0;padding-top:14px}
 @media(max-width:700px){.oil-mixer-task-list{grid-template-columns:1fr}.oil-mixer-task{min-height:0}.oil-mixer-step-next{margin-top:23px}}
 @media(prefers-reduced-motion:reduce){.oil-mixer-task,.oil-mixer-add-third{transition:none}}
+
+
+/* Keyboard and touch refinements for the mixer controls. */
+.oil-mixer button,.oil-mixer select{min-height:40px}
+.oil-mixer input[type=range]{min-height:32px;touch-action:pan-y}
+.oil-mixer button:focus-visible,.oil-mixer select:focus-visible,.oil-mixer input:focus-visible{outline-color:#555a3f}
+@media(max-width:420px){.oil-mixer{padding:16px}.oil-mixer-result-meta{grid-template-columns:1fr 1fr;gap:8px}.oil-mixer-task{padding:13px}.oil-mixer-ratio-heading strong{font-size:12px}}
