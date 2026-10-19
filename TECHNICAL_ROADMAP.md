@@ -159,3 +159,12 @@ This stage starts only after stages 1–3 are complete. Prioritize work by risk 
 - [ ] Confirm unit-test execution from CI; execution of the new instruction-action tests is not yet confirmed.
 - [ ] Inspect representative lesson screenshots in a browser; the available browser reader could not access the preview URL.
 - Known limitation: action-specific diagrams now vary by written step, but many still use generic objects rather than custom illustrations for each lesson. Do not call this block complete until lesson-specific examples and browser screenshots have been reviewed.
+
+## Oil mixer preset integrity — current branch `feat/oil-mixer-preset-integrity`
+
+- [x] Extract pigment definitions, task options and preset recipes into `src/components/oilPaintMixerData.ts` so UI and integrity tests use one source of truth.
+- [x] Add tests for all three study tasks and their four categories each, unique recipe IDs, valid pigment references, proportion bounds, palette HEX/name/note validity, and unknown-pigment fallback.
+- [x] Keep the mixer preview disclaimer explicit: recipes are study starting points and the screen result is only RGB interpolation.
+- [ ] Run `npm run check`, `npm run test` and `npm run build` against this branch; fix any failures before advancing the mixer block.
+- [ ] Verify task/preset switching, two- and three-pigment mixing, swap behavior, keyboard focus and mobile layout in a browser.
+- [ ] Do not begin mixer-to-Colour-Lab transfer until the mixer block's exit criteria above are confirmed.
