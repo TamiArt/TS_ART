@@ -7,7 +7,7 @@ function classifyLesson(lesson: Lesson): VisualKind {
   const text = `${lesson.title} ${lesson.objective} ${lesson.materials} ${lesson.steps.join(" ")}`.toLowerCase();
   if (/портрет|лиц|глаз|нос|губ|голов|череп|skin|portrait/.test(text)) return "portrait";
   if (/пейзаж|небо|дерев|гор|горизонт|обла|landscape/.test(text)) return "landscape";
-  if (/натюрморт|чаш|бутыл|яблок|предмет|драпиров|still.life/.test(text)) return "still-life";
+  if (/натюрморт|чаш|бутыл|яблок|драпиров|still.life/.test(text)) return "still-life";
   if (/цвет|колорит|палитр|пигмент|оттен|тепл|холодн|насыщ|colour|color/.test(text)) return "colour";
   if (/свет|тень|тон|светлот|контраст|монохром|штрихов|объём|объем/.test(text)) return "tone";
   if (/перспектив|горизонт|точк[аи] сход|глубин|пространств/.test(text)) return "perspective";
