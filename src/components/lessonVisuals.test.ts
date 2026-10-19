@@ -12,6 +12,9 @@ describe("lesson visual guides", () => {
       expect(stages.every((stage) => stage.drawingStage >= 1 && stage.drawingStage <= 4)).toBe(true);
       expect(stages[0]?.label).toBe("Начало");
       expect(stages.at(-1)?.label).toBe("Проверь");
+      expect(stages.slice(1, -1).map((stage) => stage.label)).toEqual(
+        stages.slice(1, -1).map((stage) => `Этап ${stage.number}`)
+      );
     }
   });
 
