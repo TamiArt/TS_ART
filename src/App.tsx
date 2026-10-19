@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState, type FormEvent, type ReactNode } from "react";
 import { allLessons, curriculum, type Lesson } from "./data/curriculum";
+import OilPaintMixer from "./components/OilPaintMixer";
 
 type Page = "home" | "learn" | "practice" | "journal" | "path" | "colourlab" | "openstudio" | "workshops" | "portfolio";
 type ColourTest = { id: string; question: string; pigments: string; ratio: string; medium: string; support: string; wetObservation: string; dryObservation: string; result: string; nextStep: string; createdAt: string };
@@ -318,6 +319,7 @@ function ColourLabPage({ tests, onAdd, onDelete }: { tests: ColourTest[]; onAdd:
   return <div className="page-wrap inner-page colour-lab-page">
     <PageIntro eyebrow="QI FLOW · COLOUR LAB" title={<>Цвет — это <em>исследование.</em></>} description="Записывай реальные пробы смешения, чтобы понимать, что именно сработало в твоих материалах. Результат относится к конкретным пигментам и условиям, а не является универсальным рецептом." />
     <div className="colour-lab-intro"><div className="colour-lab-symbol">◉</div><div><span className="eyebrow">ПРИНЦИП ЛАБОРАТОРИИ</span><h2>Сначала наблюдение, потом вывод.</h2><p>Отмечай название пигмента и производителя, если они известны. Разделяй гипотезу, результат во влажном состоянии и цвет после высыхания. Если данных нет, так и запиши — не угадывай.</p></div></div>
+    <OilPaintMixer />
     <div className="colour-lab-grid">
       <form className="colour-test-form" onSubmit={saveTest}>
         <div className="panel-header"><span>НОВЫЙ ОПЫТ</span><span>LOCAL NOTES</span></div>
