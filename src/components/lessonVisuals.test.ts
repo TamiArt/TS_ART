@@ -68,6 +68,34 @@ describe("lesson visual guides", () => {
     expect(classifyLesson(lesson)).toBe("negative-space");
   });
 
+  it("prioritizes a broad introduction title over proportion keywords in the title and objective", () => {
+    const lesson = {
+      id: "intro-proportions",
+      title: "Введение: пропорции и форма",
+      duration: "5 мин",
+      kind: "lesson" as const,
+      objective: "Изучить пропорции и отношения размеров перед рисованием.",
+      materials: "Бумага и карандаш",
+      steps: ["Наблюдай", "Сравни"],
+      selfCheck: ["Проверено"]
+    };
+    expect(classifyLesson(lesson)).toBe("general");
+  });
+
+  it("prioritizes negative space when proportion terms also appear in the objective", () => {
+    const lesson = {
+      id: "negative-space-proportions",
+      title: "Рисуем пространство вокруг предмета",
+      duration: "5 мин",
+      kind: "lesson" as const,
+      objective: "Сравнить пропорции формы и пустые промежутки вокруг предмета.",
+      materials: "Бумага и карандаш",
+      steps: ["Наблюдай", "Сравни"],
+      selfCheck: ["Проверено"]
+    };
+    expect(classifyLesson(lesson)).toBe("negative-space");
+  });
+
   it("keeps broad lesson titles general even when the objective mentions proportions", () => {
     const lesson = {
       id: "general-principles",
