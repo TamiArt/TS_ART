@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState, type ReactNode } from "react";
-import { allLessons, curriculum, type Lesson, type Module } from "./data/curriculum";
+import { allLessons, curriculum, type Lesson } from "./data/curriculum";
 
 type Page = "home" | "learn" | "practice" | "journal" | "path" | "colourlab";
 type ColourTest = { id: string; question: string; pigments: string; ratio: string; medium: string; support: string; wetObservation: string; dryObservation: string; result: string; nextStep: string; createdAt: string };
@@ -259,6 +259,90 @@ function JournalPage({ value, onChange, completedCount }: { value: string; onCha
 function PathPage({ completed, onOpen, onSelectModule, onNavigate }: { completed: string[]; onOpen: (lesson: Lesson) => void; onSelectModule: (id: number) => void; onNavigate: (page: Page) => void }) {
   return <div className="page-wrap inner-page"><PageIntro eyebrow="YOUR PATH · 20 МОДУЛЕЙ" title={<>Большой путь. <em>Один шаг за раз.</em></>} description="Полная программа от наблюдения и основ рисунка до живописи, цифровых техник и авторского портфолио. Выбирай любой модуль; возвращаться к пройденным урокам можно в любое время." />
     <div className="path-timeline">{curriculum.map((module) => { const moduleDone = module.lessons.filter((lesson) => completed.includes(lesson.id)).length; return <section className="path-module path-module-available" key={module.id}><div className="path-marker">{moduleDone === module.lessons.length ? "✓" : String(module.id).padStart(2, "0")}</div><div className="path-module-content"><div className="path-module-top"><span>МОДУЛЬ {String(module.id).padStart(2, "0")}</span><span className="available-label">ДОСТУПЕН</span></div><h2>{module.title}</h2><p>{module.description}</p><div className="module-progress"><span style={{ width: `${moduleDone / module.lessons.length * 100}%` }} /></div><div className="module-meta">{moduleDone} из {module.lessons.length} уроков отмечено · {module.lessons.length} занятий</div><button className="text-link" onClick={() => { onSelectModule(module.id); onNavigate("learn"); }}>Открыть модуль →</button><span className="path-quick-start"><button className="text-link" onClick={() => onOpen(module.lessons.find((lesson) => !completed.includes(lesson.id)) ?? module.lessons[0])}>Продолжить урок ↗</button></span></div></section>; })}</div>
+  </div>;
+}
+
+function ColourLabPage({ tests, onAdd, onDelete }: { tests: ColourTest[]; onAdd: (test: ColourTest) => void; onDelete: (id: string) => void }) {
+  const [question, setQuestion] = useState("");
+  const [pigments, setPigments] = useState("");
+  const [ratio, setRatio] = useState("");
+  const [medium, setMedium] = useState("");
+  const [support, setSupport] = useState("");
+  const [wetObservation, setWetObservation] = useState("");
+  const [dryObservation, setDryObservation] = useState("");
+  const [result, setResult] = useState("");
+  const [nextStep, setNextStep] = useState("");
+
+  const saveTest = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const test: ColourTest = {
+      id: `colour-test-${Date.now()}`, question: question.trim(), pigments: pigments.trim(), ratio: ratio.trim(),
+      medium: medium.trim(), support: support.trim(), wetObservation: wetObservation.trim(),
+      dryObservation: dryObservation.trim(), result: result.trim(), nextStep: nextStep.trim(),
+      createdAt: new Date().toISOString()
+    };
+    onAdd(test);
+    setQuestion(""); setPigments(""); setRatio(""); setMedium(""); setSupport("");
+    setWetObservation(""); setDryObservation(""); setResult(""); setNextStep("");
+  };
+
+  const exportTests = () => {
+    const text = tests.map((test) => [
+      `Опыт: ${test.question}`, `Дата: ${new Date(test.createdAt).toLocaleDateString("ru-RU")}`,
+      `Пигменты: ${test.pigments}`, `Пропорции: ${test.ratio}`, `Среда: ${test.medium || "не указана"}`,
+      `Основа: ${test.support || "не указана"}`, `Мокрый цвет: ${test.wetObservation || "не записан"}`,
+      `После высыхания: ${test.dryObservation || "не записан"}`, `Вывод: ${test.result || "не записан"}`,
+      `Следующий тест: ${test.nextStep || "не запланирован"}`
+    ].join("\n")).join("\n\n---\n\n");
+    const blob = new Blob([`TS·ART STUDIO — COLOUR LAB\n\n${text}\n`], { type: "text/plain;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const anchor = document.createElement("a");
+    anchor.href = url; anchor.download = "ts-art-colour-lab.txt"; anchor.click();
+    URL.revokeObjectURL(url);
+  };
+
+  return <div className="page-wrap inner-page colour-lab-page">
+    <PageIntro eyebrow="QI FLOW · COLOUR LAB" title={<>Цвет — это <em>исследование.</em></>} description="Записывай реальные пробы смешения, чтобы понимать, что именно сработало в твоих материалах. Результат относится к конкретным пигментам и условиям, а не является универсальным рецептом." />
+    <div className="colour-lab-intro"><div className="colour-lab-symbol">◉</div><div><span className="eyebrow">ПРИНЦИП ЛАБОРАТОРИИ</span><h2>Сначала наблюдение, потом вывод.</h2><p>Отмечай название пигмента и производителя, если они известны. Разделяй гипотезу, результат во влажном состоянии и цвет после высыхания. Если данных нет, так и запиши — не угадывай.</p></div></div>
+    <div className="colour-lab-grid">
+      <form className="colour-test-form" onSubmit={saveTest}>
+        <div className="panel-header"><span>НОВЫЙ ОПЫТ</span><span>LOCAL NOTES</span></div>
+        <label htmlFor="colour-question">Что исследуешь? *</label>
+        <input id="colour-question" value={question} onChange={(event) => setQuestion(event.target.value)} required placeholder="Например: как меняется смесь жёлтого с синим" />
+        <label htmlFor="colour-pigments">Пигменты и производитель *</label>
+        <textarea id="colour-pigments" value={pigments} onChange={(event) => setPigments(event.target.value)} required rows={2} placeholder="Название с этикетки, Colour Index при наличии, производитель" />
+        <div className="colour-form-row"><div><label htmlFor="colour-ratio">Пропорции</label><input id="colour-ratio" value={ratio} onChange={(event) => setRatio(event.target.value)} placeholder="1 часть : 2 части" /></div><div><label htmlFor="colour-medium">Среда / разбавитель</label><input id="colour-medium" value={medium} onChange={(event) => setMedium(event.target.value)} placeholder="Без добавки / указать" /></div></div>
+        <label htmlFor="colour-support">Основа и подготовка</label>
+        <input id="colour-support" value={support} onChange={(event) => setSupport(event.target.value)} placeholder="Бумага, грунт, тип поверхности" />
+        <label htmlFor="colour-wet">Наблюдение во влажном состоянии</label>
+        <textarea id="colour-wet" value={wetObservation} onChange={(event) => setWetObservation(event.target.value)} rows={2} placeholder="Оттенок, укрывистость, прозрачность, консистенция…" />
+        <label htmlFor="colour-dry">Наблюдение после высыхания</label>
+        <textarea id="colour-dry" value={dryObservation} onChange={(event) => setDryObservation(event.target.value)} rows={2} placeholder="Что изменилось после высыхания?" />
+        <label htmlFor="colour-result">Результат и ограничения</label>
+        <textarea id="colour-result" value={result} onChange={(event) => setResult(event.target.value)} rows={2} placeholder="Что показал именно этот тест? Что нельзя заключить?" />
+        <label htmlFor="colour-next">Следующий эксперимент</label>
+        <input id="colour-next" value={nextStep} onChange={(event) => setNextStep(event.target.value)} placeholder="Какой один параметр изменишь?" />
+        <button className="button button-dark" type="submit">Сохранить опыт <span>＋</span></button>
+        <p className="colour-form-note">Записи хранятся в этом браузере. Не закрывай доступ к устройству, если заметки личные.</p>
+      </form>
+      <section className="colour-test-list">
+        <div className="colour-list-heading"><div><span className="eyebrow">МОИ НАБЛЮДЕНИЯ</span><h2>Журнал опытов</h2></div><span className="colour-test-count">{tests.length}</span></div>
+        {tests.length === 0 ? <div className="colour-empty"><span>◌</span><h3>Здесь появится первый тест</h3><p>Начни с одного вопроса и небольшого образца. Даже неудачная смесь полезна, если записаны её условия.</p></div> : <>
+          <button className="text-link colour-export" onClick={exportTests}>Экспортировать журнал ↓</button>
+          {tests.map((test) => <article className="colour-test-card" key={test.id}>
+            <div className="colour-test-card-top"><span>{new Date(test.createdAt).toLocaleDateString("ru-RU")}</span><button className="colour-delete" type="button" onClick={() => onDelete(test.id)} aria-label={`Удалить опыт: ${test.question}`}>Удалить ×</button></div>
+            <h3>{test.question}</h3><p><strong>Пигменты:</strong> {test.pigments}</p>
+            {test.ratio && <p><strong>Пропорции:</strong> {test.ratio}</p>}
+            {test.medium && <p><strong>Среда:</strong> {test.medium}</p>}
+            {test.support && <p><strong>Основа:</strong> {test.support}</p>}
+            {test.wetObservation && <p><strong>Мокрый цвет:</strong> {test.wetObservation}</p>}
+            {test.dryObservation && <p><strong>После высыхания:</strong> {test.dryObservation}</p>}
+            {test.result && <p><strong>Вывод:</strong> {test.result}</p>}
+            {test.nextStep && <p><strong>Следующий шаг:</strong> {test.nextStep}</p>}
+          </article>)}
+        </>}
+      </section>
+    </div>
   </div>;
 }
 
