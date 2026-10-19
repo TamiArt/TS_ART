@@ -54,6 +54,34 @@ describe("lesson visual guides", () => {
     expect(classifyLesson(lesson("Первый слой масляной краски"))).toBe("paint");
   });
 
+  it("prioritizes negative space over generic shape wording", () => {
+    const lesson = {
+      id: "negative-space",
+      title: "Рисуем пространство вокруг предмета",
+      duration: "5 мин",
+      kind: "lesson" as const,
+      objective: "Использовать пустые промежутки вокруг формы.",
+      materials: "Бумага и карандаш",
+      steps: ["Наблюдай", "Сравни"],
+      selfCheck: ["Проверено"]
+    };
+    expect(classifyLesson(lesson)).toBe("negative-space");
+  });
+
+  it("keeps broad lesson titles general even when the objective mentions proportions", () => {
+    const lesson = {
+      id: "general-principles",
+      title: "Общие принципы",
+      duration: "5 мин",
+      kind: "lesson" as const,
+      objective: "Изучить пропорции и отношения размеров перед рисованием.",
+      materials: "Бумага и карандаш",
+      steps: ["Наблюдай", "Сравни"],
+      selfCheck: ["Проверено"]
+    };
+    expect(classifyLesson(lesson)).toBe("general");
+  });
+
   it("does not infer a specific subject from generic objective words", () => {
     const genericLesson = {
       id: "observe",
