@@ -10,11 +10,12 @@ import {
 } from "./data/persistence";
 import OilPaintMixer from "./components/OilPaintMixer";
 import LessonVisualGuide from "./components/LessonVisualGuide";
+import ArtHistoryPage from "./components/ArtHistoryPage";
 
-type Page = "home" | "learn" | "practice" | "journal" | "path" | "colourlab" | "openstudio" | "workshops" | "portfolio";
+type Page = "home" | "learn" | "art-history" | "practice" | "journal" | "path" | "colourlab" | "openstudio" | "workshops" | "portfolio";
 
 const icons: Record<Page, string> = {
-  home: "⌂", learn: "▤", practice: "✳", journal: "✎", path: "↗", colourlab: "◉", openstudio: "✳", workshops: "◈", portfolio: "▧"
+  home: "⌂", learn: "▤", "art-history": "◈", practice: "✳", journal: "✎", path: "↗", colourlab: "◉", openstudio: "✳", workshops: "◈", portfolio: "▧"
 };
 
 function App() {
@@ -74,6 +75,7 @@ function App() {
   const navItems: Array<{ id: Page; label: string }> = [
     { id: "home", label: "Моя студия" },
     { id: "learn", label: "Уроки" },
+    { id: "art-history", label: "История искусства" },
     { id: "practice", label: "Мини-студия" },
     { id: "journal", label: "Дневник" },
     { id: "path", label: "Учебный маршрут" },
@@ -144,6 +146,7 @@ function App() {
           <>
             {page === "home" && <HomePage progress={progress} completedCount={completedCount} total={allLessons.length} nextLesson={nextLesson} onContinue={() => openLesson(nextLesson)} onNavigate={navigate} />}
             {page === "learn" && <LessonsPage onOpen={openLesson} completed={saved.completed} moduleId={activeModuleId} onSelectModule={setActiveModuleId} />}
+            {page === "art-history" && <ArtHistoryPage />}
             {page === "practice" && <PracticePage practices={practices} completed={saved.completed} onOpen={openLesson} />}
             {page === "journal" && <JournalPage value={saved.journal} onChange={updateJournal} completedCount={completedCount} />}
             {page === "path" && <PathPage completed={saved.completed} onOpen={openLesson} onSelectModule={setActiveModuleId} onNavigate={navigate} />}

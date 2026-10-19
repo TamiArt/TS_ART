@@ -23,6 +23,20 @@ describe("TS·ART curriculum", () => {
     }
   });
 
+  it("keeps the negative-space lesson aligned with its five-step visual tutorial", () => {
+    const lesson = allLessons.find((item) => item.id === "negative-space");
+    expect(lesson?.title).toBe("Рисуем пространство вокруг предмета");
+    expect(lesson?.duration).toBe("7 мин");
+    expect(lesson?.objective).toContain("пустые промежутки вокруг формы");
+    expect(lesson?.materials).toContain("бумага и карандаш");
+    expect(lesson?.steps).toHaveLength(5);
+    expect(lesson?.steps[0]).toContain("вокруг него были видны промежутки");
+    expect(lesson?.steps[2]).toContain("форму этого промежутка");
+    expect(lesson?.steps[3]).toContain("второй промежуток");
+    expect(lesson?.steps[4]).toContain("внешний силуэт");
+    expect(lesson?.selfCheck).toHaveLength(2);
+  });
+
   it("includes a dedicated pigment testing sequence in Module 7", () => {
     const colourLab = curriculum.find((module) => module.id === 7);
     expect(colourLab?.lessons.map((lesson) => lesson.id)).toContain("m07-lab-card");

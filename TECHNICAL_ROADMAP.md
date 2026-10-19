@@ -178,3 +178,33 @@ This stage starts only after stages 1–3 are complete. Prioritize work by risk 
 - [x] Add focused visual patterns for three-part journal pages, three tone zones, pressure studies, negative space, observation, recording, lighting and core subject families.
 - [ ] Run type-check, all tests and production build against this branch; fix any failures.
 - [ ] Review representative lessons across all modules in a browser at desktop and mobile widths. Confirm the drawing reflects each step literally; add dedicated patterns for any remaining mismatches before considering this work complete.
+
+## Art History sidebar section — branch `feat/art-history-sidebar`
+
+- [x] Add a dedicated “История искусства” entry to the left navigation and connect it to a real page.
+- [x] Build a searchable, filterable timeline covering nine broad periods from prehistoric art to contemporary practices.
+- [x] Include concise context, visual clues, analysis prompts, key terms and a small practical exercise for each period.
+- [x] Add responsive period cards, selected-period detail, previous/next navigation and a collapsible list of museum/educational references.
+- [x] Add integrity tests for unique periods, content completeness and HTTPS source links.
+- [ ] Run type-check, full tests and production build; fix all reported issues.
+- [ ] Verify desktop and mobile navigation, filtering, keyboard access and period selection in a browser.
+- [ ] Continue expanding the content with artwork-specific studies and verified object-level references; broad period summaries are an introduction, not an expert-reviewed art-history course.
+
+### Art History — curriculum expansion and compact lesson layout (continued)
+
+- [x] Add an artwork-specific study to each of the nine historical periods, including creator/attribution, approximate date, medium, a visual-analysis focus and a drawing/practice prompt.
+- [x] Keep attribution cautious where authors are unknown and dates are approximate; retain a reminder to verify interpretations against museum/educational references.
+- [x] Tighten the “Попробуй по шагам” and “Проверь себя” lesson lists: remove empty rendered paragraphs, reduce row padding and inter-line spacing, and keep readable text on mobile.
+- [x] Add automated coverage ensuring every period has exactly one matching artwork study with all core learning fields.
+- [ ] Re-run type-check, curriculum/art-history tests and production build after these changes.
+- [ ] Review the page and lesson layout in a real browser at desktop and mobile widths; adjust any clipping or navigation issues found.
+- [ ] Continue the curriculum with verified, object-level source links and carefully sourced images; do not imply generated decorative shapes are historical artwork reproductions.
+
+### Lesson illustration — “Рисуем пространство вокруг предмета”
+
+- [x] Build a custom five-stage pencil tutorial with a distinct diagram for each requested action: observe the object, isolate one negative shape, draw that empty shape, compare a second gap, then outline the object.
+- [x] Attach the tutorial to the existing Module 1 lesson rather than creating a duplicate lesson.
+- [x] Align the lesson title, objective, materials, five steps and two self-check criteria with the supplied copy.
+- [x] Add responsive desktop/mobile layouts, accessible labels and a curriculum regression test.
+- [ ] Verify TypeScript, tests and production build on the latest commit.
+- [ ] Review visual balance and legibility in a browser at desktop and mobile widths.

@@ -1,9 +1,12 @@
 import type { Lesson } from "../data/types";
 import StepIllustration from "./StepIllustration";
+import NegativeSpaceTutorial from "./NegativeSpaceTutorial";
 import "./lesson-visual-guide.css";
 import { buildLessonVisualStages, classifyLesson, getVisualKindLabel, getVisualPrinciple } from "./lessonVisuals";
 
 export default function LessonVisualGuide({ lesson }: { lesson: Lesson }) {
+  if (lesson.id === "negative-space") return <NegativeSpaceTutorial />;
+
   const kind = classifyLesson(lesson);
   const stages = buildLessonVisualStages(lesson);
 

@@ -728,4 +728,3 @@ button:disabled { cursor:not-allowed; opacity:.5 }
   .lesson-actions { display:grid; grid-template-columns:1fr; }
   .lesson-actions .button { width:100%; }
 }
-
