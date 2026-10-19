@@ -55,4 +55,11 @@ describe("oil mixer pigment shares", () => {
     expect(getPigmentShares(50, 90, true)).toEqual([20, 20, 60]);
     expect(getPigmentShares(50, 90, false)).toEqual([50, 50, 0]);
   });
+
+  it("preserves the mixture when A and B are swapped with the ratio inverted", () => {
+    expect(getPigmentShares(62, 10, true)).toEqual([56, 34, 10]);
+    expect(mixPigmentHex("#c49a45", "#344b91", 38, "#a64c3d", 10)).toBe(
+      mixPigmentHex("#344b91", "#c49a45", 62, "#a64c3d", 10)
+    );
+  });
 });
