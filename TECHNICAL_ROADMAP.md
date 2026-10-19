@@ -2,7 +2,7 @@
 
 ## Development order
 
-Work through these four stages in order. Do not move to the next stage while the current stage has unresolved blocking issues. Keep work on `feat/oil-paint-mixer-colourlab` (or a new feature branch created from the verified current branch); never change `main` unless explicitly requested.
+Work through these four stages in order. Do not move to the next stage while the current stage has unresolved blocking issues. Continue the current work on `feat/oil-paint-mixer-qa-hardening` unless a separate, explicitly scoped feature branch is needed; never change `main` unless explicitly requested.
 
 ### 1. Finish the Oil Paint Mixer — CURRENT STAGE
 
@@ -142,8 +142,8 @@ This stage starts only after stages 1–3 are complete. Prioritize work by risk 
 - [x] Extract topic classification, stage generation and topic-specific learning principles into a pure module.
 - [x] Add curriculum-wide unit tests: each of the 84 lessons must render one ordered visual stage per written step.
 - [x] Test the classifier against portrait, landscape, still life, colour, tone, perspective, composition, proportion, line and paint examples.
-- [x] Give the final review stage a distinct completion marker and improve small-screen reading sizes.
-- [x] Vercel production build reached READY for commit `b56d9b503b027f0276ea00fb7943db620eb7f8ec`.
-- [ ] Confirm unit-test execution from CI; the available status API only surfaced Vercel, not a test-run result.
-- [ ] Inspect representative lesson screenshots in a browser; the deployment is ready, but the available browser reader could not access the preview URL.
+- [x] Give the final review stage a distinct completion marker on every lesson, including lessons with fewer than four steps; label intermediate stages distinctly and improve small-screen reading sizes.
+- [x] Vercel production build reached READY for commit `1d1c4daced410d1895326a03e874740b4abf3f85`; subsequent visual-guide fixes are awaiting deployment/check confirmation.
+- [ ] Confirm unit-test execution from CI; the available status API has not surfaced a test-run result for the current branch tip.
+- [ ] Inspect representative lesson screenshots in a browser; the available browser reader could not access the preview URL.
 - Known limitation: the illustrations are topic-family schematics reused across related lessons, not 84 separately art-directed drawings. They are explicitly presented as visual aids rather than exact model answers.
