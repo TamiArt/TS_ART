@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import "./oil-paint-mixer.css";
-import { mixPigmentHex } from "./mixPigments";
+import { getPigmentShares, mixPigmentHex } from "./mixPigments";
 
 type Pigment = { id: string; name: string; colourIndex: string; hex: string; note: string };
 type StudyTask = "portrait" | "landscape" | "still-life";
@@ -63,9 +63,7 @@ export default function OilPaintMixer() {
   const second = getPigment(secondId);
   const third = getPigment(thirdId);
   const effectiveThirdPercent = useThird ? thirdPercent : 0;
-  const remainingPercent = 100 - effectiveThirdPercent;
-  const firstWeight = Math.round(remainingPercent * firstPercent / 100);
-  const secondWeight = remainingPercent - firstWeight;
+  const [firstWeight, secondWeight, thirdWeight] = getPigmentShares(firstPercent, thirdPercent, useThird);
   const mixed = useMemo(
     () => mixPigmentHex(first.hex, second.hex, firstPercent, useThird ? third.hex : undefined, effectiveThirdPercent),
     [first.hex, second.hex, firstPercent, third.hex, effectiveThirdPercent, useThird]
@@ -172,11 +170,11 @@ export default function OilPaintMixer() {
 
         <div className="oil-mixer-result">
           <div className="oil-mixer-swatch" style={{ backgroundColor: mixed }} role="img" aria-label={`Условный цвет смеси: ${mixed}`}><span>PREVIEW</span></div>
-          <div className="oil-mixer-result-meta"><div><span>Расчётный оттенок</span><strong>{mixed.toUpperCase()}</strong></div><div><span>Доли в смеси</span><strong>{firstWeight} : {secondWeight}{useThird ? ` : ${effectiveThirdPercent}` : ""}</strong></div></div>
+          <div className="oil-mixer-result-meta"><div><span>Расчётный оттенок</span><strong>{mixed.toUpperCase()}</strong></div><div><span>Доли в смеси</span><strong>{firstWeight} : {secondWeight}{useThird ? ` : ${thirdWeight}` : ""}</strong></div></div>
           <div className="oil-mixer-components" aria-label="Доли пигментов в смеси">
             <div><span style={{ backgroundColor: first.hex }} /><span>{first.name}</span><strong>{firstWeight}%</strong></div>
             <div><span style={{ backgroundColor: second.hex }} /><span>{second.name}</span><strong>{secondWeight}%</strong></div>
-            {useThird && <div><span style={{ backgroundColor: third.hex }} /><span>{third.name}</span><strong>{effectiveThirdPercent}%</strong></div>}
+            {useThird && <div><span style={{ backgroundColor: third.hex }} /><span>{third.name}</span><strong>{thirdWeight}%</strong></div>}
           </div>
         </div>
       </div>
