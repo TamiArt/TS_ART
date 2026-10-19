@@ -8,12 +8,13 @@ Work through these four stages in order. Do not move to the next stage while the
 
 **Goal:** make the mixer stable, coherent and testable as a standalone learning tool before adding more features.
 
-**Work completed in this pass:** extracted a pure whole-percentage share calculation; wired displayed A/B/C shares to it; clarified the A:B ratio label when pigment C is enabled; aligned the calculation's 60% third-pigment cap with the UI; corrected the reversed endpoint labels on the A:B slider; guarded ratio calculations against non-finite values; and added tests for three-pigment share totals, limits, swapping A/B and non-finite inputs; updated the README. An independent Node.js arithmetic smoke check passed. The project's `npm run check`, `npm run test` and `npm run build` have not yet been run in this environment, and interaction review remains pending. The stage stays open until those checks are run.
+**Work completed so far:** extracted a pure whole-percentage share calculation; wired displayed A/B/C shares to it; clarified the A:B ratio label when pigment C is enabled; aligned the calculation's 60% third-pigment cap with the UI; corrected the reversed endpoint labels on the A:B slider; guarded ratio calculations against non-finite values; rejected malformed six-digit HEX inputs explicitly rather than generating invalid preview strings; and added tests for three-pigment share totals, limits, swapping A/B, non-finite inputs, identical pigments, a zero-share third pigment and malformed HEX values. The prior branch had an independent Node.js arithmetic smoke check, but the current branch's project checks and interaction review remain pending. The stage stays open until type-check, tests, production build and interaction review are confirmed.
 
 - [ ] Verify task selection: Portrait, Landscape and Still Life, including each task's study categories.
 - [ ] Verify two-pigment selection, proportion controls, swapping pigments and displayed mixture shares.
 - [ ] Verify optional third pigment, its percentage and the distribution of the remaining share between pigments A and B.
 - [x] Review calculation boundaries, default selections and labels in source; corrected the reversed A:B slider endpoint labels and aligned the third-pigment calculation cap with the UI.
+- [x] Validate six-digit HEX inputs and add regression tests for invalid colours, identical pigments and a zero-share third pigment.
 - [x] Add polite live announcements for the calculated colour and mixture shares; strengthen keyboard focus contrast and small-screen spacing in source.
 - [ ] Verify accessible control names and responsive layout through runtime/browser interaction.
 - [ ] Fix any interaction, calculation, visual or responsive-layout defects found.
