@@ -56,7 +56,7 @@ function App() {
   }, [toast]);
 
   const activeLesson = allLessons.find((lesson) => lesson.id === activeLessonId) ?? null;
-  const completedCount = saved.completed.length;
+  const completedCount = allLessons.filter((lesson) => saved.completed.includes(lesson.id)).length;
   const progress = Math.round((completedCount / allLessons.length) * 100);
   const nextLesson = allLessons.find((lesson) => !saved.completed.includes(lesson.id)) ?? allLessons[0];
   const practices = allLessons.filter((lesson) => lesson.kind === "practice");
@@ -357,6 +357,133 @@ function ColourLabPage({ tests, onAdd, onDelete }: { tests: ColourTest[]; onAdd:
         </>}
       </section>
     </div>
+  </div>;
+}
+
+function OpenStudioPage({ projects, onAdd, onStatus, onDelete }: {
+  projects: StudioProject[];
+  onAdd: (project: StudioProject) => void;
+  onStatus: (id: string, status: StudioProject["status"]) => void;
+  onDelete: (id: string) => void;
+}) {
+  const [title, setTitle] = useState("");
+  const [question, setQuestion] = useState("");
+  const [medium, setMedium] = useState("");
+  const [constraint, setConstraint] = useState("");
+  const [nextStep, setNextStep] = useState("");
+
+  const saveProject = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    onAdd({ id: `project-${Date.now()}`, title: title.trim(), question: question.trim(), medium: medium.trim(), constraint: constraint.trim(), nextStep: nextStep.trim(), status: "active", createdAt: new Date().toISOString() });
+    setTitle(""); setQuestion(""); setMedium(""); setConstraint(""); setNextStep("");
+  };
+  const exportProjects = () => {
+    const text = projects.map((project) => [
+      project.title, `Статус: ${project.status}`, `Вопрос: ${project.question}`,
+      `Материал: ${project.medium || "не указан"}`, `Ограничение: ${project.constraint || "не указано"}`,
+      `Следующий шаг: ${project.nextStep || "не записан"}`
+    ].join("\n")).join("\n\n---\n\n");
+    const blob = new Blob([`TS·ART STUDIO — OPEN STUDIO\n\n${text}\n`], { type: "text/plain;charset=utf-8" });
+    const url = URL.createObjectURL(blob); const anchor = document.createElement("a");
+    anchor.href = url; anchor.download = "ts-art-open-studio.txt"; anchor.click(); URL.revokeObjectURL(url);
+  };
+  const statusLabel: Record<StudioProject["status"], string> = { active: "В работе", paused: "На паузе", complete: "Завершён" };
+
+  return <div className="page-wrap inner-page">
+    <PageIntro eyebrow="OPEN STUDIO · ЛИЧНЫЕ ПРОЕКТЫ" title={<>Твоя идея. <em>Твой процесс.</em></>} description="Открытая студия помогает превратить интерес в небольшое исследование: сформулировать вопрос, выбрать ограничение и определить следующий шаг. Это рабочие заметки, а не конкурс готовых работ." />
+    <div className="open-studio-banner"><span>✳</span><div><span className="eyebrow">РАБОЧИЙ ПРИНЦИП</span><h2>Не жди идеального замысла — проверь маленькую идею.</h2><p>Каждый проект хранится только в этом браузере. Здесь можно вести несколько исследований параллельно и экспортировать их записи.</p></div></div>
+    <div className="open-studio-grid">
+      <form className="project-form" onSubmit={saveProject}>
+        <span className="eyebrow">НОВЫЙ ПРОЕКТ</span><h2>С чего хочешь начать?</h2>
+        <label htmlFor="project-title">Название *</label><input id="project-title" value={title} onChange={(event) => setTitle(event.target.value)} required placeholder="Например: вечерний свет в комнате" />
+        <label htmlFor="project-question">Вопрос или замысел *</label><textarea id="project-question" rows={3} value={question} onChange={(event) => setQuestion(event.target.value)} required placeholder="Что хочу исследовать или передать?" />
+        <label htmlFor="project-medium">Материал / формат</label><input id="project-medium" value={medium} onChange={(event) => setMedium(event.target.value)} placeholder="Масло, карандаш, цифровой этюд…" />
+        <label htmlFor="project-constraint">Ограничение эксперимента</label><input id="project-constraint" value={constraint} onChange={(event) => setConstraint(event.target.value)} placeholder="Например: три цвета, 20 минут" />
+        <label htmlFor="project-next">Первый следующий шаг</label><textarea id="project-next" rows={2} value={nextStep} onChange={(event) => setNextStep(event.target.value)} placeholder="Какое действие можно выполнить сегодня?" />
+        <button className="button button-dark" type="submit">Создать проект <span>＋</span></button>
+      </form>
+      <section className="project-board">
+        <div className="project-board-heading"><div><span className="eyebrow">ТВОЯ МАСТЕРСКАЯ</span><h2>Проекты в процессе</h2></div><span className="colour-test-count">{projects.length}</span></div>
+        {projects.length > 0 && <button className="text-link project-export" onClick={exportProjects}>Экспортировать проекты ↓</button>}
+        {projects.length === 0 ? <div className="colour-empty"><span>◌</span><h3>Пока нет проектов</h3><p>Начни с вопроса, который тебе действительно интересен. Большая работа может начаться с небольшого этюда.</p></div> : projects.map((project) => <article className="project-card" key={project.id}>
+          <div className="colour-test-card-top"><span>{new Date(project.createdAt).toLocaleDateString("ru-RU")}</span><span className={`project-status project-status-${project.status}`}>{statusLabel[project.status]}</span></div>
+          <h3>{project.title}</h3><p>{project.question}</p>
+          {project.medium && <p><strong>Материал:</strong> {project.medium}</p>}
+          {project.constraint && <p><strong>Ограничение:</strong> {project.constraint}</p>}
+          {project.nextStep && <p><strong>Следующий шаг:</strong> {project.nextStep}</p>}
+          <div className="project-actions">
+            {project.status !== "complete" && <button className="text-link" onClick={() => onStatus(project.id, project.status === "active" ? "paused" : "active")}>{project.status === "paused" ? "Возобновить" : "Поставить на паузу"}</button>}
+            {project.status !== "complete" && <button className="text-link" onClick={() => onStatus(project.id, "complete")}>Отметить завершённым</button>}
+            {project.status === "complete" && <button className="text-link" onClick={() => onStatus(project.id, "active")}>Вернуть в работу</button>}
+            <button className="colour-delete" onClick={() => onDelete(project.id)}>Удалить ×</button>
+          </div>
+        </article>)}
+      </section>
+    </div>
+  </div>;
+}
+
+function PortfolioPage({ items, onAdd, onDelete }: { items: PortfolioItem[]; onAdd: (item: PortfolioItem) => void; onDelete: (id: string) => void }) {
+  const [title, setTitle] = useState("");
+  const [medium, setMedium] = useState("");
+  const [year, setYear] = useState(String(new Date().getFullYear()));
+  const [description, setDescription] = useState("");
+  const [link, setLink] = useState("");
+  const saveItem = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    onAdd({ id: `portfolio-${Date.now()}`, title: title.trim(), medium: medium.trim(), year: year.trim(), description: description.trim(), link: link.trim(), createdAt: new Date().toISOString() });
+    setTitle(""); setMedium(""); setYear(String(new Date().getFullYear())); setDescription(""); setLink("");
+  };
+  const exportPortfolio = () => {
+    const text = items.map((item) => [item.title, `Год: ${item.year || "не указан"}`, `Материал: ${item.medium || "не указан"}`, item.description, item.link ? `Ссылка: ${item.link}` : ""].filter(Boolean).join("\n")).join("\n\n---\n\n");
+    const blob = new Blob([`TS·ART STUDIO — PORTFOLIO NOTES\n\n${text}\n`], { type: "text/plain;charset=utf-8" });
+    const url = URL.createObjectURL(blob); const anchor = document.createElement("a");
+    anchor.href = url; anchor.download = "ts-art-portfolio.txt"; anchor.click(); URL.revokeObjectURL(url);
+  };
+  const safeExternalUrl = (value: string) => {
+    try { const url = new URL(value); return url.protocol === "http:" || url.protocol === "https:" ? url.href : null; }
+    catch { return null; }
+  };
+
+  return <div className="page-wrap inner-page">
+    <PageIntro eyebrow="PORTFOLIO · АРХИВ РАБОТ" title={<>Собирай не только работы, <em>но и путь.</em></>} description="Создавай записи о собственных произведениях: название, материал, год, замысел и при необходимости ссылка на изображение. Загрузка файлов пока не включена; записи сохраняются локально." />
+    <div className="portfolio-layout">
+      <form className="project-form" onSubmit={saveItem}>
+        <span className="eyebrow">НОВАЯ РАБОТА</span><h2>Добавить в портфолио</h2>
+        <label htmlFor="portfolio-title">Название *</label><input id="portfolio-title" value={title} onChange={(event) => setTitle(event.target.value)} required placeholder="Название произведения" />
+        <label htmlFor="portfolio-medium">Материал / техника</label><input id="portfolio-medium" value={medium} onChange={(event) => setMedium(event.target.value)} placeholder="Масло на холсте, цифровая живопись…" />
+        <label htmlFor="portfolio-year">Год</label><input id="portfolio-year" value={year} onChange={(event) => setYear(event.target.value)} placeholder="2026" />
+        <label htmlFor="portfolio-description">Замысел и контекст</label><textarea id="portfolio-description" rows={4} value={description} onChange={(event) => setDescription(event.target.value)} placeholder="Что исследовала, какие решения приняла?" />
+        <label htmlFor="portfolio-link">Ссылка на работу (необязательно)</label><input id="portfolio-link" type="url" value={link} onChange={(event) => setLink(event.target.value)} placeholder="https://…" />
+        <button className="button button-dark" type="submit">Добавить запись <span>＋</span></button>
+      </form>
+      <section className="portfolio-board">
+        <div className="project-board-heading"><div><span className="eyebrow">МОЯ ПОДБОРКА</span><h2>Работы</h2></div><span className="colour-test-count">{items.length}</span></div>
+        {items.length > 0 && <button className="text-link project-export" onClick={exportPortfolio}>Экспортировать портфолио ↓</button>}
+        {items.length === 0 ? <div className="colour-empty"><span>▧</span><h3>Архив начинается с одной записи</h3><p>Фиксируй работы и решения, чтобы видеть развитие и постепенно собирать авторскую подборку.</p></div> : items.map((item) => <article className="portfolio-item" key={item.id}>
+          <div className="portfolio-art-placeholder"><span>TS·ART</span><small>{item.year || "WORK STUDY"}</small></div>
+          <div className="portfolio-item-copy"><div className="colour-test-card-top"><span>{item.medium || "Материал не указан"}</span><button className="colour-delete" onClick={() => onDelete(item.id)}>Удалить ×</button></div>
+            <h3>{item.title}</h3>{item.description && <p>{item.description}</p>}{item.link && (safeExternalUrl(item.link) ? <a href={safeExternalUrl(item.link) ?? undefined} target="_blank" rel="noreferrer">Открыть ссылку на работу ↗</a> : <p>Ссылка не распознана как безопасный HTTP(S)-адрес.</p>)}
+          </div>
+        </article>)}
+      </section>
+    </div>
+  </div>;
+}
+
+function WorkshopsPage({ onOpen }: { onOpen: (lessonId: string) => void }) {
+  const workshops = [
+    { id: "light", icon: "◐", label: "01 · СВЕТ", title: "Драматический свет и фокус", problem: "Как сделать свет главным участником композиции?", task: "Разложи референс на большие светлые и тёмные массы, выбери главный акцент и сравни края вокруг него.", lesson: "m15-dramatic-light", source: "Для исследования выбери произведение из музейной коллекции и проверь подпись учреждения. Не делай выводов о технике или намерениях автора без источника." },
+    { id: "water", icon: "〰", label: "02 · АТМОСФЕРА", title: "Небо, вода и отражения", problem: "Как передать среду, не рисуя каждую волну или облако?", task: "Начни с больших цветовых и тональных отношений; добавляй детали только там, где они объясняют движение или глубину.", lesson: "m12-water-reflection", source: "Сопоставь собственный этюд с натурным наблюдением или лицензированным референсом. Запиши условия света." },
+    { id: "forest", icon: "✳", label: "03 · СТРУКТУРА", title: "Дерево как ритм масс", problem: "Как показать рост и глубину без одинаковых листьев?", task: "Найди направление ветвей, три крупные массы листвы и несколько характерных краёв. Оставь часть формы обобщённой.", lesson: "m13-forest-depth", source: "Используй собственное наблюдение или источник с понятными условиями использования." },
+    { id: "gesture", icon: "⌁", label: "04 · ДВИЖЕНИЕ", title: "Жест и конструкция фигуры", problem: "Как сохранить движение, когда начинаешь уточнять анатомию?", task: "Сделай быстрый жестовый набросок, отметь оси плеч и таза, затем сравни силуэт до и после построения.", lesson: "m14-gesture", source: "Используй собственные фотографии или референсы, на публикацию которых есть разрешение." },
+    { id: "colour", icon: "◉", label: "05 · ПИГМЕНТЫ", title: "Цветовая гипотеза против опыта", problem: "Почему один и тот же словесный рецепт не гарантирует одинаковую смесь?", task: "Запиши точные названия пигментов, меняй один параметр за раз и сравни мокрый и высохший образцы.", lesson: "m07-lab-card", source: "Это практический эксперимент. Вывод относится к протестированным материалам и условиям, а не ко всем краскам." },
+    { id: "analysis", icon: "◈", label: "06 · ВИЗУАЛЬНЫЙ АНАЛИЗ", title: "Исследование художественного решения", problem: "Как учиться у мастера, не копируя работу механически?", task: "Сначала опиши наблюдаемые факты, затем выбери одну задачу — свет, композицию, цвет или края — и создай собственный этюд.", lesson: "m16-master-study", source: "Проверяй авторство, название, датировку и материал по музейным или научным каталогам. Не выдавай интерпретацию за установленный факт." }
+  ];
+  return <div className="page-wrap inner-page">
+    <PageIntro eyebrow="MASTER WORKSHOPS · ВИЗУАЛЬНЫЕ ИССЛЕДОВАНИЯ" title={<>Смотри глубже. <em>Пробуй сама.</em></>} description="Мастерская — не биография художника и не копирование ради копирования. Это короткое исследование конкретной художественной задачи с переходом к собственной практике." />
+    <div className="workshop-notice"><strong>Метод мастерской</strong><span>Наблюдение → визуальная схема → собственный этюд → рефлексия. Исторические сведения нужно подтверждать источниками; интерпретации обозначай как интерпретации.</span></div>
+    <div className="workshop-grid">{workshops.map((workshop) => <article className="workshop-card" key={workshop.id}><div className="workshop-label">{workshop.label}</div><div className="workshop-mark">{workshop.icon}</div><h2>{workshop.title}</h2><p className="workshop-question">{workshop.problem}</p><p>{workshop.task}</p><div className="workshop-source"><span className="eyebrow">ИСТОЧНИК И ПРОВЕРКА</span><p>{workshop.source}</p></div><button className="button button-outline" onClick={() => onOpen(workshop.lesson)}>Открыть связанный урок <span>↗</span></button></article>)}</div>
   </div>;
 }
 
