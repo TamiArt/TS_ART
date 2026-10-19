@@ -19,6 +19,23 @@ describe("oil mixer preview calculation", () => {
     expect(mixPigmentHex("#c49a45", "#344b91", 150)).toBe("#c49a45");
   });
 
+  it("returns the same colour when both pigments are identical", () => {
+    expect(mixPigmentHex("#c49a45", "#c49a45", 37)).toBe("#c49a45");
+  });
+
+  it("does not change a two-pigment result when the third pigment has zero share", () => {
+    expect(mixPigmentHex("#c49a45", "#344b91", 38, "#ff0000", 0)).toBe(
+      mixPigmentHex("#c49a45", "#344b91", 38)
+    );
+  });
+
+  it("rejects malformed HEX colours instead of returning an invalid preview", () => {
+    expect(() => mixPigmentHex("c49a45", "#344b91", 50)).toThrow(TypeError);
+    expect(() => mixPigmentHex("#c49", "#344b91", 50)).toThrow(TypeError);
+    expect(() => mixPigmentHex("#gggggg", "#344b91", 50)).toThrow(TypeError);
+    expect(() => mixPigmentHex("#c49a45", "#344b91", 50, "not-a-colour", 0)).toThrow(TypeError);
+  });
+
   it("uses the third pigment as a share of the complete mixture", () => {
     expect(mixPigmentHex("#000000", "#ffffff", 50, "#ff0000", 50)).toBe("#bf4040");
   });
