@@ -189,3 +189,13 @@ This stage starts only after stages 1–3 are complete. Prioritize work by risk 
 - [ ] Run type-check, full tests and production build; fix all reported issues.
 - [ ] Verify desktop and mobile navigation, filtering, keyboard access and period selection in a browser.
 - [ ] Continue expanding the content with artwork-specific studies and verified object-level references; broad period summaries are an introduction, not an expert-reviewed art-history course.
+
+### Art History — curriculum expansion and compact lesson layout (continued)
+
+- [x] Add an artwork-specific study to each of the nine historical periods, including creator/attribution, approximate date, medium, a visual-analysis focus and a drawing/practice prompt.
+- [x] Keep attribution cautious where authors are unknown and dates are approximate; retain a reminder to verify interpretations against museum/educational references.
+- [x] Tighten the “Попробуй по шагам” and “Проверь себя” lesson lists: remove empty rendered paragraphs, reduce row padding and inter-line spacing, and keep readable text on mobile.
+- [x] Add automated coverage ensuring every period has exactly one matching artwork study with all core learning fields.
+- [ ] Re-run type-check, curriculum/art-history tests and production build after these changes.
+- [ ] Review the page and lesson layout in a real browser at desktop and mobile widths; adjust any clipping or navigation issues found.
+- [ ] Continue the curriculum with verified, object-level source links and carefully sourced images; do not imply generated decorative shapes are historical artwork reproductions.
