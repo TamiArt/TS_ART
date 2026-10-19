@@ -1,25 +1,8 @@
 import type { Lesson } from "../data/types";
 import "./lesson-visual-guide.css";
+import { buildLessonVisualStages, classifyLesson, getVisualPrinciple } from "./lessonVisuals";
 
-type VisualKind = "line" | "shape" | "proportion" | "tone" | "perspective" | "composition" | "colour" | "portrait" | "landscape" | "still-life" | "paint" | "general";
-
-function classifyLesson(lesson: Lesson): VisualKind {
-  const text = `${lesson.title} ${lesson.objective} ${lesson.materials} ${lesson.steps.join(" ")}`.toLowerCase();
-  if (/портрет|лиц|глаз|нос|губ|голов|череп|skin|portrait/.test(text)) return "portrait";
-  if (/пейзаж|небо|дерев|гор|обла|landscape/.test(text)) return "landscape";
-  if (/натюрморт|чаш|бутыл|яблок|драпиров|still.life/.test(text)) return "still-life";
-  if (/цвет|колорит|палитр|пигмент|оттен|тепл|холодн|насыщ|colour|color/.test(text)) return "colour";
-  if (/свет|тень|тон|светлот|контраст|монохром|штрихов|объём|объем/.test(text)) return "tone";
-  if (/перспектив|горизонт|точк[аи] сход|глубин|пространств/.test(text)) return "perspective";
-  if (/композиц|миниатюр|фокус|акцент|баланс|кадр|расположен/.test(text)) return "composition";
-  if (/пропорц|измер|сравнен|масштаб|ось|наклон|конструкц/.test(text)) return "proportion";
-  if (/лини|контур|силуэт|нажим|штрих|край|обвод/.test(text)) return "line";
-  if (/кист|краск|масл|акварел|живопис|мазок|холст|грунт|сло[ий]/.test(text)) return "paint";
-  if (/форм|геометр|круг|овал|цилиндр|куб|шар/.test(text)) return "shape";
-  return "general";
-}
-
-function VisualDrawing({ kind, stage }: { kind: VisualKind; stage: number }) {
+function VisualDrawing({ kind, stage, stepNumber }: { kind: ReturnType<typeof classifyLesson>; stage: number; stepNumber: number }) {
   const stroke = "#56564b";
   const muted = "#a8a18f";
   const accent = "#b77b5d";
@@ -65,34 +48,33 @@ function VisualDrawing({ kind, stage }: { kind: VisualKind; stage: number }) {
     default:
       art = <>{stage >= 1 && <rect x="25" y="25" width="105" height="80" rx="2" fill="#f4efe3" stroke="#c8c0b0"/>}{stage >= 1 && <><path d="M36 87 L62 55 L82 76 L100 45 L120 87 Z" fill="#d4c8b2" stroke={stroke} strokeWidth="1.4"/>{circle(102,40,8,"#d2aa7b")}</>}{stage >= 2 && <path d="M36 91 Q66 75 90 91 T120 91" fill="none" stroke={sage} strokeWidth="3"/>}{stage >= 3 && <path d="M42 99 L114 99" stroke={accent} strokeWidth="2.5" strokeLinecap="round"/>}</>;
   }
-  return <svg className="lesson-visual-svg" viewBox="0 0 158 132" role="img" aria-label="Иллюстрация этапа практики" xmlns="http://www.w3.org/2000/svg">{art}</svg>;
+  return <svg className="lesson-visual-svg" viewBox="0 0 158 132" role="img" aria-label={`Схематичный пример, этап ${stepNumber}, тема: ${kind}`} xmlns="http://www.w3.org/2000/svg">{art}</svg>;
 }
 
-const stageLabels = ["Основа", "Построение", "Уточнение", "Проверка"];
 
 export default function LessonVisualGuide({ lesson }: { lesson: Lesson }) {
   const kind = classifyLesson(lesson);
-  const stages = lesson.steps;
+  const stages = buildLessonVisualStages(lesson);
   return (
-    <section className="lesson-visual-guide" aria-labelledby="lesson-visual-title">
+    <section className="lesson-visual-guide" aria-labelledby={`lesson-visual-title-${lesson.id}`}>
       <div className="lesson-visual-heading">
         <div>
           <span className="eyebrow">ВИЗУАЛЬНЫЙ ПРИМЕР</span>
-          <h2 id="lesson-visual-title">Повтори по образцу</h2>
+          <h2 id={`lesson-visual-title-${lesson.id}`}>Повтори по образцу</h2>
           <p>Смотри на каждый этап и выполняй действие рядом. Рисунок-схема помогает понять порядок работы — твой результат может отличаться.</p>
         </div>
-        <span className="lesson-visual-stamp">FIG. {String(lesson.id.length).padStart(2, "0")}</span>
+        <span className="lesson-visual-stamp">STEP<br />BY STEP</span>
       </div>
       <div className="lesson-visual-stages">
-        {stages.map((step, index) => (
-          <article className="lesson-visual-stage" key={`${lesson.id}-visual-${index}`}>
-            <div className="lesson-visual-stage-top"><span>{String(index + 1).padStart(2, "0")}</span><small>{stageLabels[index] ?? "Этап"}</small></div>
-            <VisualDrawing kind={kind} stage={Math.min(index + 1, 4)} />
-            <p>{step}</p>
+        {stages.map((step) => (
+          <article className="lesson-visual-stage" key={`${lesson.id}-visual-${step.number}`}>
+            <div className="lesson-visual-stage-top"><span>{String(step.number).padStart(2, "0")}</span><small>{step.label}</small></div>
+            <VisualDrawing kind={kind} stage={step.drawingStage} stepNumber={step.number} />
+            <p>{step.instruction}</p>
           </article>
         ))}
       </div>
-      <div className="lesson-visual-footer"><span className="lesson-visual-footer-mark">✳</span><p><strong>Порядок важнее деталей.</strong> Сначала крупные формы и отношения, затем уточнения. Если урок короче четырёх шагов, используй только показанные этапы.</p></div>
+      <div className="lesson-visual-footer"><span className="lesson-visual-footer-mark">✳</span><p><strong>Главный принцип.</strong> {getVisualPrinciple(kind)} Схема показывает общий порядок работы; сверяйся также с натурой и условиями конкретного задания.</p></div>
     </section>
   );
 }
