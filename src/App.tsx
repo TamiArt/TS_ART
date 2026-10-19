@@ -1,6 +1,5 @@
 import { useEffect, useMemo, useState, type FormEvent, type ReactNode } from "react";
 import { allLessons, curriculum, type Lesson } from "./data/curriculum";
-import OilPaintMixer from "./components/OilPaintMixer";
 import {
   readSavedState,
   STORAGE_KEY,
@@ -9,6 +8,7 @@ import {
   type SavedState,
   type StudioProject
 } from "./data/persistence";
+import OilPaintMixer from "./components/OilPaintMixer";
 
 type Page = "home" | "learn" | "practice" | "journal" | "path" | "colourlab" | "openstudio" | "workshops" | "portfolio";
 
