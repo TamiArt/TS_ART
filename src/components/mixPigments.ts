@@ -20,7 +20,7 @@ export function mixPigmentHex(
   thirdPercent = 0
 ): string {
   const firstShare = clampPercent(firstPercent) / 100;
-  const thirdShare = thirdHex ? clampPercent(thirdPercent) / 100 : 0;
+  const thirdShare = thirdHex ? clampPercent(thirdPercent, 60) / 100 : 0;
   const remainingShare = 1 - thirdShare;
   const weights = [remainingShare * firstShare, remainingShare * (1 - firstShare), thirdShare];
   const colours = [firstHex, secondHex, thirdHex ?? secondHex];
