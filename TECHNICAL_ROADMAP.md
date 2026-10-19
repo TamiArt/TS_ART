@@ -199,3 +199,12 @@ This stage starts only after stages 1–3 are complete. Prioritize work by risk 
 - [ ] Re-run type-check, curriculum/art-history tests and production build after these changes.
 - [ ] Review the page and lesson layout in a real browser at desktop and mobile widths; adjust any clipping or navigation issues found.
 - [ ] Continue the curriculum with verified, object-level source links and carefully sourced images; do not imply generated decorative shapes are historical artwork reproductions.
+
+### Lesson illustration — “Рисуем пространство вокруг предмета”
+
+- [x] Build a custom five-stage pencil tutorial with a distinct diagram for each requested action: observe the object, isolate one negative shape, draw that empty shape, compare a second gap, then outline the object.
+- [x] Attach the tutorial to the existing Module 1 lesson rather than creating a duplicate lesson.
+- [x] Align the lesson title, objective, materials, five steps and two self-check criteria with the supplied copy.
+- [x] Add responsive desktop/mobile layouts, accessible labels and a curriculum regression test.
+- [ ] Verify TypeScript, tests and production build on the latest commit.
+- [ ] Review visual balance and legibility in a browser at desktop and mobile widths.
