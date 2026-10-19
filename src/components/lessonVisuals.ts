@@ -94,24 +94,6 @@ export function classifyVisualAction(instruction: string): VisualAction {
   return "review";
 }
 
-export function classifyVisualAction(instruction: string): VisualAction {
-  const text = instruction.toLowerCase();
-  if (/запиши|подпиши|сформулируй|сохрани|зафиксируй|дневник|отметь/.test(text)) return "record";
-  if (/сравни|проверь|оцени|найди отличие|куда первым|посмотри .*уменьш/.test(text)) return "compare";
-  if (/закрась|заполни.*тоном|залей|покрой.*одним тоном/.test(text)) return "fill";
-  if (/тень|светлот|полутон|тональн|затемн|освещён|освещен|свет и тень|штрихов/.test(text)) return "shade";
-  if (/смеш|пигмент|пропорци.*цвет|оттенок|палитр/.test(text)) return "mix";
-  if (/измер|отношени.*размер|пропорц|масштаб|ширин|высот|наклон/.test(text)) return "measure";
-  if (/выбери|выбрать|отбери|оставь только|выдели только/.test(text)) return "select";
-  if (/нарисуй|наметь|проведи контур|обведи|силуэт|линию|проведи пять линий/.test(text)) return "outline";
-  if (/упрости|простых форм|круг, овал|геометрическ|крупными массами/.test(text)) return "simplify";
-  if (/проследи взглядом|наблюдай|прищур|заметь|найди самую|рассмотри|смотри на предмет/.test(text)) return "observe";
-  if (/поставь|размести|организуй свет|подготовь|положи рядом|разложи рядом/.test(text)) return "place";
-  if (/повтори|сделай три|сделай ряд|серия|одним движением|попробуй/.test(text)) return "practice";
-  if (/исправ|измени один|добавь|уточни|детал/.test(text)) return "trace";
-  return "review";
-}
-
 export function buildLessonVisualStages(lesson: Lesson): LessonVisualStage[] {
   return lesson.steps.map((instruction, index) => ({
     number: index + 1,
