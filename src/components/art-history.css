@@ -1,0 +1,146 @@
+.art-history-page { padding-top: 28px; }
+.art-history-hero { display:grid; grid-template-columns:minmax(0,1.2fr) minmax(240px,.8fr); align-items:center; gap:28px; padding:12px 0 27px; border-bottom:1px solid var(--line); }
+.art-history-hero-copy h1 { max-width:690px; font-family:var(--serif); font-size:clamp(37px,4.2vw,55px); font-weight:500; letter-spacing:-1.6px; line-height:1.12; margin:17px 0 14px; }
+.art-history-hero-copy h1 em { color:var(--accent); font-weight:500; }
+.art-history-hero-copy>p { max-width:650px; margin:0; color:#777267; font-size:14px; line-height:1.7; }
+.art-history-hero-meta { display:flex; flex-wrap:wrap; gap:8px 16px; margin-top:20px; color:#928b7d; font-size:10px; }
+.art-history-hero-meta span+span { border-left:1px solid #ddd7cb; padding-left:16px; }
+.art-history-hero-art { display:flex; justify-content:flex-end; padding:6px 10px 12px 0; }
+.art-history-paper { position:relative; width:min(100%,330px); height:244px; overflow:hidden; background:#e8e1d4; box-shadow:0 14px 30px #5047350d; }
+.art-history-paper:before { content:""; position:absolute; inset:12px; border:1px solid #fff9ef80; }
+.history-paper-label { position:absolute; z-index:4; top:20px; left:20px; color:#706858; font-size:8px; letter-spacing:1.4px; }
+.history-paper-caption { position:absolute; z-index:4; bottom:20px; right:20px; color:#716958; font-family:var(--serif); font-size:12px; font-style:italic; }
+.history-shape { position:absolute; }
+.history-shape-sun { width:95px; height:95px; top:54px; left:calc(50% - 47px); border-radius:50%; background:#bf8767; opacity:.88; }
+.history-shape-arch { width:148px; height:151px; top:39px; left:calc(50% - 74px); border:1px solid #fff8e2; border-radius:80px 80px 0 0; }
+.history-shape-vase { width:58px; height:82px; left:calc(50% - 29px); top:104px; border:2px solid #777d61; border-radius:18px 18px 23px 23px; transform:rotate(-9deg); background:#d7d4bd55; }
+.history-shape-vase:before { content:""; position:absolute; width:23px; height:14px; left:15px; top:-12px; border:2px solid #777d61; border-bottom:0; border-radius:5px 5px 0 0; }
+.history-shape-horizon { left:20px; right:20px; bottom:51px; height:1px; background:#b8ad98; transform:rotate(-8deg); }
+.art-history-tools { display:flex; justify-content:space-between; align-items:center; gap:15px; padding:19px 0 12px; }
+.art-history-search { display:flex; align-items:center; gap:10px; width:min(100%,490px); min-width:220px; padding:10px 12px; border:1px solid #e5dfd3; background:#fffefa; color:#9c927f; }
+.art-history-search>span { font-size:23px; line-height:1; }
+.art-history-search input { width:100%; min-width:0; border:0; outline:0; background:transparent; color:var(--ink); font:inherit; font-size:12px; }
+.art-history-search input::placeholder { color:#a49c8f; }
+.art-history-search kbd { flex-shrink:0; color:#b0a797; font:inherit; font-size:8px; letter-spacing:1px; }
+.art-history-filters { display:flex; flex-wrap:wrap; gap:6px; justify-content:flex-end; }
+.art-history-filters button { padding:8px 10px; border:1px solid #e3ddd2; background:transparent; color:#827b6d; font-size:10px; }
+.art-history-filters button:hover,.art-history-filters .history-filter-active { border-color:#d2c5b2; background:#e9e4d8; color:#3e3c35; }
+.art-history-timeline-section { padding-top:19px; }
+.art-history-section-heading { display:flex; justify-content:space-between; align-items:end; gap:12px; margin-bottom:14px; }
+.art-history-section-heading h2 { margin:7px 0 0; font-family:var(--serif); font-size:27px; font-weight:500; }
+.art-history-section-heading>span { color:#9c9485; font-size:10px; }
+.art-history-period-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:11px; }
+.art-history-period-card { display:flex; flex-direction:column; align-items:stretch; min-width:0; padding:13px; text-align:left; border:1px solid var(--line); background:#fffefa; color:var(--ink); transition:border-color .18s,transform .18s,background .18s; }
+.art-history-period-card:hover { border-color:#cbbba6; transform:translateY(-2px); }
+.art-history-period-selected { border-color:#bca58d; background:#f0ece2; box-shadow:inset 0 0 0 1px #bca58d; }
+.history-card-top { display:flex; justify-content:space-between; align-items:center; gap:7px; color:#9d9587; font-size:9px; }
+.history-card-top>span:first-child { display:grid; place-items:center; width:27px; height:27px; border:1px solid #e5dfd3; border-radius:50%; color:#8c7b65; font-size:10px; }
+.history-period-art { position:relative; display:block; height:91px; margin:10px 0 11px; overflow:hidden; background:#e9e4d8; }
+.history-period-art i,.history-period-art b,.history-period-art em { position:absolute; display:block; }
+.history-period-art i { width:44px; height:44px; left:calc(50% - 22px); top:21px; border:1px solid #8d8b74; border-radius:50%; }
+.history-period-art b { width:66px; height:38px; left:calc(50% - 33px); top:39px; border:1px solid #b67e5f; border-radius:50% 50% 0 0; transform:rotate(-13deg); }
+.history-period-art em { width:92px; height:1px; left:calc(50% - 46px); top:65px; background:#a5a18c; transform:rotate(13deg); }
+.history-period-art-origins { background:#e9dfcf; }
+.history-period-art-origins i { width:70px; height:33px; top:27px; border-radius:65% 35% 45% 55%; background:#a57c61; border:0; transform:rotate(-15deg); }
+.history-period-art-origins b { width:56px; height:1px; border:0; background:#5b5145; top:48px; transform:rotate(15deg); }
+.history-period-art-ancient i { width:54px; height:59px; top:16px; border-radius:0; border-color:#b47c5a; }
+.history-period-art-ancient b { width:74px; height:1px; top:69px; border:0; background:#7f8267; }
+.history-period-art-classical i { width:38px; height:60px; top:13px; border-radius:50% 50% 5px 5px; }
+.history-period-art-classical b { width:70px; height:1px; top:73px; border:0; background:#8a8b72; }
+.history-period-art-medieval { background:#e4e3d6; }
+.history-period-art-medieval i { width:53px; height:53px; top:16px; border-color:#b27b5a; border-radius:0; transform:rotate(45deg); }
+.history-period-art-medieval b { width:53px; height:53px; top:16px; border-color:#777e62; border-radius:0; transform:rotate(0); }
+.history-period-art-renaissance i { width:59px; height:69px; top:11px; border-radius:35px 35px 0 0; }
+.history-period-art-renaissance b { width:1px; height:67px; top:12px; left:50%; border:0; background:#a2a08b; }
+.history-period-art-baroque { background:#ded7c9; }
+.history-period-art-baroque i { width:85px; height:1px; top:45px; border:0; background:#b47a58; transform:rotate(-28deg); }
+.history-period-art-baroque b { width:64px; height:64px; top:12px; border-color:#6f7359; }
+.history-period-art-nineteenth i { width:67px; height:42px; top:21px; border-radius:0; background:#b5b29a; border:0; }
+.history-period-art-nineteenth b { width:70px; height:1px; top:67px; border:0; background:#9b765e; }
+.history-period-art-modern i { width:44px; height:44px; top:21px; border-radius:0; background:#b47b5c; border:0; transform:rotate(15deg); }
+.history-period-art-modern b { width:46px; height:46px; top:20px; border-radius:0; border-color:#777d62; transform:rotate(45deg); }
+.history-period-art-contemporary { background:#e6e1d7; }
+.history-period-art-contemporary i { width:70px; height:55px; top:18px; border-radius:0; border-color:#b47b5c; transform:rotate(-12deg); }
+.history-period-art-contemporary b { width:38px; height:38px; top:25px; border:0; background:#888b6d; border-radius:50%; }
+.history-period-region { margin-bottom:5px; color:#9a8d7a; font-size:9px; }
+.art-history-period-card>strong { font-family:var(--serif); font-size:17px; font-weight:500; line-height:1.3; }
+.history-period-title { min-height:32px; margin-top:4px; color:#777267; font-size:11px; line-height:1.45; }
+.history-card-bottom { display:flex; justify-content:space-between; align-items:center; gap:8px; margin-top:12px; padding-top:9px; border-top:1px solid #eee9df; color:#999182; font-size:9px; }
+.history-card-bottom>span:last-child { color:#a56f51; font-size:14px; }
+.art-history-empty { padding:25px; background:#efede4; }
+.art-history-empty strong { font-family:var(--serif); font-size:20px; font-weight:500; }
+.art-history-empty p { color:#777267; font-size:12px; }
+.art-history-study { display:grid; grid-template-columns:135px minmax(0,1fr); gap:22px; margin-top:23px; padding:24px; border:1px solid #e2dacc; background:#f0ece3; }
+.history-study-index { display:flex; flex-direction:column; align-items:flex-start; gap:10px; color:#918776; font-size:9px; }
+.history-study-index>strong { font-family:var(--serif); font-size:62px; font-weight:500; line-height:1; color:#b37b5c; }
+.history-study-index>div { line-height:1.5; }
+.history-study-content { min-width:0; }
+.history-study-content h2 { margin:7px 0 10px; font-family:var(--serif); font-size:30px; font-weight:500; }
+.history-study-summary { max-width:850px; margin:0; color:#666257; font-size:13px; line-height:1.75; }
+.history-study-columns { display:grid; grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr); gap:17px; margin-top:19px; }
+.history-study-columns>div { padding:15px; background:#fffdf7; border:1px solid #e5dfd3; }
+.history-study-columns h3 { margin:0 0 9px; font-family:var(--serif); font-size:18px; font-weight:500; }
+.history-study-columns ul { display:grid; gap:8px; padding-left:17px; margin:0; color:#777267; font-size:12px; line-height:1.55; }
+.history-look-for p { margin:0 0 15px; color:#777267; font-size:12px; line-height:1.65; }
+.history-look-for h3:not(:first-child) { padding-top:12px; border-top:1px solid #eee9df; }
+.history-terms { display:flex; align-items:center; flex-wrap:wrap; gap:7px; margin-top:14px; }
+.history-terms>span:first-child { margin-right:5px; color:#938a7b; font-size:8px; letter-spacing:1.2px; }
+.history-terms>span:not(:first-child) { padding:5px 8px; border:1px solid #ded5c7; background:#fffdf7; color:#716a5d; font-size:10px; }
+.history-study-nav { display:flex; justify-content:space-between; flex-wrap:wrap; gap:9px; margin-top:19px; }
+.history-study-nav .button { font-size:11px; }
+.history-sources-toggle { display:flex; justify-content:space-between; align-items:center; width:100%; padding:16px 0; border:0; border-bottom:1px solid var(--line); background:transparent; text-align:left; color:var(--ink); }
+.history-sources-toggle>span:first-child { display:grid; gap:5px; }
+.history-sources-toggle strong { font-family:var(--serif); font-size:19px; font-weight:500; }
+.history-sources-toggle>span:last-child { color:#a97858; font-size:23px; }
+.art-history-sources { margin:21px 0 35px; padding:0 18px 12px; border:1px solid var(--line); background:#fffefa; }
+.art-history-sources>p { margin:13px 0 0; color:#898273; font-size:10px; line-height:1.7; }
+.history-source-list { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:9px; padding-top:13px; }
+.history-source-list>a { display:flex; justify-content:space-between; gap:8px; padding:12px; border:1px solid #e8e2d7; color:inherit; text-decoration:none; }
+.history-source-list>a:hover { border-color:#c8b7a0; background:#f7f3eb; }
+.history-source-list>a>span:first-child { display:grid; align-content:start; gap:6px; }
+.history-source-list strong { font-size:11px; line-height:1.45; }
+.history-source-list small { color:#827b6e; font-size:10px; line-height:1.5; }
+.history-source-list>a>span:last-child { color:#a56f51; }
+@media(max-width:1000px) {
+  .art-history-hero { grid-template-columns:minmax(0,1.1fr) minmax(200px,.7fr); gap:18px; }
+  .art-history-tools { align-items:stretch; flex-direction:column; }
+  .art-history-search { width:100%; }
+  .art-history-filters { justify-content:flex-start; }
+  .art-history-period-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .history-source-list { grid-template-columns:1fr; }
+}
+@media(max-width:760px) {
+  .art-history-page { padding-top:18px; }
+  .art-history-hero { grid-template-columns:1fr; gap:13px; padding-bottom:18px; }
+  .art-history-hero-copy h1 { font-size:36px; letter-spacing:-.8px; }
+  .art-history-hero-copy>p { font-size:12px; }
+  .art-history-hero-art { justify-content:flex-start; padding:0; }
+  .art-history-paper { width:100%; max-width:400px; height:180px; }
+  .history-shape-sun { width:70px; height:70px; top:42px; left:calc(50% - 35px); }
+  .history-shape-arch { width:110px; height:117px; top:27px; left:calc(50% - 55px); }
+  .history-shape-vase { width:44px; height:59px; left:calc(50% - 22px); top:81px; }
+  .history-shape-vase:before { left:11px; width:18px; }
+  .history-shape-horizon { bottom:36px; }
+  .art-history-hero-meta { gap:7px 10px; font-size:9px; }
+  .art-history-hero-meta span+span { padding-left:10px; }
+  .art-history-filters { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .art-history-filters button { text-align:center; }
+  .art-history-section-heading h2 { font-size:23px; }
+  .art-history-period-grid { grid-template-columns:1fr; gap:8px; }
+  .art-history-period-card { display:grid; grid-template-columns:76px minmax(0,1fr); grid-template-rows:auto auto auto auto; column-gap:12px; align-items:center; padding:10px; }
+  .history-card-top { grid-column:1 / -1; margin-bottom:6px; }
+  .history-period-art { grid-column:1; grid-row:2 / span 3; height:82px; margin:0; }
+  .history-period-region { grid-column:2; grid-row:2; margin:0 0 3px; }
+  .art-history-period-card>strong { grid-column:2; grid-row:3; font-size:16px; }
+  .history-period-title { grid-column:2; grid-row:4; min-height:0; }
+  .history-card-bottom { grid-column:1 / -1; }
+  .art-history-study { grid-template-columns:1fr; gap:10px; padding:15px; }
+  .history-study-index { display:grid; grid-template-columns:auto auto 1fr; align-items:center; gap:9px; }
+  .history-study-index>strong { font-size:34px; }
+  .history-study-columns { grid-template-columns:1fr; gap:9px; }
+  .history-study-content h2 { font-size:25px; }
+  .history-study-summary { font-size:12px; }
+  .history-study-nav { display:grid; grid-template-columns:1fr; }
+  .history-study-nav .button { width:100%; }
+  .history-source-list { grid-template-columns:1fr; }
+}
