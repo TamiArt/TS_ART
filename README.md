@@ -10,6 +10,7 @@ TS·ART Studio is an art-learning application built around observation, delibera
 - Learning-path overview and module selector.
 - Visual journal with browser-local autosave and TXT export.
 - Colour Lab for documenting pigment experiments, including pigment labels, ratios, medium, support, wet/dry observations, conclusions and next tests. Entries can be deleted or exported.
+- Interactive Oil Paint Mixer: choose two pigments, adjust proportions, compare a simulated swatch, and start from skin, shadow, foliage or interior studies. The swatch is an RGB learning simulation—not a reliable prediction of real oil-paint behaviour.
 - Six guided Master Workshops linked to relevant lessons, with source-checking guidance for art-history research.
 - Open Studio for personal project briefs, constraints, status tracking and TXT export.
 - Portfolio notes for artwork metadata and optional HTTP(S) links. Image uploads and hosting are not implemented.
@@ -32,6 +33,8 @@ npm run build
 
 ## Project structure
 - `src/App.tsx` — page composition and interaction state.
+- `src/components/OilPaintMixer.tsx` — reusable interactive two-pigment mixer.
+- `src/components/oil-paint-mixer.css` — responsive mixer styling.
 - `src/data/types.ts` — shared typed lesson/module structures and content helpers.
 - `src/data/curriculum.ts` — Module 1 and aggregation of all module content.
 - `src/data/modules-foundations.ts` — Modules 2–7, including Colour Lab learning sequence.
