@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { artHistoryPeriods, artHistorySources } from "../data/artHistory";
+import { artHistoryPeriods, artHistorySources, artworkStudies } from "../data/artHistory";
 import "./art-history.css";
 
 const filterOptions = [
@@ -32,6 +32,7 @@ export default function ArtHistoryPage() {
 
   const selected = periods.find((period) => period.id === selectedId) ?? periods[0] ?? null;
   const selectedIndex = selected ? periods.findIndex((period) => period.id === selected.id) : -1;
+  const selectedArtwork = selected ? artworkStudies.find((study) => study.periodId === selected.id) : undefined;
 
   return <div className="page-wrap inner-page art-history-page">
     <section className="art-history-hero">
@@ -82,6 +83,12 @@ export default function ArtHistoryPage() {
         <div className="eyebrow">{selected.region}</div>
         <h2>{selected.title}</h2>
         <p className="history-study-summary">{selected.summary}</p>
+        {selectedArtwork && <section className="history-artwork-study" aria-label="Произведение для анализа">
+          <div className="history-artwork-heading"><span className="eyebrow">РАЗБОР ПРОИЗВЕДЕНИЯ</span><span>{selectedArtwork.date}</span></div>
+          <h3>{selectedArtwork.title}</h3>
+          <p className="history-artwork-meta">{selectedArtwork.creator} · {selectedArtwork.medium}</p>
+          <div className="history-artwork-columns"><div><strong>На что смотреть</strong><p>{selectedArtwork.focus}</p></div><div><strong>Практическое задание</strong><p>{selectedArtwork.exercise}</p></div></div>
+        </section>}
         <div className="history-study-columns">
           <div><h3>Что искать глазами</h3><ul>{selected.visualClues.map((clue) => <li key={clue}>{clue}</li>)}</ul></div>
           <div className="history-look-for"><h3>Вопрос для анализа</h3><p>{selected.lookFor}</p><h3>Попробуй сама</h3><p>{selected.tryIt}</p></div>
