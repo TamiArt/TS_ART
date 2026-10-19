@@ -208,6 +208,7 @@ function HomePage({ progress, completedCount, total, nextLesson, onContinue, onN
           <button className="mode-card mode-main" onClick={() => onNavigate("learn")}><span className="mode-number">01 / LEARN</span><span className="mode-icon">▤</span><h3>Учебный маршрут</h3><p>Последовательные уроки от первых наблюдений к самостоятельным работам.</p><span className="mode-arrow">↗</span></button>
           <button className="mode-card mode-practice" onClick={() => onNavigate("practice")}><span className="mode-number">02 / PRACTICE</span><span className="mode-icon">✳</span><h3>Мини-студия</h3><p>Короткие упражнения на 3–7 минут. Маленькая практика — большой вклад.</p><span className="mode-arrow">↗</span></button>
           <button className="mode-card mode-journal" onClick={() => onNavigate("journal")}><span className="mode-number">03 / REFLECT</span><span className="mode-icon">✎</span><h3>Визуальный дневник</h3><p>Фиксируй открытия, замечай перемены и формируй собственный взгляд.</p><span className="mode-arrow">↗</span></button>
+          <button className="mode-card mode-colourlab" onClick={() => onNavigate("colourlab")}><span className="mode-number">04 / EXPERIMENT</span><span className="mode-icon">◉</span><h3>Colour Lab</h3><p>Проверяй смеси реальных пигментов и веди журнал наблюдений.</p><span className="mode-arrow">↗</span></button>
         </div>
       </section>
     </div>
