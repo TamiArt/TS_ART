@@ -63,7 +63,7 @@ export default function ArtHistoryPage() {
       <div className="art-history-section-heading"><div><div className="eyebrow">КАРТА ЭПОХ</div><h2>От первых образов до наших дней</h2></div><span>{periods.length} из {artHistoryPeriods.length}</span></div>
       {periods.length === 0 ? <div className="art-history-empty"><strong>Ничего не найдено</strong><p>Попробуй другой термин или сбрось фильтр.</p><button className="button button-outline" onClick={() => { setQuery(""); setFilter("all"); }}>Сбросить поиск</button></div> :
         <div className="art-history-period-grid">
-          {periods.map((period, index) => <button key={period.id} className={`art-history-period-card ${selected?.id === period.id ? "art-history-period-selected" : ""}`} onClick={() => setSelectedId(period.id)} aria-pressed={selected?.id === period.id}>
+          {periods.map((period) => <button key={period.id} className={`art-history-period-card ${selected?.id === period.id ? "art-history-period-selected" : ""}`} onClick={() => setSelectedId(period.id)} aria-pressed={selected?.id === period.id}>
             <span className="history-card-top"><span>{String(artHistoryPeriods.findIndex((item) => item.id === period.id) + 1).padStart(2, "0")}</span><span>{period.date}</span></span>
             <span className={`history-period-art history-period-art-${period.id}`} aria-hidden="true"><i /><b /><em /></span>
             <span className="history-period-region">{period.region}</span>
