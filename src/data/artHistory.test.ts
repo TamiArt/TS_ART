@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { artHistoryPeriods, artHistorySources } from "./artHistory";
+import { artHistoryPeriods, artHistorySources, artworkStudies } from "./artHistory";
 
 describe("art history learning content", () => {
   it("provides a unique, navigable set of historical periods", () => {
@@ -17,6 +17,21 @@ describe("art history learning content", () => {
       expect(period.lookFor.trim()).not.toBe("");
       expect(period.tryIt.trim()).not.toBe("");
       expect(period.terms.length).toBeGreaterThan(0);
+    }
+  });
+
+  it("provides one artwork study with a visual focus and practice task for every period", () => {
+    expect(artworkStudies).toHaveLength(artHistoryPeriods.length);
+    expect(new Set(artworkStudies.map((study) => study.periodId)).size).toBe(artHistoryPeriods.length);
+    for (const period of artHistoryPeriods) {
+      const study = artworkStudies.find((item) => item.periodId === period.id);
+      expect(study, `missing artwork study for ${period.id}`).toBeDefined();
+      expect(study?.title.trim()).not.toBe("");
+      expect(study?.creator.trim()).not.toBe("");
+      expect(study?.date.trim()).not.toBe("");
+      expect(study?.medium.trim()).not.toBe("");
+      expect(study?.focus.length).toBeGreaterThan(40);
+      expect(study?.exercise.length).toBeGreaterThan(40);
     }
   });
 
