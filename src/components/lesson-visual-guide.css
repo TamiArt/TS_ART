@@ -16,3 +16,5 @@
 .lesson-visual-footer strong { color:#4d4b42; font-weight:600; }
 @media(max-width:900px) { .lesson-visual-stages { grid-template-columns:repeat(2,minmax(0,1fr)); } .lesson-visual-svg { max-width:220px; } }
 @media(max-width:560px) { .lesson-visual-guide { padding:15px; margin:19px 0 22px; } .lesson-visual-heading h2 { font-size:23px; } .lesson-visual-heading p { font-size:13px; } .lesson-visual-stages { grid-template-columns:1fr; gap:10px; } .lesson-visual-stage { display:grid; grid-template-columns:1fr 112px; grid-template-rows:auto 1fr; } .lesson-visual-stage-top { grid-column:1 / -1; padding:10px 11px 0; } .lesson-visual-svg { grid-column:2; grid-row:2; align-self:center; width:112px; padding:0 4px; } .lesson-visual-stage>p { grid-column:1; grid-row:2; align-self:center; border-top:0; padding:10px 11px; font-size:12px; } .lesson-visual-footer { padding:11px; } }
+
+.lesson-visual-kind { display:inline-block; margin:4px 0 0; padding:4px 8px; border:1px solid #d9d0c0; border-radius:2px; color:#827762; font-size:10px; letter-spacing:.35px; }
