@@ -10,7 +10,7 @@ TS·ART Studio is an art-learning application built around observation, delibera
 - Learning-path overview and module selector.
 - Visual journal with browser-local autosave and TXT export.
 - Colour Lab for documenting pigment experiments, including pigment labels, ratios, medium, support, wet/dry observations, conclusions and next tests. Entries can be deleted or exported.
-- Interactive Oil Paint Mixer: choose two pigments, adjust proportions, compare a simulated swatch, and start from skin, shadow, foliage or interior studies. The swatch is an RGB learning simulation—not a reliable prediction of real oil-paint behaviour.
+- Interactive Oil Paint Mixer: choose a task (portrait, landscape or still life), select a study (skin, hair, shadows, sky, foliage, water, fruit, ceramic, fabric and more), mix two pigments, optionally add a third pigment, adjust proportions and compare a simulated swatch. Displayed whole-number shares are calculated separately and sum to 100%. The swatch is an RGB learning simulation—not a reliable prediction of real oil-paint behaviour.
 - Six guided Master Workshops linked to relevant lessons, with source-checking guidance for art-history research.
 - Open Studio for personal project briefs, constraints, status tracking and TXT export.
 - Portfolio notes for artwork metadata and optional HTTP(S) links. Image uploads and hosting are not implemented.
@@ -33,9 +33,9 @@ npm run build
 
 ## Project structure
 - `src/App.tsx` — page composition and interaction state.
-- `src/components/OilPaintMixer.tsx` — reusable interactive two-pigment mixer.
+- `src/components/OilPaintMixer.tsx` — reusable task-based mixer with two primary pigments and an optional third pigment.
 - `src/components/oil-paint-mixer.css` — responsive mixer styling.
-- `src/components/mixPigments.ts` — pure RGB preview calculation.
+- `src/components/mixPigments.ts` — pure RGB preview calculation and whole-percentage share calculation.
 - `src/components/OilPaintMixer.test.ts` — mixer calculation tests.
 - `src/data/types.ts` — shared typed lesson/module structures and content helpers.
 - `src/data/curriculum.ts` — Module 1 and aggregation of all module content.
