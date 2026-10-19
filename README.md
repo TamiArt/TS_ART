@@ -35,6 +35,8 @@ npm run build
 - `src/App.tsx` — page composition and interaction state.
 - `src/components/OilPaintMixer.tsx` — reusable interactive two-pigment mixer.
 - `src/components/oil-paint-mixer.css` — responsive mixer styling.
+- `src/components/mixPigments.ts` — pure RGB preview calculation.
+- `src/components/OilPaintMixer.test.ts` — mixer calculation tests.
 - `src/data/types.ts` — shared typed lesson/module structures and content helpers.
 - `src/data/curriculum.ts` — Module 1 and aggregation of all module content.
 - `src/data/modules-foundations.ts` — Modules 2–7, including Colour Lab learning sequence.
