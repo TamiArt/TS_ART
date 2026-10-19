@@ -5,7 +5,7 @@ import "./lesson-visual-guide.css";
 import { buildLessonVisualStages, classifyLesson, getVisualKindLabel, getVisualPrinciple } from "./lessonVisuals";
 
 export default function LessonVisualGuide({ lesson }: { lesson: Lesson }) {
-  if (lesson.id === "m03-compare") return <NegativeSpaceTutorial />;
+  if (lesson.id === "negative-space") return <NegativeSpaceTutorial />;
 
   const kind = classifyLesson(lesson);
   const stages = buildLessonVisualStages(lesson);
