@@ -24,7 +24,7 @@ describe("oil mixer preview calculation", () => {
   });
 
   it("preserves the A:B balance when adding a small third-pigment share", () => {
-    expect(mixPigmentHex("#000000", "#ffffff", 50, "#ff0000", 20)).toBe("#666666");
+    expect(mixPigmentHex("#000000", "#ffffff", 50, "#ff0000", 20)).toBe("#996666");
   });
 
   it("clamps the third-pigment share", () => {
