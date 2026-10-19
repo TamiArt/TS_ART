@@ -13,8 +13,8 @@ export type LessonVisualStage = {
 };
 
 const topicRules: Array<{ kind: VisualKind; pattern: RegExp }> = [
-  { kind: "portrait", pattern: /портрет|лиц|глаз|нос|губ|голов|череп|skin|portrait/ },
-  { kind: "landscape", pattern: /пейзаж|небо|дерев|гор|обла|landscape/ },
+  { kind: "portrait", pattern: /портрет|лицо|лица|лицу|лицом|череп|черты лица|анатомия лица|skin|portrait|нос|губ|бров|скул|голова|головы|голове|голову/ },
+  { kind: "landscape", pattern: /пейзаж|небо|дерев|гор(?:а|ы|ный|ная|ное|ных|ными|ной|ному)|обла|landscape/ },
   { kind: "still-life", pattern: /натюрморт|чаш|бутыл|яблок|драпиров|still.life/ },
   { kind: "colour", pattern: /цвет|колорит|палитр|пигмент|оттен|тепл|холодн|насыщ|colour|color/ },
   { kind: "tone", pattern: /свет|тень|тон|светлот|контраст|монохром|штрихов|объём|объем/ },
