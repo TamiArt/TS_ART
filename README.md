@@ -10,6 +10,9 @@ TS·ART Studio is an art-learning application built around observation, delibera
 - Learning-path overview and module selector.
 - Visual journal with browser-local autosave and TXT export.
 - Colour Lab for documenting pigment experiments, including pigment labels, ratios, medium, support, wet/dry observations, conclusions and next tests. Entries can be deleted or exported.
+- Six guided Master Workshops linked to relevant lessons, with source-checking guidance for art-history research.
+- Open Studio for personal project briefs, constraints, status tracking and TXT export.
+- Portfolio notes for artwork metadata and optional HTTP(S) links. Image uploads and hosting are not implemented.
 - Vitest curriculum integrity tests and GitHub Actions checks.
 
 **Content status:** all modules are populated with an authored first draft. Lessons still need validation with beginners and qualified art educators. The app is a functional frontend MVP, not yet a production service.
