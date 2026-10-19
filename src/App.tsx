@@ -1,8 +1,9 @@
 import { useEffect, useMemo, useState, type ReactNode } from "react";
-import { allLessons, curriculum, type Lesson } from "./data/curriculum";
+import { allLessons, curriculum, type Lesson, type Module } from "./data/curriculum";
 
-type Page = "home" | "learn" | "practice" | "journal" | "path";
-type SavedState = { completed: string[]; journal: string; reflections: Record<string, string> };
+type Page = "home" | "learn" | "practice" | "journal" | "path" | "colourlab";
+type ColourTest = { id: string; question: string; pigments: string; ratio: string; medium: string; support: string; wetObservation: string; dryObservation: string; result: string; nextStep: string; createdAt: string };
+type SavedState = { completed: string[]; journal: string; reflections: Record<string, string>; colourTests: ColourTest[] };
 
 const STORAGE_KEY = "ts-art-studio:v1";
 const readSavedState = (): SavedState => {
@@ -13,23 +14,25 @@ const readSavedState = (): SavedState => {
       return {
         completed: Array.isArray(parsed.completed) ? parsed.completed : [],
         journal: typeof parsed.journal === "string" ? parsed.journal : "",
-        reflections: parsed.reflections && typeof parsed.reflections === "object" ? parsed.reflections : {}
+        reflections: parsed.reflections && typeof parsed.reflections === "object" ? parsed.reflections : {},
+        colourTests: Array.isArray(parsed.colourTests) ? parsed.colourTests : []
       };
     }
   } catch {
     // A blocked or malformed local storage must not prevent the learning interface from opening.
   }
-  return { completed: [], journal: "", reflections: {} };
+  return { completed: [], journal: "", reflections: {}, colourTests: [] };
 };
 
 const icons: Record<Page, string> = {
-  home: "⌂", learn: "▤", practice: "✳", journal: "✎", path: "↗"
+  home: "⌂", learn: "▤", practice: "✳", journal: "✎", path: "↗", colourlab: "◉"
 };
 
 function App() {
   const [page, setPage] = useState<Page>("home");
   const [saved, setSaved] = useState<SavedState>(readSavedState);
   const [activeLessonId, setActiveLessonId] = useState<string | null>(null);
+  const [activeModuleId, setActiveModuleId] = useState(1);
   const [reflection, setReflection] = useState("");
   const [toast, setToast] = useState("");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -62,6 +65,7 @@ function App() {
 
   const openLesson = (lesson: Lesson) => {
     setActiveLessonId(lesson.id);
+    setActiveModuleId(allLessons.find((item) => item.id === lesson.id)?.moduleId ?? 1);
     setReflection(saved.reflections[lesson.id] ?? "");
     setPage("learn");
   };
@@ -83,7 +87,8 @@ function App() {
     { id: "learn", label: "Уроки" },
     { id: "practice", label: "Мини-студия" },
     { id: "journal", label: "Дневник" },
-    { id: "path", label: "Учебный маршрут" }
+    { id: "path", label: "Учебный маршрут" },
+    { id: "colourlab", label: "Colour Lab" }
   ];
 
   return (
@@ -133,10 +138,11 @@ function App() {
         ) : (
           <>
             {page === "home" && <HomePage progress={progress} completedCount={completedCount} total={allLessons.length} nextLesson={nextLesson} onContinue={() => openLesson(nextLesson)} onNavigate={navigate} />}
-            {page === "learn" && <LessonsPage onOpen={openLesson} completed={saved.completed} />}
+            {page === "learn" && <LessonsPage onOpen={openLesson} completed={saved.completed} moduleId={activeModuleId} onSelectModule={setActiveModuleId} />}
             {page === "practice" && <PracticePage practices={practices} completed={saved.completed} onOpen={openLesson} />}
             {page === "journal" && <JournalPage value={saved.journal} onChange={updateJournal} completedCount={completedCount} />}
-            {page === "path" && <PathPage completed={saved.completed} onOpen={openLesson} />}
+            {page === "path" && <PathPage completed={saved.completed} onOpen={openLesson} onSelectModule={setActiveModuleId} onNavigate={navigate} />}
+            {page === "colourlab" && <ColourLabPage tests={saved.colourTests} onAdd={(test) => setSaved((current) => ({ ...current, colourTests: [test, ...current.colourTests] }))} onDelete={(id) => setSaved((current) => ({ ...current, colourTests: current.colourTests.filter((test) => test.id !== id) }))} />}
           </>
         )}
         <footer className="page-footer"><span>TS·ART STUDIO</span><span>SEE. FEEL. CREATE.</span><span>Учись в своём ритме.</span></footer>
@@ -208,11 +214,21 @@ function HomePage({ progress, completedCount, total, nextLesson, onContinue, onN
   );
 }
 
-function LessonsPage({ onOpen, completed }: { onOpen: (lesson: Lesson) => void; completed: string[] }) {
+function LessonsPage({ onOpen, completed, moduleId, onSelectModule }: { onOpen: (lesson: Lesson) => void; completed: string[]; moduleId: number; onSelectModule: (id: number) => void }) {
+  const module = curriculum.find((item) => item.id === moduleId) ?? curriculum[0];
+  const moduleDone = module.lessons.filter((lesson) => completed.includes(lesson.id)).length;
   return <div className="page-wrap inner-page">
-    <PageIntro eyebrow="LEARN · УЧЕБНАЯ ПРОГРАММА" title={<>Сначала — <em>основа.</em></>} description="Путь выстроен от наблюдения и простых форм к цвету, живописи и авторским проектам. Проходи его в своём темпе." />
-    <div className="content-columns"><div className="lesson-list-panel"><div className="panel-header"><span>МОДУЛЬ 01</span><span>8 уроков · стартовый уровень</span></div><h2>Старт художника</h2><p className="panel-description">Научись наблюдать, подготовь рабочее место и собери первые страницы визуального дневника.</p>
-      {curriculum[0].lessons.map((lesson, index) => <button className="lesson-row" key={lesson.id} onClick={() => onOpen(lesson)}><span className={`lesson-index ${completed.includes(lesson.id) ? "lesson-index-done" : ""}`}>{completed.includes(lesson.id) ? "✓" : String(index + 1).padStart(2, "0")}</span><span className="lesson-row-copy"><strong>{lesson.title}</strong><small>{lesson.kind === "practice" ? "Практика" : "Урок"} · {lesson.duration}</small></span><span className="lesson-row-arrow">↗</span></button>)}
+    <PageIntro eyebrow="LEARN · УЧЕБНАЯ ПРОГРАММА" title={<>Сначала — <em>основа.</em></>} description="Все 20 модулей содержат практические занятия. Выбирай тему, проходи уроки в своём темпе и возвращайся к упражнениям по мере необходимости." />
+    <div className="module-picker">
+      <label htmlFor="module-select">Выбрать модуль</label>
+      <select id="module-select" value={module.id} onChange={(event) => onSelectModule(Number(event.target.value))}>
+        {curriculum.map((item) => <option key={item.id} value={item.id}>Модуль {String(item.id).padStart(2, "0")} — {item.title}</option>)}
+      </select>
+      <span>{moduleDone} из {module.lessons.length} уроков отмечено</span>
+    </div>
+    <div className="content-columns"><div className="lesson-list-panel"><div className="panel-header"><span>МОДУЛЬ {String(module.id).padStart(2, "0")}</span><span>{module.lessons.length} урока · самостоятельный темп</span></div><h2>{module.title}</h2><p className="panel-description">{module.description}</p>
+      {module.lessons.map((lesson, index) => <button className="lesson-row" key={lesson.id} onClick={() => onOpen(lesson)}><span className={`lesson-index ${completed.includes(lesson.id) ? "lesson-index-done" : ""}`}>{completed.includes(lesson.id) ? "✓" : String(index + 1).padStart(2, "0")}</span><span className="lesson-row-copy"><strong>{lesson.title}</strong><small>{lesson.kind === "practice" ? "Практика" : "Урок"} · {lesson.duration}</small></span><span className="lesson-row-arrow">↗</span></button>)}
+      <div className="module-switcher"><button className="button button-outline" disabled={module.id === 1} onClick={() => onSelectModule(module.id - 1)}>← Предыдущий</button><button className="button button-dark" disabled={module.id === curriculum.length} onClick={() => onSelectModule(module.id + 1)}>Следующий модуль →</button></div>
     </div><aside className="side-info-card"><div className="info-drawing">✳</div><span className="eyebrow">ПОМНИ</span><h3>Не спеши к результату. Замечай процесс.</h3><p>У каждого урока есть цель, последовательность действий и критерии самопроверки. Они помогут понять, что получилось и что попробовать дальше.</p><div className="side-info-foot">ОБУЧЕНИЕ · БЕЗ СРАВНЕНИЯ</div></aside></div>
   </div>;
 }
@@ -240,9 +256,9 @@ function JournalPage({ value, onChange, completedCount }: { value: string; onCha
   </div>;
 }
 
-function PathPage({ completed, onOpen }: { completed: string[]; onOpen: (lesson: Lesson) => void }) {
-  return <div className="page-wrap inner-page"><PageIntro eyebrow="YOUR PATH · 20 МОДУЛЕЙ" title={<>Большой путь. <em>Один шаг за раз.</em></>} description="Программа задаёт направление развития. Сейчас интерактивно доступен первый модуль; остальные темы — план следующих этапов, а не опубликованные уроки." />
-    <div className="path-timeline">{curriculum.map((module) => { const isAvailable = module.status === "available"; const moduleDone = module.lessons.filter((lesson) => completed.includes(lesson.id)).length; return <section className={`path-module ${isAvailable ? "path-module-available" : "path-module-planned"}`} key={module.id}><div className="path-marker">{isAvailable ? "✳" : String(module.id).padStart(2, "0")}</div><div className="path-module-content"><div className="path-module-top"><span>МОДУЛЬ {String(module.id).padStart(2, "0")}</span><span className={isAvailable ? "available-label" : "planned-label"}>{isAvailable ? "ДОСТУПЕН" : "В ПЛАНЕ"}</span></div><h2>{module.title}</h2><p>{module.description}</p>{isAvailable ? <><div className="module-progress"><span style={{ width: `${moduleDone / module.lessons.length * 100}%` }} /></div><div className="module-meta">{moduleDone} из {module.lessons.length} уроков отмечено</div><button className="text-link" onClick={() => onOpen(module.lessons.find((lesson) => !completed.includes(lesson.id)) ?? module.lessons[0])}>Перейти к урокам →</button></> : <div className="module-meta">Содержание будет разработано и проверено перед публикацией.</div>}</div></section>; })}</div>
+function PathPage({ completed, onOpen, onSelectModule, onNavigate }: { completed: string[]; onOpen: (lesson: Lesson) => void; onSelectModule: (id: number) => void; onNavigate: (page: Page) => void }) {
+  return <div className="page-wrap inner-page"><PageIntro eyebrow="YOUR PATH · 20 МОДУЛЕЙ" title={<>Большой путь. <em>Один шаг за раз.</em></>} description="Полная программа от наблюдения и основ рисунка до живописи, цифровых техник и авторского портфолио. Выбирай любой модуль; возвращаться к пройденным урокам можно в любое время." />
+    <div className="path-timeline">{curriculum.map((module) => { const moduleDone = module.lessons.filter((lesson) => completed.includes(lesson.id)).length; return <section className="path-module path-module-available" key={module.id}><div className="path-marker">{moduleDone === module.lessons.length ? "✓" : String(module.id).padStart(2, "0")}</div><div className="path-module-content"><div className="path-module-top"><span>МОДУЛЬ {String(module.id).padStart(2, "0")}</span><span className="available-label">ДОСТУПЕН</span></div><h2>{module.title}</h2><p>{module.description}</p><div className="module-progress"><span style={{ width: `${moduleDone / module.lessons.length * 100}%` }} /></div><div className="module-meta">{moduleDone} из {module.lessons.length} уроков отмечено · {module.lessons.length} занятий</div><button className="text-link" onClick={() => { onSelectModule(module.id); onNavigate("learn"); }}>Открыть модуль →</button><span className="path-quick-start"><button className="text-link" onClick={() => onOpen(module.lessons.find((lesson) => !completed.includes(lesson.id)) ?? module.lessons[0])}>Продолжить урок ↗</button></span></div></section>; })}</div>
   </div>;
 }
 
