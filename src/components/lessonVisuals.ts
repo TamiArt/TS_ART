@@ -43,10 +43,30 @@ const visualPrinciples: Record<VisualKind, string> = {
   general: "Выполняй шаги по порядку и сравнивай результат с поставленной целью."
 };
 
+const objectiveRules: Array<{ kind: VisualKind; pattern: RegExp }> = [
+  { kind: "portrait", pattern: /портрет|лиц[оауы]|череп|черты лица|анатомия лица|skin|portrait|нос|губ|бров|скул|голов[аыоеу]/ },
+  { kind: "landscape", pattern: /пейзаж|небо|дерев|гор(?:а|ы|ный|ная|ное|ных|ными|ной|ному)|обла|landscape/ },
+  { kind: "still-life", pattern: /натюрморт|чаш|бутыл|яблок|драпиров|still.life/ },
+  { kind: "colour", pattern: /цвет|колорит|палитр|пигмент|оттен|температур[аы]|насыщенност|colour|color/ },
+  { kind: "tone", pattern: /светотен|светлот|тень|тональн|монохром|контраст|штрихов|объём|объем/ },
+  { kind: "perspective", pattern: /перспектив|горизонт|точк[аи] сход|уровень глаз/ },
+  { kind: "composition", pattern: /композиц|миниатюр|фокус|акцент|баланс|кадр|визуальн.*иерарх/ },
+  { kind: "proportion", pattern: /пропорц|масштаб|ось и наклон|отношени.*размер|общие габариты/ },
+  { kind: "line", pattern: /линия|линию|линии|контур|силуэт|нажим|характер линии|вес линии/ },
+  { kind: "paint", pattern: /кист|краск|масл|акварел|живопис|мазок|холст|грунт|сло[ий]/ },
+  { kind: "negative-space", pattern: /негативн|отрицательн.*простран|пуст(?:ой|ые|ого|ых|ым) промежут|пространств вокруг|промежутк.*между/ },
+  { kind: "shape", pattern: /прост(?:ая|ых|ую|ые) форм|геометр|круг|овал|цилиндр|куб|шар|объёмн.*предмет/ }
+];
+
 export function classifyLesson(lesson: Lesson): VisualKind {
-  const primaryText = `${lesson.title} ${lesson.objective}`.toLowerCase();
-  const primaryMatch = topicRules.find((rule) => rule.pattern.test(primaryText));
-  if (primaryMatch) return primaryMatch.kind;
+  const title = lesson.title.toLowerCase();
+  const titleMatch = topicRules.find((rule) => rule.pattern.test(title));
+  if (titleMatch) return titleMatch.kind;
+
+  const objective = lesson.objective.toLowerCase();
+  const objectiveMatch = objectiveRules.find((rule) => rule.pattern.test(objective));
+  if (objectiveMatch) return objectiveMatch.kind;
+
   const materialText = lesson.materials.toLowerCase();
   return topicRules.find((rule) => rule.pattern.test(materialText))?.kind ?? "general";
 }
