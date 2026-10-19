@@ -29,10 +29,11 @@ describe("lesson visual guides", () => {
     expect(classifyLesson(lesson("Свет, полутон и тень"))).toBe("tone");
     expect(classifyLesson(lesson("Одноточечная перспектива"))).toBe("perspective");
     expect(classifyLesson(lesson("Линия горизонта и уровень глаз"))).toBe("perspective");
-    expect(classifyLesson(lesson("Рисуем пространство вокруг предмета", "Использовать пустые промежутки вокруг формы"))).toBe("general");
+    expect(classifyLesson(lesson("Рисуем пространство вокруг предмета", "Использовать пустые промежутки вокруг формы"))).toBe("negative-space");
     expect(classifyLesson(lesson("Горный пейзаж"))).toBe("landscape");
     expect(classifyLesson(lesson("Композиционные миниатюры"))).toBe("composition");
     expect(classifyLesson(lesson("Сравнение пропорций"))).toBe("proportion");
+    expect(classifyLesson(lesson("Сложный предмет из простых форм"))).toBe("shape");
     expect(classifyLesson(lesson("Контур одной линией"))).toBe("line");
     expect(classifyLesson(lesson("Первый слой масляной краски"))).toBe("paint");
   });
