@@ -135,3 +135,13 @@ This stage starts only after stages 1–3 are complete. Prioritize work by risk 
 - [x] Add responsive layouts for desktop, tablet and narrow mobile screens.
 - [ ] Run type-check, unit tests and production build; visually inspect examples across different lesson themes and screen sizes.
 - Note: these are schematic examples rendered in the UI, not individually art-directed reference paintings. Confirm topic classification and refine specific diagrams during visual QA.
+
+
+## Visual tutorial hardening
+
+- [x] Extract topic classification, stage generation and topic-specific learning principles into a pure module.
+- [x] Add curriculum-wide unit tests: each of the 84 lessons must render one ordered visual stage per written step.
+- [x] Test the classifier against portrait, landscape, still life, colour, tone, perspective, composition, proportion, line and paint examples.
+- [x] Give the final review stage a distinct completion marker and improve small-screen reading sizes.
+- [ ] Await CI type-check, tests and production build; inspect representative lesson screenshots after a successful deployment.
+- Known limitation: the illustrations are topic-family schematics reused across related lessons, not 84 separately art-directed drawings. They are explicitly presented as visual aids rather than exact model answers.
