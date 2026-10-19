@@ -7,6 +7,7 @@
 - [x] Lesson completion and reflections persist in browser `localStorage`; journal exports to TXT.
 - [x] Colour Lab supports pigment-test records, local saving, deletion and TXT export.
 - [x] Interactive Oil Paint Mixer embedded in Colour Lab: two-pigment selection, proportion slider, swap control, four study presets (skin, shadows, foliage, interiors), responsive swatch preview and clear RGB-simulation caveat.
+- [x] Unit tests cover RGB preview endpoints, equal-weight interpolation and out-of-range ratio clamping.
 - [x] Open Studio supports personal project briefs, status changes, deletion and TXT export.
 - [x] Master Workshops provides six guided visual investigations linked to curriculum lessons.
 - [x] Portfolio supports artwork metadata, optional safe HTTP(S) links, deletion and TXT export; file uploads are intentionally not implemented.
@@ -22,7 +23,7 @@
 - **Learning path:** displays all modules and per-module progress.
 - **Journal:** autosaves notes locally and exports plain text.
 - **Colour Lab:** stores question, pigment labels, ratio, medium, support, wet/dry observations, result and next experiment. Entries are user observations, not universal pigment recipes.
-- **Oil Paint Mixer:** interactive learning aid; screen colour uses simple RGB interpolation and must not be represented as a physical pigment-mixing prediction. Confirm all mixtures with actual paints and record observations.
+- **Oil Paint Mixer:** interactive learning aid; screen colour uses simple RGB interpolation and must not be represented as a physical pigment-mixing prediction. Confirm all mixtures with actual paints and record observations. Pure calculation lives separately from the React UI and has unit tests.
 - **Master Workshops:** six guided investigations link a concrete visual problem to a lesson; historical claims must be checked against reliable catalogues.
 - **Open Studio:** stores personal project briefs, constraints, next steps and status.
 - **Portfolio:** stores artwork metadata and optional HTTP(S) links; it does not upload or host artwork.
