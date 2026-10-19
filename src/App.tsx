@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState, type ReactNode } from "react";
+import { useEffect, useMemo, useState, type FormEvent, type ReactNode } from "react";
 import { allLessons, curriculum, type Lesson } from "./data/curriculum";
 
 type Page = "home" | "learn" | "practice" | "journal" | "path" | "colourlab";
@@ -273,7 +273,7 @@ function ColourLabPage({ tests, onAdd, onDelete }: { tests: ColourTest[]; onAdd:
   const [result, setResult] = useState("");
   const [nextStep, setNextStep] = useState("");
 
-  const saveTest = (event: React.FormEvent<HTMLFormElement>) => {
+  const saveTest = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const test: ColourTest = {
       id: `colour-test-${Date.now()}`, question: question.trim(), pigments: pigments.trim(), ratio: ratio.trim(),
