@@ -1,11 +1,29 @@
-export function mixPigmentHex(first: string, second: string, firstPercent: number): string {
-  const a = first.replace("#", "");
-  const b = second.replace("#", "");
-  const weight = Math.max(0, Math.min(100, firstPercent)) / 100;
-  const channels = [0, 2, 4].map((index) => {
-    const left = Number.parseInt(a.slice(index, index + 2), 16);
-    const right = Number.parseInt(b.slice(index, index + 2), 16);
-    return Math.round(left * weight + right * (1 - weight));
+function channel(hex: string, offset: number): number {
+  return Number.parseInt(hex.slice(offset, offset + 2), 16);
+}
+
+/**
+ * Educational RGB interpolation only; real oil-paint mixing is not linear RGB.
+ * firstPercent controls the A:B balance. If a third pigment is supplied,
+ * thirdPercent is its share of the complete mixture and A/B share the rest.
+ */
+export function mixPigmentHex(
+  firstHex: string,
+  secondHex: string,
+  firstPercent: number,
+  thirdHex?: string,
+  thirdPercent = 0
+): string {
+  const firstShare = Math.max(0, Math.min(100, firstPercent)) / 100;
+  const thirdShare = thirdHex ? Math.max(0, Math.min(100, thirdPercent)) / 100 : 0;
+  const remainingShare = 1 - thirdShare;
+  const weights = [remainingShare * firstShare, remainingShare * (1 - firstShare), thirdShare];
+  const colours = [firstHex, secondHex, thirdHex ?? secondHex];
+
+  const channels = [1, 3, 5].map((offset) => {
+    const value = colours.reduce((sum, colour, index) => sum + channel(colour, offset) * weights[index], 0);
+    return Math.round(value).toString(16).padStart(2, "0");
   });
-  return "#" + channels.map((value) => value.toString(16).padStart(2, "0")).join("");
+
+  return `#${channels.join("")}`;
 }
