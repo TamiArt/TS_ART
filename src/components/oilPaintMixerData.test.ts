@@ -45,7 +45,7 @@ describe("oil mixer learning data", () => {
     for (const pigment of pigments) {
       expect(pigment.name.trim()).not.toBe("");
       expect(pigment.note.trim()).not.toBe("");
-      expect(pigment.hex).toMatch(/^#[\\da-f]{6}$/i);
+      expect(pigment.hex).toMatch(/^#[\da-f]{6}$/i);
     }
   });
 
