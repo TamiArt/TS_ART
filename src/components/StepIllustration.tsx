@@ -14,6 +14,12 @@ const numberWords: Record<string, number> = {
 
 export function getRequestedLineCount(instruction: string): number | null {
   const text = instruction.toLowerCase();
+  const range = text.match(/(\d{1,2})\s*[–—-]\s*(\d{1,2})\s+(?:крупн\w*\s+)?лини/);
+  if (range) {
+    const minimum = Number(range[1]);
+    const maximum = Number(range[2]);
+    if (minimum >= 1 && maximum <= 12 && minimum <= maximum) return Math.round((minimum + maximum) / 2);
+  }
   const match = text.match(/(?:проведи|нарисуй|сделай|повтори|создай|наметь)\s+(\d{1,2}|один|одна|одну|два|две|три|четыре|пять|шесть|семь|восемь|девять|десять)(?:\s+[а-яё-]+){0,4}?\s+лини/);
   if (!match) return null;
   const token = match[1];
@@ -21,11 +27,12 @@ export function getRequestedLineCount(instruction: string): number | null {
   return count >= 1 && count <= 12 ? count : null;
 }
 
-function PencilLine({ index, x1, y, x2, emphasis = false }: { index: number; x1: number; y: number; x2: number; emphasis?: boolean }) {
+function PencilLine({ index, x1, y, x2, emphasis = false, pressure }: { index: number; x1: number; y: number; x2: number; emphasis?: boolean; pressure?: number }) {
   const wobble = (index % 3) - 1;
+  const force = pressure ?? (emphasis ? .72 : .25);
   return <g>
-    <path d={`M ${x1} ${y} Q ${(x1 + x2) / 2} ${y + wobble * 2.1} ${x2} ${y + wobble * .7}`} fill="none" stroke={lightPencil} strokeWidth="3.1" strokeLinecap="round" opacity=".3" />
-    <path d={`M ${x1} ${y} Q ${(x1 + x2) / 2 - 1} ${y + wobble * 1.2} ${x2} ${y + wobble * .7}`} fill="none" stroke={emphasis ? graphite : pencil} strokeWidth={emphasis ? 1.8 : 1.05} strokeLinecap="round" opacity={emphasis ? .96 : .68} />
+    <path d={`M ${x1} ${y} Q ${(x1 + x2) / 2} ${y + wobble * 2.1} ${x2} ${y + wobble * .7}`} fill="none" stroke={lightPencil} strokeWidth={1.8 + force * 2} strokeLinecap="round" opacity={.12 + force * .18} />
+    <path d={`M ${x1} ${y} Q ${(x1 + x2) / 2 - 1} ${y + wobble * 1.2} ${x2} ${y + wobble * .7}`} fill="none" stroke={force > .55 ? graphite : pencil} strokeWidth={.45 + force * 1.45} strokeLinecap="round" opacity={.3 + force * .68} />
   </g>;
 }
 
@@ -43,7 +50,7 @@ function DrawingContent({ title, instruction }: { title: string; instruction: st
 
   if (requestedCount !== null) {
     return <PencilSketch>{Array.from({ length: requestedCount }, (_, i) => (
-      <PencilLine key={i} index={i} x1={28 + (i % 2) * 2} y={24 + i * (112 / requestedCount)} x2={212 - (i % 3) * 3} emphasis={i === 0} />
+      <PencilLine key={i} index={i} x1={28 + (i % 2) * 2} y={24 + i * (112 / requestedCount)} x2={212 - (i % 3) * 3} emphasis={i === requestedCount - 1} pressure={requestedCount === 1 ? 0.5 : i / (requestedCount - 1)} />
     ))}</PencilSketch>;
   }
 
