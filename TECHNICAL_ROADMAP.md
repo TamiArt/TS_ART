@@ -140,6 +140,7 @@ This stage starts only after stages 1–3 are complete. Prioritize work by risk 
 ## Visual tutorial hardening
 
 - [x] Check broad/introduction title keywords (`общ`, `введен`, `принцип`, `основы`, `general`, `broad`) before objective-based topic inference.
+- [x] Use `startsWith` for the Russian title prefix “Учимся смотреть”; JavaScript `\\b` word boundaries do not reliably delimit Cyrillic letters.
 - [x] Check negative-space phrases in combined title/objective text before proportion and generic shape classification.
 - [x] Keep titles such as “Общие принципы” and “Введение: пропорции и форма” in `general` even when the objective/title mentions a narrow topic.
 - [x] Add regression tests for broad-title precedence and negative-space precedence when proportion keywords are also present.
