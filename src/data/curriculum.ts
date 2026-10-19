@@ -5,24 +5,7 @@ import type { Lesson, Module } from "./types";
 
 export type { Lesson, Module } from "./types";
 
-/* export type Lesson = {
-  id: string;
-  title: string;
-  duration: string;
-  kind: "practice" | "lesson";
-  objective: string;
-  materials: string;
-  steps: string[];
-  selfCheck: string[];
-};
 
-export type Module = {
-  id: number;
-  title: string;
-  description: string;
-  status: "available" | "planned";
-  lessons: Lesson[];
-}; */
 
 const firstLessons: Lesson[] = [
   {
