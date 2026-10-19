@@ -178,3 +178,14 @@ This stage starts only after stages 1–3 are complete. Prioritize work by risk 
 - [x] Add focused visual patterns for three-part journal pages, three tone zones, pressure studies, negative space, observation, recording, lighting and core subject families.
 - [ ] Run type-check, all tests and production build against this branch; fix any failures.
 - [ ] Review representative lessons across all modules in a browser at desktop and mobile widths. Confirm the drawing reflects each step literally; add dedicated patterns for any remaining mismatches before considering this work complete.
+
+## Art History sidebar section — branch `feat/art-history-sidebar`
+
+- [x] Add a dedicated “История искусства” entry to the left navigation and connect it to a real page.
+- [x] Build a searchable, filterable timeline covering nine broad periods from prehistoric art to contemporary practices.
+- [x] Include concise context, visual clues, analysis prompts, key terms and a small practical exercise for each period.
+- [x] Add responsive period cards, selected-period detail, previous/next navigation and a collapsible list of museum/educational references.
+- [x] Add integrity tests for unique periods, content completeness and HTTPS source links.
+- [ ] Run type-check, full tests and production build; fix all reported issues.
+- [ ] Verify desktop and mobile navigation, filtering, keyboard access and period selection in a browser.
+- [ ] Continue expanding the content with artwork-specific studies and verified object-level references; broad period summaries are an introduction, not an expert-reviewed art-history course.
