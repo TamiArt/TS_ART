@@ -14,7 +14,7 @@ const numberWords: Record<string, number> = {
 
 export function getRequestedLineCount(instruction: string): number | null {
   const text = instruction.toLowerCase();
-  const range = text.match(/(\d{1,2})\s*[–—-]\s*(\d{1,2})\s+(?:крупн\w*\s+)?лини/);
+  const range = text.match(/(\d{1,2})\s*[–—-]\s*(\d{1,2})\s+(?:крупн[а-яё]*\s+)?лини/);
   if (range) {
     const minimum = Number(range[1]);
     const maximum = Number(range[2]);
