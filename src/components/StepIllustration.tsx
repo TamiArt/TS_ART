@@ -14,7 +14,7 @@ const numberWords: Record<string, number> = {
 
 export function getRequestedLineCount(instruction: string): number | null {
   const text = instruction.toLowerCase();
-  const match = text.match(/(?:проведи|нарисуй|сделай|повтори|создай|наметь)\s+(\d{1,2}|один|одна|одну|два|две|три|четыре|пять|шесть|семь|восемь|девять|десять)\s+(?:лёгк\w*\s+|коротк\w*\s+|длинн\w*\s+|пробн\w*\s+|тональн\w*\s+)?лини/);
+  const match = text.match(/(?:проведи|нарисуй|сделай|повтори|создай|наметь)\s+(\d{1,2}|один|одна|одну|два|две|три|четыре|пять|шесть|семь|восемь|девять|десять)(?:\s+[а-яё-]+){0,4}?\s+лини/);
   if (!match) return null;
   const token = match[1];
   const count = /^\d+$/.test(token) ? Number(token) : numberWords[token];
