@@ -27,8 +27,9 @@ describe("oil mixer preview calculation", () => {
     expect(mixPigmentHex("#000000", "#ffffff", 50, "#ff0000", 20)).toBe("#996666");
   });
 
-  it("clamps the third-pigment share", () => {
-    expect(mixPigmentHex("#000000", "#ffffff", 50, "#ff0000", 100)).toBe("#ff0000");
+  it("limits the third-pigment share to the same 60 percent maximum as the UI", () => {
+    expect(mixPigmentHex("#000000", "#ffffff", 50, "#ff0000", 100)).toBe("#cc3333");
+    expect(mixPigmentHex("#000000", "#ffffff", 50, "#ff0000", 60)).toBe("#cc3333");
     expect(mixPigmentHex("#000000", "#ffffff", 50, "#ff0000", -10)).toBe("#808080");
   });
 });
