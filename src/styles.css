@@ -729,3 +729,4 @@ button:disabled { cursor:not-allowed; opacity:.5 }
   .lesson-actions .button { width:100%; }
 }
 
+@import url('./components/art-history.css');
