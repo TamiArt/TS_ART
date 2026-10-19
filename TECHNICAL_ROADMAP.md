@@ -2,18 +2,19 @@
 
 ## Development order
 
-Work through these four stages in order. Do not move to the next stage while the current stage has unresolved blocking issues. Keep work on `feat/oil-paint-mixer-colourlab` (or a new feature branch created from the verified current branch); never change `main` unless explicitly requested.
+Work through these four stages in order. Do not move to the next stage while the current stage has unresolved blocking issues. Continue the current work on `feat/oil-paint-mixer-qa-hardening` unless a separate, explicitly scoped feature branch is needed; never change `main` unless explicitly requested.
 
 ### 1. Finish the Oil Paint Mixer — CURRENT STAGE
 
 **Goal:** make the mixer stable, coherent and testable as a standalone learning tool before adding more features.
 
-**Work completed in this pass:** extracted a pure whole-percentage share calculation; wired displayed A/B/C shares to it; clarified the A:B ratio label when pigment C is enabled; aligned the calculation's 60% third-pigment cap with the UI; corrected the reversed endpoint labels on the A:B slider; guarded ratio calculations against non-finite values; and added tests for three-pigment share totals, limits, swapping A/B and non-finite inputs; updated the README. An independent Node.js arithmetic smoke check passed. The project's `npm run check`, `npm run test` and `npm run build` have not yet been run in this environment, and interaction review remains pending. The stage stays open until those checks are run.
+**Work completed so far:** extracted a pure whole-percentage share calculation; wired displayed A/B/C shares to it; clarified the A:B ratio label when pigment C is enabled; aligned the calculation's 60% third-pigment cap with the UI; corrected the reversed endpoint labels on the A:B slider; guarded ratio calculations against non-finite values; rejected malformed six-digit HEX inputs explicitly rather than generating invalid preview strings; and added tests for three-pigment share totals, limits, swapping A/B, non-finite inputs, identical pigments, a zero-share third pigment and malformed HEX values. The prior branch had an independent Node.js arithmetic smoke check, but the current branch's project checks and interaction review remain pending. The stage stays open until type-check, tests, production build and interaction review are confirmed.
 
 - [ ] Verify task selection: Portrait, Landscape and Still Life, including each task's study categories.
 - [ ] Verify two-pigment selection, proportion controls, swapping pigments and displayed mixture shares.
 - [ ] Verify optional third pigment, its percentage and the distribution of the remaining share between pigments A and B.
 - [x] Review calculation boundaries, default selections and labels in source; corrected the reversed A:B slider endpoint labels and aligned the third-pigment calculation cap with the UI.
+- [x] Validate six-digit HEX inputs and add regression tests for invalid colours, identical pigments and a zero-share third pigment.
 - [x] Add polite live announcements for the calculated colour and mixture shares; strengthen keyboard focus contrast and small-screen spacing in source.
 - [ ] Verify accessible control names and responsive layout through runtime/browser interaction.
 - [ ] Fix any interaction, calculation, visual or responsive-layout defects found.
@@ -76,6 +77,13 @@ This stage starts only after stages 1–3 are complete. Prioritize work by risk 
 
 **Exit criteria:** model changes are documented and tested; automated and manual QA results are recorded honestly; no known critical defects remain; remaining release decisions are explicit.
 
+## Latest UX changes on `feat/oil-paint-mixer-qa-hardening`
+
+- [x] Increase key reading text slightly across navigation, lesson instructions, self-checks and reflection fields while keeping the existing visual system.
+- [x] Add an in-lesson **Next lesson** action; moving forward stores the current reflection and loads the next lesson without returning to the lesson list.
+- [x] Disable forward navigation on the final lesson and keep the current lesson marked complete only when the user explicitly marks it complete.
+- [ ] Run the app checks and verify lesson-to-lesson navigation, reflection retention, final-lesson state and responsive typography in a browser.
+
 ## Current application baseline
 
 - React + TypeScript + Vite.
@@ -118,3 +126,36 @@ This stage starts only after stages 1–3 are complete. Prioritize work by risk 
 - `npm run check`
 - `npm run test`
 - `npm run build`
+
+
+## Step-by-step visual examples for every lesson
+
+- [x] Add a reusable visual tutorial to the lesson view, automatically selecting an illustration family from lesson topic and instructions.
+- [x] Display an ordered visual stage for every step in each lesson, using the lesson's actual instruction text; include a short explanation that diagrams are learning aids, not a required exact result.
+- [x] Add responsive layouts for desktop, tablet and narrow mobile screens.
+- [ ] Run type-check, unit tests and production build; visually inspect examples across different lesson themes and screen sizes.
+- Note: these are schematic examples rendered in the UI, not individually art-directed reference paintings. Confirm topic classification and refine specific diagrams during visual QA.
+
+
+## Visual tutorial hardening
+
+- [x] Check broad/introduction title keywords (`общ`, `введен`, `принцип`, `основы`, `general`, `broad`) before objective-based topic inference.
+- [x] Use `startsWith` for the Russian title prefix “Учимся смотреть”; JavaScript `\\b` word boundaries do not reliably delimit Cyrillic letters.
+- [x] Check negative-space phrases in combined title/objective text before proportion and generic shape classification.
+- [x] Keep titles such as “Общие принципы” and “Введение: пропорции и форма” in `general` even when the objective/title mentions a narrow topic.
+- [x] Add regression tests for broad-title precedence and negative-space precedence when proportion keywords are also present.
+
+- [x] Extract topic classification, stage generation and topic-specific learning principles into a pure module.
+- [x] Remove the duplicate `classifyVisualAction` export in `src/components/lessonVisuals.ts`; keep exactly one declaration.
+- [ ] Before committing TypeScript changes, check for duplicate function/variable declarations and confirm type-check catches no redeclaration errors.
+- [x] Classify each instruction by action and render a corresponding diagram for observation, placing, outlining, measuring, comparison, shading, filling, mixing, selecting, recording, practice or review.
+- [x] Add regression tests for instruction-to-visual-action matching.
+- [x] Prioritize the lesson title when selecting a visual family; use narrower objective matching as a fallback so generic words like “форма” and “пространство” do not force a misleading topic.
+- [x] Add regression tests for generic lesson classification and title-over-objective priority.
+- [x] Add curriculum-wide unit tests: each of the 84 lessons must render one ordered visual stage per written step.
+- [x] Test the classifier against portrait, landscape, still life, colour, tone, perspective, composition, proportion, line and paint examples.
+- [x] Give the final review stage a distinct completion marker on every lesson, including lessons with fewer than four steps; label intermediate stages distinctly and improve small-screen reading sizes.
+- [x] Vercel production build status is `success` for commit `0f7122c6a27d7cdcb8ece2e472ef13f90dcbcc75`, including the final-step marker and distinct stage-label fixes.
+- [ ] Confirm unit-test execution from CI; execution of the new instruction-action tests is not yet confirmed.
+- [ ] Inspect representative lesson screenshots in a browser; the available browser reader could not access the preview URL.
+- Known limitation: action-specific diagrams now vary by written step, but many still use generic objects rather than custom illustrations for each lesson. Do not call this block complete until lesson-specific examples and browser screenshots have been reviewed.

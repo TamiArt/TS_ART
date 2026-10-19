@@ -699,3 +699,33 @@ button:disabled { cursor:not-allowed; opacity:.5 }
   .workshop-card h2 { font-size:23px }
 }
 
+/* Slightly larger reading type and clearer in-lesson progression. */
+.nav-item { font-size:13px }
+.breadcrumb { font-size:10px }
+.hero-description,.page-intro>p { font-size:13px }
+.button { font-size:12px }
+.text-link { font-size:11px }
+.lesson-row-copy strong { font-size:12px }
+.lesson-row-copy small { font-size:10px }
+.panel-description { font-size:12px }
+.lesson-meta { font-size:11px }
+.back-link { font-size:12px }
+.lesson-objective p { font-size:19px }
+.lesson-section>div>p,.step-list li p { font-size:13px; line-height:1.85 }
+.check-list li { font-size:12px; line-height:1.8 }
+.reflection-box textarea { font-size:13px }
+.reflection-box>p { font-size:10px }
+.aside-tip-muted p { font-size:11px }
+.lesson-actions { display:flex; flex-wrap:wrap; align-items:center; gap:10px; margin-top:4px }
+.lesson-actions .button { min-height:44px }
+.lesson-actions .button-dark { flex:1 1 230px }
+.lesson-next-button { flex:1 1 190px; width:auto }
+.lesson-next-button:disabled { justify-content:center }
+@media(max-width:760px) {
+  .hero-description,.page-intro>p { font-size:12px }
+  .lesson-objective p { font-size:17px }
+  .lesson-section>div>p,.step-list li p { font-size:12px }
+  .lesson-actions { display:grid; grid-template-columns:1fr; }
+  .lesson-actions .button { width:100%; }
+}
+

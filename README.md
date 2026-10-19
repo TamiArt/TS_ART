@@ -6,6 +6,7 @@ TS·ART Studio is an art-learning application built around observation, delibera
 - Responsive dashboard with overall and per-module progress.
 - **20 interactive curriculum modules and 84 first-draft lessons**: eight lessons in Module 1 and four lessons in each of Modules 2–20.
 - Lesson reader with objectives, materials, step-by-step exercises, self-check criteria and reflections.
+- Visual step-by-step lesson guides with topic-specific schematic examples for all 84 lessons; the diagrams are learning aids, not exact reference paintings.
 - Mini-Studio with short practices drawn from the same curriculum.
 - Learning-path overview and module selector.
 - Visual journal with browser-local autosave and TXT export.
