@@ -13,7 +13,8 @@ Work through these four stages in order. Do not move to the next stage while the
 - [ ] Verify task selection: Portrait, Landscape and Still Life, including each task's study categories.
 - [ ] Verify two-pigment selection, proportion controls, swapping pigments and displayed mixture shares.
 - [ ] Verify optional third pigment, its percentage and the distribution of the remaining share between pigments A and B.
-- [ ] Check boundary values, default selections, labels, accessible control names and responsive layout.
+- [x] Review calculation boundaries, default selections and labels in source; corrected the reversed A:B slider endpoint labels and aligned the third-pigment calculation cap with the UI.
+- [ ] Verify accessible control names and responsive layout through runtime/browser interaction.
 - [ ] Fix any interaction, calculation, visual or responsive-layout defects found.
 - [ ] Run type-check, unit tests and production build; fix failures and report only observed results.
 - [ ] Keep the RGB preview limitation visible: screen interpolation is an educational approximation, not a physically accurate oil-paint prediction.
