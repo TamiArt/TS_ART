@@ -76,7 +76,7 @@ export function classifyLesson(lesson: Lesson): VisualKind {
     title.includes("основы") ||
     title.includes("general") ||
     title.includes("broad") ||
-    /^учимся смотреть\b/.test(title.trim())
+    title.trim().startsWith("учимся смотреть")
   ) {
     return "general";
   }
