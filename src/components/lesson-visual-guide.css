@@ -1,20 +1,176 @@
-.lesson-visual-guide { margin: 24px 0 28px; padding: 22px; border: 1px solid #e4ded2; background: #f4f0e7; }
-.lesson-visual-heading { display:flex; align-items:flex-start; justify-content:space-between; gap:16px; margin-bottom:18px; }
-.lesson-visual-heading h2 { margin:7px 0 8px; font-family:var(--serif); font-size:26px; font-weight:500; line-height:1.25; }
-.lesson-visual-heading p { max-width:650px; margin:0; color:#777267; font-size:12px; line-height:1.8; }
-.lesson-visual-stamp { flex:0 0 auto; display:grid; place-items:center; width:47px; height:47px; border:1px solid #c9c0af; border-radius:50%; color:#9a755a; font-size:10px; letter-spacing:.7px; }
-.lesson-visual-stages { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,145px),1fr)); gap:11px; }
-.lesson-visual-stage { min-width:0; display:flex; flex-direction:column; border:1px solid #e1d9ca; background:#fffdf7; }
-.lesson-visual-stage-top { display:flex; align-items:center; justify-content:space-between; gap:6px; padding:10px 11px 0; }
-.lesson-visual-stage-top>span { display:grid; place-items:center; width:27px; height:27px; border-radius:50%; background:#e8e1d4; color:#7d725f; font-size:11px; }
-.lesson-visual-stage-top small { color:#9b8a76; font-size:9px; text-transform:uppercase; letter-spacing:.8px; }
-.lesson-visual-svg { display:block; width:100%; max-width:190px; height:auto; margin:0 auto; padding:4px 7px; }
-.lesson-visual-stage>p { flex:1; margin:0; padding:12px; border-top:1px solid #eee8dd; color:#57564d; font-size:12px; line-height:1.7; }
-.lesson-visual-footer { display:flex; gap:11px; align-items:flex-start; margin-top:13px; padding:13px 15px; background:#e9e5d9; }
-.lesson-visual-footer-mark { flex:0 0 auto; color:#9a9b79; font-size:19px; line-height:1.2; }
-.lesson-visual-footer p { margin:0; color:#706d61; font-size:11px; line-height:1.7; }
-.lesson-visual-footer strong { color:#4d4b42; font-weight:600; }
-@media(max-width:900px) { .lesson-visual-stages { grid-template-columns:repeat(2,minmax(0,1fr)); } .lesson-visual-svg { max-width:220px; } }
-@media(max-width:560px) { .lesson-visual-guide { padding:15px; margin:19px 0 22px; } .lesson-visual-heading h2 { font-size:23px; } .lesson-visual-heading p { font-size:13px; } .lesson-visual-stages { grid-template-columns:1fr; gap:10px; } .lesson-visual-stage { display:grid; grid-template-columns:1fr 112px; grid-template-rows:auto 1fr; } .lesson-visual-stage-top { grid-column:1 / -1; padding:10px 11px 0; } .lesson-visual-svg { grid-column:2; grid-row:2; align-self:center; width:112px; padding:0 4px; } .lesson-visual-stage>p { grid-column:1; grid-row:2; align-self:center; border-top:0; padding:10px 11px; font-size:12px; } .lesson-visual-footer { padding:11px; } }
+.lesson-visual-guide {
+  margin: 18px 0 20px;
+  padding: 16px;
+  border: 1px solid #e0d9cc;
+  background: #f4f0e7;
+}
+.lesson-visual-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.lesson-visual-heading h2 {
+  margin: 4px 0 5px;
+  font-family: var(--serif);
+  font-size: 27px;
+  font-weight: 500;
+  line-height: 1.15;
+}
+.lesson-visual-heading p {
+  max-width: 760px;
+  margin: 5px 0 0;
+  color: #625f55;
+  font-size: 15px;
+  line-height: 1.45;
+}
+.lesson-visual-stamp {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border: 1px solid #c9c0af;
+  border-radius: 50%;
+  color: #8e674f;
+  font-size: 10px;
+  line-height: 1.35;
+  text-align: center;
+}
+.lesson-visual-kind {
+  display: inline-block;
+  margin: 2px 0 0 7px;
+  padding: 3px 7px;
+  border: 1px solid #d9d0c0;
+  color: #716752;
+  font-size: 12px;
+  line-height: 1.2;
+}
+.lesson-visual-stages {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+.lesson-visual-stage {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ded7ca;
+  background: #fffdf7;
+}
+.lesson-visual-stage-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 7px;
+  padding: 8px 10px 0;
+}
+.lesson-visual-stage-top > span {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background: #e8e1d4;
+  color: #655e50;
+  font-size: 13px;
+  font-weight: 700;
+}
+.lesson-visual-stage-top small {
+  color: #776b58;
+  font-size: 11px;
+  line-height: 1.2;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+}
+.lesson-visual-svg {
+  display: block;
+  width: 100%;
+  max-width: 340px;
+  height: auto;
+  margin: 0 auto;
+  padding: 5px 8px 3px;
+}
+.lesson-visual-stage > p {
+  flex: 1;
+  margin: 0;
+  padding: 10px 12px 12px;
+  border-top: 1px solid #eee8dd;
+  color: #45443e;
+  font-size: 15px;
+  line-height: 1.45;
+}
+.lesson-visual-footer {
+  display: flex;
+  gap: 9px;
+  align-items: flex-start;
+  margin-top: 10px;
+  padding: 10px 12px;
+  background: #e9e5d9;
+}
+.lesson-visual-footer-mark {
+  flex: 0 0 auto;
+  color: #85896c;
+  font-size: 18px;
+  line-height: 1.25;
+}
+.lesson-visual-footer p {
+  margin: 0;
+  color: #5f5b50;
+  font-size: 14px;
+  line-height: 1.45;
+}
+.lesson-visual-footer strong { color: #3e3c35; font-weight: 700; }
 
-.lesson-visual-kind { display:inline-block; margin:4px 0 0; padding:4px 8px; border:1px solid #d9d0c0; border-radius:2px; color:#827762; font-size:10px; letter-spacing:.35px; }
+@media (max-width: 980px) {
+  .lesson-visual-stages { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .lesson-visual-svg { max-width: 380px; }
+}
+@media (max-width: 560px) {
+  .lesson-visual-guide { margin: 14px 0 17px; padding: 11px; }
+  .lesson-visual-heading { gap: 8px; margin-bottom: 9px; }
+  .lesson-visual-heading h2 { font-size: 23px; }
+  .lesson-visual-heading p { font-size: 14px; line-height: 1.4; }
+  .lesson-visual-stamp { width: 40px; height: 40px; font-size: 9px; }
+  .lesson-visual-kind { font-size: 11px; margin-left: 3px; }
+  .lesson-visual-stages { grid-template-columns: 1fr; gap: 8px; }
+  .lesson-visual-stage { display: grid; grid-template-columns: minmax(0, 1fr) 46%; grid-template-rows: auto 1fr; }
+  .lesson-visual-stage-top { grid-column: 1 / -1; padding: 7px 9px 0; }
+  .lesson-visual-svg { grid-column: 2; grid-row: 2; align-self: center; width: 100%; padding: 4px; }
+  .lesson-visual-stage > p { grid-column: 1; grid-row: 2; align-self: center; border-top: 0; padding: 9px; font-size: 14px; line-height: 1.4; }
+  .lesson-visual-footer { padding: 9px; }
+  .lesson-visual-footer p { font-size: 13px; }
+}
+
+/* Compact reading rhythm with larger, easier-to-read lesson instructions. */
+.lesson-page { padding-top: 17px; padding-bottom: 30px; }
+.back-link { margin-bottom: 10px; }
+.lesson-main h1 { margin: 12px 0 9px; line-height: 1.1; }
+.lesson-meta { gap: 10px; padding-bottom: 13px; font-size: 12px; }
+.lesson-objective { gap: 12px; padding: 15px 17px; margin: 15px 0 18px; }
+.lesson-objective p { font-size: 19px; line-height: 1.4; }
+.lesson-section { gap: 10px; margin: 18px 0; }
+.lesson-section h2 { margin-bottom: 7px; }
+.lesson-section > div > p { font-size: 15px; line-height: 1.5; margin: 5px 0 9px; }
+.step-list li { gap: 10px; padding: 8px 0; }
+.step-list li > span { font-size: 12px; padding-top: 2px; }
+.step-list li p { font-size: 15px; line-height: 1.45; }
+.check-list li { gap: 9px; padding: 8px 0; font-size: 14px; line-height: 1.45; }
+.reflection-box { padding: 17px; margin-top: 22px; }
+.lesson-aside { padding-top: 4px; }
+.aside-tip { padding: 13px 0; }
+.aside-tip p { font-size: 14px; line-height: 1.5; }
+.aside-tip-muted p { font-size: 12px; line-height: 1.45; }
+@media (max-width: 560px) {
+  .lesson-page { padding-top: 11px; padding-bottom: 20px; }
+  .lesson-main h1 { font-size: 34px; }
+  .lesson-objective { padding: 12px; margin: 12px 0 15px; }
+  .lesson-objective p { font-size: 17px; }
+  .lesson-section { grid-template-columns: 25px minmax(0, 1fr); gap: 8px; margin: 15px 0; }
+  .lesson-section h2 { font-size: 21px; }
+  .lesson-section > div > p, .step-list li p { font-size: 14px; line-height: 1.45; }
+  .step-list li { padding: 7px 0; }
+  .check-list li { font-size: 13px; }
+}
