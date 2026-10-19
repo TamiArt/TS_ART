@@ -126,3 +126,12 @@ This stage starts only after stages 1–3 are complete. Prioritize work by risk 
 - `npm run check`
 - `npm run test`
 - `npm run build`
+
+
+## Step-by-step visual examples for every lesson
+
+- [x] Add a reusable visual tutorial to the lesson view, automatically selecting an illustration family from lesson topic and instructions.
+- [x] Display up to four ordered stages using each lesson's actual step text; include a short explanation that diagrams are learning aids, not a required exact result.
+- [x] Add responsive layouts for desktop, tablet and narrow mobile screens.
+- [ ] Run type-check, unit tests and production build; visually inspect examples across different lesson themes and screen sizes.
+- Note: these are schematic examples rendered in the UI, not individually art-directed reference paintings. Confirm topic classification and refine specific diagrams during visual QA.
