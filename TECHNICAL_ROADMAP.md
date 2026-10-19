@@ -143,5 +143,7 @@ This stage starts only after stages 1–3 are complete. Prioritize work by risk 
 - [x] Add curriculum-wide unit tests: each of the 84 lessons must render one ordered visual stage per written step.
 - [x] Test the classifier against portrait, landscape, still life, colour, tone, perspective, composition, proportion, line and paint examples.
 - [x] Give the final review stage a distinct completion marker and improve small-screen reading sizes.
-- [ ] Await CI type-check, tests and production build; inspect representative lesson screenshots after a successful deployment.
+- [x] Vercel production build reached READY for commit `b56d9b503b027f0276ea00fb7943db620eb7f8ec`.
+- [ ] Confirm unit-test execution from CI; the available status API only surfaced Vercel, not a test-run result.
+- [ ] Inspect representative lesson screenshots in a browser; the deployment is ready, but the available browser reader could not access the preview URL.
 - Known limitation: the illustrations are topic-family schematics reused across related lessons, not 84 separately art-directed drawings. They are explicitly presented as visual aids rather than exact model answers.
