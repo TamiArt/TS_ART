@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { mixPigmentHex } from "./OilPaintMixer";
+import { mixPigmentHex } from "./mixPigments";
 
 describe("oil mixer preview calculation", () => {
   it("returns the first pigment at a 100/0 ratio", () => {
