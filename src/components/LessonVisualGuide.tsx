@@ -1,129 +1,39 @@
 import type { Lesson } from "../data/types";
-import ActionDrawing from "./ActionDrawing";
+import StepIllustration from "./StepIllustration";
 import "./lesson-visual-guide.css";
-import { buildLessonVisualStages, classifyLesson, getVisualKindLabel, getVisualPrinciple, type VisualAction } from "./lessonVisuals";
-
-function VisualDrawing({ kind, stage, stepNumber, isFinal, action }: { kind: ReturnType<typeof classifyLesson>; stage: number; stepNumber: number; isFinal: boolean; action: VisualAction }) {
-  const stroke = "#56564b";
-  const muted = "#a8a18f";
-  const accent = "#b77b5d";
-  const sage = "#8b9273";
-  const paper = "#f8f5ec";
-  const line = (x1: number, y1: number, x2: number, y2: number) =>
-    <line x1={x1} y1={y1} x2={x2} y2={y2} stroke={stroke} strokeWidth="1.7" strokeLinecap="round" />;
-  const circle = (cx: number, cy: number, r: number, fill: string, opacity = 1) =>
-    <circle cx={cx} cy={cy} r={r} fill={fill} opacity={opacity} stroke={stroke} strokeWidth="1.3" />;
-  let art;
-  switch (action) {
-    case "observe":
-      art = <><rect x="20" y="20" width="118" height="91" rx="2" fill={paper} stroke={muted}/><ellipse cx="79" cy="65" rx="25" ry="34" fill="none" stroke={stage >= 2 ? accent : muted} strokeWidth={stage >= 2 ? 2.5 : 1.4} strokeDasharray={stage >= 2 ? "0" : "4 3"}/><path d="M27 27 L27 18 L36 18 M122 18 L131 18 L131 27 M27 103 L27 112 L36 112 M122 112 L131 112 L131 103" fill="none" stroke={sage} strokeWidth="1.8"/>{stage >= 3 && <><path d="M108 38 L124 28 M124 28 L118 29 M124 28 L122 34" stroke={accent} strokeWidth="1.8" fill="none"/><text x="79" y="117" textAnchor="middle" fontSize="7" fill={stroke}>НАБЛЮДАЙ</text></>}</>;
-      break;
-    case "place":
-      art = <><path d="M18 99 L140 99" stroke={stroke} strokeWidth="2"/><rect x="29" y="57" width="28" height="42" fill="#d9c6a8" stroke={stroke} strokeWidth="1.4"/><circle cx="102" cy="32" r="12" fill="#d6b17e" stroke={accent}/><path d="M102 47 L83 65 M102 47 L121 65 M102 47 L102 70" stroke={accent} strokeWidth="1.5" strokeDasharray="3 3"/>{stage >= 2 && <><path d="M85 71 L85 93 L122 93 L122 71" fill="#e3d9c6" stroke={stroke} strokeWidth="1.4"/><path d="M82 68 L125 68" stroke={sage} strokeWidth="2"/></>}</>;
-      break;
-    case "trace":
-    case "outline":
-      art = <><path d="M79 19 C63 26 54 41 57 58 C47 73 60 97 79 106 C98 97 111 73 101 58 C104 41 95 26 79 19 Z" fill={stage >= 3 ? "#d7c2a4" : "none"} stroke={stage >= 2 ? accent : muted} strokeWidth={stage >= 2 ? 2.4 : 1.4} strokeDasharray={stage >= 2 ? "0" : "4 3"}/>{stage >= 3 && <><path d="M79 21 L79 13 M74 13 L84 13" stroke={sage} strokeWidth="2"/><path d="M110 34 L127 25 M127 25 L120 26 M127 25 L124 32" stroke={accent} strokeWidth="1.7" fill="none"/></>}</>;
-      break;
-    case "simplify":
-      art = <><g opacity={stage >= 2 ? 1 : .65}><circle cx="49" cy="48" r="20" fill={stage >= 2 ? "#d9c8ad" : "none"} stroke={accent} strokeWidth="1.7"/><rect x="79" y="29" width="38" height="40" fill={stage >= 2 ? "#c7b59a" : "none"} stroke={sage} strokeWidth="1.7"/><ellipse cx="96" cy="91" rx="22" ry="13" fill={stage >= 2 ? "#d8d0c0" : "none"} stroke={stroke} strokeWidth="1.7"/></g>{stage >= 3 && <path d="M30 112 L125 112" stroke={accent} strokeWidth="2" strokeDasharray="4 3"/>}</>;
-      break;
-    case "measure":
-      art = <><path d="M45 23 L45 108 M39 23 L51 23 M39 108 L51 108" stroke={accent} strokeWidth="1.6"/><path d="M66 36 L111 36 L111 99 L66 99 Z" fill="#d8c7ad" fillOpacity=".55" stroke={stroke} strokeWidth="1.6"/><path d="M66 29 L111 29 M66 25 L66 33 M111 25 L111 33" stroke={sage} strokeWidth="1.6"/>{stage >= 2 && <><path d="M88 36 L88 99" stroke={accent} strokeDasharray="3 3" strokeWidth="1.4"/><text x="90" y="20" textAnchor="middle" fontSize="8" fill={stroke}>1 : 2</text></>}{stage >= 3 && <path d="M66 99 L111 36" stroke={sage} strokeWidth="1.4" strokeDasharray="3 3"/>}</>;
-      break;
-    case "compare":
-      art = <><rect x="17" y="25" width="54" height="72" fill={paper} stroke={muted}/><rect x="87" y="25" width="54" height="72" fill={paper} stroke={muted}/><path d="M29 81 L42 51 L59 81 Z" fill="#c8b89d" stroke={stroke}/><path d="M99 81 L113 43 L130 81 Z" fill={stage >= 2 ? "#c8b89d" : "none"} stroke={stage >= 2 ? accent : stroke} strokeWidth={stage >= 2 ? 2 : 1.3}/>{stage >= 3 && <><path d="M74 58 L84 58 M80 54 L84 58 L80 62" stroke={sage} strokeWidth="1.7" fill="none"/><circle cx="114" cy="43" r="3" fill={accent}/></>}</>;
-      break;
-    case "shade":
-      art = <><circle cx="79" cy="63" r="33" fill="#eee6d7" stroke={stroke} strokeWidth="1.4"/><path d="M79 30 A33 33 0 0 1 79 96 Z" fill={stage >= 2 ? "#73756b" : "#d5cbbb"}/><path d="M79 30 A33 33 0 0 1 79 96" fill="none" stroke={stroke} strokeWidth="1.2"/><circle cx="66" cy="48" r="5" fill="#fffaf0"/>{stage >= 3 && <ellipse cx="79" cy="101" rx="36" ry="6" fill="#a9a393" opacity=".55"/>}</>;
-      break;
-    case "fill":
-      art = <><path d="M79 23 C59 34 47 52 54 75 C59 93 69 102 79 107 C89 102 99 93 104 75 C111 52 99 34 79 23 Z" fill={stage >= 2 ? "#6f7066" : "none"} stroke={stroke} strokeWidth="1.7"/>{stage >= 3 && <path d="M59 74 Q78 65 99 74" stroke="#f5efe1" strokeWidth="3" fill="none" opacity=".8"/>}</>;
-      break;
-    case "mix":
-      art = <><circle cx="40" cy="43" r="19" fill="#bd795d" stroke={stroke}/><circle cx="118" cy="43" r="19" fill="#89936f" stroke={stroke}/><path d="M61 43 L96 43 M89 36 L96 43 L89 50" stroke={accent} strokeWidth="2" fill="none"/><path d="M53 76 Q79 58 105 76 L105 99 Q79 111 53 99 Z" fill={stage >= 2 ? "#a5a078" : "#c5a081"} stroke={stroke} strokeWidth="1.4"/>{stage >= 3 && <><text x="40" y="71" textAnchor="middle" fontSize="8" fill={stroke}>1 часть</text><text x="118" y="71" textAnchor="middle" fontSize="8" fill={stroke}>1 часть</text><path d="M58 114 L100 114" stroke={accent} strokeWidth="5" strokeLinecap="round"/></>}</>;
-      break;
-    case "select":
-      art = <><circle cx="43" cy="43" r="16" fill="#d8c8ad" stroke={muted}/><rect x="75" y="27" width="30" height="32" fill="#d8c8ad" stroke={muted}/><path d="M31 92 Q46 70 61 92" fill="none" stroke={muted} strokeWidth="3"/><circle cx="116" cy="83" r="18" fill={stage >= 2 ? "#d6b17e" : "none"} stroke={stage >= 2 ? accent : muted} strokeWidth={stage >= 2 ? 2.5 : 1.4}/>{stage >= 3 && <path d="M106 83 L113 90 L126 75" stroke={sage} strokeWidth="2.4" fill="none"/>}</>;
-      break;
-    case "record":
-      art = <><rect x="37" y="16" width="84" height="102" rx="2" fill="#fffdf7" stroke={muted}/><path d="M48 36 L109 36 M48 48 L101 48 M48 60 L106 60" stroke={sage} strokeWidth="1.6"/><rect x="48" y="70" width="28" height="25" fill="#e5d9c6" stroke={muted}/><path d="M52 90 L61 78 L71 90" fill="none" stroke={accent} strokeWidth="1.4"/>{stage >= 2 && <><path d="M82 76 L109 76 M82 85 L109 85 M82 94 L103 94" stroke={accent} strokeWidth="1.4"/><path d="M105 104 L111 110 L122 97" stroke={sage} strokeWidth="2.3" fill="none"/></>}</>;
-      break;
-    case "practice":
-      art = <>{[0,1,2,3].map((n) => <path key={n} d={`M 18 ${27+n*24} Q 72 ${stage >= 2 ? 11+n*24 : 27+n*24} 140 ${27+n*24}`} fill="none" stroke={n === 0 ? accent : n === 1 ? sage : muted} strokeWidth={stage >= 2 && n < 2 ? 3 : 1.4} strokeLinecap="round"/>)}{stage >= 3 && <path d="M18 115 L140 115" stroke={accent} strokeWidth="2" strokeDasharray="4 3"/>}</>;
-      break;
-    case "review":
-    default:
-      art = <><rect x="19" y="21" width="120" height="89" fill={paper} stroke={muted}/><path d="M29 84 L50 55 L68 77 L89 42 L128 84 Z" fill="#d6c9b3" stroke={stroke} strokeWidth="1.3"/><circle cx="111" cy="39" r="8" fill="#d6b17e"/>{stage >= 2 && <path d="M29 92 L129 92" stroke={sage} strokeWidth="2"/>}</>;
-      break;
-  }
-  if (!art) {
-    switch (kind) {
-    case "line":
-      art = <>{[0,1,2,3,4].map((n) => <path key={n} d={`M 20 ${23+n*14} Q 66 ${18+n*14+(stage>1?8:0)} 118 ${23+n*14}`} fill="none" stroke={n < stage ? accent : muted} strokeWidth={n < stage ? 2.7 : 1.1} strokeLinecap="round" opacity={n < stage ? 1 : .65} />)}{stage > 1 && <path d="M132 24 Q148 48 132 72 T132 94" fill="none" stroke={sage} strokeWidth="2.4" strokeLinecap="round" />}</>;
-      break;
-    case "shape":
-    case "still-life":
-      art = <>{stage >= 1 && <ellipse cx="78" cy="106" rx="49" ry="8" fill="#d9d1c1" opacity=".65" />}{stage >= 1 && <><rect x="28" y="48" width="48" height="54" rx="2" fill={stage >= 3 ? "#c5ad8d" : "none"} stroke={stroke} strokeWidth="1.6" /><ellipse cx="104" cy="54" rx="21" ry="7" fill={stage >= 2 ? "#e6d7bf" : "none"} stroke={stroke} strokeWidth="1.6"/><path d="M83 54 L83 91 Q104 103 125 91 L125 54" fill={stage >= 3 ? "#d9bda0" : "none"} stroke={stroke} strokeWidth="1.6"/>{stage >= 2 && <path d="M104 43 C96 32 101 21 112 20 C121 20 125 31 118 38" fill="none" stroke={sage} strokeWidth="2" />}</>}{stage >= 3 && <path d="M31 59 L31 93 M86 61 L86 86" stroke="#fff7e5" strokeWidth="4" opacity=".8" />}</>;
-      break;
-    case "proportion":
-      art = <>{line(25,24,25,108)}{line(19,24,31,24)}{line(19,108,31,108)}{line(39,24,39,78)}{line(33,24,45,24)}{line(33,78,45,78)}{stage >= 1 && <rect x="54" y="28" width={stage >= 2 ? 63 : 39} height={stage >= 2 ? 75 : 75} fill="none" stroke={accent} strokeWidth="1.6" strokeDasharray={stage >= 3 ? "0" : "4 3"} />}{stage >= 2 && <><path d="M54 28 L85 17 L117 28" fill="none" stroke={sage} strokeWidth="1.5" />{line(54,103,117,103)}</>}{stage >= 3 && <><ellipse cx="86" cy="54" rx="18" ry="26" fill="#e2d2b9" stroke={stroke} strokeWidth="1.4"/>{line(86,28,86,80)}</>}</>;
-      break;
-    case "tone":
-      art = <>{[0,1,2,3,4].map((n) => <g key={n}><rect x={17+n*27} y="23" width="23" height="27" rx="1" fill={["#f2eee2","#d7d0c0","#aaa594","#77776b","#3f423d"][n]} stroke="#b9b1a1" strokeWidth=".5"/><text x={28.5+n*27} y="65" textAnchor="middle" fontSize="8" fill={stroke}>{n+1}</text></g>)}{stage >= 2 && <><path d="M35 103 A24 24 0 0 1 83 103 Z" fill="#e9e1d2" stroke={stroke} strokeWidth="1.3"/><path d="M59 79 A24 24 0 0 1 83 103 L59 103 Z" fill="#77776b"/><path d="M83 103 A24 24 0 0 1 35 103" fill="none" stroke={stroke} strokeWidth="1.3"/>{stage >= 3 && <ellipse cx="61" cy="108" rx="31" ry="5" fill="#bdb5a5" opacity=".7"/>}</>}</>;
-      break;
-    case "negative-space":
-      art = <>{stage >= 1 && <><rect x="15" y="18" width="128" height="94" fill="#f4efe3" stroke="#c8c0b0" /><path d="M64 38 Q54 43 57 55 L57 88 Q79 100 101 88 L101 55 Q104 43 94 38 L88 28 L70 28 Z" fill="#c9b89d" stroke={stroke} strokeWidth="1.5" /></>}{stage >= 2 && <><path d="M18 22 L51 22 L51 108 L18 108 Z" fill="#c4d0c0" opacity=".75" /><path d="M107 22 L140 22 L140 108 L107 108 Z" fill="#c4d0c0" opacity=".75" /></>}{stage >= 3 && <><path d="M34 61 L52 61 M107 61 L125 61" stroke={accent} strokeWidth="1.8" strokeDasharray="3 2" /><path d="M34 61 L39 57 M34 61 L39 65 M125 61 L120 57 M125 61 L120 65" stroke={accent} strokeWidth="1.5" fill="none" /></>}</>;
-      break;
-    case "perspective":
-      art = <>{line(14,53,144,53)}{circle(101,53,2.7,accent)}{stage >= 1 && <><path d="M38 62 L71 62 L71 94 L38 94 Z" fill="#e9dfcd" stroke={stroke} strokeWidth="1.4"/>{stage >= 2 && <><path d="M38 62 L78 43 L110 43 L71 62" fill="#f3ebdd" stroke={stroke} strokeWidth="1.4"/><path d="M71 62 L110 43 L110 76 L71 94" fill="#c9b59b" stroke={stroke} strokeWidth="1.4"/>{line(38,62,101,53)}{line(71,62,101,53)}{line(71,94,101,53)}{line(110,76,101,53)}</>}{stage >= 3 && <path d="M14 112 L144 112 M22 112 L101 53 M50 112 L101 53 M78 112 L101 53 M122 112 L101 53" stroke={sage} strokeWidth="1.1" fill="none" opacity=".8"/>}</>}</>;
-      break;
-    case "composition":
-      art = <>{[0,1,2].map((n) => <g key={n}><rect x={13+n*48} y="24" width="39" height="78" fill={paper} stroke="#c8c0b0" strokeWidth="1"/>{n < stage && <>{circle([31,38,33][n], [49,41,65][n], [9,14,11][n], n===1?accent:sage, .88)}<path d={`M ${20+n*48} 88 Q ${31+n*48} 70 ${43+n*48} 88`} fill="none" stroke={stroke} strokeWidth="1.8"/></>}</g>)}{stage >= 3 && <path d="M82 17 L82 108" stroke={accent} strokeWidth="1.5" strokeDasharray="3 3"/>}</>;
-      break;
-    case "colour":
-      art = <>{circle(38,47,22,"#bd795d")}{circle(88,47,22,"#89936f")}{stage >= 1 && <><path d="M54 83 Q63 65 72 83 L72 103 L54 103 Z" fill="#bda17b" stroke={stroke} strokeWidth="1.1"/><path d="M50 80 L77 80" stroke={stroke} strokeWidth="1.2"/>{circle(63,81,7,"#c5a081")}</>}{stage >= 2 && <><rect x="96" y="73" width="37" height="25" rx="2" fill={stage >= 3 ? "#a5a078" : "#c5a081"} stroke={stroke} strokeWidth="1"/><path d="M97 104 L132 104" stroke={stroke} strokeWidth="1.2"/></>}{stage >= 3 && <><rect x="17" y="112" width="119" height="7" rx="3.5" fill="#c5a081"/><rect x="17" y="112" width="58" height="7" rx="3.5" fill="#bd795d"/></>}</>;
-      break;
-    case "portrait":
-      art = <>{stage >= 1 && <ellipse cx="79" cy="57" rx="29" ry="37" fill="#dfc1a3" stroke={stroke} strokeWidth="1.5"/>}{stage >= 1 && <path d="M50 51 Q45 17 78 17 Q111 16 108 52 L103 37 Q82 22 58 39 Z" fill="#7d6858" stroke={stroke} strokeWidth="1.3"/>}{stage >= 2 && <><path d="M61 55 Q67 51 72 55 M86 55 Q92 51 97 55" stroke={stroke} strokeWidth="1.6" fill="none"/><path d="M79 57 L75 71 L82 72" stroke="#9d775f" strokeWidth="1.4" fill="none"/><path d="M70 83 Q79 88 89 82" stroke="#9e6e60" strokeWidth="1.5" fill="none"/></>}{stage >= 3 && <><path d="M49 51 Q58 71 59 88" stroke="#b77b5d" strokeWidth="5" opacity=".6" fill="none"/><path d="M99 44 Q104 61 99 75" stroke="#fff0d7" strokeWidth="5" opacity=".8" fill="none"/><path d="M44 112 Q46 91 63 91 L94 91 Q111 95 114 112" fill="#9b9a7a" stroke={stroke} strokeWidth="1.4"/></>}</>;
-      break;
-    case "landscape":
-      art = <>{stage >= 1 && <><rect x="13" y="20" width="132" height="90" fill="#f4efe3" stroke="#c8c0b0"/><circle cx="111" cy="39" r="10" fill="#d4aa78"/><path d="M14 75 L45 43 L68 71 L90 48 L145 78 L145 110 L14 110 Z" fill={stage >= 2 ? "#9ba18a" : "#d8d0c0"} stroke={stroke} strokeWidth="1.1"/>{stage >= 2 && <path d="M14 92 Q47 71 73 92 T145 90 L145 110 L14 110 Z" fill="#c4ad8f" stroke={stroke} strokeWidth="1.1"/>}{stage >= 3 && <><path d="M14 100 Q52 91 83 101 T145 98" fill="none" stroke="#f8f2e5" strokeWidth="3"/><path d="M44 64 L51 56 L57 64 M87 61 L94 53 L100 61" stroke="#f6f0e5" strokeWidth="2" fill="none"/></>}</>}</>;
-      break;
-    case "paint":
-      art = <>{[0,1,2].map((n) => <path key={n} d={`M ${18+n*4} ${34+n*31} Q 53 ${16+n*31} 83 ${34+n*31} T 139 ${34+n*31}`} fill="none" stroke={[accent,sage,"#c6a16f"][n]} strokeWidth={stage > n ? 10 : 3} strokeLinecap="round" opacity={stage > n ? .9 : .45}/>)}{stage >= 2 && <path d="M36 19 L48 11 L57 20 L49 47 Z" fill="#9b775d" stroke={stroke} strokeWidth="1.1"/>}{stage >= 3 && <path d="M26 112 Q73 98 129 112" stroke={stroke} strokeWidth="1.2" strokeDasharray="3 3" fill="none"/>}</>;
-      break;
-    default:
-      art = <>{stage >= 1 && <rect x="25" y="25" width="105" height="80" rx="2" fill="#f4efe3" stroke="#c8c0b0"/>}{stage >= 1 && <><path d="M36 87 L62 55 L82 76 L100 45 L120 87 Z" fill="#d4c8b2" stroke={stroke} strokeWidth="1.4"/>{circle(102,40,8,"#d2aa7b")}</>}{stage >= 2 && <path d="M36 91 Q66 75 90 91 T120 91" fill="none" stroke={sage} strokeWidth="3"/>}{stage >= 3 && <path d="M42 99 L114 99" stroke={accent} strokeWidth="2.5" strokeLinecap="round"/>}</>;
-  }
-  }
-  return <svg className="lesson-visual-svg" viewBox="0 0 158 132" role="img" aria-label={`Схематичный пример, этап ${stepNumber}, тема: ${getVisualKindLabel(kind)}${isFinal ? ", этап проверки" : ""}`} xmlns="http://www.w3.org/2000/svg">{action === "review" ? art : <ActionDrawing action={action} stage={stage} />}{isFinal && <g aria-hidden="true"><circle cx="138" cy="17" r="10" fill="#e1e6d8" stroke="#8b9273" strokeWidth="1.2" /><path d="M133 17 L137 21 L143 13" fill="none" stroke="#59684f" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /></g>}</svg>;
-}
-
+import { buildLessonVisualStages, classifyLesson, getVisualKindLabel, getVisualPrinciple } from "./lessonVisuals";
 
 export default function LessonVisualGuide({ lesson }: { lesson: Lesson }) {
   const kind = classifyLesson(lesson);
   const stages = buildLessonVisualStages(lesson);
+
   return (
     <section className="lesson-visual-guide" aria-labelledby={`lesson-visual-title-${lesson.id}`}>
       <div className="lesson-visual-heading">
         <div>
-          <span className="eyebrow">ВИЗУАЛЬНЫЙ ПРИМЕР</span><span className="lesson-visual-kind">{getVisualKindLabel(kind)}</span>
+          <span className="eyebrow">ВИЗУАЛЬНЫЙ ПРИМЕР</span>
+          <span className="lesson-visual-kind">{getVisualKindLabel(kind)}</span>
           <h2 id={`lesson-visual-title-${lesson.id}`}>Повтори по образцу</h2>
-          <p>Каждая карточка показывает действие из задания: наблюдение, построение, измерение, тон, сравнение или фиксацию результата. Следуй подписи и проверяй рисунок по натуре.</p>
+          <p>Каждый рисунок показывает конкретное действие из этого шага. Количество линий, зон и частей соответствует заданию; рисунки выполнены в стиле лёгкого карандашного наброска.</p>
         </div>
-        <span className="lesson-visual-stamp">STEP<br />BY STEP</span>
+        <span className="lesson-visual-stamp" aria-hidden="true">ЭТЮД<br />{String(stages.length).padStart(2, "0")}</span>
       </div>
       <div className="lesson-visual-stages">
         {stages.map((step) => (
           <article className="lesson-visual-stage" key={`${lesson.id}-visual-${step.number}`}>
-            <div className="lesson-visual-stage-top"><span>{String(step.number).padStart(2, "0")}</span><small>{step.label}</small></div>
-            <VisualDrawing kind={kind} stage={step.drawingStage} stepNumber={step.number} isFinal={step.number === stages.length} action={step.action} />
+            <div className="lesson-visual-stage-top">
+              <span>{String(step.number).padStart(2, "0")}</span>
+              <small>{step.label}</small>
+            </div>
+            <StepIllustration title={lesson.title} instruction={step.instruction} />
             <p>{step.instruction}</p>
           </article>
         ))}
       </div>
-      <div className="lesson-visual-footer"><span className="lesson-visual-footer-mark">✳</span><p><strong>Главный принцип.</strong> {getVisualPrinciple(kind)} Схема показывает общий порядок работы; сверяйся также с натурой и условиями конкретного задания.</p></div>
+      <div className="lesson-visual-footer">
+        <span className="lesson-visual-footer-mark" aria-hidden="true">✳</span>
+        <p><strong>Главный принцип.</strong> {getVisualPrinciple(kind)} Рисунок — наглядная опора для шага; сверяйся также с натурой и точной формулировкой задания.</p>
+      </div>
     </section>
   );
 }
