@@ -6,7 +6,7 @@ describe("art history learning content", () => {
     expect(artHistoryPeriods.length).toBeGreaterThanOrEqual(8);
     expect(new Set(artHistoryPeriods.map((period) => period.id)).size).toBe(artHistoryPeriods.length);
     expect(artHistoryPeriods[0].id).toBe("origins");
-    expect(artHistoryPeriods.at(-1)?.id).toBe("contemporary");
+    expect(artHistoryPeriods[artHistoryPeriods.length - 1]?.id).toBe("contemporary");
   });
 
   it("includes visual observation and an achievable practice task for every period", () => {
