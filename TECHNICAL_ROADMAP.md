@@ -6,6 +6,9 @@
 - [x] All 20 curriculum modules have authored first-draft content: 84 lessons total (8 in Module 1; 4 in each remaining module).
 - [x] Lesson completion and reflections persist in browser `localStorage`; journal exports to TXT.
 - [x] Colour Lab supports pigment-test records, local saving, deletion and TXT export.
+- [x] Open Studio supports personal project briefs, status changes, deletion and TXT export.
+- [x] Master Workshops provides six guided visual investigations linked to curriculum lessons.
+- [x] Portfolio supports artwork metadata, optional safe HTTP(S) links, deletion and TXT export; file uploads are intentionally not implemented.
 - [x] Vitest curriculum integrity tests and GitHub Actions checks are configured.
 - [ ] Confirm CI test, type-check and production-build results; fix any failures.
 - [ ] Perform manual mobile, keyboard, screen-reader and browser checks.
@@ -18,6 +21,9 @@
 - **Learning path:** displays all modules and per-module progress.
 - **Journal:** autosaves notes locally and exports plain text.
 - **Colour Lab:** stores question, pigment labels, ratio, medium, support, wet/dry observations, result and next experiment. Entries are user observations, not universal pigment recipes.
+- **Master Workshops:** six guided investigations link a concrete visual problem to a lesson; historical claims must be checked against reliable catalogues.
+- **Open Studio:** stores personal project briefs, constraints, next steps and status.
+- **Portfolio:** stores artwork metadata and optional HTTP(S) links; it does not upload or host artwork.
 - **Progress:** lesson IDs are unique; repeated completion must not inflate the count.
 - **Storage:** single-browser only. No accounts, cloud sync, artwork uploads or server persistence.
 
@@ -39,7 +45,7 @@
 
 ## Next steps
 1. Verify GitHub Actions: `npm run check`, `npm run test`, `npm run build`; fix failures.
-2. Manually test module navigation, progress, storage migration, journal export and Colour Lab CRUD on phone and desktop.
+2. Manually test module navigation, progress, storage migration, journal export, Colour Lab CRUD, Open Studio status changes and portfolio links on phone and desktop.
 3. Improve accessibility and add browser-level interaction tests.
 4. Review lesson accuracy, sequencing, safety notes and beginner comprehension; revise from observed feedback.
 5. Add licensed diagrams/reference media only where they materially improve instruction.
