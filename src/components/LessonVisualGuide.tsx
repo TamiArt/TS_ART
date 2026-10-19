@@ -1,6 +1,6 @@
 import type { Lesson } from "../data/types";
 import "./lesson-visual-guide.css";
-import { buildLessonVisualStages, classifyLesson, getVisualPrinciple } from "./lessonVisuals";
+import { buildLessonVisualStages, classifyLesson, getVisualKindLabel, getVisualPrinciple } from "./lessonVisuals";
 
 function VisualDrawing({ kind, stage, stepNumber }: { kind: ReturnType<typeof classifyLesson>; stage: number; stepNumber: number }) {
   const stroke = "#56564b";
@@ -48,7 +48,7 @@ function VisualDrawing({ kind, stage, stepNumber }: { kind: ReturnType<typeof cl
     default:
       art = <>{stage >= 1 && <rect x="25" y="25" width="105" height="80" rx="2" fill="#f4efe3" stroke="#c8c0b0"/>}{stage >= 1 && <><path d="M36 87 L62 55 L82 76 L100 45 L120 87 Z" fill="#d4c8b2" stroke={stroke} strokeWidth="1.4"/>{circle(102,40,8,"#d2aa7b")}</>}{stage >= 2 && <path d="M36 91 Q66 75 90 91 T120 91" fill="none" stroke={sage} strokeWidth="3"/>}{stage >= 3 && <path d="M42 99 L114 99" stroke={accent} strokeWidth="2.5" strokeLinecap="round"/>}</>;
   }
-  return <svg className="lesson-visual-svg" viewBox="0 0 158 132" role="img" aria-label={`Схематичный пример, этап ${stepNumber}, тема: ${kind}`} xmlns="http://www.w3.org/2000/svg">{art}{stage >= 4 && <g aria-hidden="true"><circle cx="138" cy="17" r="10" fill="#e1e6d8" stroke="#8b9273" strokeWidth="1.2" /><path d="M133 17 L137 21 L143 13" fill="none" stroke="#59684f" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /></g>}</svg>;
+  return <svg className="lesson-visual-svg" viewBox="0 0 158 132" role="img" aria-label={`Схематичный пример, этап ${stepNumber}, тема: ${getVisualKindLabel(kind)}`} xmlns="http://www.w3.org/2000/svg">{art}{stage >= 4 && <g aria-hidden="true"><circle cx="138" cy="17" r="10" fill="#e1e6d8" stroke="#8b9273" strokeWidth="1.2" /><path d="M133 17 L137 21 L143 13" fill="none" stroke="#59684f" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /></g>}</svg>;
 }
 
 
@@ -59,7 +59,7 @@ export default function LessonVisualGuide({ lesson }: { lesson: Lesson }) {
     <section className="lesson-visual-guide" aria-labelledby={`lesson-visual-title-${lesson.id}`}>
       <div className="lesson-visual-heading">
         <div>
-          <span className="eyebrow">ВИЗУАЛЬНЫЙ ПРИМЕР</span>
+          <span className="eyebrow">ВИЗУАЛЬНЫЙ ПРИМЕР</span><span className="lesson-visual-kind">{getVisualKindLabel(kind)}</span>
           <h2 id={`lesson-visual-title-${lesson.id}`}>Повтори по образцу</h2>
           <p>Смотри на каждый этап и выполняй действие рядом. Рисунок-схема помогает понять порядок работы — твой результат может отличаться.</p>
         </div>
