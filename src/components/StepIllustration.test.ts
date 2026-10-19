@@ -7,6 +7,7 @@ describe("instruction-specific pencil illustrations", () => {
     expect(getRequestedLineCount("Сделай три линии одним движением, не отрывая руку.")).toBe(3);
     expect(getRequestedLineCount("Нарисуй 4 короткие линии.")).toBe(4);
     expect(getRequestedLineCount("Проведи две линии рядом.")).toBe(2);
+    expect(getRequestedLineCount("Сделай небольшой рисунок из 5–10 крупных линий, без деталей.")).toBe(8);
   });
 
   it("does not invent a line count when the instruction has no explicit quantity", () => {
