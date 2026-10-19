@@ -65,15 +65,30 @@ const objectiveRules: Array<{ kind: VisualKind; pattern: RegExp }> = [
 
 export function classifyLesson(lesson: Lesson): VisualKind {
   const title = lesson.title.toLowerCase();
-  const titleMatch = topicRules.find((rule) => rule.pattern.test(title));
-  if (titleMatch) return titleMatch.kind;
+  const objective = lesson.objective.toLowerCase();
+  const fullText = title + " " + objective;
 
-  // A deliberately broad lesson title must not inherit a narrow topic from its objective.
-  if (/^общ(?:ие|ий|ая|ее)\b|^основные принципы\b|^учимся смотреть\b|^введение\b/.test(title.trim())) {
+  // Broad/introduction titles take precedence over incidental topic words in the objective.
+  if (
+    title.includes("общ") ||
+    title.includes("введен") ||
+    title.includes("принцип") ||
+    title.includes("основы") ||
+    title.includes("general") ||
+    title.includes("broad") ||
+    /^учимся смотреть\b/.test(title.trim())
+  ) {
     return "general";
   }
 
-  const objective = lesson.objective.toLowerCase();
+  // Negative space is a specific topic and must win over generic shape/proportion wording.
+  if (fullText.includes("пространство вокруг") || fullText.includes("негативн")) {
+    return "negative-space";
+  }
+
+  const titleMatch = topicRules.find((rule) => rule.pattern.test(title));
+  if (titleMatch) return titleMatch.kind;
+
   const objectiveMatch = objectiveRules.find((rule) => rule.pattern.test(objective));
   if (objectiveMatch) return objectiveMatch.kind;
 
