@@ -1,7 +1,8 @@
 # TS·ART Studio — Technical Roadmap
 
 ## Current state
-- [x] React + TypeScript + Vite app on `feat/full-curriculum-colour-lab`; `main` is untouched.
+- [x] React + TypeScript + Vite app on `feat/full-curriculum-colour-lab`.
+- [!] Recovery note: the `main` file tree has been restored to its original README-only state after unintended file writes; cleanup commits remain in history. Do not merge this branch until branch history is reviewed.
 - [x] Responsive dashboard, lesson reader, module selector, learning path, mini-studio and visual journal.
 - [x] All 20 curriculum modules have authored first-draft content: 84 lessons total (8 in Module 1; 4 in each remaining module).
 - [x] Lesson completion and reflections persist in browser `localStorage`; journal exports to TXT.
