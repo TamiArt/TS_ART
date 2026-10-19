@@ -1,9 +1,11 @@
 import { useEffect, useMemo, useState, type FormEvent, type ReactNode } from "react";
 import { allLessons, curriculum, type Lesson } from "./data/curriculum";
 
-type Page = "home" | "learn" | "practice" | "journal" | "path" | "colourlab";
+type Page = "home" | "learn" | "practice" | "journal" | "path" | "colourlab" | "openstudio" | "workshops" | "portfolio";
 type ColourTest = { id: string; question: string; pigments: string; ratio: string; medium: string; support: string; wetObservation: string; dryObservation: string; result: string; nextStep: string; createdAt: string };
-type SavedState = { completed: string[]; journal: string; reflections: Record<string, string>; colourTests: ColourTest[] };
+type StudioProject = { id: string; title: string; question: string; medium: string; constraint: string; nextStep: string; status: "active" | "paused" | "complete"; createdAt: string };
+type PortfolioItem = { id: string; title: string; medium: string; year: string; description: string; link: string; createdAt: string };
+type SavedState = { completed: string[]; journal: string; reflections: Record<string, string>; colourTests: ColourTest[]; projects: StudioProject[]; portfolio: PortfolioItem[] };
 
 const STORAGE_KEY = "ts-art-studio:v1";
 const readSavedState = (): SavedState => {
@@ -15,17 +17,19 @@ const readSavedState = (): SavedState => {
         completed: Array.isArray(parsed.completed) ? parsed.completed : [],
         journal: typeof parsed.journal === "string" ? parsed.journal : "",
         reflections: parsed.reflections && typeof parsed.reflections === "object" ? parsed.reflections : {},
-        colourTests: Array.isArray(parsed.colourTests) ? parsed.colourTests : []
+        colourTests: Array.isArray(parsed.colourTests) ? parsed.colourTests : [],
+        projects: Array.isArray(parsed.projects) ? parsed.projects : [],
+        portfolio: Array.isArray(parsed.portfolio) ? parsed.portfolio : []
       };
     }
   } catch {
     // A blocked or malformed local storage must not prevent the learning interface from opening.
   }
-  return { completed: [], journal: "", reflections: {}, colourTests: [] };
+  return { completed: [], journal: "", reflections: {}, colourTests: [], projects: [], portfolio: [] };
 };
 
 const icons: Record<Page, string> = {
-  home: "⌂", learn: "▤", practice: "✳", journal: "✎", path: "↗", colourlab: "◉"
+  home: "⌂", learn: "▤", practice: "✳", journal: "✎", path: "↗", colourlab: "◉", openstudio: "✳", workshops: "◈", portfolio: "▧"
 };
 
 function App() {
@@ -88,7 +92,10 @@ function App() {
     { id: "practice", label: "Мини-студия" },
     { id: "journal", label: "Дневник" },
     { id: "path", label: "Учебный маршрут" },
-    { id: "colourlab", label: "Colour Lab" }
+    { id: "colourlab", label: "Colour Lab" },
+    { id: "workshops", label: "Мастерские" },
+    { id: "openstudio", label: "Открытая студия" },
+    { id: "portfolio", label: "Портфолио" }
   ];
 
   return (
@@ -143,6 +150,9 @@ function App() {
             {page === "journal" && <JournalPage value={saved.journal} onChange={updateJournal} completedCount={completedCount} />}
             {page === "path" && <PathPage completed={saved.completed} onOpen={openLesson} onSelectModule={setActiveModuleId} onNavigate={navigate} />}
             {page === "colourlab" && <ColourLabPage tests={saved.colourTests} onAdd={(test) => setSaved((current) => ({ ...current, colourTests: [test, ...current.colourTests] }))} onDelete={(id) => setSaved((current) => ({ ...current, colourTests: current.colourTests.filter((test) => test.id !== id) }))} />}
+            {page === "openstudio" && <OpenStudioPage projects={saved.projects} onAdd={(project) => setSaved((current) => ({ ...current, projects: [project, ...current.projects] }))} onStatus={(id, status) => setSaved((current) => ({ ...current, projects: current.projects.map((project) => project.id === id ? { ...project, status } : project) }))} onDelete={(id) => setSaved((current) => ({ ...current, projects: current.projects.filter((project) => project.id !== id) }))} />}
+            {page === "portfolio" && <PortfolioPage items={saved.portfolio} onAdd={(item) => setSaved((current) => ({ ...current, portfolio: [item, ...current.portfolio] }))} onDelete={(id) => setSaved((current) => ({ ...current, portfolio: current.portfolio.filter((item) => item.id !== id) }))} />}
+            {page === "workshops" && <WorkshopsPage onOpen={(id) => { const lesson = allLessons.find((item) => item.id === id); if (lesson) openLesson(lesson); }} />}
           </>
         )}
         <footer className="page-footer"><span>TS·ART STUDIO</span><span>SEE. FEEL. CREATE.</span><span>Учись в своём ритме.</span></footer>
