@@ -1,3 +1,8 @@
+function clampPercent(value: number, max = 100): number {
+  if (!Number.isFinite(value)) return 0;
+  return Math.max(0, Math.min(max, value));
+}
+
 function channel(hex: string, offset: number): number {
   return Number.parseInt(hex.slice(offset, offset + 2), 16);
 }
@@ -14,8 +19,8 @@ export function mixPigmentHex(
   thirdHex?: string,
   thirdPercent = 0
 ): string {
-  const firstShare = Math.max(0, Math.min(100, firstPercent)) / 100;
-  const thirdShare = thirdHex ? Math.max(0, Math.min(100, thirdPercent)) / 100 : 0;
+  const firstShare = clampPercent(firstPercent) / 100;
+  const thirdShare = thirdHex ? clampPercent(thirdPercent) / 100 : 0;
   const remainingShare = 1 - thirdShare;
   const weights = [remainingShare * firstShare, remainingShare * (1 - firstShare), thirdShare];
   const colours = [firstHex, secondHex, thirdHex ?? secondHex];
@@ -37,8 +42,8 @@ export function getPigmentShares(
   thirdPercent = 0,
   includeThird = false
 ): [number, number, number] {
-  const firstShare = Math.max(0, Math.min(100, firstPercent));
-  const thirdShare = includeThird ? Math.max(0, Math.min(60, thirdPercent)) : 0;
+  const firstShare = clampPercent(firstPercent);
+  const thirdShare = includeThird ? clampPercent(thirdPercent, 60) : 0;
   const remainingShare = 100 - thirdShare;
   const firstWeight = Math.round(remainingShare * firstShare / 100);
   return [firstWeight, remainingShare - firstWeight, thirdShare];
