@@ -16,9 +16,9 @@ describe("lesson visual guides", () => {
   });
 
   it("classifies core art topics into the matching visual family", () => {
-    const lesson = (title: string) => ({
+    const lesson = (title: string, objective = title) => ({
       id: title, title, duration: "5 мин", kind: "lesson" as const,
-      objective: title, materials: "Бумага и карандаш",
+      objective, materials: "Бумага и карандаш",
       steps: ["Сделай пробу", "Сравни результат", "Запиши наблюдение"],
       selfCheck: ["Проверено", "Понятно"]
     });
