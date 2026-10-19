@@ -170,7 +170,7 @@ export default function OilPaintMixer() {
 
         <div className="oil-mixer-result">
           <div className="oil-mixer-swatch" style={{ backgroundColor: mixed }} role="img" aria-label={`Условный цвет смеси: ${mixed}`}><span>PREVIEW</span></div>
-          <div className="oil-mixer-result-meta"><div><span>Расчётный оттенок</span><strong>{mixed.toUpperCase()}</strong></div><div><span>Доли в смеси</span><strong>{firstWeight} : {secondWeight}{useThird ? ` : ${thirdWeight}` : ""}</strong></div></div>
+          <div className="oil-mixer-result-meta" aria-live="polite" aria-atomic="true"><div><span>Расчётный оттенок</span><strong>{mixed.toUpperCase()}</strong></div><div><span>Доли в смеси</span><strong>{firstWeight} : {secondWeight}{useThird ? ` : ${thirdWeight}` : ""}</strong></div></div>
           <div className="oil-mixer-components" aria-label="Доли пигментов в смеси">
             <div><span style={{ backgroundColor: first.hex }} /><span>{first.name}</span><strong>{firstWeight}%</strong></div>
             <div><span style={{ backgroundColor: second.hex }} /><span>{second.name}</span><strong>{secondWeight}%</strong></div>
