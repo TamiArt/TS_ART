@@ -56,7 +56,7 @@ export function buildLessonVisualStages(lesson: Lesson): LessonVisualStage[] {
     number: index + 1,
     instruction,
     drawingStage: Math.min(index + 1, 4) as LessonVisualStage["drawingStage"],
-    label: index === 0 ? "Начало" : index === lesson.steps.length - 1 ? "Проверь" : "Следующий шаг"
+    label: index === 0 ? "Начало" : index === lesson.steps.length - 1 ? "Проверь" : `Этап ${index + 1}`
   }));
 }
 
