@@ -1,7 +1,13 @@
 import { useEffect, useMemo, useState, type FormEvent, type ReactNode } from "react";
 import { allLessons, curriculum, type Lesson } from "./data/curriculum";
-import { readSavedState, STORAGE_KEY } from "./data/studio-state";
-import type { ColourTest, PortfolioItem, SavedState, StudioProject } from "./types/studio";
+import {
+  readSavedState,
+  STORAGE_KEY,
+  type ColourTest,
+  type PortfolioItem,
+  type SavedState,
+  type StudioProject
+} from "./data/persistence";
 import OilPaintMixer from "./components/OilPaintMixer";
 
 type Page = "home" | "learn" | "practice" | "journal" | "path" | "colourlab" | "openstudio" | "workshops" | "portfolio";
