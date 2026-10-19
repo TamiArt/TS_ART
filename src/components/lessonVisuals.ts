@@ -5,11 +5,16 @@ export type VisualKind =
   | "composition" | "colour" | "portrait" | "landscape"
   | "still-life" | "paint" | "general";
 
+export type VisualAction =
+  | "observe" | "place" | "trace" | "outline" | "simplify" | "measure"
+  | "compare" | "shade" | "fill" | "mix" | "select" | "record" | "practice" | "review";
+
 export type LessonVisualStage = {
   number: number;
   instruction: string;
   drawingStage: 1 | 2 | 3 | 4;
   label: string;
+  action: VisualAction;
 };
 
 const topicRules: Array<{ kind: VisualKind; pattern: RegExp }> = [
@@ -71,11 +76,30 @@ export function classifyLesson(lesson: Lesson): VisualKind {
   return topicRules.find((rule) => rule.pattern.test(materialText))?.kind ?? "general";
 }
 
+export function classifyVisualAction(instruction: string): VisualAction {
+  const text = instruction.toLowerCase();
+  if (/запиши|подпиши|сформулируй|сохрани|зафиксируй|дневник|отметь/.test(text)) return "record";
+  if (/сравни|проверь|оцени|найди отличие|куда первым|посмотри .*уменьш/.test(text)) return "compare";
+  if (/закрась|заполни.*тоном|залей|покрой.*одним тоном/.test(text)) return "fill";
+  if (/тень|светлот|полутон|тональн|затемн|освещён|освещен|свет и тень|штрихов/.test(text)) return "shade";
+  if (/смеш|пигмент|пропорци.*цвет|оттенок|палитр/.test(text)) return "mix";
+  if (/измер|отношени.*размер|пропорц|масштаб|ширин|высот|наклон/.test(text)) return "measure";
+  if (/выбери|выбрать|отбери|оставь только|выдели только/.test(text)) return "select";
+  if (/нарисуй|наметь|проведи контур|обведи|силуэт|линию|проведи пять линий/.test(text)) return "outline";
+  if (/упрости|простых форм|круг, овал|геометрическ|крупными массами/.test(text)) return "simplify";
+  if (/проследи взглядом|наблюдай|прищур|заметь|найди самую|рассмотри|смотри на предмет/.test(text)) return "observe";
+  if (/поставь|размести|организуй свет|подготовь|положи рядом|разложи рядом/.test(text)) return "place";
+  if (/повтори|сделай три|сделай ряд|серия|одним движением|попробуй/.test(text)) return "practice";
+  if (/исправ|измени один|добавь|уточни|детал/.test(text)) return "trace";
+  return "review";
+}
+
 export function buildLessonVisualStages(lesson: Lesson): LessonVisualStage[] {
   return lesson.steps.map((instruction, index) => ({
     number: index + 1,
     instruction,
     drawingStage: Math.min(index + 1, 4) as LessonVisualStage["drawingStage"],
+    action: classifyVisualAction(instruction),
     label: index === 0 ? "Начало" : index === lesson.steps.length - 1 ? "Проверь" : `Этап ${index + 1}`
   }));
 }
