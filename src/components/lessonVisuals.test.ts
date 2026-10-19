@@ -41,6 +41,34 @@ describe("lesson visual guides", () => {
     expect(classifyLesson(lesson("Первый слой масляной краски"))).toBe("paint");
   });
 
+  it("does not infer a specific subject from generic objective words", () => {
+    const genericLesson = {
+      id: "observe",
+      title: "Учимся смотреть, а не угадывать",
+      duration: "12 мин",
+      kind: "lesson" as const,
+      objective: "Замечать реальные отношения формы, размера и пространства до начала рисунка.",
+      materials: "Любой простой предмет, бумага и карандаш.",
+      steps: ["Наблюдай", "Сравни", "Запиши"],
+      selfCheck: ["Проверено"]
+    };
+    expect(classifyLesson(genericLesson)).toBe("general");
+  });
+
+  it("uses the lesson title before broad words in the objective", () => {
+    const titleSpecific = {
+      id: "m05-thumbnails",
+      title: "Композиционные миниатюры",
+      duration: "8 мин",
+      kind: "practice" as const,
+      objective: "Выбирать размещение крупных масс до проработки деталей.",
+      materials: "Бумага и карандаш.",
+      steps: ["Создай варианты", "Сравни", "Выбери"],
+      selfCheck: ["Проверено"]
+    };
+    expect(classifyLesson(titleSpecific)).toBe("composition");
+  });
+
   it("provides a practical principle for every lesson visual", () => {
     for (const lesson of allLessons) {
       expect(getVisualPrinciple(classifyLesson(lesson)).trim().length).toBeGreaterThan(10);
