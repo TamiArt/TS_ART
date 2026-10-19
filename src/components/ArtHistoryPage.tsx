@@ -31,6 +31,7 @@ export default function ArtHistoryPage() {
   }, [query, filter]);
 
   const selected = periods.find((period) => period.id === selectedId) ?? periods[0] ?? null;
+  const selectedIndex = selected ? periods.findIndex((period) => period.id === selected.id) : -1;
 
   return <div className="page-wrap inner-page art-history-page">
     <section className="art-history-hero">
@@ -87,8 +88,8 @@ export default function ArtHistoryPage() {
         </div>
         <div className="history-terms"><span>КЛЮЧЕВЫЕ ТЕРМИНЫ</span>{selected.terms.map((term) => <span key={term}>{term}</span>)}</div>
         <div className="history-study-nav">
-          <button className="button button-outline" disabled={artHistoryPeriods.findIndex((item) => item.id === selected.id) === 0} onClick={() => setSelectedId(artHistoryPeriods[artHistoryPeriods.findIndex((item) => item.id === selected.id) - 1].id)}>← Предыдущая эпоха</button>
-          <button className="button button-dark" disabled={artHistoryPeriods.findIndex((item) => item.id === selected.id) === artHistoryPeriods.length - 1} onClick={() => setSelectedId(artHistoryPeriods[artHistoryPeriods.findIndex((item) => item.id === selected.id) + 1].id)}>Следующая эпоха <span>→</span></button>
+          <button className="button button-outline" disabled={selectedIndex <= 0} onClick={() => { if (selectedIndex > 0) setSelectedId(periods[selectedIndex - 1].id); }}>← Предыдущая эпоха</button>
+          <button className="button button-dark" disabled={selectedIndex < 0 || selectedIndex >= periods.length - 1} onClick={() => { if (selectedIndex >= 0 && selectedIndex < periods.length - 1) setSelectedId(periods[selectedIndex + 1].id); }}>Следующая эпоха <span>→</span></button>
         </div>
       </div>
     </section>}
