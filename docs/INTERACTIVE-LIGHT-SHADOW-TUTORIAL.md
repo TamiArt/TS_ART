@@ -24,3 +24,9 @@ npm run build
 ```
 
 Иллюстрации схематические. Они помогают увидеть принцип, но не заменяют наблюдение реального предмета при освещении.
+
+## Compact lesson layout
+
+- The “Попробуй по шагам” sequence is displayed as plain numbered text with tight line spacing; separators, row borders and list-card framing are removed.
+- Lesson headings, materials, objective and self-check spacing are reduced on desktop and mobile.
+- The interactive light-and-shadow exercise uses tighter spacing around tabs, illustration, hints, progress and summary while retaining keyboard focus and accessible controls.
