@@ -168,3 +168,13 @@ This stage starts only after stages 1–3 are complete. Prioritize work by risk 
 - [ ] Run `npm run check`, `npm run test` and `npm run build` against this branch; fix any failures before advancing the mixer block.
 - [ ] Verify task/preset switching, two- and three-pigment mixing, swap behavior, keyboard focus and mobile layout in a browser.
 - [ ] Do not begin mixer-to-Colour-Lab transfer until the mixer block's exit criteria above are confirmed.
+
+## Lesson layout and instruction-faithful drawings — branch `feat/lesson-visual-precision-layout`
+
+- [x] Reduce excess spacing in lesson instructions, checklists and visual guide cards.
+- [x] Increase instruction and illustration-card text sizes while keeping compact vertical rhythm.
+- [x] Replace generic action-only pictures in the lesson guide with instruction-aware pencil-sketch illustrations.
+- [x] Match explicit requested quantities in line exercises (including number words) and add regression tests for count extraction.
+- [x] Add focused visual patterns for three-part journal pages, three tone zones, pressure studies, negative space, observation, recording, lighting and core subject families.
+- [ ] Run type-check, all tests and production build against this branch; fix any failures.
+- [ ] Review representative lessons across all modules in a browser at desktop and mobile widths. Confirm the drawing reflects each step literally; add dedicated patterns for any remaining mismatches before considering this work complete.
