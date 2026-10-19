@@ -140,6 +140,8 @@ This stage starts only after stages 1–3 are complete. Prioritize work by risk 
 ## Visual tutorial hardening
 
 - [x] Extract topic classification, stage generation and topic-specific learning principles into a pure module.
+- [x] Remove the duplicate `classifyVisualAction` export in `src/components/lessonVisuals.ts`; keep exactly one declaration.
+- [ ] Before committing TypeScript changes, check for duplicate function/variable declarations and confirm type-check catches no redeclaration errors.
 - [x] Classify each instruction by action and render a corresponding diagram for observation, placing, outlining, measuring, comparison, shading, filling, mixing, selecting, recording, practice or review.
 - [x] Add regression tests for instruction-to-visual-action matching.
 - [x] Prioritize the lesson title when selecting a visual family; use narrower objective matching as a fallback so generic words like “форма” and “пространство” do not force a misleading topic.
