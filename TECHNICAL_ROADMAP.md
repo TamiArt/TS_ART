@@ -139,9 +139,10 @@ This stage starts only after stages 1–3 are complete. Prioritize work by risk 
 
 ## Visual tutorial hardening
 
-- [x] Fix topic classification precedence so “Рисуем пространство вокруг предмета” resolves to `negative-space`.
-- [x] Keep explicitly broad titles such as “Общие принципы” in `general` instead of inferring a narrow topic from objective keywords.
-- [x] Add regression tests for both classification failures.
+- [x] Check broad/introduction title keywords (`общ`, `введен`, `принцип`, `основы`, `general`, `broad`) before objective-based topic inference.
+- [x] Check negative-space phrases in combined title/objective text before proportion and generic shape classification.
+- [x] Keep titles such as “Общие принципы” and “Введение: пропорции и форма” in `general` even when the objective/title mentions a narrow topic.
+- [x] Add regression tests for broad-title precedence and negative-space precedence when proportion keywords are also present.
 
 - [x] Extract topic classification, stage generation and topic-specific learning principles into a pure module.
 - [x] Remove the duplicate `classifyVisualAction` export in `src/components/lessonVisuals.ts`; keep exactly one declaration.
