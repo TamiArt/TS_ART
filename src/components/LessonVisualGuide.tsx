@@ -2,7 +2,7 @@ import type { Lesson } from "../data/types";
 import "./lesson-visual-guide.css";
 import { buildLessonVisualStages, classifyLesson, getVisualKindLabel, getVisualPrinciple } from "./lessonVisuals";
 
-function VisualDrawing({ kind, stage, stepNumber }: { kind: ReturnType<typeof classifyLesson>; stage: number; stepNumber: number }) {
+function VisualDrawing({ kind, stage, stepNumber, isFinal }: { kind: ReturnType<typeof classifyLesson>; stage: number; stepNumber: number; isFinal: boolean }) {
   const stroke = "#56564b";
   const muted = "#a8a18f";
   const accent = "#b77b5d";
@@ -51,7 +51,7 @@ function VisualDrawing({ kind, stage, stepNumber }: { kind: ReturnType<typeof cl
     default:
       art = <>{stage >= 1 && <rect x="25" y="25" width="105" height="80" rx="2" fill="#f4efe3" stroke="#c8c0b0"/>}{stage >= 1 && <><path d="M36 87 L62 55 L82 76 L100 45 L120 87 Z" fill="#d4c8b2" stroke={stroke} strokeWidth="1.4"/>{circle(102,40,8,"#d2aa7b")}</>}{stage >= 2 && <path d="M36 91 Q66 75 90 91 T120 91" fill="none" stroke={sage} strokeWidth="3"/>}{stage >= 3 && <path d="M42 99 L114 99" stroke={accent} strokeWidth="2.5" strokeLinecap="round"/>}</>;
   }
-  return <svg className="lesson-visual-svg" viewBox="0 0 158 132" role="img" aria-label={`Схематичный пример, этап ${stepNumber}, тема: ${getVisualKindLabel(kind)}`} xmlns="http://www.w3.org/2000/svg">{art}{stage >= 4 && <g aria-hidden="true"><circle cx="138" cy="17" r="10" fill="#e1e6d8" stroke="#8b9273" strokeWidth="1.2" /><path d="M133 17 L137 21 L143 13" fill="none" stroke="#59684f" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /></g>}</svg>;
+  return <svg className="lesson-visual-svg" viewBox="0 0 158 132" role="img" aria-label={`Схематичный пример, этап ${stepNumber}, тема: ${getVisualKindLabel(kind)}${isFinal ? ", этап проверки" : ""}`} xmlns="http://www.w3.org/2000/svg">{art}{isFinal && <g aria-hidden="true"><circle cx="138" cy="17" r="10" fill="#e1e6d8" stroke="#8b9273" strokeWidth="1.2" /><path d="M133 17 L137 21 L143 13" fill="none" stroke="#59684f" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /></g>}</svg>;
 }
 
 
@@ -72,7 +72,7 @@ export default function LessonVisualGuide({ lesson }: { lesson: Lesson }) {
         {stages.map((step) => (
           <article className="lesson-visual-stage" key={`${lesson.id}-visual-${step.number}`}>
             <div className="lesson-visual-stage-top"><span>{String(step.number).padStart(2, "0")}</span><small>{step.label}</small></div>
-            <VisualDrawing kind={kind} stage={step.drawingStage} stepNumber={step.number} />
+            <VisualDrawing kind={kind} stage={step.drawingStage} stepNumber={step.number} isFinal={step.number === stages.length} />
             <p>{step.instruction}</p>
           </article>
         ))}
