@@ -1,12 +1,12 @@
 # TS·ART Studio — Technical Roadmap
 
 ## Current state
-- [x] React + TypeScript + Vite app on `feat/full-curriculum-colour-lab`.
-- [!] Recovery note: the `main` file tree has been restored to its original README-only state after unintended file writes; cleanup commits remain in history. Do not merge this branch until branch history is reviewed.
+- [x] React + TypeScript + Vite app; this feature branch starts from the current `main` HEAD and keeps `main` unchanged.
 - [x] Responsive dashboard, lesson reader, module selector, learning path, mini-studio and visual journal.
 - [x] All 20 curriculum modules have authored first-draft content: 84 lessons total (8 in Module 1; 4 in each remaining module).
 - [x] Lesson completion and reflections persist in browser `localStorage`; journal exports to TXT.
 - [x] Colour Lab supports pigment-test records, local saving, deletion and TXT export.
+- [x] Interactive Oil Paint Mixer embedded in Colour Lab: two-pigment selection, proportion slider, swap control, four study presets (skin, shadows, foliage, interiors), responsive swatch preview and clear RGB-simulation caveat.
 - [x] Open Studio supports personal project briefs, status changes, deletion and TXT export.
 - [x] Master Workshops provides six guided visual investigations linked to curriculum lessons.
 - [x] Portfolio supports artwork metadata, optional safe HTTP(S) links, deletion and TXT export; file uploads are intentionally not implemented.
@@ -22,6 +22,7 @@
 - **Learning path:** displays all modules and per-module progress.
 - **Journal:** autosaves notes locally and exports plain text.
 - **Colour Lab:** stores question, pigment labels, ratio, medium, support, wet/dry observations, result and next experiment. Entries are user observations, not universal pigment recipes.
+- **Oil Paint Mixer:** interactive learning aid; screen colour uses simple RGB interpolation and must not be represented as a physical pigment-mixing prediction. Confirm all mixtures with actual paints and record observations.
 - **Master Workshops:** six guided investigations link a concrete visual problem to a lesson; historical claims must be checked against reliable catalogues.
 - **Open Studio:** stores personal project briefs, constraints, next steps and status.
 - **Portfolio:** stores artwork metadata and optional HTTP(S) links; it does not upload or host artwork.
@@ -45,8 +46,8 @@
 - On conflicts, keep only the newer intended complete file version; do not merge old and new versions.
 
 ## Next steps
-1. Verify GitHub Actions: `npm run check`, `npm run test`, `npm run build`; fix failures.
-2. Manually test module navigation, progress, storage migration, journal export, Colour Lab CRUD, Open Studio status changes and portfolio links on phone and desktop.
+1. Confirm GitHub Actions for the Oil Paint Mixer branch: `npm run check`, `npm run test`, `npm run build`; fix failures.
+2. Manually test mixer presets, pigment selectors, ratio slider, swap action and mobile layout; then test Colour Lab CRUD and exports on phone and desktop.
 3. Improve accessibility and add browser-level interaction tests.
 4. Review lesson accuracy, sequencing, safety notes and beginner comprehension; revise from observed feedback.
 5. Add licensed diagrams/reference media only where they materially improve instruction.
