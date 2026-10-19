@@ -56,6 +56,12 @@ describe("oil mixer pigment shares", () => {
     expect(getPigmentShares(50, 90, false)).toEqual([50, 50, 0]);
   });
 
+  it("handles non-finite ratio values safely", () => {
+    expect(getPigmentShares(Number.NaN, Number.POSITIVE_INFINITY, true)).toEqual([0, 100, 0]);
+    expect(mixPigmentHex("#000000", "#ffffff", Number.NaN)).toBe("#ffffff");
+    expect(mixPigmentHex("#000000", "#ffffff", 50, "#ff0000", Number.POSITIVE_INFINITY)).toBe("#808080");
+  });
+
   it("preserves the mixture when A and B are swapped with the ratio inverted", () => {
     expect(getPigmentShares(62, 10, true)).toEqual([56, 34, 10]);
     expect(mixPigmentHex("#c49a45", "#344b91", 38, "#a64c3d", 10)).toBe(
