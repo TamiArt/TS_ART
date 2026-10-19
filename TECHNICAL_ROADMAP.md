@@ -14,6 +14,7 @@ Work through these four stages in order. Do not move to the next stage while the
 - [ ] Verify two-pigment selection, proportion controls, swapping pigments and displayed mixture shares.
 - [ ] Verify optional third pigment, its percentage and the distribution of the remaining share between pigments A and B.
 - [x] Review calculation boundaries, default selections and labels in source; corrected the reversed A:B slider endpoint labels and aligned the third-pigment calculation cap with the UI.
+- [x] Add polite live announcements for the calculated colour and mixture shares; strengthen keyboard focus contrast and small-screen spacing in source.
 - [ ] Verify accessible control names and responsive layout through runtime/browser interaction.
 - [ ] Fix any interaction, calculation, visual or responsive-layout defects found.
 - [ ] Run type-check, unit tests and production build; fix failures and report only observed results.
