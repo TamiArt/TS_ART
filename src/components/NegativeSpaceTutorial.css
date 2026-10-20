@@ -88,3 +88,7 @@
 .negative-space-text-steps li>span{display:grid;place-items:center;flex:0 0 27px;height:27px;border-radius:50%;background:#e2ebef;color:#234b62;font-size:.82rem;font-weight:800}
 .negative-space-text-steps li p{font-size:.94rem;line-height:1.4;margin:2px 0 0}
 @media(max-width:600px){.negative-space-text-steps{padding:8px}.negative-space-text-steps ol{grid-template-columns:1fr}.negative-space-text-steps li p{font-size:.93rem}}
+
+/* Progress sits between the heading and instruction list, like the reference lesson. */
+.negative-space-progress{width:100%;max-width:none;flex:none;margin:6px 0;font-size:.88rem;color:#687987}
+.negative-space-progress>div{height:6px;background:#e9ecea;border-radius:99px;overflow:hidden;margin-top:5px}
