@@ -2,11 +2,11 @@ import { useEffect, useState } from "react";
 import "./RepeatByExample.css";
 
 const STEPS = [
-  { id: "01", title: "Начало", task: "Поставь предмет рядом с источником света.", hint: "Расположи источник сбоку и немного выше предмета. Заметь направление света и падающую тень.", image: "/illustrations/repeat-by-example/01-start.svg", alt: "Сфера и источник света" },
-  { id: "02", title: "Найди крайние значения", task: "Найди самую освещённую область и самую тёмную.", hint: "Сначала сравни два крайних значения. Не путай собственную тень на форме с падающей тенью на поверхности.", image: "/illustrations/repeat-by-example/02-light-dark.svg", alt: "Светлая и самая тёмная области сферы" },
-  { id: "03", title: "Переход света в тень", task: "Заметь, где форма постепенно переходит из света в тень.", hint: "Проследи, как меняется тон по округлой форме, а не только по внешнему контуру.", image: "/illustrations/repeat-by-example/03-transition.svg", alt: "Переход тона от света к тени" },
-  { id: "04", title: "Три тональные зоны", task: "Обозначь свет, полутон и тень без растушёвки.", hint: "Раздели форму на три условные зоны. Пока не растушёвывай границы: сначала важно увидеть отношения.", image: "/illustrations/repeat-by-example/04-three-zones.svg", alt: "Свет, полутон и тень на сфере" },
-  { id: "05", title: "Проверь", task: "Сравни тональные отношения с натурой.", hint: "Поочерёдно посмотри на предмет и рисунок. Проверь, какие участки светлее или темнее и насколько заметна разница.", image: "/illustrations/repeat-by-example/05-compare.svg", alt: "Сравнение рисунка с натурой" },
+  { id: "01", title: "Начало", hint: "Расположи источник сбоку и немного выше предмета. Заметь направление света и падающую тень.", image: "/illustrations/repeat-by-example/01-start.svg", alt: "Сфера и источник света" },
+  { id: "02", title: "Найди крайние значения", hint: "Сначала сравни два крайних значения. Не путай собственную тень на форме с падающей тенью на поверхности.", image: "/illustrations/repeat-by-example/02-light-dark.svg", alt: "Светлая и самая тёмная области сферы" },
+  { id: "03", title: "Переход света в тень", hint: "Проследи, как меняется тон по округлой форме, а не только по внешнему контуру.", image: "/illustrations/repeat-by-example/03-transition.svg", alt: "Переход тона от света к тени" },
+  { id: "04", title: "Три тональные зоны", hint: "Раздели форму на три условные зоны. Пока не растушёвывай границы: сначала важно увидеть отношения.", image: "/illustrations/repeat-by-example/04-three-zones.svg", alt: "Свет, полутон и тень на сфере" },
+  { id: "05", title: "Проверь", hint: "Поочерёдно посмотри на предмет и рисунок. Проверь, какие участки светлее или темнее и насколько заметна разница.", image: "/illustrations/repeat-by-example/05-compare.svg", alt: "Сравнение рисунка с натурой" },
 ] as const;
 
 const STORAGE_KEY = "ts-art-repeat-by-example-v1";
@@ -45,7 +45,7 @@ export default function RepeatByExample() {
       <header className="rbe__overview-header">
         <div>
           <p className="rbe__eyebrow">САМОСТОЯТЕЛЬНАЯ ПРАКТИКА · 7 МИН</p>
-          <h2 id="rbe-title">Повтори по образцу</h2>
+          <h2 id="rbe-title">Попробуй по шагам</h2>
           <p className="rbe__intro">Все пять этапов перед глазами. Выбирай этап для подсказки и отмечай выполненное.</p>
         </div>
         <div className="rbe__overview-progress">
@@ -73,8 +73,7 @@ export default function RepeatByExample() {
                 <span className="rbe__stage-title">{step.title}</span>
               </button>
               <img className="rbe__stage-image" src={step.image} alt={step.alt} loading="eager" />
-              <p className="rbe__stage-task">{step.task}</p>
-              <label className="rbe__stage-check">
+                            <label className="rbe__stage-check">
                 <input type="checkbox" checked={isComplete} onChange={() => toggleCompleted(step.id)} />
                 <span>{isComplete ? "Выполнено" : "Отметить этап"}</span>
               </label>
@@ -86,7 +85,7 @@ export default function RepeatByExample() {
       <div className="rbe__stage-detail" aria-live="polite">
         <div>
           <p className="rbe__step-kicker">ЭТАП {activeStep.id} ИЗ 05 · ПОДСКАЗКА</p>
-          <strong>{activeStep.task}</strong>
+          <strong>{activeStep.title}</strong>
         </div>
         <p>{activeStep.hint}</p>
       </div>
