@@ -77,6 +77,12 @@ export default function NegativeSpaceTutorial() {
       <div><span className="eyebrow">ИНТЕРАКТИВНАЯ ПРАКТИКА · 5 ЭТАПОВ</span><h2 id="negative-space-title">Попробуй по шагам</h2><p>Сначала изучи формы, которые окружают предмет. Все этапы — перед глазами.</p></div>
       <div className="negative-space-progress"><span>{completed.length} из {steps.length} выполнено · {percentage}%</span><div role="progressbar" aria-label="Прогресс практики" aria-valuemin={0} aria-valuemax={100} aria-valuenow={percentage}><span style={{ width: percentage + "%" }} /></div></div>
     </header>
+    <section className="negative-space-text-steps" aria-labelledby="negative-space-text-title">
+      <h3 id="negative-space-text-title">Попробуй по шагам</h3>
+      <ol>
+        {steps.map((step) => <li key={`instruction-${step.number}`}><span>{step.number}</span><p>{step.instruction}</p></li>)}
+      </ol>
+    </section>
     <div className="negative-space-steps">
       {steps.map((step, index) => {
         const isActive = activeIndex === index;
