@@ -13,8 +13,8 @@
 
 <g filter="url(#paperGrain)"><ellipse cx="203" cy="340" rx="102.92" ry="19" fill="url(#cast)"/><circle cx="190" cy="248" r="83" fill="url(#ball)" stroke="#56534d" stroke-width="1.7"/><ellipse cx="152" cy="205" rx="38" ry="31" fill="url(#shine)"/><path d="M121.94 208.16q18 -49 62 -63m-72 92q7 -39 29 -59m-13 139q15 35 48 46m-20 -24q24 26 51 31" fill="none" stroke="#5d5a53" stroke-width="1.15" opacity=".65"/><path d="M130.24 199.86q20 -29 47 -35m-56 59l-9 21m20 -40l-10 19m-4 116l18 14m-3 -22l19 17m-1 -24l17 15" fill="none" stroke="#68645c" stroke-width=".8" opacity=".55"/></g>
 <g filter="url(#paperGrain)"><ellipse cx="463" cy="340" rx="102.92" ry="19" fill="url(#cast)"/><circle cx="450" cy="248" r="83" fill="url(#ball)" stroke="#56534d" stroke-width="1.7"/><ellipse cx="412" cy="205" rx="38" ry="31" fill="url(#shine)"/><path d="M381.94 208.16q18 -49 62 -63m-72 92q7 -39 29 -59m-13 139q15 35 48 46m-20 -24q24 26 51 31" fill="none" stroke="#5d5a53" stroke-width="1.15" opacity=".65"/><path d="M390.24 199.86q20 -29 47 -35m-56 59l-9 21m20 -40l-10 19m-4 116l18 14m-3 -22l19 17m-1 -24l17 15" fill="none" stroke="#68645c" stroke-width=".8" opacity=".55"/></g>
-<text x="115" y="125" fill="#19364d" font-size="36" font-family="Georgia,serif" font-style="italic">Натура</text><text x="365" y="125" fill="#19364d" font-size="36" font-family="Georgia,serif" font-style="italic">Рисунок</text>
+<text x="115" y="125" fill="#19364d" font-size="43" font-family="Georgia,serif" font-style="italic">Натура</text><text x="365" y="125" fill="#19364d" font-size="43" font-family="Georgia,serif" font-style="italic">Рисунок</text>
 <path d="M274 231H362" stroke="#537e98" stroke-width="2" fill="none" marker-end="url(#arrow)"/><path d="M362 247H274" stroke="#537e98" stroke-width="2" fill="none" marker-end="url(#arrow)"/>
-<text x="130" y="414" fill="#537e98" font-size="32" font-family="Georgia,serif">Сравни светлоту и тень</text>
+<text x="130" y="414" fill="#537e98" font-size="39" font-family="Georgia,serif">Сравни светлоту и тень</text>
 
 </svg>
