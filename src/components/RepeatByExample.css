@@ -36,3 +36,35 @@
  .rbe__summary { padding: 5px; }
  .rbe__summary-grid { gap: 3.5px; }
 }
+
+/* Larger, comfortable type for the light-observation exercise only. */
+.lesson-page--light-observation .rbe__eyebrow,
+.lesson-page--light-observation .rbe__step-kicker { font-size: .82rem; }
+.lesson-page--light-observation .rbe__header h2 { font-size: clamp(2rem, 3.5vw, 2.8rem); }
+.lesson-page--light-observation .rbe__intro { font-size: 1.08rem; line-height: 1.6; }
+.lesson-page--light-observation .rbe__principle strong { font-size: 1.05rem; }
+.lesson-page--light-observation .rbe__principle p { font-size: 1rem; line-height: 1.55; }
+.lesson-page--light-observation .rbe__step-tab-title { font-size: .96rem; line-height: 1.35; }
+.lesson-page--light-observation .rbe__step-number { font-size: .9rem; }
+.lesson-page--light-observation .rbe__artwork-caption { font-size: .88rem; }
+.lesson-page--light-observation .rbe__lesson-copy h3 { font-size: clamp(1.7rem, 2.8vw, 2.15rem); }
+.lesson-page--light-observation .rbe__task { font-size: 1.2rem; line-height: 1.6; }
+.lesson-page--light-observation .rbe__focus { font-size: 1.02rem; line-height: 1.5; }
+.lesson-page--light-observation .rbe__hint-toggle { font-size: 1rem; }
+.lesson-page--light-observation .rbe__hint { font-size: 1.04rem; line-height: 1.6; }
+.lesson-page--light-observation .rbe__check { font-size: 1.02rem; line-height: 1.45; }
+.lesson-page--light-observation .rbe__button { font-size: 1rem; padding: 6px 10px; }
+.lesson-page--light-observation .rbe__count { font-size: .9rem; }
+.lesson-page--light-observation .rbe__summary h3 { font-size: 1.2rem; }
+.lesson-page--light-observation .rbe__summary-grid strong { font-size: 1.05rem; }
+.lesson-page--light-observation .rbe__summary-grid p { font-size: .98rem; line-height: 1.55; }
+
+@media (max-width: 760px) {
+  .lesson-page--light-observation .rbe__intro { font-size: 1rem; }
+  .lesson-page--light-observation .rbe__step-tab-title { font-size: .88rem; }
+  .lesson-page--light-observation .rbe__lesson-copy h3 { font-size: 1.65rem; }
+  .lesson-page--light-observation .rbe__task { font-size: 1.1rem; }
+  .lesson-page--light-observation .rbe__hint { font-size: 1rem; }
+  .lesson-page--light-observation .rbe__summary-grid p { font-size: .95rem; }
+}
+
