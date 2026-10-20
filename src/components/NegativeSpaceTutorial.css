@@ -50,3 +50,32 @@
  .negative-space-takeaway { padding: 4.5px; }
  .negative-space-takeaway p { font-size:12px; }
 }
+/* Interactive five-step layout aligned with the light-observation lesson */
+.negative-space-header{align-items:center;gap:8px;margin-bottom:6px}
+.negative-space-header h2{font-size:clamp(1.9rem,3vw,2.45rem);line-height:1.1}
+.negative-space-header p{font-size:1rem;line-height:1.4}
+.negative-space-progress{flex:0 0 min(300px,38%);font-size:.86rem;color:#687987}
+.negative-space-progress>div{height:6px;background:#e9ecea;border-radius:99px;overflow:hidden;margin-top:5px}
+.negative-space-progress>div>span{display:block;height:100%;background:#86aaca;transition:width .2s}
+.negative-space-steps{grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}
+.negative-space-step{display:flex;flex-direction:column;min-width:0;padding:4px;border-radius:9px;transition:background-color .15s,border-color .15s}
+.negative-space-step.is-active{border-color:#86aaca;background:#f1f6f8}
+.negative-space-step.is-complete{background:#f0f6f2}
+.negative-space-step-title{display:flex;align-items:center;gap:6px;width:100%;min-width:0;border:0;background:transparent;text-align:left;cursor:pointer;font:inherit;padding:0}
+.negative-space-step-title:focus-visible,.negative-space-check input:focus-visible{outline:3px solid #4c87b0;outline-offset:2px;border-radius:4px}
+.negative-space-step-title>span{flex:0 0 30px;width:30px;height:30px;font-size:.96rem}
+.negative-space-step.is-complete .negative-space-step-title>span{background:#dcebe3;color:#285c47}
+.negative-space-step-title h3{font-size:1rem;font-weight:800;line-height:1.15;overflow-wrap:anywhere}
+.negative-space-drawing{padding:2px 0 0}
+.negative-space-check{display:flex;align-items:center;gap:5px;margin-top:auto;padding-top:3px;color:#687987;font-size:.88rem;line-height:1.15;cursor:pointer}
+.negative-space-check input{width:17px;height:17px;accent-color:#416c80;flex-shrink:0;margin:0}
+.negative-space-detail{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);align-items:center;gap:12px;margin-top:7px;padding:8px 10px;background:#f5f4ef;border-radius:9px;color:#19364d}
+.negative-space-detail>div>span{font-size:.78rem;letter-spacing:.06em;font-weight:800;color:#687987}
+.negative-space-detail h3{font-size:1.15rem;line-height:1.2;margin:2px 0 0}
+.negative-space-detail p{font-size:1rem;line-height:1.4;font-weight:700;margin:0 0 4px}
+.negative-space-detail small{display:block;color:#4d687a;font-size:.92rem;line-height:1.4}
+.negative-space-takeaway{margin-top:7px}
+.negative-space-success{margin:7px 0 0;padding:7px 10px;border-radius:8px;background:#edf6ef;color:#28654b;font-size:.95rem;font-weight:700}
+@media(max-width:1100px){.negative-space-steps{grid-template-columns:repeat(5,minmax(0,1fr));gap:4px}.negative-space-step{padding:3px}.negative-space-step-title{gap:4px}.negative-space-step-title>span{flex-basis:26px;width:26px;height:26px}.negative-space-step-title h3{font-size:.9rem}.negative-space-drawing{padding:2px 0 0}}
+@media(max-width:760px){.negative-space-header{align-items:flex-start;flex-direction:column;gap:6px}.negative-space-progress{flex-basis:auto;width:100%}.negative-space-steps{grid-template-columns:repeat(2,minmax(0,1fr));gap:5px}.negative-space-step:last-child:nth-child(odd){grid-column:1/-1}.negative-space-step-title h3{font-size:1rem}.negative-space-drawing{width:100%;height:auto;padding:2px 0 0}.negative-space-detail{grid-template-columns:1fr;gap:5px}.negative-space-detail p{font-size:.96rem}.negative-space-takeaway p{font-size:.9rem}}
+@media(prefers-reduced-motion:reduce){.negative-space-progress>div>span,.negative-space-step{transition:none}}
