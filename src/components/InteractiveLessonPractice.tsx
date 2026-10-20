@@ -1,4 +1,3 @@
-"use client";
 import { useEffect, useMemo, useState } from "react";
 import type { Lesson } from "../data/types";
 import StepIllustration from "./StepIllustration";
@@ -77,10 +76,6 @@ export default function InteractiveLessonPractice({ lesson }: { lesson: Lesson }
     try { localStorage.setItem(key, JSON.stringify(progress)); } catch { /* Progress remains available for this session. */ }
   }, [key, progress]);
 
-  useEffect(() => {
-    setProgress(readProgress(key, steps.length, lesson.selfCheck.length));
-    setActiveIndex(0);
-  }, [key, lesson.selfCheck.length, steps.length]);
 
   function toggleStep(index: number) {
     setProgress((current) => ({
