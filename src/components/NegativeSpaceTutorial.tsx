@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import "./NegativeSpaceTutorial.css";
 
 const steps = [
@@ -46,20 +47,51 @@ function Drawing({ index }: { index: number }) {
   </svg>;
 }
 
+const STORAGE_KEY = "ts-art-negative-space-v1";
+
+function readCompleted(): number[] {
+  try {
+    const value: unknown = JSON.parse(localStorage.getItem(STORAGE_KEY) ?? "[]");
+    return Array.isArray(value) ? value.filter((item): item is number => Number.isInteger(item) && item >= 0 && item < steps.length) : [];
+  } catch {
+    return [];
+  }
+}
+
 export default function NegativeSpaceTutorial() {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [completed, setCompleted] = useState<number[]>(readCompleted);
+  const active = steps[activeIndex];
+  const percentage = Math.round(completed.length / steps.length * 100);
+
+  useEffect(() => {
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(completed)); } catch { /* Keep progress for this session. */ }
+  }, [completed]);
+
+  function toggleStep(index: number) {
+    setCompleted((current) => current.includes(index) ? current.filter((item) => item !== index) : [...current, index]);
+  }
+
   return <section className="negative-space-tutorial" aria-labelledby="negative-space-title">
     <header className="negative-space-header">
-      <div><span className="eyebrow">РАЗБОР ОТ ХУДОЖНИКА · 5 ЭТАПОВ</span><h2 id="negative-space-title">Учимся видеть пустоту</h2><p>Не начинай с предмета. Сначала изучи формы, которые его окружают.</p></div>
-      <span className="negative-space-seal" aria-hidden="true">LOOK<br />FIRST</span>
+      <div><span className="eyebrow">ИНТЕРАКТИВНАЯ ПРАКТИКА · 5 ЭТАПОВ</span><h2 id="negative-space-title">Попробуй по шагам</h2><p>Сначала изучи формы, которые окружают предмет. Все этапы — перед глазами.</p></div>
+      <div className="negative-space-progress"><span>{completed.length} из {steps.length} выполнено · {percentage}%</span><div role="progressbar" aria-label="Прогресс практики" aria-valuemin={0} aria-valuemax={100} aria-valuenow={percentage}><span style={{ width: percentage + "%" }} /></div></div>
     </header>
     <div className="negative-space-steps">
-      {steps.map((step, index) => <article className="negative-space-step" key={step.number}>
-        <div className="negative-space-step-title"><span>{step.number}</span><h3>{step.title}</h3></div>
-        <Drawing index={index} />
-        <p className="negative-space-instruction">{step.instruction}</p>
-        <p className="negative-space-note">{step.note}</p>
-      </article>)}
+      {steps.map((step, index) => {
+        const isActive = activeIndex === index;
+        const isComplete = completed.includes(index);
+        return <article className={`negative-space-step ${isActive ? "is-active" : ""} ${isComplete ? "is-complete" : ""}`} key={step.number}>
+          <button type="button" className="negative-space-step-title" onClick={() => setActiveIndex(index)} aria-pressed={isActive}>
+            <span>{isComplete ? "✓" : step.number}</span><h3>{step.title}</h3>
+          </button>
+          <Drawing index={index} />
+          <label className="negative-space-check"><input type="checkbox" checked={isComplete} onChange={() => toggleStep(index)} /><span>{isComplete ? "Выполнено" : "Отметить этап"}</span></label>
+        </article>;
+      })}
     </div>
+    <div className="negative-space-detail" aria-live="polite"><div><span>ЭТАП {active.number} · ПОДСКАЗКА</span><h3>{active.title}</h3></div><div><p>{active.instruction}</p><small>{active.note}</small></div></div>
     <footer className="negative-space-takeaway"><span aria-hidden="true">✳</span><p><strong>Совет художника.</strong> Прищурься и смотри на просвет как на пятно. Его наклон, ширина и контур помогают проверить пропорции предмета точнее, чем попытка сразу нарисовать знакомую вещь.</p></footer>
+    {completed.length === steps.length && <p className="negative-space-success" role="status">Все пять этапов выполнены. Повтори упражнение с другим предметом.</p>}
   </section>;
 }
