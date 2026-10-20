@@ -43,7 +43,7 @@ export default function RepeatByExample() {
           <h2 id="rbe-title">Повтори по образцу</h2>
           <p className="rbe__intro">Каждый рисунок показывает конкретное действие. Повторяй шаги по порядку, сохраняя лёгкий карандашный набросок.</p>
         </div>
-        <aside className="rbe__principle"><span aria-hidden="true" className="rbe__bulb">✳</span><div><strong>Главный принцип</strong><p>Сравнивай цвет по температуре, светлоте и насыщенности. Иллюстрация помогает понять шаг, но сверяйся и с натурой.</p></div></aside>
+        <aside className="rbe__principle"><span aria-hidden="true" className="rbe__bulb">✳</span><div><strong>Главный принцип</strong><p>Сравнивай светлоту участков и направление света. Иллюстрация помогает понять шаг, но сверяйся и с натурой.</p></div></aside>
       </header>
 
       <div className="rbe__progress" role="progressbar" aria-label="Прогресс выполнения урока" aria-valuemin={0} aria-valuemax={100} aria-valuenow={progress}><span style={{ width: progress + "%" }} /></div>
@@ -62,7 +62,7 @@ export default function RepeatByExample() {
         </div>
       </article>
 
-      <footer className="rbe__summary"><h3>Кратко о главном</h3><div className="rbe__summary-grid"><div><strong>Светлота</strong><p>Насколько участок светлее или темнее соседнего.</p></div><div><strong>Температура</strong><p>Тёплые и холодные оттенки помогают передать характер света.</p></div><div><strong>Насыщенность</strong><p>Насколько цвет яркий или приглушённый.</p></div></div>{completed.length === STEPS.length && <p className="rbe__success" role="status">Все шаги выполнены. Попробуй повторить упражнение с другим предметом.</p>}</footer>
+      <footer className="rbe__summary"><h3>Кратко о главном</h3><div className="rbe__summary-grid"><div><strong>Светлота</strong><p>Насколько участок светлее или темнее соседнего.</p></div><div><strong>Полутон</strong><p>Промежуточное значение между светом и тенью на форме.</p></div><div><strong>Тень</strong><p>Сравни собственную и падающую тень, не объединяя их автоматически.</p></div></div>{completed.length === STEPS.length && <p className="rbe__success" role="status">Все шаги выполнены. Попробуй повторить упражнение с другим предметом.</p>}</footer>
     </section>
   );
 }
