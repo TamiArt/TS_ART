@@ -109,6 +109,9 @@ export default function InteractiveLessonPractice({ lesson }: { lesson: Lesson }
         </aside>
       </header>
 
+      <div className="ilp__progress" role="progressbar" aria-label="Прогресс практики" aria-valuemin={0} aria-valuemax={100} aria-valuenow={percentage}><span style={{ width: percentage + "%" }} /></div>
+      <div className="ilp__progress-label"><span>{completeCount} из {steps.length} шагов выполнено</span><span>{percentage}%</span></div>
+
       <section className="ilp__text-steps" aria-label="Попробуй по шагам — текстовая инструкция">
         <h3>Попробуй по шагам</h3>
         <ol>
@@ -120,9 +123,6 @@ export default function InteractiveLessonPractice({ lesson }: { lesson: Lesson }
           ))}
         </ol>
       </section>
-
-      <div className="ilp__progress" role="progressbar" aria-label="Прогресс практики" aria-valuemin={0} aria-valuemax={100} aria-valuenow={percentage}><span style={{ width: percentage + "%" }} /></div>
-      <div className="ilp__progress-label"><span>{completeCount} из {steps.length} шагов выполнено</span><span>{percentage}%</span></div>
 
       <div className="ilp__cards" aria-label="Этапы практики">
         {steps.map((step, index) => {
