@@ -24,14 +24,9 @@ function hintFor(instruction: string, objective: string): string {
 }
 
 function stepTitle(instruction: string, index: number, total: number): string {
-  const clean = instruction
-    .replace(/^[\s.!?]+/, "")
-    .replace(/^(?:сначала\s+)?(?:выбери|выберите|поставь|поставьте|положи|положите|возьми|возьмите|сделай|сделайте|нарисуй|нарисуйте|проведи|проведите|повтори|повторите|наблюдай|наблюдайте|заметь|заметьте|найди|найдите|раздели|разделите|сравни|сравните|проверь|проверьте|отметь|отметьте|запиши|запишите|добавь|добавьте|наметь|наметьте|организуй|организуйте|сохрани|сохраните|теперь|затем|после этого)\s+/i, "")
-    .replace(/[.!?].*$/, "")
-    .trim();
+  const clean = instruction.trim();
   if (!clean) return index === 0 ? "Начало" : index === total - 1 ? "Проверь результат" : `Этап ${index + 1}`;
-  const title = clean;
-  return title.charAt(0).toLocaleUpperCase("ru") + title.slice(1);
+  return clean.charAt(0).toLocaleUpperCase("ru") + clean.slice(1);
 }
 
 function storageKey(lessonId: string) {
@@ -116,7 +111,6 @@ export default function InteractiveLessonPractice({ lesson }: { lesson: Lesson }
                 <span className="ilp__card-title">{step.title}</span>
               </button>
               <div className="ilp__card-image"><StepIllustration title={lesson.title} instruction={step.instruction} /></div>
-              <p className="ilp__card-instruction" lang="ru">{step.instruction}</p>
               <label className="ilp__card-check">
                 <input type="checkbox" checked={isComplete} onChange={() => toggleStep(index)} />
                 <span>{isComplete ? "Выполнено" : "Отметить этап"}</span>
