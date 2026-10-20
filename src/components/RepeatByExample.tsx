@@ -56,6 +56,17 @@ export default function RepeatByExample() {
         </div>
       </header>
 
+      <section className="rbe__step-instructions" aria-labelledby="rbe-instructions-title">
+        <h3 id="rbe-instructions-title">Попробуй по шагам</h3>
+        <ol>
+          <li><span>01</span><p>Поставь предмет рядом с источником света.</p></li>
+          <li><span>02</span><p>Найди самую освещённую область и самую тёмную.</p></li>
+          <li><span>03</span><p>Заметь, где форма постепенно переходит из света в тень.</p></li>
+          <li><span>04</span><p>Сделай три условные тональные зоны без растушёвки.</p></li>
+          <li><span>05</span><p>Сравни тональные отношения с натурой.</p></li>
+        </ol>
+      </section>
+
       <div className="rbe__stage-grid" aria-label="Пять последовательных этапов урока">
         {STEPS.map((step) => {
           const isComplete = completed.includes(step.id);
