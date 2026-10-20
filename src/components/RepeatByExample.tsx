@@ -2,11 +2,11 @@ import { useEffect, useState } from "react";
 import "./RepeatByExample.css";
 
 const STEPS = [
-  { id: "01", title: "Начало", task: "Поставь предмет рядом с источником света.", hint: "Расположи лампу сбоку и немного выше предмета. Посмотри, куда направлен свет и где появляется падающая тень.", image: "/illustrations/repeat-by-example/01-start.svg", focus: "Свет направлен на предмет" },
-  { id: "02", title: "Найди крайние значения", task: "Найди самую освещённую область и самую тёмную.", hint: "Сначала найди два крайних значения. Не путай собственную тень на форме с падающей тенью на поверхности.", image: "/illustrations/repeat-by-example/02-light-dark.svg", focus: "Самый светлый и самый тёмный участки" },
-  { id: "03", title: "Переход света в тень", task: "Заметь, где форма постепенно переходит из света в тень.", hint: "Проследи за округлением формы. Тон меняется постепенно, а не только по внешнему контуру.", image: "/illustrations/repeat-by-example/03-transition.svg", focus: "Плавный переход тона" },
-  { id: "04", title: "Три тональные зоны", task: "Сделай три условные тональные зоны без растушёвки.", hint: "Раздели форму на свет, полутон и тень. Пока не растушёвывай границы: задача — увидеть и обозначить отношения.", image: "/illustrations/repeat-by-example/04-three-zones.svg", focus: "Свет · полутон · тень" },
-  { id: "05", title: "Проверь", task: "Сравни тональные отношения с натурой.", hint: "Поочерёдно посмотри на предмет и рисунок. Проверь, какая область светлее или темнее и насколько заметна разница.", image: "/illustrations/repeat-by-example/05-compare.svg", focus: "Сравнение с натурой" },
+  { id: "01", title: "Начало", task: "Поставь предмет рядом с источником света.", hint: "Расположи источник сбоку и немного выше предмета. Заметь направление света и падающую тень." },
+  { id: "02", title: "Найди крайние значения", task: "Найди самую освещённую область и самую тёмную.", hint: "Сначала сравни два крайних значения. Не путай собственную тень на форме с падающей тенью на поверхности." },
+  { id: "03", title: "Переход света в тень", task: "Заметь, где форма постепенно переходит из света в тень.", hint: "Проследи, как меняется тон по округлой форме, а не только по внешнему контуру." },
+  { id: "04", title: "Три тональные зоны", task: "Обозначь свет, полутон и тень без растушёвки.", hint: "Раздели форму на три условные зоны. Пока не растушёвывай границы: сначала важно увидеть отношения." },
+  { id: "05", title: "Проверь", task: "Сравни тональные отношения с натурой.", hint: "Поочерёдно посмотри на предмет и рисунок. Проверь, какие участки светлее или темнее и насколько заметна разница." },
 ] as const;
 
 const STORAGE_KEY = "ts-art-repeat-by-example-v1";
@@ -14,55 +14,90 @@ const STORAGE_KEY = "ts-art-repeat-by-example-v1";
 function readCompleted(): string[] {
   try {
     const parsed: unknown = JSON.parse(localStorage.getItem(STORAGE_KEY) ?? "[]");
-    return Array.isArray(parsed) ? parsed.filter((value): value is string => typeof value === "string" && STEPS.some((step) => step.id === value)) : [];
+    return Array.isArray(parsed)
+      ? parsed.filter((value): value is string => typeof value === "string" && STEPS.some((step) => step.id === value))
+      : [];
   } catch {
     return [];
   }
 }
 
 export default function RepeatByExample() {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [showHint, setShowHint] = useState(true);
+  const [activeId, setActiveId] = useState<string>(STEPS[0].id);
   const [completed, setCompleted] = useState<string[]>(readCompleted);
-  const step = STEPS[activeIndex];
+  const activeStep = STEPS.find((step) => step.id === activeId) ?? STEPS[0];
   const progress = Math.round((completed.length / STEPS.length) * 100);
 
   useEffect(() => {
-    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(completed)); } catch { /* Keep session state if storage is unavailable. */ }
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(completed));
+    } catch {
+      // Keep progress for this session if browser storage is unavailable.
+    }
   }, [completed]);
 
-  function toggleCompleted() {
-    setCompleted((current) => current.includes(step.id) ? current.filter((id) => id !== step.id) : [...current, step.id]);
+  function toggleCompleted(id: string) {
+    setCompleted((current) => current.includes(id) ? current.filter((item) => item !== id) : [...current, id]);
   }
 
   return (
-    <section className="rbe" aria-labelledby="rbe-title">
-      <header className="rbe__header">
+    <section className="rbe rbe--overview" aria-labelledby="rbe-title">
+      <header className="rbe__overview-header">
         <div>
           <p className="rbe__eyebrow">САМОСТОЯТЕЛЬНАЯ ПРАКТИКА · 7 МИН</p>
           <h2 id="rbe-title">Повтори по образцу</h2>
-          <p className="rbe__intro">Каждый рисунок показывает конкретное действие. Повторяй шаги по порядку, сохраняя лёгкий карандашный набросок.</p>
         </div>
-        <aside className="rbe__principle"><span aria-hidden="true" className="rbe__bulb">✳</span><div><strong>Главный принцип</strong><p>Сравнивай светлоту участков и направление света. Иллюстрация помогает понять шаг, но сверяйся и с натурой.</p></div></aside>
+        <div className="rbe__overview-progress">
+          <span>{completed.length} из {STEPS.length} этапов выполнено</span>
+          <div className="rbe__progress" role="progressbar" aria-label="Прогресс выполнения урока" aria-valuemin={0} aria-valuemax={100} aria-valuenow={progress}>
+            <span style={{ width: progress + "%" }} />
+          </div>
+        </div>
       </header>
 
-      <div className="rbe__progress" role="progressbar" aria-label="Прогресс выполнения урока" aria-valuemin={0} aria-valuemax={100} aria-valuenow={progress}><span style={{ width: progress + "%" }} /></div>
-      <nav className="rbe__steps" aria-label="Этапы урока">
-        {STEPS.map((item, index) => <button type="button" key={item.id} className={`rbe__step-tab ${index === activeIndex ? "is-active" : ""} ${completed.includes(item.id) ? "is-complete" : ""}`} onClick={() => setActiveIndex(index)} aria-current={index === activeIndex ? "step" : undefined}><span className="rbe__step-number">{completed.includes(item.id) ? "✓" : item.id}</span><span className="rbe__step-tab-title">{item.title}</span></button>)}
-      </nav>
+      <figure className="rbe__poster">
+        <img
+          src="/illustrations/repeat-by-example/light-observation-poster.webp"
+          alt="Учебный образец светотени на сфере: пять последовательных этапов, стрелки и обозначения света, полутона и тени; внизу объяснение светлоты, температуры и насыщенности."
+        />
+      </figure>
 
-      <article className="rbe__lesson" aria-live="polite">
-        <div className="rbe__artwork"><img src={step.image} alt={`${step.title}: ${step.focus}`} /><p className="rbe__artwork-caption">Учебная схема · лёгкий карандашный набросок</p></div>
-        <div className="rbe__lesson-copy">
-          <p className="rbe__step-kicker">ШАГ {step.id} ИЗ 05</p><h3>{step.title}</h3><p className="rbe__task">{step.task}</p><p className="rbe__focus"><span aria-hidden="true">◉</span> {step.focus}</p>
-          <button className="rbe__hint-toggle" type="button" aria-expanded={showHint} onClick={() => setShowHint((value) => !value)}>{showHint ? "Скрыть подсказку" : "Показать подсказку"}<span aria-hidden="true">{showHint ? "−" : "+"}</span></button>
-          {showHint && <p className="rbe__hint">{step.hint}</p>}
-          <label className="rbe__check"><input type="checkbox" checked={completed.includes(step.id)} onChange={toggleCompleted} /><span>Я выполнила этот шаг</span></label>
-          <div className="rbe__navigation"><button type="button" className="rbe__button rbe__button--secondary" disabled={activeIndex === 0} onClick={() => setActiveIndex((index) => Math.max(0, index - 1))}>← Назад</button><span className="rbe__count">{activeIndex + 1} / {STEPS.length}</span><button type="button" className="rbe__button rbe__button--primary" disabled={activeIndex === STEPS.length - 1} onClick={() => setActiveIndex((index) => Math.min(STEPS.length - 1, index + 1))}>Далее →</button></div>
+      <div className="rbe__stage-grid" aria-label="Интерактивные этапы урока">
+        {STEPS.map((step) => {
+          const isComplete = completed.includes(step.id);
+          const isActive = activeId === step.id;
+          return (
+            <div className={`rbe__stage-card ${isActive ? "is-active" : ""} ${isComplete ? "is-complete" : ""}`} key={step.id}>
+              <button
+                type="button"
+                className="rbe__stage-select"
+                onClick={() => setActiveId(step.id)}
+                aria-pressed={isActive}
+                aria-label={`Показать пояснение: этап ${step.id}, ${step.title}`}
+              >
+                <span className="rbe__stage-number">{isComplete ? "✓" : step.id}</span>
+                <span className="rbe__stage-title">{step.title}</span>
+              </button>
+              <label className="rbe__stage-check">
+                <input type="checkbox" checked={isComplete} onChange={() => toggleCompleted(step.id)} />
+                <span>{isComplete ? "Выполнено" : "Отметить"}</span>
+              </label>
+            </div>
+          );
+        })}
+      </div>
+
+      <div className="rbe__stage-detail" aria-live="polite">
+        <div>
+          <p className="rbe__step-kicker">ЭТАП {activeStep.id} ИЗ 05</p>
+          <strong>{activeStep.task}</strong>
         </div>
-      </article>
+        <p>{activeStep.hint}</p>
+      </div>
 
-      <footer className="rbe__summary"><h3>Кратко о главном</h3><div className="rbe__summary-grid"><div><strong>Светлота</strong><p>Насколько участок светлее или темнее соседнего.</p></div><div><strong>Полутон</strong><p>Промежуточное значение между светом и тенью на форме.</p></div><div><strong>Тень</strong><p>Сравни собственную и падающую тень, не объединяя их автоматически.</p></div></div>{completed.length === STEPS.length && <p className="rbe__success" role="status">Все шаги выполнены. Попробуй повторить упражнение с другим предметом.</p>}</footer>
+      {completed.length === STEPS.length && (
+        <p className="rbe__success" role="status">Все пять этапов выполнены. Попробуй повторить упражнение с другим предметом.</p>
+      )}
     </section>
   );
 }
