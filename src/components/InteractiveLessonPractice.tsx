@@ -110,7 +110,7 @@ export default function InteractiveLessonPractice({ lesson }: { lesson: Lesson }
           const isActive = activeIndex === index;
           const isComplete = progress.completed.includes(index);
           return (
-            <article key={`${lesson.id}-step-${index}`} className={`ilp__card ${isActive ? "is-active" : ""} ${isComplete ? "is-done" : ""}`}>
+            <article key={`${lesson.id}-step-${index}`} lang="ru" className={`ilp__card ${isActive ? "is-active" : ""} ${isComplete ? "is-done" : ""}`}>
               <button type="button" className="ilp__card-select" onClick={() => setActiveIndex(index)} aria-pressed={isActive} aria-label={`Показать подсказку: этап ${index + 1}, ${step.title}`}>
                 <span className="ilp__card-number">{isComplete ? "✓" : String(index + 1).padStart(2, "0")}</span>
                 <span className="ilp__card-title">{step.title}</span>
