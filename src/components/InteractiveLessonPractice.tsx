@@ -1,3 +1,4 @@
+"use client";
 import { useEffect, useMemo, useState } from "react";
 import type { Lesson } from "../data/types";
 import StepIllustration from "./StepIllustration";
@@ -13,7 +14,7 @@ const ACTION_HINTS: Array<{ pattern: RegExp; hint: string }> = [
   { pattern: /свет|тень|тон|полутон|контраст/, hint: "Сначала найди самые светлый и тёмный участки, затем сравни промежуточные значения." },
   { pattern: /перспектив|горизонт|точк.*сход|глубин/, hint: "Найди уровень глаз и проследи направление основных линий, прежде чем рисовать детали." },
   { pattern: /запиши|сформулируй|отметь|сохрани|подпиши/, hint: "Зафиксируй конкретное наблюдение или действие — так, чтобы к нему можно было вернуться." },
-  { pattern: /выбери|отбери|вариант|композиц|располож/, hint: "Сделай несколько простых вариантов и сравни их по одной цели, а не по впечатлению в целом." },
+  { pattern: /выбери|отбери|вариант|композици|располож/, hint: "Сделай несколько простых вариантов и сравни их по одной цели, а не по впечатлению в целом." },
   { pattern: /кист|краск|живопис|мазок|сло[йя]|холст|цифров/, hint: "Сначала проверь инструмент на небольшом тесте и только потом используй его в основной работе." },
 ];
 
@@ -21,6 +22,19 @@ function hintFor(instruction: string, objective: string): string {
   const text = instruction.toLocaleLowerCase("ru");
   return ACTION_HINTS.find((rule) => rule.pattern.test(text))?.hint
     ?? `Свяжи действие с целью урока: ${objective} Сначала выполни его в простом виде, затем проверь результат.`;
+}
+
+function stepTitle(instruction: string, index: number, total: number): string {
+  const clean = instruction
+    .replace(/^[\s.!?]+/, "")
+    .replace(/^(?:сначала\s+)?(?:выбери|выберите|поставь|поставьте|положи|положите|возьми|возьмите|сделай|сделайте|нарисуй|нарисуйте|проведи|проведите|повтори|повторите|наблюдай|наблюдайте|заметь|заметьте|найди|найдите|раздели|разделите|сравни|сравните|проверь|проверьте|отметь|отметьте|запиши|запишите|добавь|добавьте|наметь|наметьте|организуй|организуйте|сохрани|сохраните|теперь|затем|после этого)\s+/i, "")
+    .replace(/[.!?].*$/, "")
+    .trim();
+  if (!clean) return index === 0 ? "Начало" : index === total - 1 ? "Проверь результат" : `Этап ${index + 1}`;
+  const words = clean.split(/\s+/);
+  const concise = words.slice(0, 5).join(" ");
+  const title = concise.length > 34 ? concise.slice(0, 31).trimEnd() + "…" : concise + (words.length > 5 ? "…" : "");
+  return title.charAt(0).toLocaleUpperCase("ru") + title.slice(1);
 }
 
 function storageKey(lessonId: string) {
@@ -50,13 +64,12 @@ export default function InteractiveLessonPractice({ lesson }: { lesson: Lesson }
     instruction,
     index,
     hint: hintFor(instruction, lesson.objective),
-    label: index === 0 ? "Начало" : index === lesson.steps.length - 1 ? "Проверь" : `Этап ${index + 1}`,
+    title: stepTitle(instruction, index, lesson.steps.length),
   })), [lesson]);
   const key = storageKey(lesson.id);
   const [activeIndex, setActiveIndex] = useState(0);
-  const [showHint, setShowHint] = useState(true);
   const [progress, setProgress] = useState<SavedProgress>(() => readProgress(key, steps.length, lesson.selfCheck.length));
-  const active = steps[Math.min(activeIndex, steps.length - 1)];
+  const active = steps[Math.min(activeIndex, Math.max(0, steps.length - 1))];
   const completeCount = progress.completed.length;
   const percentage = steps.length ? Math.round(completeCount / steps.length * 100) : 0;
 
@@ -64,12 +77,17 @@ export default function InteractiveLessonPractice({ lesson }: { lesson: Lesson }
     try { localStorage.setItem(key, JSON.stringify(progress)); } catch { /* Progress remains available for this session. */ }
   }, [key, progress]);
 
-  function toggleStep() {
+  useEffect(() => {
+    setProgress(readProgress(key, steps.length, lesson.selfCheck.length));
+    setActiveIndex(0);
+  }, [key, lesson.selfCheck.length, steps.length]);
+
+  function toggleStep(index: number) {
     setProgress((current) => ({
       ...current,
-      completed: current.completed.includes(active.index)
-        ? current.completed.filter((index) => index !== active.index)
-        : [...current.completed, active.index],
+      completed: current.completed.includes(index)
+        ? current.completed.filter((item) => item !== index)
+        : [...current.completed, index],
     }));
   }
 
@@ -82,7 +100,7 @@ export default function InteractiveLessonPractice({ lesson }: { lesson: Lesson }
       <header className="ilp__header">
         <div>
           <p className="ilp__eyebrow">ИНТЕРАКТИВНАЯ ПРАКТИКА · {lesson.duration.toLocaleUpperCase("ru")}</p>
-          <h2 id={`ilp-title-${lesson.id}`}>Повтори по шагам</h2>
+          <h2 id={`ilp-title-${lesson.id}`}>Попробуй по шагам</h2>
           <p className="ilp__objective">{lesson.objective}</p>
         </div>
         <aside className="ilp__principle">
@@ -94,26 +112,36 @@ export default function InteractiveLessonPractice({ lesson }: { lesson: Lesson }
       <div className="ilp__progress" role="progressbar" aria-label="Прогресс практики" aria-valuemin={0} aria-valuemax={100} aria-valuenow={percentage}><span style={{ width: percentage + "%" }} /></div>
       <div className="ilp__progress-label"><span>{completeCount} из {steps.length} шагов выполнено</span><span>{percentage}%</span></div>
 
-      <nav className="ilp__tabs" aria-label="Шаги практики">
-        {steps.map((step, index) => <button type="button" key={`${lesson.id}-step-${index}`} className={`ilp__tab ${activeIndex === index ? "is-active" : ""} ${progress.completed.includes(index) ? "is-done" : ""}`} aria-current={activeIndex === index ? "step" : undefined} onClick={() => { setActiveIndex(index); setShowHint(true); }}><span>{progress.completed.includes(index) ? "✓" : String(index + 1).padStart(2, "0")}</span><small>{step.label}</small></button>)}
-      </nav>
+      <div className="ilp__cards" aria-label="Этапы практики">
+        {steps.map((step, index) => {
+          const isActive = activeIndex === index;
+          const isComplete = progress.completed.includes(index);
+          return (
+            <article key={`${lesson.id}-step-${index}`} className={`ilp__card ${isActive ? "is-active" : ""} ${isComplete ? "is-done" : ""}`}>
+              <button type="button" className="ilp__card-select" onClick={() => setActiveIndex(index)} aria-pressed={isActive} aria-label={`Показать подсказку: этап ${index + 1}, ${step.title}`}>
+                <span className="ilp__card-number">{isComplete ? "✓" : String(index + 1).padStart(2, "0")}</span>
+                <span className="ilp__card-title">{step.title}</span>
+              </button>
+              <div className="ilp__card-image"><StepIllustration title={lesson.title} instruction={step.instruction} /></div>
+              <label className="ilp__card-check">
+                <input type="checkbox" checked={isComplete} onChange={() => toggleStep(index)} />
+                <span>{isComplete ? "Выполнено" : "Отметить этап"}</span>
+              </label>
+            </article>
+          );
+        })}
+      </div>
 
-      {active && <article className="ilp__step" aria-live="polite">
-        <div className="ilp__visual"><StepIllustration title={lesson.title} instruction={active.instruction} /><p>Наглядная схема к текущему действию</p></div>
-        <div className="ilp__content">
-          <p className="ilp__step-label">ШАГ {activeIndex + 1} / {steps.length}</p>
-          <h3>{active.label}</h3>
-          <p className="ilp__task">{active.instruction}</p>
-          <button type="button" className="ilp__hint-button" aria-expanded={showHint} onClick={() => setShowHint((shown) => !shown)}>{showHint ? "Скрыть подсказку" : "Показать подсказку"}<span>{showHint ? "−" : "+"}</span></button>
-          {showHint && <p className="ilp__hint">{active.hint}</p>}
-          <label className="ilp__done"><input type="checkbox" checked={progress.completed.includes(activeIndex)} onChange={toggleStep} /><span>Я выполнила этот шаг</span></label>
-          <div className="ilp__nav"><button type="button" disabled={activeIndex === 0} onClick={() => { setActiveIndex((i) => Math.max(0, i - 1)); setShowHint(true); }}>← Назад</button><span>{activeIndex + 1} / {steps.length}</span><button type="button" disabled={activeIndex === steps.length - 1} onClick={() => { setActiveIndex((i) => Math.min(steps.length - 1, i + 1)); setShowHint(true); }}>Далее →</button></div>
-        </div>
+      {active && <article className="ilp__detail" aria-live="polite">
+        <div className="ilp__detail-title"><p className="ilp__step-label">ЭТАП {activeIndex + 1} ИЗ {steps.length} · ПОДСКАЗКА</p><h3>{active.title}</h3></div>
+        <div className="ilp__detail-copy"><p className="ilp__task">{active.instruction}</p><p className="ilp__hint">{active.hint}</p></div>
       </article>}
 
       <section className="ilp__checks" aria-labelledby={`ilp-check-title-${lesson.id}`}>
         <div className="ilp__section-heading"><div><p className="ilp__eyebrow">САМОПРОВЕРКА</p><h3 id={`ilp-check-title-${lesson.id}`}>Проверь результат</h3></div><span>{progress.checks.filter(Boolean).length}/{lesson.selfCheck.length}</span></div>
-        {lesson.selfCheck.map((item, index) => <label className="ilp__check" key={`${lesson.id}-check-${index}`}><input type="checkbox" checked={Boolean(progress.checks[index])} onChange={(event) => toggleCheck(index, event.target.checked)} /><span>{item}</span></label>)}
+        <div className="ilp__check-grid">
+          {lesson.selfCheck.map((item, index) => <label className="ilp__check" key={`${lesson.id}-check-${index}`}><input type="checkbox" checked={Boolean(progress.checks[index])} onChange={(event) => toggleCheck(index, event.target.checked)} /><span>{item}</span></label>)}
+        </div>
       </section>
 
       <section className="ilp__reflection" aria-label="Заметка по практике">
