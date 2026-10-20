@@ -13,7 +13,7 @@
 
 <g filter="url(#paperGrain)"><ellipse cx="353" cy="369" rx="143.84" ry="19" fill="url(#cast)"/><circle cx="340" cy="244" r="116" fill="url(#ball)" stroke="#56534d" stroke-width="1.7"/><ellipse cx="302" cy="201" rx="38" ry="31" fill="url(#shine)"/><path d="M244.88 188.32q18 -49 62 -63m-72 92q7 -39 29 -59m-13 139q15 35 48 46m-20 -24q24 26 51 31" fill="none" stroke="#5d5a53" stroke-width="1.15" opacity=".65"/><path d="M256.48 176.72q20 -29 47 -35m-56 59l-9 21m20 -40l-10 19m-4 116l18 14m-3 -22l19 17m-1 -24l17 15" fill="none" stroke="#68645c" stroke-width=".8" opacity=".55"/></g>
 <ellipse cx="301" cy="202" rx="34" ry="25" fill="url(#shine)"/>
-<path d="M178 113L278 184" stroke="#b78337" stroke-width="2" fill="none" marker-end="url(#arrow)"/><text x="35" y="78" fill="#a66d20" font-size="36" font-family="Georgia,serif" font-style="italic">Самая светлая</text><text x="35" y="116" fill="#a66d20" font-size="36" font-family="Georgia,serif" font-style="italic">область</text>
-<path d="M515 362L423 318" stroke="#537e98" stroke-width="2" fill="none" marker-end="url(#arrow)"/><text x="360" y="397" fill="#537e98" font-size="32" font-family="Georgia,serif" font-style="italic">Самая тёмная</text>
+<path d="M178 113L278 184" stroke="#b78337" stroke-width="2" fill="none" marker-end="url(#arrow)"/><text x="35" y="78" fill="#a66d20" font-size="43" font-family="Georgia,serif" font-style="italic">Самая светлая</text><text x="35" y="116" fill="#a66d20" font-size="43" font-family="Georgia,serif" font-style="italic">область</text>
+<path d="M515 362L423 318" stroke="#537e98" stroke-width="2" fill="none" marker-end="url(#arrow)"/><text x="360" y="397" fill="#537e98" font-size="39" font-family="Georgia,serif" font-style="italic">Самая тёмная</text>
 
 </svg>
