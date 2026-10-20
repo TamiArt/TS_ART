@@ -30,9 +30,7 @@ function stepTitle(instruction: string, index: number, total: number): string {
     .replace(/[.!?].*$/, "")
     .trim();
   if (!clean) return index === 0 ? "Начало" : index === total - 1 ? "Проверь результат" : `Этап ${index + 1}`;
-  const words = clean.split(/\s+/);
-  const concise = words.slice(0, 5).join(" ");
-  const title = concise.length > 34 ? concise.slice(0, 31).trimEnd() + "…" : concise + (words.length > 5 ? "…" : "");
+  const title = clean;
   return title.charAt(0).toLocaleUpperCase("ru") + title.slice(1);
 }
 
@@ -118,6 +116,7 @@ export default function InteractiveLessonPractice({ lesson }: { lesson: Lesson }
                 <span className="ilp__card-title">{step.title}</span>
               </button>
               <div className="ilp__card-image"><StepIllustration title={lesson.title} instruction={step.instruction} /></div>
+              <p className="ilp__card-instruction" lang="ru">{step.instruction}</p>
               <label className="ilp__card-check">
                 <input type="checkbox" checked={isComplete} onChange={() => toggleStep(index)} />
                 <span>{isComplete ? "Выполнено" : "Отметить этап"}</span>
