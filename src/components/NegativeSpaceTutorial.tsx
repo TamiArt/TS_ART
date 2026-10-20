@@ -74,7 +74,7 @@ export default function NegativeSpaceTutorial() {
 
   return <section className="negative-space-tutorial" aria-labelledby="negative-space-title">
     <header className="negative-space-header">
-      <div><span className="eyebrow">ИНТЕРАКТИВНАЯ ПРАКТИКА · 5 ЭТАПОВ</span><h2 id="negative-space-title">Практика по шагам</h2><p>Сначала изучи формы, которые окружают предмет. Все этапы — перед глазами.</p></div>
+      <div><span className="eyebrow">ИНТЕРАКТИВНАЯ ПРАКТИКА · 5 ЭТАПОВ</span><h2 id="negative-space-title">Попробуй по шагам</h2><p>Сначала изучи формы, которые окружают предмет. Все этапы — перед глазами.</p></div>
     </header>
     <div className="negative-space-progress"><span>{completed.length} из {steps.length} выполнено · {percentage}%</span><div role="progressbar" aria-label="Прогресс практики" aria-valuemin={0} aria-valuemax={100} aria-valuenow={percentage}><span style={{ width: percentage + "%" }} /></div></div>
     <section className="negative-space-text-steps" aria-labelledby="negative-space-text-title">
