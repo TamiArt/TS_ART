@@ -13,6 +13,7 @@ export default function LessonVisualGuide({ lesson }: { lesson: Lesson }) {
     .join(" ")
     .toLocaleLowerCase("ru");
   const isLightShadowLesson =
+    lesson.id === "light-observation" ||
     /светотен|свет и тень|тональн(ая|ые|ых) зон|переход.{0,20}тени|повтори по образцу/.test(lessonText);
 
   if (isLightShadowLesson) return <RepeatByExample />;
