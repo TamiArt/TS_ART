@@ -1,19 +1,19 @@
 .negative-space-tutorial {
-  margin: 18px 0 20px;
-  padding: 16px;
+  margin: 9px 0 10px;
+  padding: 8px;
   border: 1px solid #dcd3c3;
   background: #f3efe6;
 }
-.negative-space-header { display:flex; align-items:flex-start; justify-content:space-between; gap:12px; margin-bottom:14px; }
-.negative-space-header h2 { margin:5px 0 5px; font-family:var(--serif); font-size:27px; font-weight:500; line-height:1.15; }
-.negative-space-header p { max-width:650px; margin:0; color:#696255; font-size:14px; line-height:1.5; }
+.negative-space-header { display:flex; align-items:flex-start; justify-content:space-between; gap: 6px; margin-bottom: 7px; }
+.negative-space-header h2 { margin: 2.5px 0 2.5px; font-family:var(--serif); font-size:27px; font-weight:500; line-height:1.15; }
+.negative-space-header p { max-width:650px; margin: 0; color:#696255; font-size:14px; line-height:1.5; }
 .negative-space-seal { display:grid; place-items:center; flex:0 0 48px; width:48px; height:48px; border:1px solid #c9bba7; border-radius:50%; color:#936d52; font-size:9px; line-height:1.35; text-align:center; letter-spacing:.8px; transform:rotate(8deg); }
-.negative-space-steps { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; }
+.negative-space-steps { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap: 5px; }
 .negative-space-step { min-width:0; overflow:hidden; border:1px solid #ddd4c6; background:#fffdf7; }
-.negative-space-step-title { display:flex; align-items:center; gap:8px; padding:10px 10px 0; }
+.negative-space-step-title { display:flex; align-items:center; gap: 4px; padding: 5px 5px 0; }
 .negative-space-step-title>span { display:grid; place-items:center; flex:0 0 28px; width:28px; height:28px; border-radius:50%; background:#e8dfd0; color:#705c49; font-size:12px; font-weight:700; }
-.negative-space-step-title h3 { margin:0; color:#4a463e; font-size:14px; font-weight:650; line-height:1.3; }
-.negative-space-drawing { display:block; width:100%; height:auto; padding:5px 7px 0; }
+.negative-space-step-title h3 { margin: 0; color:#4a463e; font-size:14px; font-weight:650; line-height:1.3; }
+.negative-space-drawing { display:block; width:100%; height:auto; padding: 2.5px 3.5px 0; }
 .ns-paper { fill:#fffdf7; stroke:#e2dacd; stroke-width:.8; }
 .ns-corners { fill:none; stroke:#cfc4b2; stroke-width:.8; }
 .ns-table { fill:none; stroke:#9e9586; stroke-width:1; stroke-linecap:round; }
@@ -28,25 +28,67 @@
 .ns-measure { fill:none; stroke:#7e8a72; stroke-width:1.1; stroke-linecap:round; }
 .ns-check-line { fill:none; stroke:#b27b58; stroke-width:1.2; stroke-dasharray:3 2; stroke-linejoin:round; }
 .ns-label { fill:#81745f; font-family:Arial,sans-serif; font-size:7px; letter-spacing:.55px; }
-.negative-space-instruction { margin:0; padding:8px 10px 4px; color:#45433d; font-size:13px; font-weight:600; line-height:1.4; }
-.negative-space-note { margin:0; padding:0 10px 11px; color:#777063; font-size:12px; line-height:1.45; }
-.negative-space-takeaway { display:flex; align-items:flex-start; gap:9px; margin-top:10px; padding:11px 12px; background:#e8e2d5; }
+.negative-space-instruction { margin: 0; padding: 4px 5px 2px; color:#45433d; font-size:13px; font-weight:600; line-height:1.4; }
+.negative-space-note { margin: 0; padding: 0 5px 5.5px; color:#777063; font-size:12px; line-height:1.45; }
+.negative-space-takeaway { display:flex; align-items:flex-start; gap: 4.5px; margin-top: 5px; padding: 5.5px 6px; background:#e8e2d5; }
 .negative-space-takeaway>span { flex:0 0 auto; color:#8a896d; font-size:18px; line-height:1.25; }
-.negative-space-takeaway p { margin:0; color:#625c50; font-size:13px; line-height:1.5; }
+.negative-space-takeaway p { margin: 0; color:#625c50; font-size:13px; line-height:1.5; }
 .negative-space-takeaway strong { color:#423f37; }
 @media(max-width:980px) { .negative-space-steps { grid-template-columns:repeat(2,minmax(0,1fr)); } }
 @media(max-width:560px) {
- .negative-space-tutorial { margin:14px 0 17px; padding:11px; }
- .negative-space-header { gap:7px; margin-bottom:9px; }
+ .negative-space-tutorial { margin: 7px 0 8.5px; padding: 5.5px; }
+ .negative-space-header { gap: 3.5px; margin-bottom: 4.5px; }
  .negative-space-header h2 { font-size:22px; }
  .negative-space-header p { font-size:13px; line-height:1.4; }
  .negative-space-seal { flex-basis:39px; width:39px; height:39px; font-size:8px; }
- .negative-space-steps { grid-template-columns:1fr; gap:8px; }
+ .negative-space-steps { grid-template-columns:1fr; gap: 4px; }
  .negative-space-step { display:grid; grid-template-columns:minmax(0,1fr) 44%; grid-template-rows:auto 1fr; }
- .negative-space-step-title { grid-column:1/-1; padding:8px 9px 0; }
- .negative-space-drawing { grid-column:2; grid-row:2 / span 2; align-self:center; padding:4px; }
- .negative-space-instruction { grid-column:1; grid-row:2; align-self:end; padding:8px 8px 4px; font-size:12px; }
- .negative-space-note { grid-column:1; grid-row:3; align-self:start; padding:0 8px 8px; font-size:11px; }
- .negative-space-takeaway { padding:9px; }
+ .negative-space-step-title { grid-column:1/-1; padding: 4px 4.5px 0; }
+ .negative-space-drawing { grid-column:2; grid-row:2 / span 2; align-self:center; padding: 2px; }
+ .negative-space-instruction { grid-column:1; grid-row:2; align-self:end; padding: 4px 4px 2px; font-size:12px; }
+ .negative-space-note { grid-column:1; grid-row:3; align-self:start; padding: 0 4px 4px; font-size:11px; }
+ .negative-space-takeaway { padding: 4.5px; }
  .negative-space-takeaway p { font-size:12px; }
 }
+/* Interactive five-step layout aligned with the light-observation lesson */
+.negative-space-header{align-items:center;gap:8px;margin-bottom:6px}
+.negative-space-header h2{font-size:clamp(1.9rem,3vw,2.45rem);line-height:1.1}
+.negative-space-header p{font-size:1rem;line-height:1.4}
+.negative-space-progress{flex:0 0 min(300px,38%);font-size:.86rem;color:#687987}
+.negative-space-progress>div{height:6px;background:#e9ecea;border-radius:99px;overflow:hidden;margin-top:5px}
+.negative-space-progress>div>span{display:block;height:100%;background:#86aaca;transition:width .2s}
+.negative-space-steps{grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}
+.negative-space-step{display:flex;flex-direction:column;min-width:0;padding:4px;border-radius:9px;transition:background-color .15s,border-color .15s}
+.negative-space-step.is-active{border-color:#86aaca;background:#f1f6f8}
+.negative-space-step.is-complete{background:#f0f6f2}
+.negative-space-step-title{display:flex;align-items:center;gap:6px;width:100%;min-width:0;border:0;background:transparent;text-align:left;cursor:pointer;font:inherit;padding:0}
+.negative-space-step-title:focus-visible,.negative-space-check input:focus-visible{outline:3px solid #4c87b0;outline-offset:2px;border-radius:4px}
+.negative-space-step-title>span{flex:0 0 30px;width:30px;height:30px;font-size:.96rem}
+.negative-space-step.is-complete .negative-space-step-title>span{background:#dcebe3;color:#285c47}
+.negative-space-step-title h3{font-size:1rem;font-weight:800;line-height:1.15;overflow-wrap:anywhere}
+.negative-space-drawing{padding:2px 0 0}
+.negative-space-check{display:flex;align-items:center;gap:5px;margin-top:auto;padding-top:3px;color:#687987;font-size:.88rem;line-height:1.15;cursor:pointer}
+.negative-space-check input{width:17px;height:17px;accent-color:#416c80;flex-shrink:0;margin:0}
+.negative-space-detail{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);align-items:center;gap:12px;margin-top:7px;padding:8px 10px;background:#f5f4ef;border-radius:9px;color:#19364d}
+.negative-space-detail>div>span{font-size:.78rem;letter-spacing:.06em;font-weight:800;color:#687987}
+.negative-space-detail h3{font-size:1.15rem;line-height:1.2;margin:2px 0 0}
+.negative-space-detail p{font-size:1rem;line-height:1.4;font-weight:700;margin:0 0 4px}
+.negative-space-detail small{display:block;color:#4d687a;font-size:.92rem;line-height:1.4}
+.negative-space-takeaway{margin-top:7px}
+.negative-space-success{margin:7px 0 0;padding:7px 10px;border-radius:8px;background:#edf6ef;color:#28654b;font-size:.95rem;font-weight:700}
+@media(max-width:1100px){.negative-space-steps{grid-template-columns:repeat(5,minmax(0,1fr));gap:4px}.negative-space-step{padding:3px}.negative-space-step-title{gap:4px}.negative-space-step-title>span{flex-basis:26px;width:26px;height:26px}.negative-space-step-title h3{font-size:.9rem}.negative-space-drawing{padding:2px 0 0}}
+@media(max-width:760px){.negative-space-header{align-items:flex-start;flex-direction:column;gap:6px}.negative-space-progress{flex-basis:auto;width:100%}.negative-space-steps{grid-template-columns:repeat(2,minmax(0,1fr));gap:5px}.negative-space-step:last-child:nth-child(odd){grid-column:1/-1}.negative-space-step-title h3{font-size:1rem}.negative-space-drawing{width:100%;height:auto;padding:2px 0 0}.negative-space-detail{grid-template-columns:1fr;gap:5px}.negative-space-detail p{font-size:.96rem}.negative-space-takeaway p{font-size:.9rem}}
+@media(prefers-reduced-motion:reduce){.negative-space-progress>div>span,.negative-space-step{transition:none}}
+
+/* Text instructions use the same compact, numbered panel as the light-observation reference lesson. */
+.negative-space-text-steps{margin:6px 0 7px;padding:9px 11px;background:#f5f4ef;border:1px solid #e5e2d9;border-radius:9px;color:#19364d}
+.negative-space-text-steps h3{font-size:1.08rem;line-height:1.25;margin:0 0 6px}
+.negative-space-text-steps ol{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px 16px;list-style:none;padding:0;margin:0}
+.negative-space-text-steps li{display:flex;align-items:flex-start;gap:8px;min-width:0}
+.negative-space-text-steps li>span{display:grid;place-items:center;flex:0 0 27px;height:27px;border-radius:50%;background:#e2ebef;color:#234b62;font-size:.82rem;font-weight:800}
+.negative-space-text-steps li p{font-size:.94rem;line-height:1.4;margin:2px 0 0}
+@media(max-width:600px){.negative-space-text-steps{padding:8px}.negative-space-text-steps ol{grid-template-columns:1fr}.negative-space-text-steps li p{font-size:.93rem}}
+
+/* Progress sits between the heading and instruction list, like the reference lesson. */
+.negative-space-progress{width:100%;max-width:none;flex:none;margin:6px 0;font-size:.88rem;color:#687987}
+.negative-space-progress>div{height:6px;background:#e9ecea;border-radius:99px;overflow:hidden;margin-top:5px}

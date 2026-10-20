@@ -74,6 +74,18 @@ function DrawingContent({ title, instruction }: { title: string; instruction: st
     return <PencilSketch><path d="M78 27 C60 31 57 47 62 62 L59 103 Q83 119 105 103 L101 62 C107 46 100 31 83 27 Z" fill="#e3ded2" fillOpacity=".45" stroke={graphite} strokeWidth="1.6" /><path d="M27 22 L50 22 L50 124 L27 124 Z M119 22 L145 22 L145 124 L119 124 Z" fill="#d7d8c8" fillOpacity=".75" stroke={sage} strokeDasharray="3 2" /><path d="M52 72 L60 72 M52 72 L56 68 M52 72 L56 76 M117 72 L109 72 M117 72 L113 68 M117 72 L113 76" stroke={accent} fill="none" strokeWidth="1.4" /></PencilSketch>;
   }
 
+  if (/цвет|палитр|оттен|насыщ|температур/.test(text)) {
+    return <PencilSketch><rect x="27" y="27" width="48" height="34" rx="3" fill="#d9b1a7" stroke={graphite} strokeWidth="1" /><rect x="85" y="27" width="48" height="34" rx="3" fill="#d7c7a9" stroke={graphite} strokeWidth="1" /><rect x="143" y="27" width="48" height="34" rx="3" fill="#a9bac2" stroke={graphite} strokeWidth="1" /><path d="M31 82 L207 82 M31 96 L183 96 M31 110 L194 110" stroke={lightPencil} strokeWidth="1.2" /><path d="M51 72 L51 77 M109 72 L109 77 M167 72 L167 77" stroke={accent} strokeWidth="1.2" /></PencilSketch>;
+  }
+
+  if (/перспектив|горизонт|точк.*сход|уровень глаз/.test(text)) {
+    return <PencilSketch><path d="M24 72 L216 72" stroke={accent} strokeWidth="1.2" strokeDasharray="4 3" /><circle cx="120" cy="72" r="3" fill={accent} /><path d="M34 29 L120 72 L34 125 M206 29 L120 72 L206 125 M34 29 L206 29 M34 125 L206 125" fill="none" stroke={pencil} strokeWidth="1.3" /><path d="M73 48 L73 96 M166 48 L166 96" stroke={lightPencil} strokeWidth="1" strokeDasharray="3 3" /></PencilSketch>;
+  }
+
+  if (/композиц|располож|баланс|фокус|акцент|кадр|миниатюр/.test(text)) {
+    return <PencilSketch><rect x="38" y="18" width="164" height="116" fill="none" stroke={lightPencil} strokeWidth="1.1" /><path d="M92.7 18 L92.7 134 M147.3 18 L147.3 134 M38 56.7 L202 56.7 M38 95.3 L202 95.3" stroke={lightPencil} strokeWidth=".8" strokeDasharray="3 3" /><circle cx="147" cy="57" r="17" fill="#e6ded0" stroke={pencil} strokeWidth="1.4" /><path d="M56 112 Q68 91 83 107 T112 110" fill="none" stroke={sage} strokeWidth="1.6" /><path d="M147 57 L174 38 M167 38 L174 38 L174 45" fill="none" stroke={accent} strokeWidth="1.4" /></PencilSketch>;
+  }
+
   if (/свет|тень|полутон|освещён|освещен/.test(text)) {
     return <PencilSketch><circle cx="113" cy="73" r="39" fill="#eee9df" stroke={graphite} strokeWidth="1.3" /><path d="M113 34 A39 39 0 0 1 113 112 Z" fill="#77766d" opacity=".9" /><path d="M113 34 A39 39 0 0 1 113 112" fill="none" stroke={graphite} strokeWidth="1.1" /><circle cx="97" cy="56" r="5" fill="#fffdf7" /><ellipse cx="116" cy="117" rx="45" ry="5" fill="#a9a396" opacity=".5" /><path d="M36 26 L55 36 L47 38 M55 36 L51 28" fill="none" stroke={accent} strokeWidth="1.5" /></PencilSketch>;
   }

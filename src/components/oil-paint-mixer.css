@@ -1,61 +1,61 @@
-.oil-mixer{margin:28px 0 34px;padding:clamp(20px,3vw,32px);border:1px solid #ded9cd;background:#f5f1e8;color:#292a27}
-.oil-mixer-heading{display:flex;align-items:flex-start;justify-content:space-between;gap:20px}
+.oil-mixer{margin: 14px 0 17px;padding: clamp(10px,1.5vw,16px);border:1px solid #ded9cd;background:#f5f1e8;color:#292a27}
+.oil-mixer-heading{display:flex;align-items:flex-start;justify-content:space-between;gap: 10px}
 .oil-mixer-eyebrow{font-size:10px;letter-spacing:.16em;font-weight:700;color:#777969}
-.oil-mixer-heading h2{margin:10px 0 8px;font-size:clamp(25px,3vw,36px);font-weight:500;letter-spacing:-.04em}
+.oil-mixer-heading h2{margin: 5px 0 4px;font-size:clamp(25px,3vw,36px);font-weight:500;letter-spacing:-.04em}
 .oil-mixer-heading h2 em{font-family:Georgia,serif;font-weight:400}
-.oil-mixer-heading p{max-width:660px;margin:0;color:#66665d;line-height:1.65;font-size:14px}
+.oil-mixer-heading p{max-width:660px;margin: 0;color:#66665d;line-height:1.65;font-size:14px}
 .oil-mixer-mark{display:grid;place-items:center;flex:0 0 44px;width:44px;height:44px;border:1px solid #d6d0c2;border-radius:50%;font-size:24px;color:#8d8e75}
-.oil-mixer-presets{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}
-.oil-mixer-preset{border:1px solid #d5d0c4;background:transparent;color:#55564f;padding:9px 15px;border-radius:999px;font:inherit;font-size:12px;cursor:pointer;transition:background .15s,color .15s,border-color .15s}
+.oil-mixer-presets{display:flex;flex-wrap:wrap;gap: 4px;margin-top: 12px}
+.oil-mixer-preset{border:1px solid #d5d0c4;background:transparent;color:#55564f;padding: 4.5px 7.5px;border-radius:999px;font:inherit;font-size:12px;cursor:pointer;transition:background .15s,color .15s,border-color .15s}
 .oil-mixer-preset:hover,.oil-mixer-preset.is-active{background:#343631;border-color:#343631;color:#fff}
-.oil-mixer-recipe-note{min-height:22px;margin:12px 0 20px;color:#77776d;font-size:12px;line-height:1.5}
-.oil-mixer-workspace{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(230px,.95fr);gap:24px}
-.oil-mixer-controls{display:flex;flex-direction:column;gap:18px}
-.oil-mixer-pigment-field label,.oil-mixer-ratio label{display:block;margin-bottom:8px;font-size:12px;font-weight:650;color:#45463f}
-.oil-mixer-select-row{display:flex;align-items:center;gap:10px;border:1px solid #d8d2c6;background:#fbf9f4;padding:6px 10px}
+.oil-mixer-recipe-note{min-height:22px;margin: 6px 0 10px;color:#77776d;font-size:12px;line-height:1.5}
+.oil-mixer-workspace{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(230px,.95fr);gap: 12px}
+.oil-mixer-controls{display:flex;flex-direction:column;gap: 9px}
+.oil-mixer-pigment-field label,.oil-mixer-ratio label{display:block;margin-bottom: 4px;font-size:12px;font-weight:650;color:#45463f}
+.oil-mixer-select-row{display:flex;align-items:center;gap: 5px;border:1px solid #d8d2c6;background:#fbf9f4;padding: 3px 5px}
 .oil-mixer-dot{width:24px;height:24px;flex:0 0 24px;border-radius:50%;border:1px solid #00000012;box-shadow:inset 0 0 0 1px #ffffff35}
-.oil-mixer-select-row select{width:100%;min-width:0;border:0;background:transparent;color:#34352f;padding:7px 0;font:inherit;font-size:13px;outline-offset:4px}
-.oil-mixer-index{margin:7px 0 0;color:#7c7a70;font-size:11px;line-height:1.45}
-.oil-mixer-ratio{margin-top:2px;padding-top:16px;border-top:1px solid #ded9cd}
-.oil-mixer-ratio-heading{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.oil-mixer-select-row select{width:100%;min-width:0;border:0;background:transparent;color:#34352f;padding: 3.5px 0;font:inherit;font-size:13px;outline-offset:4px}
+.oil-mixer-index{margin: 3.5px 0 0;color:#7c7a70;font-size:11px;line-height:1.45}
+.oil-mixer-ratio{margin-top: 1px;padding-top: 8px;border-top:1px solid #ded9cd}
+.oil-mixer-ratio-heading{display:flex;justify-content:space-between;align-items:center;gap: 6px}
 .oil-mixer-ratio-heading strong{font-size:13px;font-variant-numeric:tabular-nums}
 .oil-mixer-ratio input[type=range]{width:100%;accent-color:#777b61;cursor:pointer}
-.oil-mixer-range-labels{display:flex;justify-content:space-between;gap:12px;color:#8a887e;font-size:10px}
-.oil-mixer-swap{align-self:flex-start;border:0;background:transparent;color:#686b58;padding:3px 0;font:inherit;font-size:12px;cursor:pointer;text-decoration:underline;text-underline-offset:4px}
-.oil-mixer-result{min-width:0;display:flex;flex-direction:column;padding:12px;background:#e9e4d9;border:1px solid #ded8cc}
-.oil-mixer-swatch{position:relative;min-height:190px;display:flex;align-items:flex-end;padding:15px;overflow:hidden;border:1px solid #0000000a;transition:background-color .15s ease}
+.oil-mixer-range-labels{display:flex;justify-content:space-between;gap: 6px;color:#8a887e;font-size:10px}
+.oil-mixer-swap{align-self:flex-start;border:0;background:transparent;color:#686b58;padding: 1.5px 0;font:inherit;font-size:12px;cursor:pointer;text-decoration:underline;text-underline-offset:4px}
+.oil-mixer-result{min-width:0;display:flex;flex-direction:column;padding: 6px;background:#e9e4d9;border:1px solid #ded8cc}
+.oil-mixer-swatch{position:relative;min-height:190px;display:flex;align-items:flex-end;padding: 7.5px;overflow:hidden;border:1px solid #0000000a;transition:background-color .15s ease}
 .oil-mixer-swatch:after{content:"";position:absolute;inset:0;background:linear-gradient(140deg,#ffffff22,transparent 42%,#00000008);pointer-events:none}
 .oil-mixer-swatch span{position:relative;z-index:1;color:#ffffffd9;font-size:9px;letter-spacing:.18em;text-shadow:0 1px 3px #0008}
-.oil-mixer-result-meta{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:15px 2px;border-bottom:1px solid #d4cdbf}
-.oil-mixer-result-meta div{display:flex;flex-direction:column;gap:5px;min-width:0}
+.oil-mixer-result-meta{display:grid;grid-template-columns:1fr 1fr;gap: 6px;padding: 7.5px 1px;border-bottom:1px solid #d4cdbf}
+.oil-mixer-result-meta div{display:flex;flex-direction:column;gap: 2.5px;min-width:0}
 .oil-mixer-result-meta span{font-size:10px;color:#77766c}
 .oil-mixer-result-meta strong{font-size:13px;color:#35362f;font-variant-numeric:tabular-nums}
-.oil-mixer-components{display:flex;flex-direction:column;gap:9px;padding:14px 2px 3px}
-.oil-mixer-components div{display:grid;grid-template-columns:16px minmax(0,1fr) auto;align-items:center;gap:8px;font-size:11px;color:#5e5e54}
+.oil-mixer-components{display:flex;flex-direction:column;gap: 4.5px;padding: 7px 1px 1.5px}
+.oil-mixer-components div{display:grid;grid-template-columns:16px minmax(0,1fr) auto;align-items:center;gap: 4px;font-size:11px;color:#5e5e54}
 .oil-mixer-components div>span:first-child{width:14px;height:14px;border-radius:50%;border:1px solid #00000012}
 .oil-mixer-components div strong{font-variant-numeric:tabular-nums;color:#3a3b34}
-.oil-mixer-disclaimer{margin-top:20px;padding:14px 16px;background:#ebe7dc;border-left:3px solid #a3a58d;color:#6e6c61;font-size:11px;line-height:1.7}
+.oil-mixer-disclaimer{margin-top: 10px;padding: 7px 8px;background:#ebe7dc;border-left:3px solid #a3a58d;color:#6e6c61;font-size:11px;line-height:1.7}
 .oil-mixer-disclaimer strong{color:#484940}
 .oil-mixer button:focus-visible,.oil-mixer select:focus-visible,.oil-mixer input:focus-visible{outline:2px solid #72765a;outline-offset:3px}
-@media(max-width:700px){.oil-mixer-workspace{grid-template-columns:1fr}.oil-mixer-result{order:-1}.oil-mixer-swatch{min-height:150px}.oil-mixer-heading{gap:12px}.oil-mixer-mark{flex-basis:36px;width:36px;height:36px;font-size:20px}.oil-mixer-ratio-heading{align-items:flex-start;flex-direction:column;gap:3px}}
+@media(max-width:700px){.oil-mixer-workspace{grid-template-columns:1fr}.oil-mixer-result{order:-1}.oil-mixer-swatch{min-height:150px}.oil-mixer-heading{gap: 6px}.oil-mixer-mark{flex-basis:36px;width:36px;height:36px;font-size:20px}.oil-mixer-ratio-heading{align-items:flex-start;flex-direction:column;gap: 1.5px}}
 @media(prefers-reduced-motion:reduce){.oil-mixer-preset,.oil-mixer-swatch{transition:none}}
 
-.oil-mixer-step{display:flex;align-items:flex-start;gap:12px;margin-top:26px}
+.oil-mixer-step{display:flex;align-items:flex-start;gap: 6px;margin-top: 13px}
 .oil-mixer-step-number{display:grid;place-items:center;flex:0 0 30px;width:30px;height:30px;border:1px solid #c9c3b6;border-radius:50%;font-size:11px;color:#72765a;font-variant-numeric:tabular-nums}
-.oil-mixer-step h3{margin:1px 0 4px;font-size:16px;font-weight:600;letter-spacing:-.02em}
-.oil-mixer-step p{margin:0;color:#77766c;font-size:12px;line-height:1.5}
-.oil-mixer-step-next{margin-top:28px}
-.oil-mixer-task-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:16px}
-.oil-mixer-task{display:flex;flex-direction:column;align-items:flex-start;gap:8px;min-height:108px;padding:16px;border:1px solid #d5d0c4;background:#fbf9f4;color:#34352f;text-align:left;cursor:pointer;transition:background .15s,border-color .15s,color .15s}
+.oil-mixer-step h3{margin: 0.5px 0 2px;font-size:16px;font-weight:600;letter-spacing:-.02em}
+.oil-mixer-step p{margin: 0;color:#77766c;font-size:12px;line-height:1.5}
+.oil-mixer-step-next{margin-top: 14px}
+.oil-mixer-task-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap: 5px;margin-top: 8px}
+.oil-mixer-task{display:flex;flex-direction:column;align-items:flex-start;gap: 4px;min-height:108px;padding: 8px;border:1px solid #d5d0c4;background:#fbf9f4;color:#34352f;text-align:left;cursor:pointer;transition:background .15s,border-color .15s,color .15s}
 .oil-mixer-task strong{font-size:15px;font-weight:600}
 .oil-mixer-task span{color:#77766c;font-size:11px;line-height:1.5}
 .oil-mixer-task:hover,.oil-mixer-task.is-active{border-color:#777b61;background:#e7e5d8}
 .oil-mixer-task.is-active strong{color:#454936}
-.oil-mixer-third-control{display:flex;flex-direction:column;gap:16px;padding:16px;border:1px dashed #c9c3b6;background:#efebe1}
-.oil-mixer-add-third{align-self:flex-start;border:1px solid #bdb8aa;background:#fbf9f4;color:#4c4e42;padding:10px 14px;font:inherit;font-size:12px;cursor:pointer}
+.oil-mixer-third-control{display:flex;flex-direction:column;gap: 8px;padding: 8px;border:1px dashed #c9c3b6;background:#efebe1}
+.oil-mixer-add-third{align-self:flex-start;border:1px solid #bdb8aa;background:#fbf9f4;color:#4c4e42;padding: 5px 7px;font:inherit;font-size:12px;cursor:pointer}
 .oil-mixer-add-third:hover,.oil-mixer-add-third.is-active{border-color:#777b61;background:#e1e2d4}
-.oil-mixer-third-control .oil-mixer-ratio{margin:0;padding-top:14px}
-@media(max-width:700px){.oil-mixer-task-list{grid-template-columns:1fr}.oil-mixer-task{min-height:0}.oil-mixer-step-next{margin-top:23px}}
+.oil-mixer-third-control .oil-mixer-ratio{margin: 0;padding-top: 7px}
+@media(max-width:700px){.oil-mixer-task-list{grid-template-columns:1fr}.oil-mixer-task{min-height:0}.oil-mixer-step-next{margin-top: 11.5px}}
 @media(prefers-reduced-motion:reduce){.oil-mixer-task,.oil-mixer-add-third{transition:none}}
 
 
@@ -63,4 +63,4 @@
 .oil-mixer button,.oil-mixer select{min-height:40px}
 .oil-mixer input[type=range]{min-height:32px;touch-action:pan-y}
 .oil-mixer button:focus-visible,.oil-mixer select:focus-visible,.oil-mixer input:focus-visible{outline-color:#555a3f}
-@media(max-width:420px){.oil-mixer{padding:16px}.oil-mixer-result-meta{grid-template-columns:1fr 1fr;gap:8px}.oil-mixer-task{padding:13px}.oil-mixer-ratio-heading strong{font-size:12px}}
+@media(max-width:420px){.oil-mixer{padding: 8px}.oil-mixer-result-meta{grid-template-columns:1fr 1fr;gap: 4px}.oil-mixer-task{padding: 6.5px}.oil-mixer-ratio-heading strong{font-size:12px}}
