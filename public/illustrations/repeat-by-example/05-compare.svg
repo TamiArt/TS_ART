@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 460" role="img" aria-labelledby="title desc">
+<title>Шаг 5. Сравнение с натурой</title><desc>Два согласованных карандашных шара рядом для сравнения тональных отношений.</desc>
+<defs>
+ <linearGradient id="paper" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fffdf8"/><stop offset="1" stop-color="#f1ece1"/></linearGradient>
+ <radialGradient id="sphere" cx="27%" cy="20%" r="78%"><stop stop-color="#fffef9"/><stop offset=".28" stop-color="#d9d5cb"/><stop offset=".62" stop-color="#9d9a92"/><stop offset=".86" stop-color="#575751"/><stop offset="1" stop-color="#343630"/></radialGradient>
+ <linearGradient id="shadow"><stop stop-color="#a6a198" stop-opacity=".2"/><stop offset=".6" stop-color="#55534d" stop-opacity=".75"/><stop offset="1" stop-color="#3b3a35" stop-opacity=".05"/></linearGradient>
+ <radialGradient id="highlight" cx="35%" cy="30%" r="65%"><stop stop-color="#fffef8"/><stop offset="1" stop-color="#e4d9bd" stop-opacity=".2"/></radialGradient>
+ <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency=".72" numOctaves="2" seed="7" result="noise"/><feColorMatrix in="noise" type="saturate" values="0"/><feComponentTransfer><feFuncA type="table" tableValues="0 .16"/></feComponentTransfer><feBlend in="SourceGraphic" mode="multiply"/></filter>
+ <marker id="arrow" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto"><path d="M0 0L6 3L0 6" fill="none" stroke="#477ba7" stroke-width="1.2"/></marker>
+</defs>
+<rect width="640" height="460" rx="12" fill="url(#paper)"/>
+<path d="M36 366Q170 360 280 365T600 362" stroke="#9d978b" stroke-width="1.4" fill="none" opacity=".6"/>
+<g filter="url(#grain)">
+ <g transform="translate(-154 50) scale(.48)"><ellipse cx="347" cy="369" rx="145" ry="21" fill="url(#shadow)"/><circle cx="340" cy="245" r="116" fill="url(#sphere)" stroke="#4b4943" stroke-width="2"/><ellipse cx="304" cy="205" rx="35" ry="25" fill="url(#highlight)"/><path d="M242 188Q263 147 304 137M226 216Q236 177 260 158M233 272Q239 318 278 343" fill="none" stroke="#4d4b45" stroke-width="1.5" opacity=".55"/></g>
+ <g transform="translate(154 50) scale(.48)"><ellipse cx="347" cy="369" rx="145" ry="21" fill="url(#shadow)"/><circle cx="340" cy="245" r="116" fill="url(#sphere)" stroke="#4b4943" stroke-width="2"/><ellipse cx="304" cy="205" rx="35" ry="25" fill="url(#highlight)"/><path d="M242 188Q263 147 304 137M226 216Q236 177 260 158M233 272Q239 318 278 343" fill="none" stroke="#4d4b45" stroke-width="1.5" opacity=".55"/></g>
+</g>
+<text x="95" y="82" fill="#19364d" font-size="21" font-family="Georgia,serif" font-style="italic">Натура</text><text x="431" y="82" fill="#19364d" font-size="21" font-family="Georgia,serif" font-style="italic">Рисунок</text>
+<path d="M267 222H370" stroke="#477ba7" stroke-width="2" fill="none" marker-end="url(#arrow)"/><path d="M370 238H267" stroke="#477ba7" stroke-width="2" fill="none" marker-end="url(#arrow)"/>
+<text x="181" y="412" fill="#477ba7" font-size="19" font-family="Georgia,serif">Сравни светлоту и тень</text>
+</svg>

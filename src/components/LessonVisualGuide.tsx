@@ -1,11 +1,21 @@
 import type { Lesson } from "../data/types";
 import StepIllustration from "./StepIllustration";
 import NegativeSpaceTutorial from "./NegativeSpaceTutorial";
+import RepeatByExample from "./RepeatByExample";
 import "./lesson-visual-guide.css";
 import { buildLessonVisualStages, classifyLesson, getVisualKindLabel, getVisualPrinciple } from "./lessonVisuals";
 
 export default function LessonVisualGuide({ lesson }: { lesson: Lesson }) {
   if (lesson.id === "negative-space") return <NegativeSpaceTutorial />;
+
+  const lessonText = [lesson.title, ...Object.values(lesson)]
+    .filter((value): value is string => typeof value === "string")
+    .join(" ")
+    .toLocaleLowerCase("ru");
+  const isLightShadowLesson =
+    /светотен|свет и тень|тональн(ая|ые|ых) зон|переход.{0,20}тени|повтори по образцу/.test(lessonText);
+
+  if (isLightShadowLesson) return <RepeatByExample />;
 
   const kind = classifyLesson(lesson);
   const stages = buildLessonVisualStages(lesson);

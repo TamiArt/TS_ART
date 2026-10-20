@@ -174,3 +174,36 @@
   .step-list li { padding: 7px 0; }
   .check-list li { font-size: 13px; }
 }
+
+
+/* Dense lesson reading layout: steps are plain numbered text, not bordered list rows. */
+.lesson-page { padding-top: 12px; padding-bottom: 20px; }
+.back-link { margin-bottom: 7px; }
+.lesson-main h1 { margin: 8px 0 6px; }
+.lesson-meta { gap: 8px; padding-bottom: 8px; }
+.lesson-objective { gap: 9px; padding: 10px 12px; margin: 9px 0 12px; }
+.lesson-objective p { line-height: 1.35; }
+.lesson-section { gap: 8px; margin: 12px 0; }
+.lesson-section h2 { margin-bottom: 4px; }
+.lesson-section > div > p { margin: 3px 0 5px; line-height: 1.4; }
+.step-list { display: flex; flex-direction: column; gap: 3px; }
+.step-list li { display: flex; align-items: baseline; gap: 7px; padding: 2px 0; margin: 0; border: 0; }
+.step-list li > span { flex: 0 0 23px; padding: 0; font-size: 11px; line-height: 1.4; color: #9a7359; }
+.step-list li p { margin: 0; line-height: 1.4; }
+.check-list { display: flex; flex-direction: column; gap: 3px; }
+.check-list li { gap: 7px; padding: 2px 0; border: 0; line-height: 1.4; }
+.reflection-box { padding: 13px; margin-top: 14px; }
+.reflection-box label { margin-bottom: 7px; }
+.reflection-box textarea { min-height: 75px; }
+@media (max-width: 560px) {
+  .lesson-page { padding-top: 8px; padding-bottom: 14px; }
+  .lesson-meta { gap: 7px; padding-bottom: 7px; }
+  .lesson-objective { padding: 9px 10px; margin: 8px 0 10px; }
+  .lesson-section { gap: 6px; margin: 10px 0; }
+  .lesson-section h2 { margin-bottom: 3px; }
+  .step-list li { gap: 6px; padding: 2px 0; }
+  .step-list li > span { flex-basis: 21px; }
+  .check-list { gap: 2px; }
+  .check-list li { padding: 2px 0; }
+  .reflection-box { padding: 11px; margin-top: 12px; }
+}
