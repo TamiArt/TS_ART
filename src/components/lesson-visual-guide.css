@@ -1,6 +1,6 @@
 .lesson-visual-guide {
-  margin: 18px 0 20px;
-  padding: 16px;
+  margin: 9px 0 10px;
+  padding: 8px;
   border: 1px solid #e0d9cc;
   background: #f4f0e7;
 }
@@ -8,11 +8,11 @@
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  gap: 12px;
-  margin-bottom: 12px;
+  gap: 6px;
+  margin-bottom: 6px;
 }
 .lesson-visual-heading h2 {
-  margin: 4px 0 5px;
+  margin: 2px 0 2.5px;
   font-family: var(--serif);
   font-size: 27px;
   font-weight: 500;
@@ -20,7 +20,7 @@
 }
 .lesson-visual-heading p {
   max-width: 760px;
-  margin: 5px 0 0;
+  margin: 2.5px 0 0;
   color: #625f55;
   font-size: 15px;
   line-height: 1.45;
@@ -40,8 +40,8 @@
 }
 .lesson-visual-kind {
   display: inline-block;
-  margin: 2px 0 0 7px;
-  padding: 3px 7px;
+  margin: 1px 0 0 3.5px;
+  padding: 1.5px 3.5px;
   border: 1px solid #d9d0c0;
   color: #716752;
   font-size: 12px;
@@ -50,7 +50,7 @@
 .lesson-visual-stages {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 10px;
+  gap: 5px;
 }
 .lesson-visual-stage {
   min-width: 0;
@@ -63,8 +63,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 7px;
-  padding: 8px 10px 0;
+  gap: 3.5px;
+  padding: 4px 5px 0;
 }
 .lesson-visual-stage-top > span {
   display: grid;
@@ -91,12 +91,12 @@
   max-width: 340px;
   height: auto;
   margin: 0 auto;
-  padding: 5px 8px 3px;
+  padding: 2.5px 4px 1.5px;
 }
 .lesson-visual-stage > p {
   flex: 1;
   margin: 0;
-  padding: 10px 12px 12px;
+  padding: 5px 6px 6px;
   border-top: 1px solid #eee8dd;
   color: #45443e;
   font-size: 15px;
@@ -104,10 +104,10 @@
 }
 .lesson-visual-footer {
   display: flex;
-  gap: 9px;
+  gap: 4.5px;
   align-items: flex-start;
-  margin-top: 10px;
-  padding: 10px 12px;
+  margin-top: 5px;
+  padding: 5px 6px;
   background: #e9e5d9;
 }
 .lesson-visual-footer-mark {
@@ -129,81 +129,81 @@
   .lesson-visual-svg { max-width: 380px; }
 }
 @media (max-width: 560px) {
-  .lesson-visual-guide { margin: 14px 0 17px; padding: 11px; }
-  .lesson-visual-heading { gap: 8px; margin-bottom: 9px; }
+  .lesson-visual-guide { margin: 7px 0 8.5px; padding: 5.5px; }
+  .lesson-visual-heading { gap: 4px; margin-bottom: 4.5px; }
   .lesson-visual-heading h2 { font-size: 23px; }
   .lesson-visual-heading p { font-size: 14px; line-height: 1.4; }
   .lesson-visual-stamp { width: 40px; height: 40px; font-size: 9px; }
-  .lesson-visual-kind { font-size: 11px; margin-left: 3px; }
-  .lesson-visual-stages { grid-template-columns: 1fr; gap: 8px; }
+  .lesson-visual-kind { font-size: 11px; margin-left: 1.5px; }
+  .lesson-visual-stages { grid-template-columns: 1fr; gap: 4px; }
   .lesson-visual-stage { display: grid; grid-template-columns: minmax(0, 1fr) 46%; grid-template-rows: auto 1fr; }
-  .lesson-visual-stage-top { grid-column: 1 / -1; padding: 7px 9px 0; }
-  .lesson-visual-svg { grid-column: 2; grid-row: 2; align-self: center; width: 100%; padding: 4px; }
-  .lesson-visual-stage > p { grid-column: 1; grid-row: 2; align-self: center; border-top: 0; padding: 9px; font-size: 14px; line-height: 1.4; }
-  .lesson-visual-footer { padding: 9px; }
+  .lesson-visual-stage-top { grid-column: 1 / -1; padding: 3.5px 4.5px 0; }
+  .lesson-visual-svg { grid-column: 2; grid-row: 2; align-self: center; width: 100%; padding: 2px; }
+  .lesson-visual-stage > p { grid-column: 1; grid-row: 2; align-self: center; border-top: 0; padding: 4.5px; font-size: 14px; line-height: 1.4; }
+  .lesson-visual-footer { padding: 4.5px; }
   .lesson-visual-footer p { font-size: 13px; }
 }
 
 /* Compact reading rhythm with larger, easier-to-read lesson instructions. */
-.lesson-page { padding-top: 17px; padding-bottom: 30px; }
-.back-link { margin-bottom: 10px; }
-.lesson-main h1 { margin: 12px 0 9px; line-height: 1.1; }
-.lesson-meta { gap: 10px; padding-bottom: 13px; font-size: 12px; }
-.lesson-objective { gap: 12px; padding: 15px 17px; margin: 15px 0 18px; }
+.lesson-page { padding-top: 8.5px; padding-bottom: 15px; }
+.back-link { margin-bottom: 5px; }
+.lesson-main h1 { margin: 6px 0 4.5px; line-height: 1.1; }
+.lesson-meta { gap: 5px; padding-bottom: 6.5px; font-size: 12px; }
+.lesson-objective { gap: 6px; padding: 7.5px 8.5px; margin: 7.5px 0 9px; }
 .lesson-objective p { font-size: 19px; line-height: 1.4; }
-.lesson-section { gap: 10px; margin: 18px 0; }
-.lesson-section h2 { margin-bottom: 7px; }
-.lesson-section > div > p { font-size: 15px; line-height: 1.5; margin: 5px 0 9px; }
-.step-list li { gap: 10px; padding: 8px 0; }
-.step-list li > span { font-size: 12px; padding-top: 2px; }
+.lesson-section { gap: 5px; margin: 9px 0; }
+.lesson-section h2 { margin-bottom: 3.5px; }
+.lesson-section > div > p { font-size: 15px; line-height: 1.5; margin: 2.5px 0 4.5px; }
+.step-list li { gap: 5px; padding: 4px 0; }
+.step-list li > span { font-size: 12px; padding-top: 1px; }
 .step-list li p { font-size: 15px; line-height: 1.45; }
-.check-list li { gap: 9px; padding: 8px 0; font-size: 14px; line-height: 1.45; }
-.reflection-box { padding: 17px; margin-top: 22px; }
-.lesson-aside { padding-top: 4px; }
-.aside-tip { padding: 13px 0; }
+.check-list li { gap: 4.5px; padding: 4px 0; font-size: 14px; line-height: 1.45; }
+.reflection-box { padding: 8.5px; margin-top: 11px; }
+.lesson-aside { padding-top: 2px; }
+.aside-tip { padding: 6.5px 0; }
 .aside-tip p { font-size: 14px; line-height: 1.5; }
 .aside-tip-muted p { font-size: 12px; line-height: 1.45; }
 @media (max-width: 560px) {
-  .lesson-page { padding-top: 11px; padding-bottom: 20px; }
+  .lesson-page { padding-top: 5.5px; padding-bottom: 10px; }
   .lesson-main h1 { font-size: 34px; }
-  .lesson-objective { padding: 12px; margin: 12px 0 15px; }
+  .lesson-objective { padding: 6px; margin: 6px 0 7.5px; }
   .lesson-objective p { font-size: 17px; }
-  .lesson-section { grid-template-columns: 25px minmax(0, 1fr); gap: 8px; margin: 15px 0; }
+  .lesson-section { grid-template-columns: 25px minmax(0, 1fr); gap: 4px; margin: 7.5px 0; }
   .lesson-section h2 { font-size: 21px; }
   .lesson-section > div > p, .step-list li p { font-size: 14px; line-height: 1.45; }
-  .step-list li { padding: 7px 0; }
+  .step-list li { padding: 3.5px 0; }
   .check-list li { font-size: 13px; }
 }
 
 
 /* Dense lesson reading layout: steps are plain numbered text, not bordered list rows. */
-.lesson-page { padding-top: 12px; padding-bottom: 20px; }
-.back-link { margin-bottom: 7px; }
-.lesson-main h1 { margin: 8px 0 6px; }
-.lesson-meta { gap: 8px; padding-bottom: 8px; }
-.lesson-objective { gap: 9px; padding: 10px 12px; margin: 9px 0 12px; }
+.lesson-page { padding-top: 6px; padding-bottom: 10px; }
+.back-link { margin-bottom: 3.5px; }
+.lesson-main h1 { margin: 4px 0 3px; }
+.lesson-meta { gap: 4px; padding-bottom: 4px; }
+.lesson-objective { gap: 4.5px; padding: 5px 6px; margin: 4.5px 0 6px; }
 .lesson-objective p { line-height: 1.35; }
-.lesson-section { gap: 8px; margin: 12px 0; }
-.lesson-section h2 { margin-bottom: 4px; }
-.lesson-section > div > p { margin: 3px 0 5px; line-height: 1.4; }
-.step-list { display: flex; flex-direction: column; gap: 3px; }
-.step-list li { display: flex; align-items: baseline; gap: 7px; padding: 2px 0; margin: 0; border: 0; }
+.lesson-section { gap: 4px; margin: 6px 0; }
+.lesson-section h2 { margin-bottom: 2px; }
+.lesson-section > div > p { margin: 1.5px 0 2.5px; line-height: 1.4; }
+.step-list { display: flex; flex-direction: column; gap: 1.5px; }
+.step-list li { display: flex; align-items: baseline; gap: 3.5px; padding: 1px 0; margin: 0; border: 0; }
 .step-list li > span { flex: 0 0 23px; padding: 0; font-size: 11px; line-height: 1.4; color: #9a7359; }
 .step-list li p { margin: 0; line-height: 1.4; }
-.check-list { display: flex; flex-direction: column; gap: 3px; }
-.check-list li { gap: 7px; padding: 2px 0; border: 0; line-height: 1.4; }
-.reflection-box { padding: 13px; margin-top: 14px; }
-.reflection-box label { margin-bottom: 7px; }
+.check-list { display: flex; flex-direction: column; gap: 1.5px; }
+.check-list li { gap: 3.5px; padding: 1px 0; border: 0; line-height: 1.4; }
+.reflection-box { padding: 6.5px; margin-top: 7px; }
+.reflection-box label { margin-bottom: 3.5px; }
 .reflection-box textarea { min-height: 75px; }
 @media (max-width: 560px) {
-  .lesson-page { padding-top: 8px; padding-bottom: 14px; }
-  .lesson-meta { gap: 7px; padding-bottom: 7px; }
-  .lesson-objective { padding: 9px 10px; margin: 8px 0 10px; }
-  .lesson-section { gap: 6px; margin: 10px 0; }
-  .lesson-section h2 { margin-bottom: 3px; }
-  .step-list li { gap: 6px; padding: 2px 0; }
+  .lesson-page { padding-top: 4px; padding-bottom: 7px; }
+  .lesson-meta { gap: 3.5px; padding-bottom: 3.5px; }
+  .lesson-objective { padding: 4.5px 5px; margin: 4px 0 5px; }
+  .lesson-section { gap: 3px; margin: 5px 0; }
+  .lesson-section h2 { margin-bottom: 1.5px; }
+  .step-list li { gap: 3px; padding: 1px 0; }
   .step-list li > span { flex-basis: 21px; }
-  .check-list { gap: 2px; }
-  .check-list li { padding: 2px 0; }
-  .reflection-box { padding: 11px; margin-top: 12px; }
+  .check-list { gap: 1px; }
+  .check-list li { padding: 1px 0; }
+  .reflection-box { padding: 5.5px; margin-top: 6px; }
 }
