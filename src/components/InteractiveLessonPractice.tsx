@@ -120,7 +120,7 @@ export default function InteractiveLessonPractice({ lesson }: { lesson: Lesson }
             <article key={`${lesson.id}-step-${index}`} lang="ru" className={`ilp__card ${isActive ? "is-active" : ""} ${isComplete ? "is-done" : ""}`}>
               <button type="button" className="ilp__card-select" onClick={() => setActiveIndex(index)} aria-pressed={isActive} aria-label={`Показать подсказку: этап ${index + 1}, ${step.title}`}>
                 <span className="ilp__card-number">{isComplete ? "✓" : String(index + 1).padStart(2, "0")}</span>
-                <span className="ilp__card-title">{step.title}</span>
+                <span className="ilp__card-title">Этап {index + 1}</span>
               </button>
               <div className="ilp__card-image"><StepIllustration title={lesson.title} instruction={step.instruction} /></div>
               <label className="ilp__card-check">
