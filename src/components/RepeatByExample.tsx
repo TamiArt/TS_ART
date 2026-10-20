@@ -2,11 +2,11 @@ import { useEffect, useState } from "react";
 import "./RepeatByExample.css";
 
 const STEPS = [
-  { id: "01", title: "Начало", task: "Поставь предмет рядом с источником света.", hint: "Расположи источник сбоку и немного выше предмета. Заметь направление света и падающую тень." },
-  { id: "02", title: "Найди крайние значения", task: "Найди самую освещённую область и самую тёмную.", hint: "Сначала сравни два крайних значения. Не путай собственную тень на форме с падающей тенью на поверхности." },
-  { id: "03", title: "Переход света в тень", task: "Заметь, где форма постепенно переходит из света в тень.", hint: "Проследи, как меняется тон по округлой форме, а не только по внешнему контуру." },
-  { id: "04", title: "Три тональные зоны", task: "Обозначь свет, полутон и тень без растушёвки.", hint: "Раздели форму на три условные зоны. Пока не растушёвывай границы: сначала важно увидеть отношения." },
-  { id: "05", title: "Проверь", task: "Сравни тональные отношения с натурой.", hint: "Поочерёдно посмотри на предмет и рисунок. Проверь, какие участки светлее или темнее и насколько заметна разница." },
+  { id: "01", title: "Начало", task: "Поставь предмет рядом с источником света.", hint: "Расположи источник сбоку и немного выше предмета. Заметь направление света и падающую тень.", image: "/illustrations/repeat-by-example/01-start.svg", alt: "Сфера и источник света" },
+  { id: "02", title: "Найди крайние значения", task: "Найди самую освещённую область и самую тёмную.", hint: "Сначала сравни два крайних значения. Не путай собственную тень на форме с падающей тенью на поверхности.", image: "/illustrations/repeat-by-example/02-light-dark.svg", alt: "Светлая и самая тёмная области сферы" },
+  { id: "03", title: "Переход света в тень", task: "Заметь, где форма постепенно переходит из света в тень.", hint: "Проследи, как меняется тон по округлой форме, а не только по внешнему контуру.", image: "/illustrations/repeat-by-example/03-transition.svg", alt: "Переход тона от света к тени" },
+  { id: "04", title: "Три тональные зоны", task: "Обозначь свет, полутон и тень без растушёвки.", hint: "Раздели форму на три условные зоны. Пока не растушёвывай границы: сначала важно увидеть отношения.", image: "/illustrations/repeat-by-example/04-three-zones.svg", alt: "Свет, полутон и тень на сфере" },
+  { id: "05", title: "Проверь", task: "Сравни тональные отношения с натурой.", hint: "Поочерёдно посмотри на предмет и рисунок. Проверь, какие участки светлее или темнее и насколько заметна разница.", image: "/illustrations/repeat-by-example/05-compare.svg", alt: "Сравнение рисунка с натурой" },
 ] as const;
 
 const STORAGE_KEY = "ts-art-repeat-by-example-v1";
@@ -46,6 +46,7 @@ export default function RepeatByExample() {
         <div>
           <p className="rbe__eyebrow">САМОСТОЯТЕЛЬНАЯ ПРАКТИКА · 7 МИН</p>
           <h2 id="rbe-title">Повтори по образцу</h2>
+          <p className="rbe__intro">Все пять этапов перед глазами. Выбирай этап для подсказки и отмечай выполненное.</p>
         </div>
         <div className="rbe__overview-progress">
           <span>{completed.length} из {STEPS.length} этапов выполнено</span>
@@ -55,19 +56,12 @@ export default function RepeatByExample() {
         </div>
       </header>
 
-      <figure className="rbe__poster">
-        <img
-          src="/illustrations/repeat-by-example/light-observation-poster.webp"
-          alt="Учебный образец светотени на сфере: пять последовательных этапов, стрелки и обозначения света, полутона и тени; внизу объяснение светлоты, температуры и насыщенности."
-        />
-      </figure>
-
-      <div className="rbe__stage-grid" aria-label="Интерактивные этапы урока">
+      <div className="rbe__stage-grid" aria-label="Пять последовательных этапов урока">
         {STEPS.map((step) => {
           const isComplete = completed.includes(step.id);
           const isActive = activeId === step.id;
           return (
-            <div className={`rbe__stage-card ${isActive ? "is-active" : ""} ${isComplete ? "is-complete" : ""}`} key={step.id}>
+            <article className={`rbe__stage-card ${isActive ? "is-active" : ""} ${isComplete ? "is-complete" : ""}`} key={step.id}>
               <button
                 type="button"
                 className="rbe__stage-select"
@@ -78,22 +72,33 @@ export default function RepeatByExample() {
                 <span className="rbe__stage-number">{isComplete ? "✓" : step.id}</span>
                 <span className="rbe__stage-title">{step.title}</span>
               </button>
+              <img className="rbe__stage-image" src={step.image} alt={step.alt} loading="eager" />
+              <p className="rbe__stage-task">{step.task}</p>
               <label className="rbe__stage-check">
                 <input type="checkbox" checked={isComplete} onChange={() => toggleCompleted(step.id)} />
-                <span>{isComplete ? "Выполнено" : "Отметить"}</span>
+                <span>{isComplete ? "Выполнено" : "Отметить этап"}</span>
               </label>
-            </div>
+            </article>
           );
         })}
       </div>
 
       <div className="rbe__stage-detail" aria-live="polite">
         <div>
-          <p className="rbe__step-kicker">ЭТАП {activeStep.id} ИЗ 05</p>
+          <p className="rbe__step-kicker">ЭТАП {activeStep.id} ИЗ 05 · ПОДСКАЗКА</p>
           <strong>{activeStep.task}</strong>
         </div>
         <p>{activeStep.hint}</p>
       </div>
+
+      <footer className="rbe__concepts" aria-label="Кратко о главном">
+        <h3>Кратко о главном</h3>
+        <div className="rbe__concept-grid">
+          <div><strong>Светлота</strong><p>Насколько цвет светлее или темнее.</p><div className="rbe__value-swatches" aria-hidden="true"><i /><i /><i /><i /><i /></div></div>
+          <div><strong>Температура</strong><p>Тёплые и холодные оттенки создают настроение и объём.</p><div className="rbe__temperature-swatches"><i>Тёплый</i><i>Холодный</i></div></div>
+          <div><strong>Насыщенность</strong><p>Интенсивность цвета: яркий или приглушённый.</p><div className="rbe__saturation-swatches"><i>Насыщенный</i><i>Приглушённый</i></div></div>
+        </div>
+      </footer>
 
       {completed.length === STEPS.length && (
         <p className="rbe__success" role="status">Все пять этапов выполнены. Попробуй повторить упражнение с другим предметом.</p>
