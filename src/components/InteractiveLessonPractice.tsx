@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import type { Lesson } from "../data/types";
 import StepIllustration from "./StepIllustration";
-import { classifyLesson, getVisualKindLabel, getVisualPrinciple } from "./lessonVisuals";
+import { classifyLesson, classifyVisualAction, getVisualKindLabel, getVisualPrinciple } from "./lessonVisuals";
 import "./InteractiveLessonPractice.css";
 
 const ACTION_HINTS: Array<{ pattern: RegExp; hint: string }> = [
@@ -27,6 +27,18 @@ function stepTitle(instruction: string, index: number, total: number): string {
   const clean = instruction.trim();
   if (!clean) return index === 0 ? "Начало" : index === total - 1 ? "Проверь результат" : `Этап ${index + 1}`;
   return clean.charAt(0).toLocaleUpperCase("ru") + clean.slice(1);
+}
+
+function cardLabel(instruction: string, index: number, total: number): string {
+  const actionLabels: Record<string, string> = {
+    observe: "Наблюдай", place: "Подготовь", trace: "Уточни", outline: "Наметь",
+    simplify: "Упрости", measure: "Сравни размеры", compare: "Сравни",
+    shade: "Найди тон", fill: "Заполни", mix: "Смешай", select: "Выбери",
+    record: "Зафиксируй", practice: "Выполни", review: "Проверь",
+  };
+  if (index === 0) return "Начало";
+  if (index === total - 1) return "Проверь";
+  return actionLabels[classifyVisualAction(instruction)] ?? `Этап ${index + 1}`;
 }
 
 function storageKey(lessonId: string) {
@@ -120,7 +132,7 @@ export default function InteractiveLessonPractice({ lesson }: { lesson: Lesson }
             <article key={`${lesson.id}-step-${index}`} lang="ru" className={`ilp__card ${isActive ? "is-active" : ""} ${isComplete ? "is-done" : ""}`}>
               <button type="button" className="ilp__card-select" onClick={() => setActiveIndex(index)} aria-pressed={isActive} aria-label={`Показать подсказку: этап ${index + 1}, ${step.title}`}>
                 <span className="ilp__card-number">{isComplete ? "✓" : String(index + 1).padStart(2, "0")}</span>
-                <span className="ilp__card-title">Этап {index + 1}</span>
+                <span className="ilp__card-title">{cardLabel(step.instruction, index, steps.length)}</span>
               </button>
               <div className="ilp__card-image"><StepIllustration title={lesson.title} instruction={step.instruction} /></div>
               <label className="ilp__card-check">
