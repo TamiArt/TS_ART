@@ -38,6 +38,20 @@ function TopicDrawing({ title, instruction }: Props) {
   const stage = instruction.toLocaleLowerCase("ru");
   const details = /детал|уточни|добавь|характерн/.test(stage);
   const compare = /сравни|проверь|отличи|натур/.test(stage);
+  const lineCount = getRequestedLineCount(instruction);
+
+  if (lineCount !== null) {
+    return <Sheet>
+      {Array.from({ length: lineCount }, (_, index) => {
+        const y = 23 + index * (108 / Math.max(1, lineCount - 1));
+        const weight = 0.7 + (index / Math.max(1, lineCount - 1)) * 0.9;
+        return <g key={index}>
+          <path d={`M28 ${y} Q118 ${y - (index % 2 ? 1.5 : -1.5)} 212 ${y}`} fill="none" stroke={light} strokeWidth="2.2" opacity=".25" />
+          <path d={`M28 ${y} Q118 ${y - (index % 2 ? 1.5 : -1.5)} 212 ${y}`} fill="none" stroke={index === lineCount - 1 ? ink : pencil} strokeWidth={weight} strokeLinecap="round" />
+        </g>;
+      })}
+    </Sheet>;
+  }
 
   if (/негативн|пространств вокруг|пуст(?:ой|ые|ого|ых|ым) промежут/.test(text)) {
     return <Sheet>
