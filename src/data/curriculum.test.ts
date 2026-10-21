@@ -9,7 +9,7 @@ describe("TS·ART curriculum", () => {
 
   it("provides authored lessons in every module", () => {
     expect(curriculum.every((module) => module.status === "available" && module.lessons.length > 0)).toBe(true);
-    expect(allLessons).toHaveLength(84);
+    expect(allLessons).toHaveLength(85);
   });
 
   it("uses unique lesson IDs and complete learning steps", () => {
