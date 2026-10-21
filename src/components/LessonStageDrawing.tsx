@@ -163,6 +163,25 @@ function TopicDrawing({ title, instruction }: Props) {
     </Sheet>;
   }
 
+  if (/эллипс|круг в перспективе|цилиндрическ.*основан/.test(text)) {
+    return <Sheet>
+      <g fill="none" stroke={light} strokeWidth=".8" strokeDasharray="3 3">
+        <rect x="24" y="22" width="83" height="49" />
+        <path d="M65.5 17v60M18 46.5h95" />
+        <path d="M139 26v72M119 62h80" />
+      </g>
+      <ellipse cx="65.5" cy="46.5" rx="39" ry="18" fill="#e5dfd2" fillOpacity=".25" stroke={pencil} strokeWidth="1.4" />
+      <path d="M26.5 46.5Q65.5 10 104.5 46.5" fill="none" stroke={blue} strokeWidth="1.1" strokeDasharray="3 2" />
+      <path d="M26.5 46.5Q65.5 83 104.5 46.5" fill="none" stroke={pencil} strokeWidth="1.1" />
+      <ellipse cx="159" cy="42" rx="25" ry="10" fill="#e5dfd2" fillOpacity=".2" stroke={ink} strokeWidth="1.3" />
+      <path d="M134 42v51M184 42v51" stroke={pencil} strokeWidth="1.2" />
+      <path d="M134 93a25 10 0 0 0 50 0" fill="none" stroke={ink} strokeWidth="1.3" />
+      <path d="M134 93a25 10 0 0 1 50 0" fill="none" stroke={light} strokeWidth="1.1" strokeDasharray="3 2" />
+      <path d="M139 111h40m-40-3v6m40-6v6" stroke={terracotta} strokeWidth="1" />
+      <StageMarks title={title} instruction={instruction} />
+    </Sheet>;
+  }
+
   if (/геометр|круг|овал|цилиндр|куб|шар|простых форм|форму/.test(text)) {
     return <Sheet>
       <circle cx="52" cy="58" r="22" fill="#e5dfd2" fillOpacity=".35" stroke={pencil} strokeWidth="1.4"/>
