@@ -1,4 +1,5 @@
 import LessonStageDrawing from "./LessonStageDrawing";
+export { getRequestedLineCount } from "./lessonLineCount";
 
 type StepIllustrationProps = {
   title: string;
