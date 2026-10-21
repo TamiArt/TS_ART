@@ -54,7 +54,8 @@ function readProgress(key: string, stepCount: number, checkCount: number): Saved
     const value = JSON.parse(raw) as Partial<SavedProgress>;
     return {
       completed: Array.isArray(value.completed) ? value.completed.filter((n) => Number.isInteger(n) && n >= 0 && n < stepCount) : [],
-      checks: Array.from({ length: checkCount }, (_, i) => Boolean(value.checks?.[i])),
+      // Self-checks are temporary per-lesson UI state; never restore them from storage.
+      checks: Array(checkCount).fill(false),
       note: typeof value.note === "string" ? value.note : "",
     };
   } catch {
@@ -78,7 +79,8 @@ export default function InteractiveLessonPractice({ lesson }: { lesson: Lesson }
   const percentage = steps.length ? Math.round(completeCount / steps.length * 100) : 0;
 
   useEffect(() => {
-    try { localStorage.setItem(key, JSON.stringify(progress)); } catch { /* Progress remains available for this session. */ }
+    // Persist completed practice steps and notes, but reset self-check boxes on every lesson visit.
+    try { localStorage.setItem(key, JSON.stringify({ ...progress, checks: [] })); } catch { /* Progress remains available for this session. */ }
   }, [key, progress]);
 
 
