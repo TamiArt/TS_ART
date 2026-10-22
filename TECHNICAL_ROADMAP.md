@@ -1,8 +1,19 @@
 # TS·ART Studio — Technical Roadmap
 
+## Current visual redesign
+
+**Branch:** `feat/ts-art-approved-palette-redesign`
+
+**Visual system:** warm paper and cream surfaces, graphite typography, terracotta accent, muted olive secondary accent; reusable theme layer in `src/styles/theme-redesign.css`. Keep this palette consistent across the dashboard, navigation, lesson tools, forms, journal, workshops and portfolio. Avoid one-off hard-coded colors when a theme token exists.
+
+- [x] Add a dedicated theme layer without replacing lesson/tool styles.
+- [x] Apply shared palette tokens, refined navigation and active states, card surfaces, buttons, form controls, focus rings and reduced-motion support.
+- [ ] Verify type-check, tests and production build for this branch.
+- [ ] Review key pages at desktop and mobile widths; fix any regressions before expanding the redesign.
+
 ## Development order
 
-Work through these four stages in order. Do not move to the next stage while the current stage has unresolved blocking issues. Continue the current work on `feat/oil-paint-mixer-qa-hardening` unless a separate, explicitly scoped feature branch is needed; never change `main` unless explicitly requested.
+Work through these stages in order and resolve blocking issues before moving on. Current visual work is isolated on `feat/ts-art-approved-palette-redesign`; do not change `main`. Keep the app React + Vite, modular, responsive, and free of required paid services.
 
 ### 1. Finish the Oil Paint Mixer — CURRENT STAGE
 
