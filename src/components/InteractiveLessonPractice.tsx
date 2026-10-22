@@ -39,9 +39,7 @@ function readProgress(key: string, stepCount: number, checkCount: number): Saved
 
 export default function InteractiveLessonPractice({ lesson }: { lesson: Lesson }) {
   const kind = classifyLesson(lesson);
-  const steps = useMemo(() => lesson.steps.map((instruction, index) => ({
-    instruction,
-  })), [lesson]);
+  const steps = useMemo(() => lesson.steps.map((instruction) => ({ instruction })), [lesson]);
   const key = storageKey(lesson.id);
   const [progress, setProgress] = useState<SavedProgress>(() => readProgress(key, steps.length, lesson.selfCheck.length));
   const completeCount = progress.completed.length;
@@ -87,7 +85,7 @@ export default function InteractiveLessonPractice({ lesson }: { lesson: Lesson }
         <ol>
           {steps.map((step, index) => (
             <li key={`${lesson.id}-text-step-${index}`}>
-              <span className="ilp__text-step-number">{{index + 1}</span>
+              <span className="ilp__text-step-number">{index + 1}</span>
               <span>{step.instruction}</span>
             </li>
           ))}
