@@ -42,69 +42,69 @@ function TopicDrawing({ title, instruction }: Props) {
 
   // Lesson-specific reference drawings keep each exercise grounded in the requested real object.
   if (/учимся смотреть/.test(text)) {
-    const stage = /наблюдай|30 секунд/.test(stage) ? 0 : /прищур/.test(stage) ? 1 : /5–10|крупных линий/.test(stage) ? 2 : /сравни|запиши/.test(stage) ? 3 : 0;
+    const stageIndex = /наблюдай|30 секунд/.test(stage) ? 0 : /прищур/.test(stage) ? 1 : /5–10|крупных линий/.test(stage) ? 2 : /сравни|запиши/.test(stage) ? 3 : 0;
     return <Sheet>
       <path d="M24 119h192" stroke={light} strokeWidth="1.1"/>
-      {stage === 1 && <g fill="none" stroke={blue} strokeDasharray="3 3" strokeWidth="1"><path d="M72 43v65M43 76h61"/><path d="M54 45 98 108M98 45 54 108"/></g>}
-      <path d={stage === 2 ? "M61 74 Q58 48 78 42 Q91 37 100 46 M100 46 Q119 33 137 46 Q157 53 154 76 Q151 101 125 111 Q100 117 77 105 Q61 95 61 74" : "M61 75 C59 55 72 42 91 43 C96 36 105 36 111 44 C132 38 151 51 154 72 C159 93 139 109 116 112 C91 117 68 103 61 75Z"} fill="#d77f75" fillOpacity={stage === 2 ? ".12" : ".42"} stroke={ink} strokeWidth={stage === 2 ? "1.3" : "1.7"} strokeLinecap="round" strokeLinejoin="round"/>
+      {stageIndex === 1 && <g fill="none" stroke={blue} strokeDasharray="3 3" strokeWidth="1"><path d="M72 43v65M43 76h61"/><path d="M54 45 98 108M98 45 54 108"/></g>}
+      <path d={stageIndex === 2 ? "M61 74 Q58 48 78 42 Q91 37 100 46 M100 46 Q119 33 137 46 Q157 53 154 76 Q151 101 125 111 Q100 117 77 105 Q61 95 61 74" : "M61 75 C59 55 72 42 91 43 C96 36 105 36 111 44 C132 38 151 51 154 72 C159 93 139 109 116 112 C91 117 68 103 61 75Z"} fill="#d77f75" fillOpacity={stageIndex === 2 ? ".12" : ".42"} stroke={ink} strokeWidth={stageIndex === 2 ? "1.3" : "1.7"} strokeLinecap="round" strokeLinejoin="round"/>
       <path d="M101 44 Q105 34 113 27 Q116 24 119 27" fill="none" stroke={ink} strokeWidth="2" strokeLinecap="round"/>
       <path d="M113 31 Q132 22 139 35 Q127 43 113 31Z" fill={sage} fillOpacity=".75" stroke={sage} strokeWidth="1"/>
-      {stage === 1 && <path d="M72 60q-8 15 2 30M137 57q9 14 2 28" fill="none" stroke={terracotta} strokeWidth="1.2" strokeDasharray="2 3"/>}
-      {stage === 2 && <g stroke={pencil} strokeWidth="1.3" strokeLinecap="round"><path d="M67 67l7 5m-9 7 8 4m-1 9 8 3M131 53l7 4m-2 10 8 2m-13 22 7 3M86 104l5 2"/></g>}
-      {stage === 3 && <g fill="none" stroke={terracotta} strokeWidth="1.2"><path d="M39 43h18m-5-5 5 5-5 5M176 43h22m-6-5 6 5-6 5"/><path d="M45 124h151" strokeDasharray="3 3"/></g>}
+      {stageIndex === 1 && <path d="M72 60q-8 15 2 30M137 57q9 14 2 28" fill="none" stroke={terracotta} strokeWidth="1.2" strokeDasharray="2 3"/>}
+      {stageIndex === 2 && <g stroke={pencil} strokeWidth="1.3" strokeLinecap="round"><path d="M67 67l7 5m-9 7 8 4m-1 9 8 3M131 53l7 4m-2 10 8 2m-13 22 7 3M86 104l5 2"/></g>}
+      {stageIndex === 3 && <g fill="none" stroke={terracotta} strokeWidth="1.2"><path d="M39 43h18m-5-5 5 5-5 5M176 43h22m-6-5 6 5-6 5"/><path d="M45 124h151" strokeDasharray="3 3"/></g>}
       <ellipse cx="111" cy="119" rx="39" ry="4" fill={light} opacity=".35"/>
     </Sheet>;
   }
 
   if (/простая рабочая среда/.test(text)) {
-    const stage = /организуй свет/.test(stage) ? 1 : /убери со стола/.test(stage) ? 2 : /пробные линии/.test(stage) ? 3 : /сохрани|подпиши/.test(stage) ? 4 : 0;
+    const stageIndex = /организуй свет/.test(stage) ? 1 : /убери со стола/.test(stage) ? 2 : /пробные линии/.test(stage) ? 3 : /сохрани|подпиши/.test(stage) ? 4 : 0;
     return <Sheet>
       <path d="M25 119h190" stroke={light} strokeWidth="1.1"/>
       <path d="M42 105 181 35" stroke="#d6b98c" strokeWidth="10" strokeLinecap="round"/>
       <path d="M42 105 181 35" stroke={pencil} strokeWidth="1.2" strokeLinecap="round"/>
       <path d="M42 105l-9 12 15-6" fill="#d6b98c" stroke={pencil} strokeWidth="1"/>
       <path d="M177 33l10-5 1 6-7 4" fill={ink} stroke={ink} strokeWidth="1"/>
-      {stage === 1 && <g fill="none" stroke={terracotta} strokeWidth="1.2"><path d="M190 19 169 30m14-12 7 1-2 7"/><path d="M158 44 139 54" strokeDasharray="3 3"/></g>}
-      {stage === 2 && <g fill="none" stroke={sage} strokeWidth="1.4"><path d="M36 38h37v18H36zM174 91h28v18h-28z"/><path d="M36 38l37 18m-37 0 37-18" strokeDasharray="2 3"/></g>}
-      {stage === 3 && <g fill="none" stroke={pencil} strokeLinecap="round"><path d="M29 37q25-4 48 0" strokeWidth=".6"/><path d="M29 53q25-4 48 0" strokeWidth="1.3"/><path d="M29 69h49" strokeWidth="2"/><path d="M29 85h49" strokeWidth=".9" strokeDasharray="6 3"/></g>}
-      {stage === 4 && <g><rect x="140" y="76" width="65" height="39" rx="2" fill="none" stroke={sage} strokeWidth="1.2"/><path d="M148 88h47m-47 7h35m-35 7h40" stroke={light} strokeWidth="1.2"/><path d="m184 25 5 5 9-11" fill="none" stroke={sage} strokeWidth="1.8"/></g>}
+      {stageIndex === 1 && <g fill="none" stroke={terracotta} strokeWidth="1.2"><path d="M190 19 169 30m14-12 7 1-2 7"/><path d="M158 44 139 54" strokeDasharray="3 3"/></g>}
+      {stageIndex === 2 && <g fill="none" stroke={sage} strokeWidth="1.4"><path d="M36 38h37v18H36zM174 91h28v18h-28z"/><path d="M36 38l37 18m-37 0 37-18" strokeDasharray="2 3"/></g>}
+      {stageIndex === 3 && <g fill="none" stroke={pencil} strokeLinecap="round"><path d="M29 37q25-4 48 0" strokeWidth=".6"/><path d="M29 53q25-4 48 0" strokeWidth="1.3"/><path d="M29 69h49" strokeWidth="2"/><path d="M29 85h49" strokeWidth=".9" strokeDasharray="6 3"/></g>}
+      {stageIndex === 4 && <g><rect x="140" y="76" width="65" height="39" rx="2" fill="none" stroke={sage} strokeWidth="1.2"/><path d="M148 88h47m-47 7h35m-35 7h40" stroke={light} strokeWidth="1.2"/><path d="m184 25 5 5 9-11" fill="none" stroke={sage} strokeWidth="1.8"/></g>}
     </Sheet>;
   }
 
   if (/первый лист визуального дневника/.test(text)) {
-    const stage = /раздели лист/.test(stage) ? 0 : /нарисуй небольшой предмет/.test(stage) ? 1 : /крупными формами/.test(stage) ? 2 : /запиши/.test(stage) ? 3 : 4;
+    const stageIndex = /раздели лист/.test(stage) ? 0 : /нарисуй небольшой предмет/.test(stage) ? 1 : /крупными формами/.test(stage) ? 2 : /запиши/.test(stage) ? 3 : 4;
     return <Sheet>
       <rect x="24" y="19" width="192" height="112" fill="#fffefa" stroke={light} strokeWidth="1"/>
-      <path d="M88 19v112M152 19v112" stroke={light} strokeWidth="1" strokeDasharray={stage === 0 ? "0" : "3 3"}/>
+      <path d="M88 19v112M152 19v112" stroke={light} strokeWidth="1" strokeDasharray={stageIndex === 0 ? "0" : "3 3"}/>
       <g fill={ink} fontSize="6.2" fontFamily="Arial, sans-serif" textAnchor="middle">
         <text x="56" y="29">НАБЛЮДАЮ</text><text x="120" y="29">ПРОБУЮ</text><text x="184" y="29">ЗАМЕЧАЮ</text>
       </g>
-      {stage === 1 && <g>
+      {stageIndex === 1 && <g>
         <path d="M37 52q17-8 35 0l-3 39q-14 10-29 0z" fill="#e4dfd3" fillOpacity=".6" stroke={pencil} strokeWidth="1.2"/>
         <path d="M68 60q24-9 21 13q-1 12-20 9" fill="none" stroke={pencil} strokeWidth="1.2"/>
         <ellipse cx="54" cy="52" rx="17" ry="4" fill="#e4dfd3" stroke={pencil} strokeWidth="1"/>
       </g>}
-      {stage === 2 && <g fill="none" stroke={blue} strokeWidth="1.3"><path d="M100 56h33l-3 35q-13 7-27 0z"/><ellipse cx="116" cy="56" rx="16" ry="4"/><path d="M132 62q16-5 14 10q-1 8-14 7"/></g>}
-      {stage === 3 && <g stroke={sage} strokeWidth="1" strokeLinecap="round"><path d="M164 49h37m-37 10h32m-32 10h37m-37 10h24m-24 10h34"/></g>}
-      {stage === 4 && <g><path d="M36 52q17-8 35 0l-3 39q-14 10-29 0z" fill="#e4dfd3" fillOpacity=".35" stroke={pencil} strokeWidth="1"/><path d="M68 60q24-9 21 13q-1 12-20 9" fill="none" stroke={pencil}/><path d="M101 56h31l-3 34q-12 8-25 0z" fill="none" stroke={blue} strokeWidth="1.3"/><ellipse cx="116" cy="56" rx="15" ry="4" fill="none" stroke={blue} strokeWidth="1.3"/><path d="M132 62q16-5 14 10q-1 8-14 7" fill="none" stroke={blue} strokeWidth="1.3"/><path d="M163 49h38m-38 10h31m-31 10h35" stroke={sage} strokeWidth="1"/></g>}
-      {stage === 0 && <g fill="none" stroke={light} strokeWidth=".7"><path d="M30 40h51M94 40h51M158 40h51"/><path d="M30 120h51M94 120h51M158 120h51"/></g>}
+      {stageIndex === 2 && <g fill="none" stroke={blue} strokeWidth="1.3"><path d="M100 56h33l-3 35q-13 7-27 0z"/><ellipse cx="116" cy="56" rx="16" ry="4"/><path d="M132 62q16-5 14 10q-1 8-14 7"/></g>}
+      {stageIndex === 3 && <g stroke={sage} strokeWidth="1" strokeLinecap="round"><path d="M164 49h37m-37 10h32m-32 10h37m-37 10h24m-24 10h34"/></g>}
+      {stageIndex === 4 && <g><path d="M36 52q17-8 35 0l-3 39q-14 10-29 0z" fill="#e4dfd3" fillOpacity=".35" stroke={pencil} strokeWidth="1"/><path d="M68 60q24-9 21 13q-1 12-20 9" fill="none" stroke={pencil}/><path d="M101 56h31l-3 34q-12 8-25 0z" fill="none" stroke={blue} strokeWidth="1.3"/><ellipse cx="116" cy="56" rx="15" ry="4" fill="none" stroke={blue} strokeWidth="1.3"/><path d="M132 62q16-5 14 10q-1 8-14 7" fill="none" stroke={blue} strokeWidth="1.3"/><path d="M163 49h38m-38 10h31m-31 10h35" stroke={sage} strokeWidth="1"/></g>}
+      {stageIndex === 0 && <g fill="none" stroke={light} strokeWidth=".7"><path d="M30 40h51M94 40h51M158 40h51"/><path d="M30 120h51M94 120h51M158 120h51"/></g>}
     </Sheet>;
   }
 
   if (/сложный предмет из простых форм/.test(text)) {
-    const stage = /выбери предмет/.test(stage) ? 0 : /упрости/.test(stage) ? 1 : /наметь эти формы/.test(stage) ? 2 : /взаимный размер/.test(stage) ? 3 : 4;
+    const stageIndex = /выбери предмет/.test(stage) ? 0 : /упрости/.test(stage) ? 1 : /наметь эти формы/.test(stage) ? 2 : /взаимный размер/.test(stage) ? 3 : 4;
     return <Sheet>
       <path d="M24 121h192" stroke={light} strokeWidth="1"/>
-      {stage < 2 && <g fill="none" stroke={stage === 1 ? blue : pencil} strokeWidth="1.3" strokeDasharray={stage === 1 ? "3 2" : "0"}>
+      {stageIndex < 2 && <g fill="none" stroke={stageIndex === 1 ? blue : pencil} strokeWidth="1.3" strokeDasharray={stageIndex === 1 ? "3 2" : "0"}>
         <ellipse cx="118" cy="116" rx="35" ry="7"/><path d="M89 111 96 101 101 94 106 70 137 70 143 94 149 111"/>
         <path d="M106 70 90 53 98 49 119 65M137 70l24-20 7 7-26 21"/>
         <path d="M100 48 111 24 139 24 151 48Z"/>
       </g>}
-      {stage === 0 && <g fill="none" stroke={ink} strokeWidth="1.5"><path d="M100 48 111 24 139 24 151 48Z"/><path d="M106 49 98 72 112 82 130 70 145 83 158 67 151 49"/><ellipse cx="118" cy="116" rx="35" ry="7"/></g>}
-      {stage === 1 && <g fill="none" stroke={blue} strokeWidth="1.3"><path d="M100 48 111 24 139 24 151 48Z"/><path d="M106 49 98 72 112 82 130 70 145 83 158 67 151 49"/><ellipse cx="118" cy="116" rx="35" ry="7"/></g>}
-      {stage === 2 && <g fill="none" stroke={pencil} strokeWidth="1.2"><path d="M100 48 111 24 139 24 151 48Z"/><path d="M106 49 98 72 112 82 130 70 145 83 158 67 151 49"/><ellipse cx="118" cy="116" rx="35" ry="7"/><path d="M90 53 98 49 119 65M137 70l24-20 7 7-26 21" strokeDasharray="3 2"/></g>}
-      {stage >= 3 && <g fill="none" stroke={ink} strokeWidth="1.4"><path d="M100 48 111 24 139 24 151 48Z"/><path d="M106 49 98 72 112 82 130 70 145 83 158 67 151 49"/><ellipse cx="118" cy="116" rx="35" ry="7"/><path d="M90 53 98 49 119 65M137 70l24-20 7 7-26 21"/></g>}
-      {stage === 4 && <g fill="none" stroke={terracotta} strokeWidth="1.3"><path d="M111 24 139 24 151 48 100 48Z"/><path d="M112 82 130 70 145 83 158 67" strokeDasharray="3 2"/><path d="M164 96h26m-5-5 5 5-5 5"/></g>}
+      {stageIndex === 0 && <g fill="none" stroke={ink} strokeWidth="1.5"><path d="M100 48 111 24 139 24 151 48Z"/><path d="M106 49 98 72 112 82 130 70 145 83 158 67 151 49"/><ellipse cx="118" cy="116" rx="35" ry="7"/></g>}
+      {stageIndex === 1 && <g fill="none" stroke={blue} strokeWidth="1.3"><path d="M100 48 111 24 139 24 151 48Z"/><path d="M106 49 98 72 112 82 130 70 145 83 158 67 151 49"/><ellipse cx="118" cy="116" rx="35" ry="7"/></g>}
+      {stageIndex === 2 && <g fill="none" stroke={pencil} strokeWidth="1.2"><path d="M100 48 111 24 139 24 151 48Z"/><path d="M106 49 98 72 112 82 130 70 145 83 158 67 151 49"/><ellipse cx="118" cy="116" rx="35" ry="7"/><path d="M90 53 98 49 119 65M137 70l24-20 7 7-26 21" strokeDasharray="3 2"/></g>}
+      {stageIndex >= 3 && <g fill="none" stroke={ink} strokeWidth="1.4"><path d="M100 48 111 24 139 24 151 48Z"/><path d="M106 49 98 72 112 82 130 70 145 83 158 67 151 49"/><ellipse cx="118" cy="116" rx="35" ry="7"/><path d="M90 53 98 49 119 65M137 70l24-20 7 7-26 21"/></g>}
+      {stageIndex === 4 && <g fill="none" stroke={terracotta} strokeWidth="1.3"><path d="M111 24 139 24 151 48 100 48Z"/><path d="M112 82 130 70 145 83 158 67" strokeDasharray="3 2"/><path d="M164 96h26m-5-5 5 5-5 5"/></g>}
     </Sheet>;
   }
 
