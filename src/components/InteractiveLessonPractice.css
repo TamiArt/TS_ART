@@ -35,7 +35,7 @@
 
 .ilp__text-steps{margin:7px 0;padding:10px 12px;background:#f5f4ef;border:1px solid #e5e2d9;border-radius:9px}
 .ilp__text-steps h3{font-size:1.12rem;line-height:1.25;margin:0 0 6px}
-.ilp__text-steps ol{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px 16px;list-style:none;padding:0;margin:0}
+.ilp__text-steps ol{display:grid;grid-template-columns:1fr;gap:8px;list-style:none;padding:0;margin:0}
 .ilp__text-steps li{display:flex;align-items:flex-start;gap:8px;min-width:0;font-size:.98rem;line-height:1.45}
 .ilp__text-step-number{display:grid;place-items:center;flex:0 0 28px;height:28px;border-radius:50%;background:#e2ebef;color:#234b62;font-size:.86rem;font-weight:800}
 @media(max-width:600px){.ilp__text-steps ol{grid-template-columns:1fr}.ilp__text-steps{padding:9px}}
