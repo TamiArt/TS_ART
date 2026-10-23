@@ -504,7 +504,7 @@ input:hover, textarea:hover, select:hover { border-color: #8299e8; }
 }
 
 
-/* All application tabs: keep the main sheet consistently milky with a subtle warm cream transition. */
+/* All application tabs: warm creamy ivory with a gentle blush-pink undertone. */
 .page-wrap {
-  background: linear-gradient(135deg, #fffdf8 0%, #fff9ef 48%, #f8eddd 100%);
+  background: linear-gradient(135deg, #fff8ed 0%, #f9eee3 48%, #f4e3e2 100%);
 }
