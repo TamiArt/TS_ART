@@ -367,3 +367,138 @@ input, textarea, select, .project-form input, .project-form textarea {
   .progress-card, .next-card, .principle-card { min-height: auto; }
   .mode-card { min-height: 175px; }
 }
+
+
+/* Redesign pass 3 — COLOR ONLY.
+   Keep every label, hint, dimension, spacing, typography and interaction unchanged.
+   New direction: midnight gallery / cobalt / coral / cool porcelain. */
+:root {
+  color-scheme: light;
+  --paper: #edf1f8;
+  --white: #ffffff;
+  --ink: #18223b;
+  --muted: #68738b;
+  --line: #d1d9e8;
+  --accent: #e05b50;
+  --olive: #3156c9;
+  --surface-raised: #ffffff;
+  --surface-soft: #e1e8f5;
+  --accent-soft: #ffe3df;
+  --olive-soft: #dce5ff;
+  --focus-ring: #3156c9;
+  --shadow-soft: 0 14px 38px rgb(24 34 59 / 13%);
+  --shadow-card: 0 5px 18px rgb(24 34 59 / 8%);
+}
+html { background: #edf1f8; }
+body {
+  color: #18223b;
+  background:
+    radial-gradient(ellipse at 78% 3%, rgb(49 86 201 / 14%), transparent 31rem),
+    #edf1f8;
+}
+::selection { color: #ffffff; background: #3156c9; }
+button, input, textarea, select { accent-color: #3156c9; }
+button:focus-visible, textarea:focus-visible, input:focus-visible, select:focus-visible,
+a:focus-visible { outline-color: #3156c9; }
+a { color: #3156c9; }
+.sidebar {
+  background: #17213b;
+  border-right-color: #293657;
+  color: #f6f8ff;
+  box-shadow: 8px 0 28px rgb(17 27 52 / 18%);
+}
+.sidebar .brand-lockup { color: #ffffff; }
+.sidebar .brand-mark span, .sidebar .note-spark { color: #ff8d7f; }
+.sidebar .brand-caption, .sidebar .sidebar-label,
+.sidebar .note-small, .sidebar .sidebar-footer { color: #aebbd9; }
+.sidebar .nav-item { color: #dce5ff; }
+.sidebar .nav-icon { color: #9aaddf; }
+.sidebar .nav-item:hover { color: #ffffff; background: #283758; }
+.sidebar .nav-item-active {
+  color: #ffffff;
+  background: #3156c9;
+  box-shadow: inset 3px 0 0 #ff8d7f;
+}
+.sidebar .nav-item-active .nav-icon,
+.sidebar .nav-count { color: #ffd0c8; }
+.sidebar .sidebar-note {
+  background: #243353;
+  border-color: #3d5079;
+}
+.sidebar .sidebar-note p { color: #ffffff; }
+.sidebar .status-dot { background: #6ed7c0; }
+.topbar {
+  background: rgb(237 241 248 / 95%);
+  border-bottom-color: #d1d9e8;
+}
+.breadcrumb { color: #465372; }
+.avatar { background: #dce5ff; color: #2446ad; border-color: #bac9ff; }
+.hero { border-bottom-color: #cbd5e8; }
+.eyebrow { color: #59698f; }
+.hero h1 em, .page-intro h1 em { color: #e05b50; }
+.hero-description { color: #596782; }
+.art-paper {
+  background: linear-gradient(140deg, #dce5ff 0%, #c5d3fa 56%, #f5c9c1 100%);
+  border-color: #bdc9e6;
+  box-shadow: 0 22px 50px rgb(30 48 101 / 18%);
+}
+.art-paper:before { border-color: #ffffffb8; }
+.art-sun { background: #e05b50; }
+.art-stroke { border-top-color: #3156c9; border-bottom-color: #6887e6; }
+.art-stroke.stroke-two { border-color: #e05b50; }
+.art-stroke.stroke-three { border-color: #ffffff; }
+.art-arc { border-color: #ffffff; }
+.art-caption, .art-label { color: #26395f; }
+.art-index { color: #62749b; }
+.button-dark { color: #ffffff; background: #17213b; border-color: #17213b; }
+.button-dark:hover { background: #3156c9; }
+.button-outline { border-color: #b8c6e1; background: #ffffff; color: #23345b; }
+.button-outline:hover { background: #dce5ff; }
+.text-link { color: #3156c9; }
+.text-link:hover { color: #e05b50; }
+.welcome-strip { border-color: #cbd6ec; border-left-color: #e05b50; background: #e1e8f5; }
+.progress-card, .next-card, .principle-card {
+  border-color: #d1d9e8;
+  background: #ffffff;
+  box-shadow: 0 8px 22px rgb(24 34 59 / 8%);
+}
+.progress-number { color: #e05b50; }
+.progress-track { background: #dce4f3; }
+.progress-track span { background: #3156c9; }
+.lesson-thumb { background: #dce5ff; }
+.principle-card { background: #dceeea; border-color: #b7ddd5; }
+.principle-card .principle-mark { color: #e05b50; }
+.mode-card { border-color: #d1d9e8; }
+.mode-card:hover { border-color: #8299e8; box-shadow: 0 12px 26px rgb(24 34 59 / 12%); }
+.mode-main { background: #ffe3df; }
+.mode-practice { background: #dceeea; }
+.mode-journal { background: #e1e8f5; }
+.mode-colourlab { background: #e0e5ff; }
+.mode-workshops { background: #f8e3d9; }
+.mode-openstudio { background: #dce5ff; }
+.mode-portfolio { background: #e6e0f7; }
+.mode-number { color: #68738b; }
+.mode-icon { color: #3156c9; }
+.mode-card p { color: #596782; }
+.panel, .lesson-list-panel, .side-info-card, .module-picker,
+.practice-card, .journal-card, .project-form, .project-card, .workshop-card,
+.colour-test-card, .colour-test-form, .lesson-panel, .module-card,
+.lesson-objective, .reflection-box { border-color: #d1d9e8; }
+.lesson-row { border-bottom-color: #e0e6f1; }
+.lesson-row:hover { background: #e1e8f5; }
+.lesson-index { background: #e0e5ff; color: #3156c9; }
+.lesson-index-done { background: #dceeea; color: #176c61; }
+.lesson-objective { background: #e1e8f5; border-color: #cbd6ec; }
+.reflection-box { background: #e6eaf4; border-color: #cbd6ec; }
+input, textarea, select, .project-form input, .project-form textarea {
+  color: #18223b;
+  background: #ffffff;
+  border-color: #c5d0e5;
+}
+input:hover, textarea:hover, select:hover { border-color: #8299e8; }
+.workshop-notice { border-left-color: #e05b50; }
+.project-status-active, .project-status-complete { border-color: #cbd6ec; }
+.portfolio-art-placeholder { background: #e1e8f5; }
+@media (max-width: 760px) {
+  .sidebar { background: #17213b; }
+}
