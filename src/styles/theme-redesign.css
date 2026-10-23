@@ -570,5 +570,5 @@ a, .text-link { color: #CC2055; }
 .mode-workshops { background: #f5e1df; }
 .mode-card:hover { border-color: #9fc7e2; }
 .page-wrap {
-  background: linear-gradient(135deg, #fff8ed 0%, #f9eee3 48%, #f0ab95 100%);
+  background: linear-gradient(135deg, #fff8ed 0%, #f9eee3 48%, #F4CFBF 100%);
 }
