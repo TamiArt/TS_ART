@@ -504,7 +504,7 @@ input:hover, textarea:hover, select:hover { border-color: #8299e8; }
 }
 
 
-/* Main application sheet: milky white with a subtle warm cream transition. */
-.page-wrap.inner-page {
+/* All application tabs: keep the main sheet consistently milky with a subtle warm cream transition. */
+.page-wrap {
   background: linear-gradient(135deg, #fffdf8 0%, #fff9ef 48%, #f8eddd 100%);
 }
