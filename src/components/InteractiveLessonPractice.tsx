@@ -4,31 +4,6 @@ import StepIllustration from "./StepIllustration";
 import { classifyLesson, classifyVisualAction, getVisualKindLabel, getVisualPrinciple } from "./lessonVisuals";
 import "./InteractiveLessonPractice.css";
 
-const ACTION_HINTS: Array<{ pattern: RegExp; hint: string }> = [
-  { pattern: /наблюд|заметь|рассмотр|прищур|найди/, hint: "Сначала смотри на объект целиком. Отложи детали и назови то, что действительно видишь." },
-  { pattern: /сравн|проверь|оцени|отличи/, hint: "Сравнивай по одному признаку за раз: размер, направление, светлоту, цвет или расположение." },
-  { pattern: /измер|пропорц|ширин|высот|масштаб|наклон/, hint: "Сопоставь части друг с другом и проверь общие габариты до уточнения мелочей." },
-  { pattern: /линия|контур|силуэт|нажим|штрих/, hint: "Начни легко. Оставь вспомогательные линии видимыми, пока не проверишь форму." },
-  { pattern: /цвет|палитр|оттен|смеш|пигмент|насыщ/, hint: "Сравнивай цвет по отдельным свойствам и меняй за один раз только один параметр." },
-  { pattern: /свет|тень|тон|полутон|контраст/, hint: "Сначала найди самые светлый и тёмный участки, затем сравни промежуточные значения." },
-  { pattern: /перспектив|горизонт|точк.*сход|глубин/, hint: "Найди уровень глаз и проследи направление основных линий, прежде чем рисовать детали." },
-  { pattern: /запиши|сформулируй|отметь|сохрани|подпиши/, hint: "Зафиксируй конкретное наблюдение или действие — так, чтобы к нему можно было вернуться." },
-  { pattern: /выбери|отбери|вариант|композици|располож/, hint: "Сделай несколько простых вариантов и сравни их по одной цели, а не по впечатлению в целом." },
-  { pattern: /кист|краск|живопис|мазок|сло[йя]|холст|цифров/, hint: "Сначала проверь инструмент на небольшом тесте и только потом используй его в основной работе." },
-];
-
-function hintFor(instruction: string, objective: string): string {
-  const text = instruction.toLocaleLowerCase("ru");
-  return ACTION_HINTS.find((rule) => rule.pattern.test(text))?.hint
-    ?? `Свяжи действие с целью урока: ${objective} Сначала выполни его в простом виде, затем проверь результат.`;
-}
-
-function stepTitle(instruction: string, index: number, total: number): string {
-  const clean = instruction.trim();
-  if (!clean) return index === 0 ? "Начало" : index === total - 1 ? "Проверь результат" : `Этап ${index + 1}`;
-  return clean.charAt(0).toLocaleUpperCase("ru") + clean.slice(1);
-}
-
 function cardLabel(instruction: string, index: number, total: number): string {
   const actionLabels: Record<string, string> = {
     observe: "Наблюдай", place: "Подготовь", trace: "Уточни", outline: "Наметь",
@@ -65,16 +40,9 @@ function readProgress(key: string, stepCount: number, checkCount: number): Saved
 
 export default function InteractiveLessonPractice({ lesson }: { lesson: Lesson }) {
   const kind = classifyLesson(lesson);
-  const steps = useMemo(() => lesson.steps.map((instruction, index) => ({
-    instruction,
-    index,
-    hint: hintFor(instruction, lesson.objective),
-    title: stepTitle(instruction, index, lesson.steps.length),
-  })), [lesson]);
+  const steps = useMemo(() => lesson.steps.map((instruction) => ({ instruction })), [lesson]);
   const key = storageKey(lesson.id);
-  const [activeIndex, setActiveIndex] = useState(0);
   const [progress, setProgress] = useState<SavedProgress>(() => readProgress(key, steps.length, lesson.selfCheck.length));
-  const active = steps[Math.min(activeIndex, Math.max(0, steps.length - 1))];
   const completeCount = progress.completed.length;
   const percentage = steps.length ? Math.round(completeCount / steps.length * 100) : 0;
 
@@ -119,7 +87,7 @@ export default function InteractiveLessonPractice({ lesson }: { lesson: Lesson }
         <ol>
           {steps.map((step, index) => (
             <li key={`${lesson.id}-text-step-${index}`}>
-              <span className="ilp__text-step-number">{String(index + 1).padStart(2, "0")}</span>
+              <span className="ilp__text-step-number">{index + 1}</span>
               <span>{step.instruction}</span>
             </li>
           ))}
@@ -128,14 +96,13 @@ export default function InteractiveLessonPractice({ lesson }: { lesson: Lesson }
 
       <div className="ilp__cards" aria-label="Этапы практики">
         {steps.map((step, index) => {
-          const isActive = activeIndex === index;
           const isComplete = progress.completed.includes(index);
           return (
-            <article key={`${lesson.id}-step-${index}`} lang="ru" className={`ilp__card ${isActive ? "is-active" : ""} ${isComplete ? "is-done" : ""}`}>
-              <button type="button" className="ilp__card-select" onClick={() => setActiveIndex(index)} aria-pressed={isActive} aria-label={`Показать подсказку: этап ${index + 1}, ${step.title}`}>
+            <article key={`${lesson.id}-step-${index}`} lang="ru" className={`ilp__card ${isComplete ? "is-done" : ""}`}>
+              <div className="ilp__card-select">
                 <span className="ilp__card-number">{isComplete ? "✓" : String(index + 1).padStart(2, "0")}</span>
                 <span className="ilp__card-title">{cardLabel(step.instruction, index, steps.length)}</span>
-              </button>
+              </div>
               <div className="ilp__card-image"><StepIllustration title={lesson.title} instruction={step.instruction} /></div>
               <label className="ilp__card-check">
                 <input type="checkbox" checked={isComplete} onChange={() => toggleStep(index)} />
@@ -145,11 +112,6 @@ export default function InteractiveLessonPractice({ lesson }: { lesson: Lesson }
           );
         })}
       </div>
-
-      {active && <article className="ilp__detail" aria-live="polite">
-        <div className="ilp__detail-title"><p className="ilp__step-label">ЭТАП {activeIndex + 1} ИЗ {steps.length} · ПОДСКАЗКА</p><h3>{active.title}</h3></div>
-        <div className="ilp__detail-copy"><p className="ilp__task">{active.instruction}</p><p className="ilp__hint">{active.hint}</p></div>
-      </article>}
 
       <section className="ilp__checks" aria-labelledby={`ilp-check-title-${lesson.id}`}>
         <div className="ilp__section-heading"><div><p className="ilp__eyebrow">САМОПРОВЕРКА</p><h3 id={`ilp-check-title-${lesson.id}`}>Проверь результат</h3></div><span>{progress.checks.filter(Boolean).length}/{lesson.selfCheck.length}</span></div>

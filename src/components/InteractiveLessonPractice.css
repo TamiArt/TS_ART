@@ -1,6 +1,6 @@
 .ilp{--ilp-ink:#19364d;--ilp-muted:#687987;--ilp-line:#d9ddd9;color:var(--ilp-ink);max-width:1180px;margin:4px auto;font-family:inherit}.ilp *{box-sizing:border-box}
 .ilp__header{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(220px,.9fr);gap:8px;align-items:start;margin-bottom:6px}
-.ilp__eyebrow,.ilp__step-label{font-size:.8rem;letter-spacing:.06em;font-weight:800;color:var(--ilp-muted);margin:0 0 3px}
+.ilp__eyebrow{font-size:.8rem;letter-spacing:.06em;font-weight:800;color:var(--ilp-muted);margin:0 0 3px}
 .ilp__header h2{font-size:clamp(1.9rem,3vw,2.45rem);line-height:1.1;margin:0 0 4px}
 .ilp__objective{font-size:1rem;line-height:1.4;color:var(--ilp-muted);margin:0}
 .ilp__principle{display:flex;gap:7px;padding:7px;background:#eef3f3;border-radius:8px}
@@ -9,9 +9,9 @@
 .ilp__progress-label{display:flex;justify-content:space-between;font-size:.86rem;color:var(--ilp-muted);margin-bottom:6px}
 .ilp__cards{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}
 .ilp__card{display:flex;flex-direction:column;min-width:0;padding:5px;border:1px solid var(--ilp-line);border-radius:9px;background:#fff;transition:background-color .15s,border-color .15s}
-.ilp__card.is-active{border-color:#86aaca;background:#f1f6f8}.ilp__card.is-done{background:#f0f6f2}
-.ilp__card-select{display:flex;align-items:center;gap:6px;width:100%;min-width:0;border:0;padding:0;background:transparent;color:inherit;text-align:left;cursor:pointer;font:inherit}
-.ilp__card-select:focus-visible,.ilp__card-check input:focus-visible{outline:3px solid #4c87b0;outline-offset:2px;border-radius:4px}
+.ilp__card.is-done{background:#f0f6f2}
+.ilp__card-select{display:flex;align-items:center;gap:6px;width:100%;min-width:0;border:0;padding:0;background:transparent;color:inherit;text-align:left;font:inherit}
+.ilp__card-check input:focus-visible{outline:3px solid #4c87b0;outline-offset:2px;border-radius:4px}
 .ilp__card-number{display:grid;place-items:center;flex:0 0 30px;height:30px;border-radius:50%;background:#eaf1f5;font-size:.96rem;font-weight:800}.ilp__card.is-done .ilp__card-number{background:#dcebe3;color:#285c47}
 .ilp__card-title{min-width:0;font-size:1rem;font-weight:800;line-height:1.25;hyphens:auto;overflow-wrap:break-word;word-break:normal}
 .ilp__card-image{display:flex;align-items:center;justify-content:center;margin:5px 0 3px;background:#fbf9f4;border-radius:5px;min-height:0}
@@ -19,9 +19,6 @@
 .ilp__card-instruction{margin:3px 0 7px;font-size:.94rem;line-height:1.45;font-weight:500;white-space:normal;hyphens:auto;overflow-wrap:break-word;word-break:normal}
 .ilp__card-check{display:flex;align-items:flex-start;gap:5px;margin-top:auto;padding-top:5px;color:var(--ilp-muted);font-size:.88rem;line-height:1.3;cursor:pointer}
 .ilp__card-check input,.ilp__check input{width:17px;height:17px;accent-color:#416c80;flex-shrink:0;margin:0}
-.ilp__detail{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);align-items:center;gap:12px;margin-top:7px;padding:8px 10px;background:#f5f4ef;border-radius:9px}
-.ilp__detail-title h3{font-size:1.15rem;line-height:1.2;margin:0}.ilp__step-label{font-size:.78rem}.ilp__detail-copy{min-width:0}
-.ilp__task{font-size:1rem;line-height:1.4;font-weight:700;margin:0 0 4px}.ilp__hint{font-size:.92rem;line-height:1.4;color:#4d687a;margin:0}
 .ilp__checks{margin-top:7px;padding:8px;background:#f5f4ef;border-radius:7px}
 .ilp__section-heading{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:4px}.ilp__section-heading .ilp__eyebrow{margin-bottom:1px}.ilp__section-heading h3{font-size:1.1rem;margin:0}.ilp__section-heading>span{font-size:.86rem;color:var(--ilp-muted)}
 .ilp__check-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:12px}
@@ -29,13 +26,13 @@
 .ilp__reflection{margin-top:7px}.ilp__reflection>label{display:block;font-weight:800;font-size:1rem;margin-bottom:3px}.ilp__reflection textarea{display:block;width:100%;resize:vertical;border:1px solid var(--ilp-line);border-radius:6px;background:#fffefa;color:inherit;padding:7px 8px;font:inherit;font-size:.94rem;line-height:1.4}.ilp__reflection>p{font-size:.82rem;color:var(--ilp-muted);margin:3px 0 0}
 .ilp__success{margin:7px 0 0;padding:7px 8px;background:#e7f0e9;border-radius:6px;color:#285c47;font-size:.95rem;font-weight:700}
 @media(max-width:1100px){.ilp__cards{grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}.ilp__card{padding:6px}.ilp__card-title{font-size:1rem}.ilp__card-instruction{font-size:.95rem}.ilp__card-image .lesson-visual-svg{max-height:180px}}
-@media(max-width:760px){.ilp__header{grid-template-columns:1fr}.ilp__cards{grid-template-columns:repeat(2,minmax(0,1fr))}.ilp__card:last-child:nth-child(odd){grid-column:1/-1}.ilp__card-title{font-size:1rem}.ilp__card-instruction{font-size:.96rem;line-height:1.5}.ilp__card-image .lesson-visual-svg{max-height:190px}.ilp__detail{grid-template-columns:1fr;gap:5px}.ilp__check-grid{grid-template-columns:1fr}}
+@media(max-width:760px){.ilp__header{grid-template-columns:1fr}.ilp__cards{grid-template-columns:repeat(2,minmax(0,1fr))}.ilp__card:last-child:nth-child(odd){grid-column:1/-1}.ilp__card-title{font-size:1rem}.ilp__card-instruction{font-size:.96rem;line-height:1.5}.ilp__card-image .lesson-visual-svg{max-height:190px}.ilp__check-grid{grid-template-columns:1fr}}
 @media(max-width:440px){.ilp__cards{grid-template-columns:1fr}.ilp__card:last-child:nth-child(odd){grid-column:auto}.ilp__card-image .lesson-visual-svg{max-height:220px}}
 @media(prefers-reduced-motion:reduce){.ilp__progress span,.ilp__card{transition:none}}
 
 .ilp__text-steps{margin:7px 0;padding:10px 12px;background:#f5f4ef;border:1px solid #e5e2d9;border-radius:9px}
 .ilp__text-steps h3{font-size:1.12rem;line-height:1.25;margin:0 0 6px}
-.ilp__text-steps ol{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px 16px;list-style:none;padding:0;margin:0}
+.ilp__text-steps ol{display:grid;grid-template-columns:1fr;gap:8px;list-style:none;padding:0;margin:0}
 .ilp__text-steps li{display:flex;align-items:flex-start;gap:8px;min-width:0;font-size:.98rem;line-height:1.45}
 .ilp__text-step-number{display:grid;place-items:center;flex:0 0 28px;height:28px;border-radius:50%;background:#e2ebef;color:#234b62;font-size:.86rem;font-weight:800}
 @media(max-width:600px){.ilp__text-steps ol{grid-template-columns:1fr}.ilp__text-steps{padding:9px}}

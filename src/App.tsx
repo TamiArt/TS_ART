@@ -58,6 +58,7 @@ function App() {
     setActiveModuleId(allLessons.find((item) => item.id === lesson.id)?.moduleId ?? 1);
     setReflection(saved.reflections[lesson.id] ?? "");
     setPage("learn");
+    setMobileMenuOpen(false);
   };
 
   const markComplete = () => {
