@@ -508,3 +508,67 @@ input:hover, textarea:hover, select:hover { border-color: #8299e8; }
 .page-wrap {
   background: linear-gradient(135deg, #fff8ed 0%, #f9eee3 48%, #f4e3e2 100%);
 }
+
+
+/* Approved palette refinement: blue sidebar, vivid raspberry accents, warm red-tinted cream. */
+:root {
+  --accent: #CC2055;
+  --accent-soft: #f4dce3;
+  --focus-ring: #CC2055;
+}
+button, input, textarea, select { accent-color: #CC2055; }
+button:focus-visible, textarea:focus-visible, input:focus-visible, select:focus-visible,
+a:focus-visible { outline-color: #CC2055; }
+.sidebar,
+.sidebar .nav-item-active,
+.sidebar .nav-item-active:hover {
+  background-color: #267BBB;
+}
+.sidebar {
+  border-right-color: #1f6da8;
+  color: #ffffff;
+  box-shadow: 8px 0 28px rgb(20 83 126 / 18%);
+}
+.sidebar .brand-lockup { color: #ffffff; }
+.sidebar .brand-mark span,
+.sidebar .note-spark { color: #CC2055; }
+.sidebar .brand-caption,
+.sidebar .sidebar-label,
+.sidebar .note-small,
+.sidebar .sidebar-footer { color: #e1f0fa; }
+.sidebar .nav-item { color: #ffffff; }
+.sidebar .nav-icon { color: #d3eafa; }
+.sidebar .nav-item:hover { color: #ffffff; background: #1f6da8; }
+.sidebar .nav-item-active {
+  color: #ffffff;
+  background: #1d689f;
+  box-shadow: inset 3px 0 0 #CC2055;
+}
+.sidebar .nav-item-active .nav-icon,
+.sidebar .nav-count { color: #ffdbe5; }
+.sidebar .sidebar-note {
+  background: #1f6da8;
+  border-color: #5ba0ce;
+}
+.sidebar .sidebar-note p { color: #ffffff; }
+.sidebar .status-dot { background: #f7c8d6; }
+
+/* Bright accents use raspberry; softer surfaces stay creamy with a warm red undertone. */
+a, .text-link { color: #CC2055; }
+.text-link:hover { color: #a71843; }
+.hero h1 em, .page-intro h1 em,
+.progress-number, .principle-card .principle-mark,
+.mode-icon { color: #CC2055; }
+.art-sun { background: #CC2055; }
+.art-stroke.stroke-two { border-color: #CC2055; }
+.welcome-strip { border-left-color: #CC2055; }
+.workshop-notice { border-left-color: #CC2055; }
+.progress-track span { background: #267BBB; }
+.lesson-index { color: #267BBB; background: #e0edf6; }
+.lesson-index-done { color: #176c61; background: #dceeea; }
+.mode-main { background: #f5e1df; }
+.mode-workshops { background: #f5e1df; }
+.mode-card:hover { border-color: #9fc7e2; }
+.page-wrap {
+  background: linear-gradient(135deg, #fff8ed 0%, #f9eee3 48%, #f5e2df 100%);
+}
