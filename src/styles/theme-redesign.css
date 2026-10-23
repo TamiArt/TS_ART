@@ -572,3 +572,58 @@ a, .text-link { color: #CC2055; }
 .page-wrap {
   background: linear-gradient(135deg, #fff8ed 0%, #f9eee3 48%, #F4CFBF 100%);
 }
+
+
+/* TS·ART Greek coast sidebar: sky fading into warm, sunlit Cycladic cliffs. */
+.sidebar {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background:
+    linear-gradient(180deg,
+      #1685c8 0%,
+      #58b9e6 23%,
+      #b8e0ed 42%,
+      #f8d9b4 57%,
+      #edb18a 70%,
+      #c87965 84%,
+      #735b68 100%) !important;
+}
+.sidebar::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  pointer-events: none;
+  opacity: .98;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 1000' preserveAspectRatio='xMidYMax slice'%3E%3Cdefs%3E%3ClinearGradient id='sea' x2='0' y2='1'%3E%3Cstop stop-color='%239bdce8'/%3E%3Cstop offset='1' stop-color='%232b9dc5'/%3E%3C/linearGradient%3E%3ClinearGradient id='rock' x2='0.2' y2='1'%3E%3Cstop stop-color='%23f5c99e'/%3E%3Cstop offset='1' stop-color='%23b86f63'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='250' cy='390' r='42' fill='%23fff0c9' opacity='.7'/%3E%3Cpath d='M0 470 Q50 430 92 458 T180 448 T320 435 L320 1000 L0 1000Z' fill='%23f6d7ad' opacity='.88'/%3E%3Cpath d='M0 540 L55 490 98 515 151 455 210 495 270 440 320 475 320 1000 0 1000Z' fill='url(%23rock)'/%3E%3Cpath d='M0 580 Q85 535 145 565 T320 540 L320 1000 L0 1000Z' fill='%23c98570'/%3E%3Cpath d='M0 625 Q70 585 140 615 T320 595 L320 1000 L0 1000Z' fill='%237c6973'/%3E%3Cpath d='M0 650 Q80 625 160 650 T320 630 L320 1000 L0 1000Z' fill='%234c586c' opacity='.88'/%3E%3Cg fill='%23fffaf0' stroke='%23e9d8c3' stroke-width='2'%3E%3Cpath d='M18 565V520L42 500 67 520V565Z'/%3E%3Cpath d='M9 522L42 491 76 522Z' fill='%23c76b55'/%3E%3Cpath d='M48 610V560L75 538 102 560V610Z'/%3E%3Cpath d='M39 562L75 529 111 562Z' fill='%23bd6553'/%3E%3Cpath d='M170 535V488L196 466 222 488V535Z'/%3E%3Cpath d='M160 490L196 457 232 490Z' fill='%23c86d59'/%3E%3Cpath d='M230 580V532L255 510 280 532V580Z'/%3E%3Cpath d='M220 534L255 502 290 534Z' fill='%23bd6553'/%3E%3C/g%3E%3Cg fill='%232d9bc4'%3E%3Cpath d='M32 524V538H49V524Q41 514 32 524Z'/%3E%3Cpath d='M61 563V578H81V563Q71 551 61 563Z'/%3E%3Cpath d='M182 490V505H201V490Q191 478 182 490Z'/%3E%3Cpath d='M242 535V550H261V535Q251 523 242 535Z'/%3E%3C/g%3E%3Cg fill='%23f4c5b3' opacity='.9'%3E%3Ccircle cx='12' cy='610' r='8'/%3E%3Ccircle cx='27' cy='624' r='6'/%3E%3Ccircle cx='297' cy='603' r='9'/%3E%3Ccircle cx='282' cy='618' r='7'/%3E%3C/g%3E%3Cpath d='M0 735Q70 700 130 725T320 700V1000H0Z' fill='%233e4b60' opacity='.55'/%3E%3C/svg%3E");
+  background-size: 100% 100%;
+  background-position: center bottom;
+  background-repeat: no-repeat;
+}
+.sidebar::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgb(20 119 184 / 8%) 0%, transparent 36%, rgb(45 45 62 / 15%) 100%);
+}
+.sidebar .nav-item,
+.sidebar .brand-lockup,
+.sidebar .brand-caption,
+.sidebar .sidebar-label,
+.sidebar .sidebar-note,
+.sidebar .sidebar-footer { position: relative; }
+.sidebar .sidebar-note {
+  background: rgb(36 105 143 / 62%);
+  border-color: rgb(255 255 255 / 32%);
+  backdrop-filter: blur(5px);
+}
+@media (max-width: 760px) {
+  .sidebar {
+    background:
+      linear-gradient(180deg, #1685c8 0%, #58b9e6 28%, #f8d9b4 58%, #c87965 80%, #4c586c 100%) !important;
+  }
+  .sidebar::before { background-size: 100% 100%; }
+}
