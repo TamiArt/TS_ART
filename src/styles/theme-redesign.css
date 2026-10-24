@@ -833,3 +833,70 @@ body {
   .hero h1 { font-size: 34px; }
   .dashboard-grid { grid-template-columns: 1fr; }
 }
+
+
+/* Layout repair: align the content with the fixed sidebar and keep the full sidebar artwork visible. */
+.sidebar {
+  width: 258px;
+  min-width: 258px;
+  background-size: 100% 100%, 100% 100%, 100% 100% !important;
+  background-position: center top, center top, center top !important;
+  background-repeat: no-repeat !important;
+}
+.sidebar::before {
+  background-size: 100% 100% !important;
+  background-position: center center !important;
+}
+.main-content {
+  margin-left: 258px !important;
+  min-width: 0;
+  width: calc(100% - 258px);
+}
+.topbar {
+  width: 100%;
+  min-width: 0;
+  flex-wrap: nowrap;
+  box-sizing: border-box;
+}
+.page-wrap {
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+.hero {
+  min-width: 0;
+}
+.hero-copy {
+  min-width: 0;
+}
+@media (max-width: 1050px) and (min-width: 761px) {
+  .sidebar {
+    width: 228px;
+    min-width: 228px;
+  }
+  .main-content {
+    margin-left: 228px !important;
+    width: calc(100% - 228px);
+  }
+  .topbar {
+    padding-inline: 22px;
+  }
+  .page-wrap {
+    padding-inline: 22px;
+  }
+}
+@media (max-width: 760px) {
+  .sidebar {
+    width: min(258px, 84vw);
+    min-width: min(258px, 84vw);
+    background-size: 100% 100%, 100% 100%, 100% 100% !important;
+  }
+  .main-content {
+    margin-left: 0 !important;
+    width: 100%;
+  }
+  .topbar {
+    padding-inline: 16px;
+    flex-wrap: wrap;
+  }
+}
