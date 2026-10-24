@@ -835,38 +835,71 @@ body {
 }
 
 
-/* Layout repair: align the content with the fixed sidebar and keep the full sidebar artwork visible. */
+/* Stable layout + single-source sidebar background.
+   Keep the existing document flow: header is already the first child of main-content.
+   Remove the layered placeholder photos/overlays that caused image bleed-through. */
+.app-shell {
+  min-height: 100vh;
+}
 .sidebar {
   width: 258px;
   min-width: 258px;
-  background-size: 100% 100%, 100% 100%, 100% 100% !important;
-  background-position: center top, center top, center top !important;
+  background-color: #247bb4 !important;
+  background-image: linear-gradient(
+    180deg,
+    #1685c8 0%,
+    #68b9db 28%,
+    #b8dce1 48%,
+    #f2d0ad 62%,
+    #d89a7c 78%,
+    #526c7b 100%
+  ) !important;
+  background-size: 100% 100% !important;
+  background-position: center top !important;
   background-repeat: no-repeat !important;
+  isolation: isolate;
 }
 .sidebar::before {
-  background-size: 100% 100% !important;
-  background-position: center center !important;
+  content: none !important;
+  display: none !important;
+  background: none !important;
+  background-image: none !important;
+  opacity: 0 !important;
+}
+.sidebar::after {
+  content: none !important;
+  display: none !important;
+  background: none !important;
+  background-image: none !important;
 }
 .main-content {
+  display: block !important;
+  position: relative;
   margin-left: 258px !important;
+  width: calc(100% - 258px) !important;
   min-width: 0;
-  width: calc(100% - 258px);
+  min-height: 100vh;
 }
 .topbar {
+  display: flex;
+  position: relative !important;
+  inset: auto !important;
+  top: auto !important;
+  transform: none !important;
+  order: initial !important;
   width: 100%;
   min-width: 0;
-  flex-wrap: nowrap;
+  min-height: 78px;
+  margin: 0 !important;
   box-sizing: border-box;
 }
-.page-wrap {
+.main-content > .page-wrap {
   width: 100%;
   min-width: 0;
+  margin: 0 auto;
   box-sizing: border-box;
 }
-.hero {
-  min-width: 0;
-}
-.hero-copy {
+.main-content > .lesson-page {
   min-width: 0;
 }
 @media (max-width: 1050px) and (min-width: 761px) {
@@ -876,76 +909,20 @@ body {
   }
   .main-content {
     margin-left: 228px !important;
-    width: calc(100% - 228px);
-  }
-  .topbar {
-    padding-inline: 22px;
-  }
-  .page-wrap {
-    padding-inline: 22px;
+    width: calc(100% - 228px) !important;
   }
 }
 @media (max-width: 760px) {
   .sidebar {
     width: min(258px, 84vw);
     min-width: min(258px, 84vw);
-    background-size: 100% 100%, 100% 100%, 100% 100% !important;
   }
-  .main-content {
-    margin-left: 0 !important;
-    width: 100%;
-  }
-  .topbar {
-    padding-inline: 16px;
-    flex-wrap: wrap;
-  }
-}
-
-
-/* Final layout correction: topbar stays at the top; scale the sidebar illustration to fit fully. */
-.main-content {
-  margin-left: 258px !important;
-  width: calc(100% - 258px) !important;
-  min-height: 100vh;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-}
-.topbar {
-  order: 0 !important;
-  position: relative !important;
-  inset: auto !important;
-  align-self: stretch;
-  flex: 0 0 auto;
-  margin: 0 !important;
-  transform: none !important;
-  top: 0 !important;
-}
-.main-content > .page-wrap {
-  order: 1;
-  flex: 1 0 auto;
-}
-.sidebar {
-  background-size: 100% 100%, 100% auto, 100% 100% !important;
-  background-position: center top, center bottom, center top !important;
-}
-.sidebar::before {
-  background-size: 100% 100% !important;
-  background-position: center bottom !important;
-}
-@media (max-width: 1050px) and (min-width: 761px) {
-  .main-content {
-    margin-left: 228px !important;
-    width: calc(100% - 228px) !important;
-  }
-}
-@media (max-width: 760px) {
   .main-content {
     margin-left: 0 !important;
     width: 100% !important;
   }
   .topbar {
-    order: 0 !important;
-    position: relative !important;
+    min-height: 56px;
+    flex-wrap: wrap;
   }
 }
