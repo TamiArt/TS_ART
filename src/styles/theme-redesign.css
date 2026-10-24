@@ -926,3 +926,32 @@ body {
     flex-wrap: wrap;
   }
 }
+
+
+/* Match the supplied sidebar reference: open blue sky above, intact scenic image anchored at the bottom.
+   The landscape layer uses its natural aspect ratio (never cover/crop or stretch to the sidebar height). */
+.sidebar {
+  background-color: #62b5e2 !important;
+  background-image:
+    linear-gradient(180deg, #2189ca 0%, #66b8e0 24%, #c3e1ed 39%, transparent 51%),
+    url("/illustrations/sidebar-greek-coast.svg") !important;
+  background-size: 100% 100%, 100% auto !important;
+  background-position: center top, center bottom !important;
+  background-repeat: no-repeat, no-repeat !important;
+  overflow: hidden;
+}
+.sidebar::before,
+.sidebar::after {
+  content: none !important;
+  display: none !important;
+}
+@media (max-width: 760px) {
+  .sidebar {
+    background-image:
+      linear-gradient(180deg, #2189ca 0%, #66b8e0 24%, #c3e1ed 39%, transparent 51%),
+      url("/illustrations/sidebar-greek-coast.svg") !important;
+    background-size: 100% 100%, 100% auto !important;
+    background-position: center top, center bottom !important;
+    background-repeat: no-repeat, no-repeat !important;
+  }
+}
