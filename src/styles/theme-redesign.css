@@ -934,7 +934,7 @@ body {
   background-color: #62b5e2 !important;
   background-image:
     linear-gradient(180deg, #2189ca 0%, #66b8e0 24%, #c3e1ed 39%, transparent 51%),
-    url("/illustrations/repeat-by-example/menuSantorini.png") !important;
+    url("/illustrations/menuSantorini.png") !important;
   background-size: 100% 100%, 100% auto !important;
   background-position: center top, center bottom !important;
   background-repeat: no-repeat, no-repeat !important;
@@ -949,7 +949,7 @@ body {
   .sidebar {
     background-image:
       linear-gradient(180deg, #2189ca 0%, #66b8e0 24%, #c3e1ed 39%, transparent 51%),
-      url("/illustrations/repeat-by-example/menuSantorini.png") !important;
+      url("/illustrations/menuSantorini.png") !important;
     background-size: 100% 100%, 100% auto !important;
     background-position: center top, center bottom !important;
     background-repeat: no-repeat, no-repeat !important;
@@ -1011,12 +1011,12 @@ body {
 
 
 /* Use the prepared original crop at the sidebar bottom without cover or stretching.
-   Asset path: public/illustrations/repeat-by-example/menuSantorini.png */
+   Asset path: public/illustrations/menuSantorini.png */
 .sidebar {
   background-color: #63b5e2 !important;
   background-image:
     linear-gradient(180deg, #2189ca 0%, #66b8e0 24%, #c3e1ed 39%, transparent 51%),
-    url("/illustrations/repeat-by-example/menuSantorini.png") !important;
+    url("/illustrations/menuSantorini.png") !important;
   background-size: 100% 100%, auto 58% !important;
   background-position: center top, center bottom !important;
   background-repeat: no-repeat, no-repeat !important;
