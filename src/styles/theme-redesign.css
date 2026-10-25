@@ -1087,3 +1087,45 @@ body {
   .app-shell > .sidebar .sidebar-note p { margin-top: 3px !important; margin-bottom: 5px !important; }
   .app-shell > .sidebar .sidebar-footer { padding-top: 6px !important; }
 }
+
+
+/* Improve contrast for the sidebar brand, section label, and all navigation items over the photo. */
+.app-shell > .sidebar {
+  background-color: #17364f !important;
+  background-image:
+    linear-gradient(180deg, rgb(8 35 58 / 48%) 0%, rgb(8 35 58 / 38%) 42%, rgb(8 35 58 / 50%) 100%),
+    url("/illustrations/menuSantorini.png") !important;
+  background-size: 100% 100%, 100% auto !important;
+  background-position: center top, center top !important;
+  background-repeat: no-repeat, no-repeat !important;
+}
+.app-shell > .sidebar .brand-mark,
+.app-shell > .sidebar .brand-caption,
+.app-shell > .sidebar .sidebar-label,
+.app-shell > .sidebar .nav-item,
+.app-shell > .sidebar .nav-icon,
+.app-shell > .sidebar .sidebar-footer {
+  color: #fff !important;
+  text-shadow: 0 1px 5px rgb(0 0 0 / 48%) !important;
+}
+.app-shell > .sidebar .nav-item {
+  background-color: rgb(8 35 58 / 18%) !important;
+  border: 1px solid rgb(255 255 255 / 18%) !important;
+}
+.app-shell > .sidebar .nav-item:hover {
+  background-color: rgb(255 255 255 / 20%) !important;
+}
+.app-shell > .sidebar .nav-item-active,
+.app-shell > .sidebar .nav-item-active:hover {
+  background-color: #CC2055 !important;
+  border-color: rgb(255 255 255 / 35%) !important;
+}
+.app-shell > .sidebar .nav-count {
+  color: #fff !important;
+  background: rgb(8 35 58 / 55%) !important;
+}
+@media (max-width: 760px) {
+  .app-shell > .sidebar {
+    background-size: 100% 100%, 100% auto !important;
+  }
+}
