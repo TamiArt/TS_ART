@@ -1191,12 +1191,17 @@ body {
 .lesson-page .lesson-aside {
   grid-row:2;
   display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
+  grid-template-columns:minmax(150px,.7fr) repeat(2,minmax(0,1fr));
   gap:12px;
   align-self:stretch;
   padding:0;
 }
-.lesson-page .lesson-aside .aside-art { display:none; }
+.lesson-page .lesson-aside .aside-art {
+  display:flex;
+  min-width:0;
+  min-height:150px;
+  align-self:stretch;
+}
 .lesson-page .lesson-aside .aside-tip {
   margin:0;
   min-width:0;
@@ -1210,6 +1215,11 @@ body {
   min-width:0;
 }
 .lesson-page--light-observation .lesson-main { max-width:none; }
+@media(max-width:1050px) {
+  .lesson-page .lesson-aside { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .lesson-page .lesson-aside .aside-art { grid-column:1 / -1; min-height:120px; }
+}
 @media(max-width:760px) {
   .lesson-page .lesson-aside { grid-template-columns:minmax(0,1fr); }
+  .lesson-page .lesson-aside .aside-art { grid-column:auto; }
 }
