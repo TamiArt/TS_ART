@@ -176,3 +176,62 @@
   .history-artwork-columns { grid-template-columns:1fr; gap: 3.5px; }
   .history-artwork-columns p { font-size:12px; }
 }
+
+
+/* Study completion: lightweight progress feedback that matches the editorial art-history cards. */
+.history-progress-track {
+  width:min(100%,420px);
+  height:5px;
+  margin-top:10px;
+  overflow:hidden;
+  border-radius:99px;
+  background:#ded8cc;
+}
+.history-progress-track > span {
+  display:block;
+  height:100%;
+  border-radius:inherit;
+  background:var(--accent,#c45a69);
+  transition:width .25s ease;
+}
+.history-studied-mark {
+  display:inline-block;
+  margin-left:4px;
+  color:#2f7467;
+  font-weight:800;
+}
+.history-completion-row {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+  margin-top:14px;
+  padding:14px 0 2px;
+  border-top:1px solid var(--line);
+}
+.history-completion-row > div { min-width:0; }
+.history-completion-row strong {
+  display:block;
+  color:var(--ink,#263b46);
+  font-size:13px;
+  line-height:1.4;
+}
+.history-completion-row p {
+  margin:4px 0 0;
+  color:var(--muted,#777267);
+  font-size:11px;
+  line-height:1.5;
+}
+.history-completion-row .button {
+  flex:0 0 auto;
+  min-height:38px;
+  white-space:nowrap;
+}
+@media(max-width:760px) {
+  .history-progress-track { margin-top:7px; }
+  .history-completion-row { align-items:stretch; flex-direction:column; gap:8px; }
+  .history-completion-row .button { width:100%; }
+}
+@media(prefers-reduced-motion:reduce) {
+  .history-progress-track > span { transition:none; }
+}
