@@ -227,6 +227,7 @@ This stage starts only after stages 1–3 are complete. Prioritize work by risk 
 
 - [x] Provide a searchable, filterable timeline of nine periods from prehistoric art to contemporary practice.
 - [x] Include visual clues, an analysis question, a practical exercise and key terms for each period.
+- [x] Add concrete characteristics for all nine periods and representative artists/masters with brief explanations; make clear where historic authorship is unknown or regional traditions differ.
 - [x] Link each period to an artwork study and show museum/educational source links.
 - [x] Add persistent per-period study marks and a progress indicator; progress is stored locally in the current browser.
 - [x] Add responsive styles for the period cards, artwork analysis and completion controls.
