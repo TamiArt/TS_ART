@@ -102,6 +102,7 @@ export default function InteractiveLessonPractice({ lesson }: { lesson: Lesson }
                 <span className="ilp__card-title">{cardLabel(step.instruction, index, steps.length)}</span>
               </div>
               <div className="ilp__card-image"><StepIllustration title={lesson.title} instruction={step.instruction} /></div>
+              <p className="ilp__card-instruction">{step.instruction}</p>
               <label className="ilp__card-check">
                 <input type="checkbox" checked={isComplete} onChange={() => toggleStep(index)} />
                 <span>{isComplete ? "Выполнено" : "Отметить этап"}</span>
