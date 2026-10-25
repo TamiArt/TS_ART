@@ -1027,3 +1027,17 @@ body {
     background-position: center top, center top !important;
   }
 }
+
+
+/* Sidebar: show the supplied Santorini artwork cleanly, without a blue overlay.
+   Keep the existing sidebar content in normal flow immediately after the image. */
+.sidebar {
+  background-color: transparent !important;
+  background-image: url("/illustrations/menuSantorini.png") !important;
+  background-size: 100% auto !important;
+  background-position: center top !important;
+  background-repeat: no-repeat !important;
+}
+.sidebar .sidebar-note {
+  margin-top: 0 !important;
+}
