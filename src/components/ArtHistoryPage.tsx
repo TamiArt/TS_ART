@@ -32,13 +32,31 @@ export default function ArtHistoryPage() {
   const [query, setQuery] = useState("");
   const [filter, setFilter] = useState("all");
   const [selectedId, setSelectedId] = useState("renaissance");
-  const [showSources, setShowSources] = useState(false);\n  const [studiedPeriods, setStudiedPeriods] = useState<string[]>(readStudiedPeriods);\n\n  const toggleStudied = (periodId: string) => {\n    setStudiedPeriods((current) => {\n      const next = current.includes(periodId) ? current.filter((id) => id !== periodId) : [...current, periodId];\n      try { localStorage.setItem(ART_HISTORY_PROGRESS_KEY, JSON.stringify(next)); } catch { /* Keep progress for this session if storage is unavailable. */ }\n      return next;\n    });\n  };
+  const [showSources, setShowSources] = useState(false);
+  const [studiedPeriods, setStudiedPeriods] = useState<string[]>(readStudiedPeriods);
+
+  useEffect(() => {
+    try { localStorage.setItem(ART_HISTORY_PROGRESS_KEY, JSON.stringify(studiedPeriods)); } catch { /* Progress remains available for this session. */ }
+  }, [studiedPeriods]);
+
+  const toggleStudied = (periodId: string) => {
+    setStudiedPeriods((current) => current.includes(periodId) ? current.filter((id) => id !== periodId) : [...current, periodId]);
+  };
+  const [studiedPeriods, setStudiedPeriods] = useState<string[]>(readStudiedPeriods);
+
+  const toggleStudied = (periodId: string) => {
+    setStudiedPeriods((current) => {
+      const next = current.includes(periodId) ? current.filter((id) => id !== periodId) : [...current, periodId];
+      try { localStorage.setItem(ART_HISTORY_PROGRESS_KEY, JSON.stringify(next)); } catch { /* Keep progress for this session if storage is unavailable. */ }
+      return next;
+    });
+  };
 
   const periods = useMemo(() => {
     const normalized = query.trim().toLocaleLowerCase("ru");
     return artHistoryPeriods.filter((period) => {
       const matchesFilter = filter === "all" || groupForPeriod(period.id) === filter;
-      const searchable = [period.era, period.title, period.date, period.summary, period.region, ...period.terms, ...period.visualClues].join(" ").toLocaleLowerCase("ru");
+      const searchable = [period.era, period.title, period.date, period.summary, period.region, ...period.characteristics, ...period.keyArtists.map((artist) => `${artist.name} ${artist.contribution}`), ...period.terms, ...period.visualClues].join(" ").toLocaleLowerCase("ru");
       return matchesFilter && (!normalized || searchable.includes(normalized));
     });
   }, [query, filter]);
@@ -96,6 +114,10 @@ export default function ArtHistoryPage() {
         <div className="eyebrow">{selected.region}</div>
         <h2>{selected.title}</h2>
         <p className="history-study-summary">{selected.summary}</p>
+        <section className="history-era-profile" aria-label="Характеристики эпохи">
+          <div className="history-era-characteristics"><h3>Чем характеризуется эпоха</h3><ul>{selected.characteristics.map((item) => <li key={item}>{item}</li>)}</ul></div>
+          <div className="history-era-artists"><h3>Основные художники и мастера</h3><ul>{selected.keyArtists.map((artist) => <li key={artist.name}><strong>{artist.name}</strong><span>{artist.contribution}</span></li>)}</ul><p className="history-era-note">Список ориентировочный: эпохи включают множество региональных традиций, а авторство многих исторических произведений неизвестно.</p></div>
+        </section>
         {selectedArtwork && <section className="history-artwork-study" aria-label="Произведение для анализа">
           <div className="history-artwork-heading"><span className="eyebrow">РАЗБОР ПРОИЗВЕДЕНИЯ</span><span>{selectedArtwork.date}</span></div>
           <h3>{selectedArtwork.title}</h3>
@@ -106,7 +128,8 @@ export default function ArtHistoryPage() {
           <div><h3>Что искать глазами</h3><ul>{selected.visualClues.map((clue) => <li key={clue}>{clue}</li>)}</ul></div>
           <div className="history-look-for"><h3>Вопрос для анализа</h3><p>{selected.lookFor}</p><h3>Попробуй сама</h3><p>{selected.tryIt}</p></div>
         </div>
-        <div className="history-terms"><span>КЛЮЧЕВЫЕ ТЕРМИНЫ</span>{selected.terms.map((term) => <span key={term}>{term}</span>)}</div>\n        <div className="history-completion-row"><div><strong>{studiedPeriods.includes(selected.id) ? "Эпоха отмечена как изученная" : "Завершила знакомство с эпохой?"}</strong><p>Отметка сохранится в этом браузере и поможет продолжить с нужного места.</p></div><button className={studiedPeriods.includes(selected.id) ? "button button-outline" : "button button-dark"} onClick={() => toggleStudied(selected.id)} aria-pressed={studiedPeriods.includes(selected.id)}>{studiedPeriods.includes(selected.id) ? "Снять отметку" : "Отметить изученной"} <span>{studiedPeriods.includes(selected.id) ? "↺" : "✓"}</span></button></div>
+        <div className="history-terms"><span>КЛЮЧЕВЫЕ ТЕРМИНЫ</span>{selected.terms.map((term) => <span key={term}>{term}</span>)}</div>
+        <div className="history-completion-row"><div><strong>{studiedPeriods.includes(selected.id) ? "Эпоха отмечена как изученная" : "Завершила знакомство с эпохой?"}</strong><p>Отметка сохранится в этом браузере и поможет продолжить с нужного места.</p></div><button className={studiedPeriods.includes(selected.id) ? "button button-outline" : "button button-dark"} onClick={() => toggleStudied(selected.id)} aria-pressed={studiedPeriods.includes(selected.id)}>{studiedPeriods.includes(selected.id) ? "Снять отметку" : "Отметить изученной"} <span>{studiedPeriods.includes(selected.id) ? "↺" : "✓"}</span></button></div>
         <div className="history-study-nav">
           <button className="button button-outline" disabled={selectedIndex <= 0} onClick={() => { if (selectedIndex > 0) setSelectedId(periods[selectedIndex - 1].id); }}>← Предыдущая эпоха</button>
           <button className="button button-dark" disabled={selectedIndex < 0 || selectedIndex >= periods.length - 1} onClick={() => { if (selectedIndex >= 0 && selectedIndex < periods.length - 1) setSelectedId(periods[selectedIndex + 1].id); }}>Следующая эпоха <span>→</span></button>
