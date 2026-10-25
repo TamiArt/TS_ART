@@ -2,6 +2,19 @@ import { useMemo, useState } from "react";
 import { artHistoryPeriods, artHistorySources, artworkStudies } from "../data/artHistory";
 import "./art-history.css";
 
+const ART_HISTORY_PROGRESS_KEY = "ts-art-history-studied-v1";
+
+function readStudiedPeriods(): string[] {
+  try {
+    const value = localStorage.getItem(ART_HISTORY_PROGRESS_KEY);
+    if (!value) return [];
+    const parsed: unknown = JSON.parse(value);
+    return Array.isArray(parsed) ? parsed.filter((id): id is string => typeof id === "string" && artHistoryPeriods.some((period) => period.id === id)) : [];
+  } catch {
+    return [];
+  }
+}
+
 const filterOptions = [
   { value: "all", label: "Все эпохи" },
   { value: "early", label: "Ранние культуры" },
@@ -19,7 +32,7 @@ export default function ArtHistoryPage() {
   const [query, setQuery] = useState("");
   const [filter, setFilter] = useState("all");
   const [selectedId, setSelectedId] = useState("renaissance");
-  const [showSources, setShowSources] = useState(false);
+  const [showSources, setShowSources] = useState(false);\n  const [studiedPeriods, setStudiedPeriods] = useState<string[]>(readStudiedPeriods);\n\n  const toggleStudied = (periodId: string) => {\n    setStudiedPeriods((current) => {\n      const next = current.includes(periodId) ? current.filter((id) => id !== periodId) : [...current, periodId];\n      try { localStorage.setItem(ART_HISTORY_PROGRESS_KEY, JSON.stringify(next)); } catch { /* Keep progress for this session if storage is unavailable. */ }\n      return next;\n    });\n  };
 
   const periods = useMemo(() => {
     const normalized = query.trim().toLocaleLowerCase("ru");
@@ -40,7 +53,7 @@ export default function ArtHistoryPage() {
         <div className="eyebrow"><span className="eyebrow-line" /> ВИЗУАЛЬНАЯ КУЛЬТУРА · ИССЛЕДОВАНИЕ</div>
         <h1>История искусства — <em>учись видеть.</em></h1>
         <p>Не просто запоминай даты и имена. Разбирайся, как художники работали с формой, пространством, светом и цветом — и переноси наблюдения в собственную практику.</p>
-        <div className="art-history-hero-meta"><span>09 периодов</span><span>Визуальные ориентиры</span><span>Практика после изучения</span></div>
+        <div className="art-history-hero-meta"><span>09 периодов</span><span>Изучено: {studiedPeriods.length} из {artHistoryPeriods.length}</span><span>Визуальные ориентиры</span></div><div className="history-progress-track" role="progressbar" aria-label="Прогресс изучения истории искусства" aria-valuemin={0} aria-valuemax={artHistoryPeriods.length} aria-valuenow={studiedPeriods.length}><span style={{ width: `${studiedPeriods.length / artHistoryPeriods.length * 100}%` }} /></div>
       </div>
       <div className="art-history-hero-art" aria-hidden="true">
         <div className="art-history-paper">
@@ -66,7 +79,7 @@ export default function ArtHistoryPage() {
       {periods.length === 0 ? <div className="art-history-empty"><strong>Ничего не найдено</strong><p>Попробуй другой термин или сбрось фильтр.</p><button className="button button-outline" onClick={() => { setQuery(""); setFilter("all"); }}>Сбросить поиск</button></div> :
         <div className="art-history-period-grid">
           {periods.map((period) => <button key={period.id} className={`art-history-period-card ${selected?.id === period.id ? "art-history-period-selected" : ""}`} onClick={() => setSelectedId(period.id)} aria-pressed={selected?.id === period.id}>
-            <span className="history-card-top"><span>{String(artHistoryPeriods.findIndex((item) => item.id === period.id) + 1).padStart(2, "0")}</span><span>{period.date}</span></span>
+            <span className="history-card-top"><span>{String(artHistoryPeriods.findIndex((item) => item.id === period.id) + 1).padStart(2, "0")}{studiedPeriods.includes(period.id) && <span className="history-studied-mark" aria-label="Эпоха изучена"> ✓</span>}</span><span>{period.date}</span></span>
             <span className={`history-period-art history-period-art-${period.id}`} aria-hidden="true"><i /><b /><em /></span>
             <span className="history-period-region">{period.region}</span>
             <strong>{period.era}</strong>
@@ -93,7 +106,7 @@ export default function ArtHistoryPage() {
           <div><h3>Что искать глазами</h3><ul>{selected.visualClues.map((clue) => <li key={clue}>{clue}</li>)}</ul></div>
           <div className="history-look-for"><h3>Вопрос для анализа</h3><p>{selected.lookFor}</p><h3>Попробуй сама</h3><p>{selected.tryIt}</p></div>
         </div>
-        <div className="history-terms"><span>КЛЮЧЕВЫЕ ТЕРМИНЫ</span>{selected.terms.map((term) => <span key={term}>{term}</span>)}</div>
+        <div className="history-terms"><span>КЛЮЧЕВЫЕ ТЕРМИНЫ</span>{selected.terms.map((term) => <span key={term}>{term}</span>)}</div>\n        <div className="history-completion-row"><div><strong>{studiedPeriods.includes(selected.id) ? "Эпоха отмечена как изученная" : "Завершила знакомство с эпохой?"}</strong><p>Отметка сохранится в этом браузере и поможет продолжить с нужного места.</p></div><button className={studiedPeriods.includes(selected.id) ? "button button-outline" : "button button-dark"} onClick={() => toggleStudied(selected.id)} aria-pressed={studiedPeriods.includes(selected.id)}>{studiedPeriods.includes(selected.id) ? "Снять отметку" : "Отметить изученной"} <span>{studiedPeriods.includes(selected.id) ? "↺" : "✓"}</span></button></div>
         <div className="history-study-nav">
           <button className="button button-outline" disabled={selectedIndex <= 0} onClick={() => { if (selectedIndex > 0) setSelectedId(periods[selectedIndex - 1].id); }}>← Предыдущая эпоха</button>
           <button className="button button-dark" disabled={selectedIndex < 0 || selectedIndex >= periods.length - 1} onClick={() => { if (selectedIndex >= 0 && selectedIndex < periods.length - 1) setSelectedId(periods[selectedIndex + 1].id); }}>Следующая эпоха <span>→</span></button>
