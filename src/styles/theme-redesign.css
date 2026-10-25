@@ -1223,3 +1223,109 @@ body {
   .lesson-page .lesson-aside { grid-template-columns:minmax(0,1fr); }
   .lesson-page .lesson-aside .aside-art { grid-column:auto; }
 }
+
+
+/* Refined lesson support panel: a quiet sketchbook motif instead of the generic slogan graphic. */
+.lesson-page .lesson-aside .aside-art {
+  position:relative;
+  display:grid;
+  place-items:center;
+  min-height:168px;
+  overflow:hidden;
+  border:1px solid #d9d0c1;
+  border-radius:3px;
+  background:
+    linear-gradient(90deg, transparent 0 23px, rgb(174 151 122 / 12%) 24px, transparent 25px),
+    repeating-linear-gradient(0deg, transparent 0 23px, rgb(174 151 122 / 13%) 24px, transparent 25px),
+    #f5f0e7;
+}
+.lesson-page .lesson-aside .aside-art::before {
+  content:"";
+  position:absolute;
+  width:94px;
+  height:116px;
+  left:calc(50% - 47px);
+  top:25px;
+  border:1px solid #b9aa92;
+  border-radius:48% 48% 44% 44%;
+  transform:rotate(-11deg);
+  background:linear-gradient(145deg, rgb(255 255 255 / 72%), rgb(226 215 195 / 28%));
+  box-shadow:12px 9px 0 -5px #e8dfd0, 12px 9px 0 -4px #c8baa3;
+}
+.lesson-page .lesson-aside .aside-art::after {
+  content:"";
+  position:absolute;
+  width:48px;
+  height:72px;
+  left:calc(50% - 24px);
+  top:46px;
+  border-left:2px solid #9b9d7d;
+  border-radius:50%;
+  transform:rotate(24deg);
+  background:
+    radial-gradient(ellipse at 22% 27%, #b6b99a 0 13%, transparent 15%),
+    radial-gradient(ellipse at 76% 43%, #c4c7a7 0 14%, transparent 16%),
+    radial-gradient(ellipse at 25% 64%, #a9b08c 0 13%, transparent 15%);
+}
+.lesson-page .lesson-aside .aside-art .aside-orbit { display:none; }
+.lesson-page .lesson-aside .aside-art > span {
+  position:absolute;
+  z-index:3;
+  right:12px;
+  bottom:10px;
+  padding:4px 7px;
+  background:#f5f0e7;
+  color:#766b5a;
+  font-size:8px;
+  line-height:1.45;
+  letter-spacing:1.4px;
+  text-align:right;
+}
+.lesson-page .lesson-aside .aside-art > span em {
+  color:#8c7557;
+  font-size:10px;
+}
+.lesson-page .lesson-aside .aside-tip .eyebrow {
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  padding:5px 9px;
+  border-radius:2px;
+  background:#e8edf0;
+  color:#254d65;
+  font-family:"DM Sans",sans-serif;
+  font-size:11px;
+  font-weight:800;
+  line-height:1.2;
+  letter-spacing:1.5px;
+}
+.lesson-page .lesson-aside .aside-tip .eyebrow::before {
+  content:"";
+  width:5px;
+  height:5px;
+  flex:0 0 5px;
+  border-radius:50%;
+  background:#c45a69;
+}
+.lesson-page .lesson-aside .aside-tip-muted .eyebrow {
+  background:#f0e8dc;
+  color:#76583f;
+}
+.lesson-page .lesson-aside .aside-tip-muted .eyebrow::before {
+  background:#b38a58;
+}
+.lesson-page .lesson-aside .aside-tip p {
+  margin-top:9px;
+  font-size:15px;
+  line-height:1.55;
+  color:#48483f;
+}
+.lesson-page .lesson-aside .aside-tip-muted p {
+  font-size:13px;
+  line-height:1.6;
+  color:#716c61;
+}
+@media(max-width:760px) {
+  .lesson-page .lesson-aside .aside-art { min-height:140px; }
+  .lesson-page .lesson-aside .aside-tip .eyebrow { font-size:10px; }
+}
