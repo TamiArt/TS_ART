@@ -1041,3 +1041,13 @@ body {
 .sidebar .sidebar-note {
   margin-top: 0 !important;
 }
+
+
+/* Raise the inspirational text block in the sidebar instead of pinning it to the bottom. */
+.app-shell > .sidebar .sidebar-spacer {
+  flex: 0 0 24px !important;
+  min-height: 24px !important;
+}
+.app-shell > .sidebar .sidebar-note {
+  margin-top: 0 !important;
+}
