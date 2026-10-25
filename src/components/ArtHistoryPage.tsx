@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { artHistoryPeriods, artHistorySources, artworkStudies } from "../data/artHistory";
 import "./art-history.css";
 
