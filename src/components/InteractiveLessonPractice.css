@@ -1,4 +1,4 @@
-.ilp{--ilp-ink:#19364d;--ilp-muted:#687987;--ilp-line:#d9ddd9;color:var(--ilp-ink);max-width:1180px;margin:4px auto;font-family:inherit}.ilp *{box-sizing:border-box}
+.ilp{--ilp-ink:#19364d;--ilp-muted:#687987;--ilp-line:#d9ddd9;color:var(--ilp-ink);width:100%;max-width:none;margin:4px 0;font-family:inherit}.ilp *{box-sizing:border-box}
 .ilp__header{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(220px,.9fr);gap:8px;align-items:start;margin-bottom:6px}
 .ilp__eyebrow{font-size:.8rem;letter-spacing:.06em;font-weight:800;color:var(--ilp-muted);margin:0 0 3px}
 .ilp__header h2{font-size:clamp(1.9rem,3vw,2.45rem);line-height:1.1;margin:0 0 4px}
@@ -82,7 +82,7 @@
 
 
 /* Match the supplied warm-paper, blue-type, colored-pencil lesson reference. */
-.ilp{--ilp-ink:#17466a;--ilp-muted:#718895;--ilp-line:#e2ded5;max-width:1400px;color:var(--ilp-ink)}
+.ilp{--ilp-ink:#17466a;--ilp-muted:#718895;--ilp-line:#e2ded5;width:100%;max-width:none;margin-left:0;margin-right:0;color:var(--ilp-ink)}
 .ilp__header{display:block;margin:0 0 10px}
 .ilp__header>div{display:contents}
 .ilp__eyebrow,.ilp__objective,.ilp__principle,.ilp__progress,.ilp__progress-label{display:none}
