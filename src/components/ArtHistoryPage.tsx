@@ -42,16 +42,6 @@ export default function ArtHistoryPage() {
   const toggleStudied = (periodId: string) => {
     setStudiedPeriods((current) => current.includes(periodId) ? current.filter((id) => id !== periodId) : [...current, periodId]);
   };
-  const [studiedPeriods, setStudiedPeriods] = useState<string[]>(readStudiedPeriods);
-
-  const toggleStudied = (periodId: string) => {
-    setStudiedPeriods((current) => {
-      const next = current.includes(periodId) ? current.filter((id) => id !== periodId) : [...current, periodId];
-      try { localStorage.setItem(ART_HISTORY_PROGRESS_KEY, JSON.stringify(next)); } catch { /* Keep progress for this session if storage is unavailable. */ }
-      return next;
-    });
-  };
-
   const periods = useMemo(() => {
     const normalized = query.trim().toLocaleLowerCase("ru");
     return artHistoryPeriods.filter((period) => {
