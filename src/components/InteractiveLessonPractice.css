@@ -78,3 +78,19 @@
 @media (max-width: 760px) {
   .ilp__card-image .lesson-visual-svg { max-height: 185px; }
 }
+
+
+/* Unify every lesson-stage illustration as a graphite pencil study. */
+.ilp__card-image .lesson-visual-svg,
+.lesson-visual-svg.pencil-study {
+  filter: grayscale(1) contrast(.92) saturate(0) !important;
+}
+.ilp__card-image .lesson-visual-svg [fill]:not([fill="none"]),
+.lesson-visual-svg.pencil-study [fill]:not([fill="none"]) {
+  fill-opacity: .34;
+}
+.ilp__card-image .lesson-visual-svg [stroke],
+.lesson-visual-svg.pencil-study [stroke] {
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
