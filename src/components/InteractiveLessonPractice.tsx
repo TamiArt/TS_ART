@@ -4,10 +4,7 @@ import StepIllustration from "./StepIllustration";
 import { classifyLesson, classifyVisualAction, getVisualKindLabel, getVisualPrinciple } from "./lessonVisuals";
 import "./InteractiveLessonPractice.css";
 
-function cardLabel(instruction: string, index: number, total: number, lessonTitle = ""): string {
-  if (/простая рабочая среда/i.test(lessonTitle)) {
-    return ["Выбери", "Подготовь свет", "Освободи стол", "Пробные линии", "Сохрани лист"][index] ?? "Этап";
-  }
+function cardLabel(instruction: string, index: number, total: number): string {
   const actionLabels: Record<string, string> = {
     observe: "Наблюдай", place: "Подготовь", trace: "Уточни", outline: "Наметь",
     simplify: "Упрости", measure: "Сравни размеры", compare: "Сравни",
@@ -102,7 +99,7 @@ export default function InteractiveLessonPractice({ lesson }: { lesson: Lesson }
             <article key={`${lesson.id}-step-${index}`} lang="ru" className={`ilp__card ${isComplete ? "is-done" : ""}`}>
               <div className="ilp__card-select">
                 <span className="ilp__card-number">{isComplete ? "✓" : String(index + 1).padStart(2, "0")}</span>
-                <span className="ilp__card-title">{cardLabel(step.instruction, index, steps.length, lesson.title)}</span>
+                <span className="ilp__card-title">{cardLabel(step.instruction, index, steps.length)}</span>
               </div>
               <div className="ilp__card-image"><StepIllustration title={lesson.title} instruction={step.instruction} /></div>
               <label className="ilp__card-check">
