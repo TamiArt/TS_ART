@@ -235,3 +235,74 @@
 @media(prefers-reduced-motion:reduce) {
   .history-progress-track > span { transition:none; }
 }
+
+
+/* Expanded educational content for each art-history period. */
+.history-era-profile {
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+  gap:12px;
+  margin:12px 0 15px;
+}
+.history-era-profile > div {
+  min-width:0;
+  padding:13px;
+  border:1px solid #e1d9cc;
+  background:#faf7f0;
+}
+.history-era-profile h3 {
+  margin:0 0 9px;
+  color:var(--ink,#263b46);
+  font-family:var(--serif);
+  font-size:20px;
+  font-weight:500;
+  line-height:1.25;
+}
+.history-era-characteristics ul {
+  display:grid;
+  gap:8px;
+  margin:0;
+  padding-left:18px;
+}
+.history-era-characteristics li {
+  padding-left:2px;
+  color:#5f5b52;
+  font-size:12px;
+  line-height:1.6;
+}
+.history-era-artists ul {
+  display:grid;
+  gap:9px;
+  margin:0;
+  padding:0;
+  list-style:none;
+}
+.history-era-artists li {
+  display:grid;
+  gap:3px;
+  padding-bottom:8px;
+  border-bottom:1px solid #e7e0d5;
+}
+.history-era-artists li:last-child { padding-bottom:0; border-bottom:0; }
+.history-era-artists li strong {
+  color:#38566a;
+  font-size:12px;
+  line-height:1.4;
+}
+.history-era-artists li span {
+  color:#696458;
+  font-size:11px;
+  line-height:1.55;
+}
+.history-era-note {
+  margin:10px 0 0;
+  color:#8a8172;
+  font-size:10px;
+  line-height:1.5;
+}
+@media(max-width:760px) {
+  .history-era-profile { grid-template-columns:1fr; gap:7px; margin:9px 0 11px; }
+  .history-era-profile > div { padding:10px; }
+  .history-era-profile h3 { font-size:19px; }
+  .history-era-characteristics ul { gap:6px; }
+}
