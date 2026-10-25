@@ -80,17 +80,37 @@
 }
 
 
-/* Unify every lesson-stage illustration as a graphite pencil study. */
-.ilp__card-image .lesson-visual-svg,
-.lesson-visual-svg.pencil-study {
-  filter: grayscale(1) contrast(.92) saturate(0) !important;
-}
-.ilp__card-image .lesson-visual-svg [fill]:not([fill="none"]),
-.lesson-visual-svg.pencil-study [fill]:not([fill="none"]) {
-  fill-opacity: .34;
-}
-.ilp__card-image .lesson-visual-svg [stroke],
-.lesson-visual-svg.pencil-study [stroke] {
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
+
+/* Match the supplied warm-paper, blue-type, colored-pencil lesson reference. */
+.ilp{--ilp-ink:#17466a;--ilp-muted:#718895;--ilp-line:#e2ded5;max-width:1400px;color:var(--ilp-ink)}
+.ilp__header{display:block;margin:0 0 10px}
+.ilp__header>div{display:contents}
+.ilp__eyebrow,.ilp__objective,.ilp__principle,.ilp__progress,.ilp__progress-label{display:none}
+.ilp__header h2{font-size:clamp(1.75rem,2.5vw,2.15rem);font-weight:850;color:#12466c;margin:0 0 8px}
+.ilp__text-steps{margin:0 0 14px;padding:14px 20px;border:1px solid #e2ded5;border-radius:15px;background:linear-gradient(115deg,#f7f7f2,#f2f3ef)}
+.ilp__text-steps h3{color:#17466a;font-size:clamp(1.45rem,2.2vw,1.9rem);font-weight:850;margin:0 0 8px}
+.ilp__text-steps ol{gap:8px}
+.ilp__text-steps li{align-items:center;font-size:clamp(1rem,1.7vw,1.4rem);line-height:1.35;gap:14px}
+.ilp__text-step-number{flex-basis:40px;height:40px;border-radius:50%;background:#d8eaf1;color:#164d70;font-size:1.15rem}
+.ilp__cards{grid-template-columns:repeat(5,minmax(0,1fr));gap:14px}
+.ilp__card{padding:11px;border:1px solid #e2d9cd;border-radius:16px;background:linear-gradient(150deg,#fffefa 0%,#f8f5ee 100%);box-shadow:0 4px 12px rgb(56 62 63 / 6%)}
+.ilp__card:hover{border-color:#c7d8df}
+.ilp__card-select{gap:9px;min-height:43px}
+.ilp__card-number{flex-basis:43px;height:43px;background:#dcecf2;border:1px solid #c8dce5;color:#17466a;font-size:1.15rem}
+.ilp__card-title{color:#17466a;font-size:clamp(1.05rem,1.8vw,1.65rem);font-weight:850;line-height:1.15}
+.ilp__card-image{margin:7px 0 8px;overflow:hidden;border:1px solid #e8d8c4;border-radius:8px;background:#f8f1e5}
+.ilp__card-image .lesson-visual-svg{display:block;width:100%;height:auto;max-height:none;object-fit:contain;filter:none!important}
+.ilp__card-image .lesson-visual-svg [fill]:not([fill="none"]){fill-opacity:initial}
+.ilp__card-check{display:none}
+.ilp__card-instruction{color:#17466a;font-size:clamp(.96rem,1.3vw,1.18rem);line-height:1.35}
+.ilp__checks{margin-top:14px;padding:10px 15px;border:1px solid #e2ded5;border-radius:13px;background:linear-gradient(115deg,#f5f6f1,#eff1ed)}
+.ilp__section-heading h3{color:#17466a;font-size:1.65rem;font-weight:850}
+.ilp__section-heading .ilp__eyebrow{display:block;color:#788b95}
+.ilp__check-grid{column-gap:20px}
+.ilp__check{color:#17466a;font-size:clamp(1rem,1.5vw,1.25rem);line-height:1.35;gap:10px}
+.ilp__check input{width:22px;height:22px;accent-color:#416c80}
+.ilp__reflection{margin-top:18px}
+.ilp__reflection>label{color:#17466a;font-size:1.65rem;font-weight:850}
+@media(max-width:1100px){.ilp__cards{grid-template-columns:repeat(3,minmax(0,1fr))}.ilp__card-title{font-size:1.2rem}}
+@media(max-width:760px){.ilp__text-steps{padding:12px}.ilp__text-steps li{font-size:1rem;gap:10px}.ilp__text-step-number{flex-basis:34px;height:34px}.ilp__cards{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.ilp__card{padding:8px}.ilp__card-title{font-size:1rem}.ilp__card-instruction{font-size:.98rem}.ilp__check-grid{grid-template-columns:1fr}}
+@media(max-width:440px){.ilp__cards{grid-template-columns:1fr}}
