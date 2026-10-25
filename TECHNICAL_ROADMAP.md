@@ -219,3 +219,18 @@ This stage starts only after stages 1–3 are complete. Prioritize work by risk 
 - [x] Add responsive desktop/mobile layouts, accessible labels and a curriculum regression test.
 - [ ] Verify TypeScript, tests and production build on the latest commit.
 - [ ] Review visual balance and legibility in a browser at desktop and mobile widths.
+
+
+## Art History block
+
+**Scope:** `src/components/ArtHistoryPage.tsx`, `src/data/artHistory.ts`, `src/components/art-history.css`
+
+- [x] Provide a searchable, filterable timeline of nine periods from prehistoric art to contemporary practice.
+- [x] Include visual clues, an analysis question, a practical exercise and key terms for each period.
+- [x] Link each period to an artwork study and show museum/educational source links.
+- [x] Add persistent per-period study marks and a progress indicator; progress is stored locally in the current browser.
+- [x] Add responsive styles for the period cards, artwork analysis and completion controls.
+- [ ] Verify type-check, unit tests and production build on the current branch.
+- [ ] Review the rendered page at desktop and mobile widths and confirm the progress marks survive reload.
+
+**Exit criteria:** all nine periods remain navigable through search/filter controls, each period can be marked studied and unmarked, progress survives reload, sources open correctly, and project checks pass.
