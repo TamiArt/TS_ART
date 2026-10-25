@@ -46,7 +46,7 @@ export default function ArtHistoryPage() {
     const normalized = query.trim().toLocaleLowerCase("ru");
     return artHistoryPeriods.filter((period) => {
       const matchesFilter = filter === "all" || groupForPeriod(period.id) === filter;
-      const searchable = [period.era, period.title, period.date, period.summary, period.region, ...period.characteristics, ...period.keyArtists.map((artist) => `${artist.name} ${artist.contribution}`), ...period.terms, ...period.visualClues].join(" ").toLocaleLowerCase("ru");
+      const searchable = [period.era, period.title, period.date, period.summary, period.region, ...period.characteristics, ...period.keyArtists.map((artist) => `${artist.name} ${artist.contribution}`), ...(period.recentTimeline ?? []).flatMap((item) => [item.period, item.title, item.description, ...item.artists]), ...period.terms, ...period.visualClues].join(" ").toLocaleLowerCase("ru");
       return matchesFilter && (!normalized || searchable.includes(normalized));
     });
   }, [query, filter]);
