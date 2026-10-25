@@ -498,7 +498,7 @@ function LessonView({ lesson, moduleTitle, isCompleted, reflection, onReflection
 }
 
 function PageIntro({ eyebrow, title, description }: { eyebrow: string; title: ReactNode; description: string }) {
-  return <section className="page-intro"><div className="eyebrow"><span className="eyebrow-line" /> {eyebrow}</div><h1>{title}</h1><p>{description}</p><div className="intro-ornament">✳</div></section>;
+  return <section className={`page-intro ${eyebrow === "LEARN · УЧЕБНАЯ ПРОГРАММА" ? "page-intro--lessons" : ""}`}><div className="eyebrow"><span className="eyebrow-line" /> {eyebrow}</div><h1>{title}</h1><p>{description}</p>{eyebrow !== "LEARN · УЧЕБНАЯ ПРОГРАММА" && <div className="intro-ornament">✳</div>}</section>;
 }
 
 export default App;
