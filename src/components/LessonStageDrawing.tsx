@@ -12,7 +12,7 @@ const blue = "#86aaca";
 type Props = { title: string; instruction: string };
 
 function Sheet({ children }: { children: ReactNode }) {
-  return <svg className="lesson-visual-svg" viewBox="0 0 240 150" role="img" aria-label="Учебный карандашный рисунок">
+  return <svg className="lesson-visual-svg pencil-study" viewBox="0 0 240 150" role="img" aria-label="Учебный рисунок простым карандашом">
     <rect x="9" y="7" width="222" height="136" rx="2" fill={paper} stroke="#e2dccf" />
     <path d="M15 14h6m-6 0v6m210-6h-6m6 0v6M15 136h6m-6 0v-6m210 6h-6m6 0v-6" fill="none" stroke="#d8d0c2" strokeWidth=".8" />
     {children}
