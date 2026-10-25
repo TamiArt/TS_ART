@@ -936,7 +936,7 @@ body {
     linear-gradient(180deg, #2189ca 0%, #66b8e0 24%, #c3e1ed 39%, transparent 51%),
     url("/illustrations/menuSantorini.png") !important;
   background-size: 100% 100%, 100% auto !important;
-  background-position: center top, center bottom !important;
+  background-position: center top, center top !important;
   background-repeat: no-repeat, no-repeat !important;
   overflow: hidden;
 }
@@ -951,7 +951,7 @@ body {
       linear-gradient(180deg, #2189ca 0%, #66b8e0 24%, #c3e1ed 39%, transparent 51%),
       url("/illustrations/menuSantorini.png") !important;
     background-size: 100% 100%, 100% auto !important;
-    background-position: center top, center bottom !important;
+    background-position: center top, center top !important;
     background-repeat: no-repeat, no-repeat !important;
   }
 }
@@ -1018,12 +1018,12 @@ body {
     linear-gradient(180deg, #2189ca 0%, #66b8e0 24%, #c3e1ed 39%, transparent 51%),
     url("/illustrations/menuSantorini.png") !important;
   background-size: 100% 100%, auto 58% !important;
-  background-position: center top, center bottom !important;
+  background-position: center top, center top !important;
   background-repeat: no-repeat, no-repeat !important;
 }
 @media (max-width: 760px) {
   .sidebar {
     background-size: 100% 100%, auto 58% !important;
-    background-position: center top, center bottom !important;
+    background-position: center top, center top !important;
   }
 }
