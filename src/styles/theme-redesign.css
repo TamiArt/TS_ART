@@ -1129,3 +1129,9 @@ body {
     background-size: 100% 100%, 100% auto !important;
   }
 }
+
+
+/* Unselected sidebar links should have no visible outline; preserve the active highlight. */
+.app-shell > .sidebar .nav-item:not(.nav-item-active) {
+  border-color: transparent !important;
+}
