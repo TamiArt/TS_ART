@@ -1163,3 +1163,53 @@ body {
   .lessons-page .lessons-intro-row { grid-template-columns:minmax(0,1fr); }
   .lessons-page .lessons-intro-row .side-info-card { min-height:auto; }
 }
+
+
+/* Lesson pages: full-width learning content with the support notes aligned to the title. */
+.main-content > .lesson-page {
+  width:100%;
+  max-width:none;
+}
+.lesson-page .lesson-layout {
+  width:100%;
+  max-width:none;
+  grid-template-columns:minmax(0,1fr);
+  gap:clamp(18px,2vw,28px);
+}
+.lesson-page .lesson-main {
+  width:100%;
+  max-width:none;
+  min-width:0;
+  display:contents;
+}
+.lesson-page .lesson-layout > .back-link { grid-row:1; }
+.lesson-page .lesson-layout > .lesson-main > .eyebrow,
+.lesson-page .lesson-layout > .lesson-main > h1,
+.lesson-page .lesson-layout > .lesson-main > .lesson-meta {
+  grid-column:1;
+}
+.lesson-page .lesson-aside {
+  grid-row:2;
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:12px;
+  align-self:stretch;
+  padding:0;
+}
+.lesson-page .lesson-aside .aside-art { display:none; }
+.lesson-page .lesson-aside .aside-tip {
+  margin:0;
+  min-width:0;
+}
+.lesson-page .lesson-objective,
+.lesson-page .lesson-section,
+.lesson-page .lesson-visual-guide,
+.lesson-page .reflection-box {
+  width:100%;
+  max-width:none;
+  min-width:0;
+}
+.lesson-page--light-observation .lesson-main { max-width:none; }
+@media(max-width:760px) {
+  .lesson-page .lesson-aside { grid-template-columns:minmax(0,1fr); }
+}
