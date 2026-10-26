@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { artHistoryPeriods, artHistorySources, artworkStudies } from "../data/artHistory";
+import { artHistoryMilestones, artHistoryPeriods, artHistorySources, artworkStudies } from "../data/artHistory";
 import "./art-history.css";
 
 const ART_HISTORY_PROGRESS_KEY = "ts-art-history-studied-v1";
@@ -80,6 +80,21 @@ export default function ArtHistoryPage() {
       <div className="art-history-filters" aria-label="Фильтр эпох">
         {filterOptions.map((option) => <button key={option.value} className={filter === option.value ? "history-filter-active" : ""} onClick={() => setFilter(option.value)} aria-pressed={filter === option.value}>{option.label}</button>)}
       </div>
+    </section>
+
+    <section className="art-history-milestones" aria-label="Ключевые вехи истории живописи">
+      <div className="art-history-section-heading"><div><div className="eyebrow">ХРОНОЛОГИЯ ЖИВОПИСИ</div><h2>Пять больших переломов</h2></div><span>от древности до XXI века</span></div>
+      <div className="art-history-milestone-list">
+        {artHistoryMilestones.map((milestone) => <article className="art-history-milestone" key={milestone.id}>
+          <div className="art-history-milestone-date"><span>{milestone.group}</span><small>{milestone.date}</small></div>
+          <div className="art-history-milestone-body"><h3>{milestone.title}</h3><p>{milestone.description}</p>
+            <div className="art-history-milestone-works"><strong>Картины и примеры на Gallerix:</strong>
+              {milestone.artists.map((artist) => <a key={artist.name + artist.work} href={artist.url} target="_blank" rel="noreferrer"><span>{artist.name}</span><em>{artist.work} ↗</em></a>)}
+            </div>
+          </div>
+        </article>)}
+      </div>
+      <p className="art-history-milestone-note">Хронология показывает главные сдвиги, но направления часто существовали одновременно. Ссылки ведут на конкретные произведения Gallerix там, где доступна отдельная карточка работы.</p>
     </section>
 
     <section className="art-history-timeline-section">
