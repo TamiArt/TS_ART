@@ -308,3 +308,20 @@
 }
 
 .history-recent-timeline{margin:18px 0;padding:17px;border:1px solid #ded5c7;background:#f6f1e8}.history-recent-heading{margin-bottom:14px}.history-recent-heading h3{margin:6px 0 5px;color:var(--ink,#263b46);font-family:var(--serif);font-size:clamp(22px,2.5vw,30px);font-weight:500;line-height:1.2}.history-recent-heading p{max-width:700px;margin:0;color:#746d61;font-size:12px;line-height:1.6}.history-recent-list{display:grid;gap:0}.history-recent-item{display:grid;grid-template-columns:minmax(105px,.28fr) minmax(0,1fr);gap:15px;padding:14px 0;border-top:1px solid #dfd6c8}.history-recent-date{color:#a14d5c;font-size:12px;font-weight:800;line-height:1.5}.history-recent-copy h4{margin:0 0 5px;color:#314b5a;font-size:14px;line-height:1.4}.history-recent-copy p{margin:0;color:#625d53;font-size:12px;line-height:1.65}.history-recent-artists{margin-top:7px;color:#766b5b;font-size:11px;line-height:1.6}.history-recent-artists strong{color:#38566a}@media(max-width:600px){.history-recent-timeline{padding:12px}.history-recent-item{grid-template-columns:1fr;gap:4px;padding:11px 0}.history-recent-date{font-size:11px}}
+
+/* Chronological milestones: overview is separate from the existing detailed study blocks. */
+.art-history-milestones{margin:28px 0 36px;padding:clamp(16px,3vw,28px);border:1px solid #e2d9cb;border-radius:18px;background:#fbf8f1}
+.art-history-milestone-list{display:grid;gap:0}
+.art-history-milestone{display:grid;grid-template-columns:minmax(155px,.34fr) minmax(0,1fr);gap:clamp(14px,3vw,28px);padding:19px 0;border-top:1px solid #e2d9cb}
+.art-history-milestone-date{display:flex;flex-direction:column;gap:7px;color:#a14d5c;font-size:12px;font-weight:800;line-height:1.5}
+.art-history-milestone-date small{color:#817666;font-size:11px;font-weight:500}
+.art-history-milestone-body h3{margin:0 0 7px;color:#314b5a;font-family:var(--serif);font-size:clamp(18px,2vw,23px);font-weight:500}
+.art-history-milestone-body>p{margin:0;color:#625d53;font-size:13px;line-height:1.7}
+.art-history-milestone-works{display:flex;flex-wrap:wrap;align-items:stretch;gap:8px;margin-top:12px}
+.art-history-milestone-works>strong{width:100%;color:#766b5b;font-size:11px}
+.art-history-milestone-works a{display:flex;flex-direction:column;gap:3px;min-width:130px;padding:9px 11px;border:1px solid #e2d9cb;border-radius:10px;background:#fffdf8;color:#314b5a;text-decoration:none}
+.art-history-milestone-works a:hover{border-color:#a14d5c;background:#fff}
+.art-history-milestone-works a span{font-size:11px;color:#817666}
+.art-history-milestone-works a em{font-size:12px;font-style:normal;font-weight:700;line-height:1.4}
+.art-history-milestone-note{margin:14px 0 0;color:#817666;font-size:11px;line-height:1.6}
+@media(max-width:600px){.art-history-milestones{padding:14px}.art-history-milestone{grid-template-columns:1fr;gap:8px;padding:14px 0}.art-history-milestone-works a{flex:1 1 135px}}
