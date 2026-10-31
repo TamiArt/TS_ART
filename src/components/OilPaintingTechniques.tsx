@@ -191,6 +191,32 @@ export default function OilPaintingTechniques() {
         </div>
       </details>)}
     </div>
+    <section className="oil-study" aria-labelledby="oil-study-title">
+      <div className="oil-study-heading">
+        <div className="eyebrow">ОДИН МОТИВ · ЧЕТЫРЕ ЖИВОПИСНЫХ РЕШЕНИЯ</div>
+        <h3 id="oil-study-title">Одна драпировка — четыре техники</h3>
+        <p>Сравни, как меняется впечатление от одной и той же складки ткани. Это учебная схема различий в слоях и фактуре, а не копия конкретной картины старого мастера.</p>
+      </div>
+      <div className="oil-study-grid">
+        <article className="oil-study-card">
+          <div className="oil-study-art oil-study-grisaille"><svg viewBox="0 0 260 180" role="img" aria-label="Монохромная драпировка в гризайли"><defs><linearGradient id="grisaille-cloth" x1="0" y1="0" x2="1" y2="1"><stop stopColor="#f5f1e8"/><stop offset=".42" stopColor="#a9a59d"/><stop offset=".72" stopColor="#484b4c"/><stop offset="1" stopColor="#202a30"/></linearGradient></defs><path d="M18 18 Q80 38 112 12 Q150 45 242 15 L226 165 Q170 142 130 168 Q75 136 28 164Z" fill="url(#grisaille-cloth)"/><path d="M18 18 Q72 80 28 164 M112 12 Q80 76 130 168 M242 15 Q178 74 226 165 M78 28 Q138 80 90 149" fill="none" stroke="#f9f6ee" strokeWidth="5" opacity=".65"/><path d="M60 39 Q92 83 57 146 M165 29 Q132 84 181 148" fill="none" stroke="#30383d" strokeWidth="13" opacity=".42"/></svg></div>
+          <h4>1. Гризайль</h4><p>Только тон. Сначала выстраиваем складки, свет и тень без цветовых отвлечений. Следи, чтобы светлые плоскости оставались светлее, а тени не сливались в одно пятно.</p>
+        </article>
+        <article className="oil-study-card">
+          <div className="oil-study-art oil-study-glaze"><svg viewBox="0 0 260 180" role="img" aria-label="Драпировка с прозрачными красными лессировками"><defs><linearGradient id="glaze-cloth" x1="0" y1="0" x2="1" y2="1"><stop stopColor="#f2c18d"/><stop offset=".38" stopColor="#b84d43"/><stop offset=".7" stopColor="#651e32"/><stop offset="1" stopColor="#321d2b"/></linearGradient></defs><path d="M18 18 Q80 38 112 12 Q150 45 242 15 L226 165 Q170 142 130 168 Q75 136 28 164Z" fill="url(#glaze-cloth)"/><path d="M18 18 Q72 80 28 164 M112 12 Q80 76 130 168 M242 15 Q178 74 226 165 M78 28 Q138 80 90 149" fill="none" stroke="#ffd9a6" strokeWidth="5" opacity=".72"/><path d="M60 39 Q92 83 57 146 M165 29 Q132 84 181 148" fill="none" stroke="#351626" strokeWidth="13" opacity=".46"/><path d="M30 34 Q100 68 220 28" fill="none" stroke="#ffcf9a" strokeWidth="3" opacity=".45"/></svg></div>
+          <h4>2. Лессировка</h4><p>Цвет поверх высохшей светотеневой основы. Тонкий прозрачный красный слой окрашивает складки, но сохраняет нижнюю моделировку. Несколько тонких проходов дают глубину.</p>
+        </article>
+        <article className="oil-study-card">
+          <div className="oil-study-art oil-study-scumble"><svg viewBox="0 0 260 180" role="img" aria-label="Драпировка с матовым высветлением сухой кистью"><defs><linearGradient id="scumble-cloth" x1="0" y1="0" x2="1" y2="1"><stop stopColor="#b5a7a0"/><stop offset=".5" stopColor="#76656a"/><stop offset="1" stopColor="#39333c"/></linearGradient><pattern id="scumble-grain" width="9" height="8" patternUnits="userSpaceOnUse"><path d="M0 2l4 -1 M5 7l3 -1" stroke="#f4e7d8" strokeWidth="1" opacity=".7"/></pattern></defs><path d="M18 18 Q80 38 112 12 Q150 45 242 15 L226 165 Q170 142 130 168 Q75 136 28 164Z" fill="url(#scumble-cloth)"/><path d="M18 18 Q72 80 28 164 M112 12 Q80 76 130 168 M242 15 Q178 74 226 165 M78 28 Q138 80 90 149" fill="none" stroke="#e9d8ca" strokeWidth="7" opacity=".45"/><path d="M25 25 Q75 75 36 152 L226 160 Q173 122 224 26Z" fill="url(#scumble-grain)" opacity=".85"/></svg></div>
+          <h4>3. Сухая кисть</h4><p>Полуукрывистое высветление. Почти сухой кистью легко касаемся выступающих складок: нижний слой виден между следами, поверхность становится матовой и воздушной.</p>
+        </article>
+        <article className="oil-study-card">
+          <div className="oil-study-art oil-study-impasto"><svg viewBox="0 0 260 180" role="img" aria-label="Драпировка с рельефными мазками импасто"><defs><linearGradient id="impasto-cloth" x1="0" y1="0" x2="1" y2="1"><stop stopColor="#e9b56d"/><stop offset=".38" stopColor="#a94c3f"/><stop offset=".72" stopColor="#633047"/><stop offset="1" stopColor="#29283a"/></linearGradient></defs><path d="M18 18 Q80 38 112 12 Q150 45 242 15 L226 165 Q170 142 130 168 Q75 136 28 164Z" fill="url(#impasto-cloth)"/><path d="M22 23 Q70 75 34 154 M112 17 Q86 75 130 159 M237 20 Q181 76 222 157" fill="none" stroke="#f8d69c" strokeWidth="8" strokeLinecap="round"/><path d="M54 48 Q98 80 69 136 M166 35 Q137 82 180 142" fill="none" stroke="#542538" strokeWidth="12" strokeLinecap="round"/><path d="M27 29 Q78 69 48 113 M117 21 Q100 56 124 99 M232 30 Q196 76 215 121" fill="none" stroke="#fff0c9" strokeWidth="4" strokeLinecap="round"/></svg></div>
+          <h4>4. Импасто</h4><p>Рельефный мазок. Густую краску кладём по направлению складки и только на выбранные световые акценты. Боковой свет подчёркивает физическую толщину краски.</p>
+        </article>
+      </div>
+      <div className="oil-study-exercise"><strong>Мини-практика</strong><p>Нарисуй одну простую складку ткани и раздели лист на четыре зоны. В первой реши только тон; во второй нанеси прозрачный цвет после высыхания; в третьей добавь сухое высветление; в четвёртой — несколько рельефных мазков. Сравни, где ткань выглядит глубже, мягче, матовее и материальнее.</p></div>
+    </section>
     <div className="oil-techniques-safety">
       <h3>Материалы и безопасность</h3>
       <ul>
