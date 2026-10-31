@@ -275,6 +275,9 @@ export default function OilPaintingTechniques() {
       <a href="https://www.getty.edu/conservation/publications_resources/pdf_publications/pdf/historical_paintings.pdf" target="_blank" rel="noreferrer">Getty Conservation Institute — Historical Painting Techniques, Materials, and Studio Practice</a>
       <a href="https://www.nationalgalleries.org/art-and-artists/glossary-terms/grisaille" target="_blank" rel="noreferrer">National Galleries of Scotland — Grisaille</a>
       <a href="https://www.rijksmuseum.nl/en/collection/publication/The-varnish-the-glaze-painting-splendor-with-oil-1100-1500--f65e6b5ffb6e50c27f9724f5e1099383" target="_blank" rel="noreferrer">Rijksmuseum — The varnish &amp; the glaze: painting splendor with oil, 1100–1500</a>
+      <a href="https://www.fitzmuseum.cam.ac.uk/illuminated/lab/overview-of-artists-techniques/grisaille/type/technique" target="_blank" rel="noreferrer">Fitzwilliam Museum, Cambridge — Grisaille in manuscripts and medieval art</a>
+      <a href="https://www.canada.ca/en/conservation-institute/services/preventive-conservation/guidelines-collections/paintings.html" target="_blank" rel="noreferrer">Canadian Conservation Institute — Oil paint, drying oils and painting structure</a>
+      <a href="https://oldmasters.academy/old-masters-academy-art-lessons/various-oil-painting-methods-overview" target="_blank" rel="noreferrer">Old Masters Academy — Comparison of layered oil-painting methods (practical reference)</a>
     </div>
   </section>;
 }
