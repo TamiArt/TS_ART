@@ -53,6 +53,7 @@ Work through these stages in order and resolve blocking issues before moving on.
 - [ ] Review the sequence and prerequisites across all 20 modules and 84 lessons.
 - [ ] Find gaps, repetition, unexplained terms and abrupt jumps in difficulty.
 - [ ] Review art-materials and art-history claims; use reliable sources where factual claims need support.
+- [x] Add a structured oil-painting techniques guide to Art History: glazing, grisaille, imprimatura, underpainting/dead-colouring, scumbling, sfumato, impasto and alla prima, with practical steps, effects, historical examples and source links. This is a focused content addition, not completion of the full curriculum review.
 - [ ] Check that lessons include clear explanations and achievable practice tasks.
 - [ ] Connect relevant lessons to the Mixer, Colour Lab, Visual Journal, Mini Studio and workshops where useful.
 - [ ] Track which material is reviewed and which remains a draft; do not call content expert-validated without review evidence.
