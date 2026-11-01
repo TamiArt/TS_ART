@@ -1,0 +1,48 @@
+.oil-techniques{margin:34px 0 42px;padding:clamp(16px,3vw,28px);border:1px solid #e2d9cb;border-radius:18px;background:#fbf8f1;color:#514b42}
+.oil-techniques-heading{max-width:760px;margin-bottom:20px}
+.oil-techniques-heading h2{margin:7px 0;color:#314b5a;font-family:var(--serif);font-size:clamp(25px,3vw,34px);font-weight:500;line-height:1.2}
+.oil-techniques-heading>p{margin:0;color:#746d61;font-size:13px;line-height:1.7}
+.oil-techniques-principle{margin:18px 0;padding:15px 17px;border-left:3px solid #a14d5c;background:#f2ece1}
+.oil-techniques-principle strong{color:#314b5a;font-size:13px}
+.oil-techniques-principle p{margin:5px 0 0;color:#625d53;font-size:13px;line-height:1.7}
+.oil-techniques-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;align-items:start}
+.oil-technique-card{min-width:0;border:1px solid #e2d9cb;border-radius:12px;background:#fffdf8;overflow:hidden}
+.oil-technique-card[open]{grid-column:span 2}
+.oil-technique-card summary{display:flex;align-items:center;gap:12px;padding:14px;cursor:pointer;list-style:none}
+.oil-technique-card summary::-webkit-details-marker{display:none}
+.oil-technique-number{flex:0 0 32px;display:grid;place-items:center;width:32px;height:32px;border-radius:50%;background:#eee7db;color:#a14d5c;font-size:11px;font-weight:800}
+.oil-technique-title-wrap{display:grid;gap:4px;min-width:0;flex:1}
+.oil-technique-title-wrap strong{color:#314b5a;font-size:14px;line-height:1.35}
+.oil-technique-title-wrap small{color:#817666;font-size:11px;line-height:1.45}
+.oil-technique-toggle{color:#a14d5c;font-size:20px;transition:transform .2s}
+.oil-technique-card[open] .oil-technique-toggle{transform:rotate(45deg)}
+.oil-technique-content{display:grid;grid-template-columns:1fr 1fr;gap:16px;padding:0 17px 18px 58px}
+.oil-technique-content h4{margin:0 0 6px;color:#38566a;font-size:12px}
+.oil-technique-content p,.oil-technique-content li{color:#625d53;font-size:12px;line-height:1.7}
+.oil-technique-content p{margin:0}
+.oil-technique-content ol,.oil-technique-content ul{margin:0;padding-left:18px}
+.oil-technique-content li+li{margin-top:5px}
+.oil-technique-history,.oil-technique-caution{padding:12px;border-radius:9px;background:#f5f0e7}
+.oil-technique-caution{background:#f7eeee}
+.oil-technique-caution strong{display:block;margin-bottom:4px;color:#9a4c57;font-size:11px}
+.oil-techniques-safety{margin-top:18px;padding:15px 17px;border:1px solid #e2d9cb;border-radius:12px;background:#f5f0e7}
+.oil-techniques-safety h3,.oil-techniques-sources h3{margin:0 0 8px;color:#314b5a;font-family:var(--serif);font-size:18px;font-weight:500}
+.oil-techniques-safety ul{margin:0;padding-left:18px}
+.oil-techniques-safety li{color:#625d53;font-size:11px;line-height:1.7}
+.oil-techniques-safety li+li{margin-top:4px}
+.oil-techniques-sources{display:grid;gap:7px;margin-top:18px}
+.oil-techniques-sources a{color:#8e4d56;font-size:12px;line-height:1.5;text-decoration:underline;text-underline-offset:3px}
+@media(max-width:700px){.oil-techniques-grid{grid-template-columns:1fr}.oil-technique-card[open]{grid-column:auto}.oil-technique-content{grid-template-columns:1fr;padding-left:17px}.oil-technique-card summary{padding:12px}.oil-techniques{padding:14px}}
+
+.oil-study{margin:24px 0 18px;padding:17px;border:1px solid #e2d9cb;border-radius:13px;background:#f5f0e7}
+.oil-study-heading{max-width:720px;margin-bottom:14px}
+.oil-study-heading h3{margin:6px 0;color:#314b5a;font-family:var(--serif);font-size:clamp(19px,2.5vw,25px);font-weight:500}
+.oil-study-heading p,.oil-study-card p,.oil-study-exercise p{margin:0;color:#625d53;font-size:12px;line-height:1.7}
+.oil-study-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.oil-study-card{min-width:0;padding:10px;border:1px solid #e2d9cb;border-radius:11px;background:#fffdf8}
+.oil-study-art{overflow:hidden;border-radius:8px;background:#e9e2d7}
+.oil-study-art svg{display:block;width:100%;height:auto}
+.oil-study-card h4{margin:9px 0 5px;color:#314b5a;font-size:13px}
+.oil-study-exercise{margin-top:13px;padding:13px 14px;border-left:3px solid #a14d5c;background:#fffdf8}
+.oil-study-exercise strong{display:block;margin-bottom:5px;color:#9a4c57;font-size:12px}
+@media(max-width:520px){.oil-study{padding:12px}.oil-study-grid{grid-template-columns:1fr 1fr;gap:8px}.oil-study-card{padding:7px}.oil-study-card p{font-size:11px}}

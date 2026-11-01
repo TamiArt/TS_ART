@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 279 773" width="279" height="773">
+<defs>
+ <linearGradient id="sky" x2="0" y2="1"><stop stop-color="#b8def0"/><stop offset="1" stop-color="#ffe0b5"/></linearGradient>
+ <linearGradient id="sea" x2="0" y2="1"><stop stop-color="#73c7e8"/><stop offset="1" stop-color="#126aa2"/></linearGradient>
+ <linearGradient id="rock" x2="0" y2="1"><stop stop-color="#efb28a"/><stop offset="1" stop-color="#a95f55"/></linearGradient>
+ <linearGradient id="shade" x2="0" y2="1"><stop stop-color="#182c43" stop-opacity="0"/><stop offset="1" stop-color="#182c43" stop-opacity=".82"/></linearGradient>
+</defs>
+<rect width="279" height="773" fill="url(#sky)"/>
+<g opacity=".65" fill="#fff0d9"><path d="M0 95Q38 75 69 98T140 85T215 95T279 78V151H0Z"/><path d="M0 156Q46 130 92 152T190 140T279 145V195H0Z"/></g>
+<path d="M0 210L35 170 72 196 115 139 153 184 201 147 239 174 279 132V345H0Z" fill="#d4a28c"/>
+<path d="M0 246L40 201 78 225 119 176 161 219 205 183 244 208 279 170V349H0Z" fill="#e6b99b"/>
+<path d="M0 270L42 234 75 253 112 214 147 247 190 218 224 245 279 207V365H0Z" fill="#bd8c83" opacity=".8"/>
+<path d="M0 292Q70 275 128 292T279 280V773H0Z" fill="url(#sea)"/>
+<path d="M0 321Q65 310 124 322T279 309" fill="none" stroke="#d8f2f7" stroke-width="3" opacity=".8"/>
+<path d="M0 373Q42 358 84 372T166 365T279 368" fill="none" stroke="#d8f2f7" stroke-width="2" opacity=".65"/>
+<path d="M0 295L38 277 58 292 73 279 89 301 108 294 127 319 110 352 0 400Z" fill="url(#rock)"/>
+<path d="M0 337L37 321 60 335 82 321 102 348 122 342 142 368 116 414 0 462Z" fill="#c47b67"/>
+<g fill="#fff8e9" stroke="#e7d3bb" stroke-width="1.5">
+ <path d="M-5 430V349L22 326 50 349V430Z"/><path d="M-8 352L22 320 56 352Z" fill="#fffdf6"/>
+ <path d="M25 490V405L54 380 82 405V490Z"/><path d="M19 408L54 373 88 408Z" fill="#fffdf6"/>
+ <path d="M68 532V454L94 431 120 454V532Z"/><path d="M61 457L94 424 127 457Z" fill="#fffdf6"/>
+ <path d="M-7 575V492L20 469 47 492V575Z"/><path d="M-12 495L20 463 52 495Z" fill="#fffdf6"/>
+ <path d="M112 593V522L136 502 161 522V593Z"/><path d="M105 525L136 494 168 525Z" fill="#fffdf6"/>
+ <path d="M160 645V573L185 552 210 573V645Z"/><path d="M153 576L185 544 218 576Z" fill="#fffdf6"/>
+</g>
+<g fill="#3189b9"><path d="M8 353a14 14 0 0 1 28 0v9H8Z"/><path d="M39 410a15 15 0 0 1 30 0v9H39Z"/><path d="M79 459a13 13 0 0 1 26 0v8H79Z"/><path d="M-1 498a14 14 0 0 1 28 0v8H-1Z"/><path d="M121 527a12 12 0 0 1 24 0v8H121Z"/><path d="M171 578a13 13 0 0 1 26 0v8H171Z"/></g>
+<path d="M194 318l30 0-15-25Z" fill="#fffaf0"/><path d="M209 292V330" stroke="#fffaf0" stroke-width="2"/><path d="M193 331h31" stroke="#fffaf0" stroke-width="2"/>
+<g fill="#f7a2a8"><circle cx="14" cy="594" r="10"/><circle cx="35" cy="613" r="8"/><circle cx="18" cy="631" r="9"/><circle cx="54" cy="630" r="11"/><circle cx="41" cy="652" r="7"/><circle cx="85" cy="660" r="9"/><circle cx="104" cy="678" r="7"/><circle cx="70" cy="695" r="10"/></g>
+<g fill="#d94f78"><circle cx="6" cy="618" r="5"/><circle cx="48" cy="600" r="5"/><circle cx="27" cy="668" r="5"/><circle cx="94" cy="642" r="5"/><circle cx="58" cy="686" r="5"/></g>
+<g fill="#476c54"><path d="M0 710L14 622 21 710Z"/><path d="M83 773L92 656 101 773Z"/><path d="M145 773L157 676 165 773Z"/><path d="M220 773L229 659 238 773Z"/></g>
+<rect width="279" height="773" fill="url(#shade)"/>
+<g font-family="Arial, sans-serif" fill="#fffaf4"><text x="30" y="637" font-size="15">«Творчество</text><text x="30" y="660" font-size="15">начинается там,</text><text x="30" y="683" font-size="15">где заканчиваются</text><text x="30" y="706" font-size="15">страхи»</text><text x="49" y="746" font-size="13">TS·ART</text></g>
+<path d="M32 739c-9-10-19 2 0 13 19-11 9-23 0-13Z" fill="#ff6798"/>
+</svg>

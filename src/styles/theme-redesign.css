@@ -572,3 +572,760 @@ a, .text-link { color: #CC2055; }
 .page-wrap {
   background: linear-gradient(135deg, #fff8ed 0%, #f9eee3 48%, #F4CFBF 100%);
 }
+
+
+/* TS·ART Greek coast sidebar: sky fading into warm, sunlit Cycladic cliffs. */
+.sidebar {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background:
+    linear-gradient(180deg,
+      #1685c8 0%,
+      #58b9e6 23%,
+      #b8e0ed 42%,
+      #f8d9b4 57%,
+      #edb18a 70%,
+      #c87965 84%,
+      #735b68 100%) !important;
+}
+.sidebar::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  pointer-events: none;
+  opacity: .98;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 1000' preserveAspectRatio='xMidYMax slice'%3E%3Cdefs%3E%3ClinearGradient id='sea' x2='0' y2='1'%3E%3Cstop stop-color='%239bdce8'/%3E%3Cstop offset='1' stop-color='%232b9dc5'/%3E%3C/linearGradient%3E%3ClinearGradient id='rock' x2='0.2' y2='1'%3E%3Cstop stop-color='%23f5c99e'/%3E%3Cstop offset='1' stop-color='%23b86f63'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='250' cy='390' r='42' fill='%23fff0c9' opacity='.7'/%3E%3Cpath d='M0 470 Q50 430 92 458 T180 448 T320 435 L320 1000 L0 1000Z' fill='%23f6d7ad' opacity='.88'/%3E%3Cpath d='M0 540 L55 490 98 515 151 455 210 495 270 440 320 475 320 1000 0 1000Z' fill='url(%23rock)'/%3E%3Cpath d='M0 580 Q85 535 145 565 T320 540 L320 1000 L0 1000Z' fill='%23c98570'/%3E%3Cpath d='M0 625 Q70 585 140 615 T320 595 L320 1000 L0 1000Z' fill='%237c6973'/%3E%3Cpath d='M0 650 Q80 625 160 650 T320 630 L320 1000 L0 1000Z' fill='%234c586c' opacity='.88'/%3E%3Cg fill='%23fffaf0' stroke='%23e9d8c3' stroke-width='2'%3E%3Cpath d='M18 565V520L42 500 67 520V565Z'/%3E%3Cpath d='M9 522L42 491 76 522Z' fill='%23c76b55'/%3E%3Cpath d='M48 610V560L75 538 102 560V610Z'/%3E%3Cpath d='M39 562L75 529 111 562Z' fill='%23bd6553'/%3E%3Cpath d='M170 535V488L196 466 222 488V535Z'/%3E%3Cpath d='M160 490L196 457 232 490Z' fill='%23c86d59'/%3E%3Cpath d='M230 580V532L255 510 280 532V580Z'/%3E%3Cpath d='M220 534L255 502 290 534Z' fill='%23bd6553'/%3E%3C/g%3E%3Cg fill='%232d9bc4'%3E%3Cpath d='M32 524V538H49V524Q41 514 32 524Z'/%3E%3Cpath d='M61 563V578H81V563Q71 551 61 563Z'/%3E%3Cpath d='M182 490V505H201V490Q191 478 182 490Z'/%3E%3Cpath d='M242 535V550H261V535Q251 523 242 535Z'/%3E%3C/g%3E%3Cg fill='%23f4c5b3' opacity='.9'%3E%3Ccircle cx='12' cy='610' r='8'/%3E%3Ccircle cx='27' cy='624' r='6'/%3E%3Ccircle cx='297' cy='603' r='9'/%3E%3Ccircle cx='282' cy='618' r='7'/%3E%3C/g%3E%3Cpath d='M0 735Q70 700 130 725T320 700V1000H0Z' fill='%233e4b60' opacity='.55'/%3E%3C/svg%3E");
+  background-size: 100% 100%;
+  background-position: center bottom;
+  background-repeat: no-repeat;
+}
+.sidebar::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgb(20 119 184 / 8%) 0%, transparent 36%, rgb(45 45 62 / 15%) 100%);
+}
+.sidebar .nav-item,
+.sidebar .brand-lockup,
+.sidebar .brand-caption,
+.sidebar .sidebar-label,
+.sidebar .sidebar-note,
+.sidebar .sidebar-footer { position: relative; }
+.sidebar .sidebar-note {
+  background: rgb(36 105 143 / 62%);
+  border-color: rgb(255 255 255 / 32%);
+  backdrop-filter: blur(5px);
+}
+@media (max-width: 760px) {
+  .sidebar {
+    background:
+      linear-gradient(180deg, #1685c8 0%, #58b9e6 28%, #f8d9b4 58%, #c87965 80%, #4c586c 100%) !important;
+  }
+  .sidebar::before { background-size: 100% 100%; }
+}
+
+
+/* Screenshot-inspired TS·ART dashboard: watercolor studio, airy cream cards and Cycladic coast. */
+:root {
+  --paper: #fff8ef;
+  --white: #fffaf4;
+  --ink: #123b63;
+  --muted: #6785a4;
+  --line: #f0ded2;
+  --accent: #CC2055;
+  --accent-soft: #fde8e6;
+  --focus-ring: #CC2055;
+  --shadow-soft: 0 12px 30px rgb(115 77 57 / 8%);
+  --shadow-card: 0 5px 18px rgb(115 77 57 / 6%);
+}
+body {
+  background: #f6f6f3;
+  color: #123b63;
+}
+.app-shell { background: #fff8ef; }
+.sidebar {
+  width: 258px;
+  min-width: 258px;
+  color: #fff;
+  background:
+    linear-gradient(180deg, rgb(17 119 191 / 35%) 0%, rgb(71 169 213 / 15%) 37%, rgb(241 190 142 / 8%) 58%, rgb(23 49 68 / 28%) 100%),
+    url("https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&w=700&q=85") center / cover no-repeat,
+    linear-gradient(180deg, #1685c8 0%, #79c6e6 42%, #f2c79b 60%, #4a687c 100%) !important;
+  border-right: 1px solid rgb(255 255 255 / 45%);
+  box-shadow: 5px 0 22px rgb(34 81 108 / 12%);
+}
+.sidebar::before {
+  opacity: .3;
+  background-size: cover;
+  background-position: center;
+  mix-blend-mode: soft-light;
+}
+.sidebar::after {
+  background: linear-gradient(180deg, rgb(20 126 190 / 18%) 0%, rgb(25 86 119 / 4%) 42%, rgb(20 34 49 / 62%) 100%);
+}
+.brand-lockup { margin-bottom: 28px; }
+.brand-mark {
+  font-size: 35px;
+  letter-spacing: .02em;
+  color: white;
+  text-shadow: 0 2px 12px rgb(10 65 105 / 20%);
+}
+.brand-caption { color: #f1f8ff; font-size: 9px; letter-spacing: .12em; }
+.sidebar-label { color: #e8f6ff; }
+.main-nav { gap: 8px; }
+.nav-item {
+  min-height: 44px;
+  border-radius: 999px;
+  color: #fff;
+  background: transparent;
+  font-size: 14px;
+}
+.nav-item:hover { background: rgb(255 255 255 / 16%) !important; }
+.nav-item-active,
+.nav-item-active:hover {
+  background: #CC2055 !important;
+  color: #fff !important;
+  box-shadow: 0 6px 18px rgb(127 26 72 / 22%), inset 0 1px 0 rgb(255 255 255 / 12%);
+}
+.nav-icon { color: #fff !important; }
+.sidebar-note {
+  background: rgb(16 83 123 / 35%) !important;
+  border: 1px solid rgb(255 255 255 / 28%) !important;
+  border-radius: 16px;
+  backdrop-filter: blur(8px);
+}
+.sidebar-note p { color: white !important; }
+.sidebar-footer { color: #eef8ff !important; }
+.main-content { background: #fff8ef; }
+.topbar {
+  min-height: 78px;
+  padding-inline: clamp(22px, 4vw, 54px);
+  background: rgb(255 250 244 / 94%);
+  border-bottom: 1px solid #f1e2d8;
+  backdrop-filter: blur(14px);
+}
+.breadcrumb { color: #7d9ab4; font-size: 11px; letter-spacing: .1em; }
+.topbar-right .focus-label { color: #7391ad; }
+.avatar { background: #f7e1d6; color: #123b63; border: 2px solid white; }
+.page-wrap {
+  background: linear-gradient(135deg, #fff8ed 0%, #f9eee3 48%, #F4CFBF 100%);
+  padding: 28px clamp(22px, 4vw, 54px) 36px;
+}
+.home-page { max-width: none; }
+.hero {
+  position: relative;
+  min-height: 228px;
+  padding: 34px 34px 28px;
+  border: 0;
+  border-radius: 4px;
+  overflow: hidden;
+  background:
+    linear-gradient(90deg, #fff8ef 0%, rgb(255 248 239 / 96%) 35%, rgb(255 248 239 / 48%) 61%, rgb(255 248 239 / 0%) 100%),
+    url("https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=1200&q=85") right center / auto 100% no-repeat,
+    #fff8ef;
+}
+.hero-copy { max-width: 58%; position: relative; z-index: 1; }
+.hero .eyebrow { color: #6f8da8; }
+.hero h1, .page-intro h1, h1, h2, h3 { color: #123b63; }
+.hero h1 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(32px, 3vw, 44px);
+  line-height: 1.1;
+  letter-spacing: -.035em;
+}
+.hero h1 em { color: #CC2055; }
+.hero-description { color: #5d7d9e; line-height: 1.65; }
+.hero-art { display: none; }
+.hero-decoration { display: none; }
+.button-dark, .button-primary, .hero .button {
+  color: #fff;
+  background: #CC2055;
+  border-color: #CC2055;
+  border-radius: 999px;
+  box-shadow: 0 5px 14px rgb(204 32 85 / 16%);
+}
+.button-dark:hover, .button-primary:hover, .hero .button:hover { background: #ad1948; }
+.hero-meta { color: #6b8ba9; }
+.welcome-strip {
+  margin: 18px 0 24px;
+  border: 1px solid #f0d8cf;
+  border-left: 4px solid #CC2055;
+  border-radius: 14px;
+  background: #fff0e9;
+}
+.section-block { margin-top: 28px; }
+.section-heading h2, .section-heading h3 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 27px;
+  letter-spacing: -.025em;
+}
+.eyebrow { color: #7994ad; }
+.text-link { color: #CC2055; }
+.dashboard-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+.progress-card, .next-card, .principle-card, .panel, .lesson-list-panel,
+.side-info-card, .module-picker, .practice-card, .journal-card, .project-form,
+.project-card, .workshop-card, .colour-test-card, .colour-test-form,
+.lesson-panel, .module-card, .lesson-objective, .reflection-box {
+  border: 1px solid #f0ded2;
+  border-radius: 16px;
+  background: rgb(255 251 246 / 92%);
+  box-shadow: 0 5px 20px rgb(114 76 56 / 5%);
+}
+.progress-card, .next-card { min-height: 174px; padding: 20px; }
+.card-topline { color: #7591ab; }
+.progress-number { color: #123b63; font-family: Georgia, serif; font-size: 40px; }
+.progress-track { background: #f4e6dc; border-radius: 999px; }
+.progress-track span { background: #CC2055; border-radius: 999px; }
+.next-card-body { align-items: center; }
+.lesson-thumb {
+  border-radius: 14px;
+  background:
+    radial-gradient(ellipse at 28% 75%, #f3b5a4 0 8%, transparent 9%),
+    radial-gradient(ellipse at 48% 57%, #d8b77f 0 12%, transparent 13%),
+    linear-gradient(145deg, #f8e3d3, #b8dce7 55%, #f2c2ad);
+}
+.next-card h3 { font-family: Georgia, serif; color: #123b63; }
+.mini-tag { color: #CC2055; }
+.lesson-row:hover { background: #fff0e9; }
+.lesson-index { color: #267BBB; background: #e0edf6; }
+.mode-card {
+  border-radius: 16px;
+  background: #fffaf4;
+  box-shadow: 0 5px 18px rgb(115 77 57 / 5%);
+}
+.mode-card:hover { border-color: #e8b8c3; }
+.mode-icon, .progress-number, .principle-card .principle-mark { color: #CC2055; }
+.mode-main, .mode-workshops { background: #fbe4df; }
+.mode-practice { background: #e3f0e7; }
+.mode-journal { background: #e3eef6; }
+.mode-colourlab { background: #e5ebf8; }
+.mode-openstudio { background: #f7e8d7; }
+.mode-portfolio { background: #f2e5ef; }
+.page-footer { color: #7b94a9; border-top-color: #efdfd4; }
+@media (max-width: 1050px) {
+  .sidebar { width: 228px; min-width: 228px; }
+  .hero { background-position: 56% center, right center; }
+  .dashboard-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 760px) {
+  .sidebar {
+    background:
+      linear-gradient(180deg, rgb(17 119 191 / 28%), rgb(20 34 49 / 50%)),
+      url("https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&w=700&q=85") center / cover no-repeat !important;
+  }
+  .page-wrap { padding: 18px 16px 28px; }
+  .hero {
+    min-height: 300px;
+    padding: 24px;
+    background:
+      linear-gradient(180deg, #fff8ef 0%, rgb(255 248 239 / 88%) 42%, rgb(255 248 239 / 12%) 100%),
+      url("https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=900&q=85") center bottom / auto 68% no-repeat,
+      #fff8ef;
+  }
+  .hero-copy { max-width: 100%; }
+  .hero h1 { font-size: 34px; }
+  .dashboard-grid { grid-template-columns: 1fr; }
+}
+
+
+/* Stable layout + single-source sidebar background.
+   Keep the existing document flow: header is already the first child of main-content.
+   Remove the layered placeholder photos/overlays that caused image bleed-through. */
+.app-shell {
+  min-height: 100vh;
+}
+.sidebar {
+  width: 258px;
+  min-width: 258px;
+  background-color: #247bb4 !important;
+  background-image: linear-gradient(
+    180deg,
+    #1685c8 0%,
+    #68b9db 28%,
+    #b8dce1 48%,
+    #f2d0ad 62%,
+    #d89a7c 78%,
+    #526c7b 100%
+  ) !important;
+  background-size: 100% 100% !important;
+  background-position: center top !important;
+  background-repeat: no-repeat !important;
+  isolation: isolate;
+}
+.sidebar::before {
+  content: none !important;
+  display: none !important;
+  background: none !important;
+  background-image: none !important;
+  opacity: 0 !important;
+}
+.sidebar::after {
+  content: none !important;
+  display: none !important;
+  background: none !important;
+  background-image: none !important;
+}
+.main-content {
+  display: block !important;
+  position: relative;
+  margin-left: 258px !important;
+  width: calc(100% - 258px) !important;
+  min-width: 0;
+  min-height: 100vh;
+}
+.topbar {
+  display: flex;
+  position: relative !important;
+  inset: auto !important;
+  top: auto !important;
+  transform: none !important;
+  order: initial !important;
+  width: 100%;
+  min-width: 0;
+  min-height: 78px;
+  margin: 0 !important;
+  box-sizing: border-box;
+}
+.main-content > .page-wrap {
+  width: 100%;
+  min-width: 0;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+.main-content > .lesson-page {
+  min-width: 0;
+}
+@media (max-width: 1050px) and (min-width: 761px) {
+  .sidebar {
+    width: 228px;
+    min-width: 228px;
+  }
+  .main-content {
+    margin-left: 228px !important;
+    width: calc(100% - 228px) !important;
+  }
+}
+@media (max-width: 760px) {
+  .sidebar {
+    width: min(258px, 84vw);
+    min-width: min(258px, 84vw);
+  }
+  .main-content {
+    margin-left: 0 !important;
+    width: 100% !important;
+  }
+  .topbar {
+    min-height: 56px;
+    flex-wrap: wrap;
+  }
+}
+
+
+/* Match the supplied sidebar reference: open blue sky above, intact scenic image anchored at the bottom.
+   The landscape layer uses its natural aspect ratio (never cover/crop or stretch to the sidebar height). */
+.sidebar {
+  background-color: #62b5e2 !important;
+  background-image:
+    linear-gradient(180deg, #2189ca 0%, #66b8e0 24%, #c3e1ed 39%, transparent 51%),
+    url("/illustrations/menuSantorini.png") !important;
+  background-size: 100% 100%, 100% auto !important;
+  background-position: center top, center top !important;
+  background-repeat: no-repeat, no-repeat !important;
+  overflow: hidden;
+}
+.sidebar::before,
+.sidebar::after {
+  content: none !important;
+  display: none !important;
+}
+@media (max-width: 760px) {
+  .sidebar {
+    background-image:
+      linear-gradient(180deg, #2189ca 0%, #66b8e0 24%, #c3e1ed 39%, transparent 51%),
+      url("/illustrations/menuSantorini.png") !important;
+    background-size: 100% 100%, 100% auto !important;
+    background-position: center top, center top !important;
+    background-repeat: no-repeat, no-repeat !important;
+  }
+}
+
+
+/* Keep sidebar and main content aligned at the top of the same app shell row.
+   Override any legacy flex/float/position rules that made main-content start below the sidebar. */
+.app-shell {
+  display: grid !important;
+  grid-template-columns: 258px minmax(0, 1fr) !important;
+  grid-template-rows: minmax(100vh, auto) !important;
+  align-items: start !important;
+  position: relative;
+  min-height: 100vh;
+}
+.app-shell > .sidebar {
+  grid-column: 1;
+  grid-row: 1;
+  align-self: stretch;
+  min-height: 100vh;
+  height: 100%;
+  margin: 0 !important;
+}
+.app-shell > main.main-content,
+.app-shell > .main-content {
+  grid-column: 2;
+  grid-row: 1;
+  align-self: start;
+  min-width: 0;
+  width: 100% !important;
+  margin: 0 !important;
+  padding-top: 0 !important;
+  position: relative;
+  top: 0 !important;
+  transform: none !important;
+}
+@media (max-width: 1050px) and (min-width: 761px) {
+  .app-shell {
+    grid-template-columns: 228px minmax(0, 1fr) !important;
+  }
+}
+@media (max-width: 760px) {
+  .app-shell {
+    grid-template-columns: minmax(0, 1fr) !important;
+    grid-template-rows: auto auto !important;
+  }
+  .app-shell > .sidebar {
+    grid-column: 1;
+    grid-row: 1;
+  }
+  .app-shell > main.main-content,
+  .app-shell > .main-content {
+    grid-column: 1;
+    grid-row: 2;
+  }
+}
+
+
+/* Use the prepared original crop at the sidebar bottom without cover or stretching.
+   Asset path: public/illustrations/menuSantorini.png */
+.sidebar {
+  background-color: #63b5e2 !important;
+  background-image:
+    linear-gradient(180deg, #2189ca 0%, #66b8e0 24%, #c3e1ed 39%, transparent 51%),
+    url("/illustrations/menuSantorini.png") !important;
+  background-size: 100% 100%, auto 58% !important;
+  background-position: center top, center top !important;
+  background-repeat: no-repeat, no-repeat !important;
+}
+@media (max-width: 760px) {
+  .sidebar {
+    background-size: 100% 100%, auto 58% !important;
+    background-position: center top, center top !important;
+  }
+}
+
+
+/* Sidebar: show the supplied Santorini artwork cleanly, without a blue overlay.
+   Keep the existing sidebar content in normal flow immediately after the image. */
+.sidebar {
+  background-color: transparent !important;
+  background-image: url("/illustrations/menuSantorini.png") !important;
+  background-size: 100% auto !important;
+  background-position: center top !important;
+  background-repeat: no-repeat !important;
+}
+.sidebar .sidebar-note {
+  margin-top: 0 !important;
+}
+
+
+/* Raise the inspirational text block in the sidebar instead of pinning it to the bottom. */
+.app-shell > .sidebar .sidebar-spacer {
+  flex: 0 0 24px !important;
+  min-height: 24px !important;
+}
+.app-shell > .sidebar .sidebar-note {
+  margin-top: 0 !important;
+}
+
+
+/* Keep the inspirational note and footer pinned to the bottom of the visible sidebar. */
+.app-shell > .sidebar {
+  position: fixed !important;
+  inset: 0 auto 0 0 !important;
+  height: 100vh !important;
+  height: 100dvh !important;
+  box-sizing: border-box !important;
+  display: flex !important;
+  flex-direction: column !important;
+  overflow: hidden !important;
+}
+.app-shell > .sidebar .sidebar-spacer {
+  flex: 1 1 auto !important;
+  min-height: 8px !important;
+}
+.app-shell > .sidebar .sidebar-note,
+.app-shell > .sidebar .sidebar-footer {
+  flex: 0 0 auto !important;
+  margin-top: 0 !important;
+}
+.app-shell > .sidebar .main-nav {
+  min-height: 0 !important;
+  flex: 0 1 auto !important;
+  overflow-y: auto !important;
+}
+@media (max-height: 700px) {
+  .app-shell > .sidebar .sidebar-spacer { min-height: 2px !important; }
+  .app-shell > .sidebar .brand-lockup { margin-bottom: 12px !important; }
+  .app-shell > .sidebar .main-nav { gap: 4px !important; }
+  .app-shell > .sidebar .nav-item { min-height: 36px !important; }
+  .app-shell > .sidebar .sidebar-note { padding-top: 7px !important; padding-bottom: 6px !important; }
+  .app-shell > .sidebar .sidebar-note p { margin-top: 3px !important; margin-bottom: 5px !important; }
+  .app-shell > .sidebar .sidebar-footer { padding-top: 6px !important; }
+}
+
+
+/* Improve contrast for the sidebar brand, section label, and all navigation items over the photo. */
+.app-shell > .sidebar {
+  background-color: #17364f !important;
+  background-image:
+    linear-gradient(180deg, rgb(8 35 58 / 48%) 0%, rgb(8 35 58 / 38%) 42%, rgb(8 35 58 / 50%) 100%),
+    url("/illustrations/menuSantorini.png") !important;
+  background-size: 100% 100%, 100% auto !important;
+  background-position: center top, center top !important;
+  background-repeat: no-repeat, no-repeat !important;
+}
+.app-shell > .sidebar .brand-mark,
+.app-shell > .sidebar .brand-caption,
+.app-shell > .sidebar .sidebar-label,
+.app-shell > .sidebar .nav-item,
+.app-shell > .sidebar .nav-icon,
+.app-shell > .sidebar .sidebar-footer {
+  color: #fff !important;
+  text-shadow: 0 1px 5px rgb(0 0 0 / 48%) !important;
+}
+.app-shell > .sidebar .nav-item {
+  background-color: rgb(8 35 58 / 18%) !important;
+  border: 1px solid rgb(255 255 255 / 18%) !important;
+}
+.app-shell > .sidebar .nav-item:hover {
+  background-color: rgb(255 255 255 / 20%) !important;
+}
+.app-shell > .sidebar .nav-item-active,
+.app-shell > .sidebar .nav-item-active:hover {
+  background-color: #CC2055 !important;
+  border-color: rgb(255 255 255 / 35%) !important;
+}
+.app-shell > .sidebar .nav-count {
+  color: #fff !important;
+  background: rgb(8 35 58 / 55%) !important;
+}
+@media (max-width: 760px) {
+  .app-shell > .sidebar {
+    background-size: 100% 100%, 100% auto !important;
+  }
+}
+
+
+/* Unselected sidebar links should have no visible outline; preserve the active highlight. */
+.app-shell > .sidebar .nav-item:not(.nav-item-active) {
+  border-color: transparent !important;
+}
+
+
+/* Lessons tab: full-width module panel and a two-column intro row. */
+.lessons-page { width:100%; max-width:none; }
+.lessons-page .lessons-intro-row {
+  display:grid;
+  grid-template-columns:minmax(0,1.45fr) minmax(280px,.8fr);
+  align-items:stretch;
+  gap:clamp(18px,2.2vw,34px);
+}
+.lessons-page .lessons-intro-row > .page-intro,
+.lessons-page .lessons-intro-row > section,
+.lessons-page .lessons-intro-row > div:first-child { min-width:0; }
+.lessons-page .lessons-intro-row .side-info-card {
+  align-self:stretch;
+  min-height:0;
+  margin:0;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+.lessons-page .module-picker { width:100%; }
+.lessons-page .content-columns { grid-template-columns:minmax(0,1fr); width:100%; }
+.lessons-page .lesson-list-panel { width:100%; min-width:0; }
+@media(max-width:760px) {
+  .lessons-page .lessons-intro-row { grid-template-columns:minmax(0,1fr); }
+  .lessons-page .lessons-intro-row .side-info-card { min-height:auto; }
+}
+
+
+/* Lesson pages: full-width learning content with the support notes aligned to the title. */
+.main-content > .lesson-page {
+  width:100%;
+  max-width:none;
+}
+.lesson-page .lesson-layout {
+  width:100%;
+  max-width:none;
+  grid-template-columns:minmax(0,1fr);
+  gap:clamp(18px,2vw,28px);
+}
+.lesson-page .lesson-main {
+  width:100%;
+  max-width:none;
+  min-width:0;
+  display:contents;
+}
+.lesson-page .lesson-layout > .back-link { grid-row:1; }
+.lesson-page .lesson-layout > .lesson-main > .eyebrow,
+.lesson-page .lesson-layout > .lesson-main > h1,
+.lesson-page .lesson-layout > .lesson-main > .lesson-meta {
+  grid-column:1;
+}
+.lesson-page .lesson-aside {
+  grid-row:2;
+  display:grid;
+  grid-template-columns:minmax(150px,.7fr) repeat(2,minmax(0,1fr));
+  gap:12px;
+  align-self:stretch;
+  padding:0;
+}
+.lesson-page .lesson-aside .aside-art {
+  display:flex;
+  min-width:0;
+  min-height:150px;
+  align-self:stretch;
+}
+.lesson-page .lesson-aside .aside-tip {
+  margin:0;
+  min-width:0;
+}
+.lesson-page .lesson-objective,
+.lesson-page .lesson-section,
+.lesson-page .lesson-visual-guide,
+.lesson-page .reflection-box {
+  width:100%;
+  max-width:none;
+  min-width:0;
+}
+.lesson-page--light-observation .lesson-main { max-width:none; }
+@media(max-width:1050px) {
+  .lesson-page .lesson-aside { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .lesson-page .lesson-aside .aside-art { grid-column:1 / -1; min-height:120px; }
+}
+@media(max-width:760px) {
+  .lesson-page .lesson-aside { grid-template-columns:minmax(0,1fr); }
+  .lesson-page .lesson-aside .aside-art { grid-column:auto; }
+}
+
+
+/* Refined lesson support panel: a quiet sketchbook motif instead of the generic slogan graphic. */
+.lesson-page .lesson-aside .aside-art {
+  position:relative;
+  display:grid;
+  place-items:center;
+  min-height:168px;
+  overflow:hidden;
+  border:1px solid #d9d0c1;
+  border-radius:3px;
+  background:
+    linear-gradient(90deg, transparent 0 23px, rgb(174 151 122 / 12%) 24px, transparent 25px),
+    repeating-linear-gradient(0deg, transparent 0 23px, rgb(174 151 122 / 13%) 24px, transparent 25px),
+    #f5f0e7;
+}
+.lesson-page .lesson-aside .aside-art::before {
+  content:"";
+  position:absolute;
+  width:94px;
+  height:116px;
+  left:calc(50% - 47px);
+  top:25px;
+  border:1px solid #b9aa92;
+  border-radius:48% 48% 44% 44%;
+  transform:rotate(-11deg);
+  background:linear-gradient(145deg, rgb(255 255 255 / 72%), rgb(226 215 195 / 28%));
+  box-shadow:12px 9px 0 -5px #e8dfd0, 12px 9px 0 -4px #c8baa3;
+}
+.lesson-page .lesson-aside .aside-art::after {
+  content:"";
+  position:absolute;
+  width:48px;
+  height:72px;
+  left:calc(50% - 24px);
+  top:46px;
+  border-left:2px solid #9b9d7d;
+  border-radius:50%;
+  transform:rotate(24deg);
+  background:
+    radial-gradient(ellipse at 22% 27%, #b6b99a 0 13%, transparent 15%),
+    radial-gradient(ellipse at 76% 43%, #c4c7a7 0 14%, transparent 16%),
+    radial-gradient(ellipse at 25% 64%, #a9b08c 0 13%, transparent 15%);
+}
+.lesson-page .lesson-aside .aside-art .aside-orbit { display:none; }
+.lesson-page .lesson-aside .aside-art > span {
+  position:absolute;
+  z-index:3;
+  right:12px;
+  bottom:10px;
+  padding:4px 7px;
+  background:#f5f0e7;
+  color:#766b5a;
+  font-size:8px;
+  line-height:1.45;
+  letter-spacing:1.4px;
+  text-align:right;
+}
+.lesson-page .lesson-aside .aside-art > span em {
+  color:#8c7557;
+  font-size:10px;
+}
+.lesson-page .lesson-aside .aside-tip .eyebrow {
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  padding:5px 9px;
+  border-radius:2px;
+  background:#e8edf0;
+  color:#254d65;
+  font-family:"DM Sans",sans-serif;
+  font-size:11px;
+  font-weight:800;
+  line-height:1.2;
+  letter-spacing:1.5px;
+}
+.lesson-page .lesson-aside .aside-tip .eyebrow::before {
+  content:"";
+  width:5px;
+  height:5px;
+  flex:0 0 5px;
+  border-radius:50%;
+  background:#c45a69;
+}
+.lesson-page .lesson-aside .aside-tip-muted .eyebrow {
+  background:#f0e8dc;
+  color:#76583f;
+}
+.lesson-page .lesson-aside .aside-tip-muted .eyebrow::before {
+  background:#b38a58;
+}
+.lesson-page .lesson-aside .aside-tip p {
+  margin-top:9px;
+  font-size:15px;
+  line-height:1.55;
+  color:#48483f;
+}
+.lesson-page .lesson-aside .aside-tip-muted p {
+  font-size:13px;
+  line-height:1.6;
+  color:#716c61;
+}
+@media(max-width:760px) {
+  .lesson-page .lesson-aside .aside-art { min-height:140px; }
+  .lesson-page .lesson-aside .aside-tip .eyebrow { font-size:10px; }
+}

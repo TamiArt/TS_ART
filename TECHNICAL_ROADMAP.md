@@ -53,6 +53,7 @@ Work through these stages in order and resolve blocking issues before moving on.
 - [ ] Review the sequence and prerequisites across all 20 modules and 84 lessons.
 - [ ] Find gaps, repetition, unexplained terms and abrupt jumps in difficulty.
 - [ ] Review art-materials and art-history claims; use reliable sources where factual claims need support.
+- [x] Add a structured oil-painting techniques guide to Art History: glazing, grisaille, imprimatura, underpainting/dead-colouring, scumbling, sfumato, impasto and alla prima, with practical steps, effects, historical examples and source links. This is a focused content addition, not completion of the full curriculum review.
 - [ ] Check that lessons include clear explanations and achievable practice tasks.
 - [ ] Connect relevant lessons to the Mixer, Colour Lab, Visual Journal, Mini Studio and workshops where useful.
 - [ ] Track which material is reviewed and which remains a draft; do not call content expert-validated without review evidence.
@@ -219,3 +220,21 @@ This stage starts only after stages 1–3 are complete. Prioritize work by risk 
 - [x] Add responsive desktop/mobile layouts, accessible labels and a curriculum regression test.
 - [ ] Verify TypeScript, tests and production build on the latest commit.
 - [ ] Review visual balance and legibility in a browser at desktop and mobile widths.
+
+
+## Art History block
+
+**Scope:** `src/components/ArtHistoryPage.tsx`, `src/data/artHistory.ts`, `src/components/art-history.css`
+
+- [x] Provide a searchable, filterable timeline of nine periods from prehistoric art to contemporary practice.
+- [x] Include visual clues, an analysis question, a practical exercise and key terms for each period.
+- [x] Add concrete characteristics for all nine periods and representative artists/masters with brief explanations; make clear where historic authorship is unknown or regional traditions differ.
+- [x] Extend the contemporary-art period with a timeline from the 1970s through the 2020s, including overlapping movements, artist examples, and current debates around AI, ecology, digital images, and authorship.
+- [x] Include the contemporary timeline terms and artists in period search.
+- [x] Link each period to an artwork study and show museum/educational source links.
+- [x] Add persistent per-period study marks and a progress indicator; progress is stored locally in the current browser.
+- [x] Add responsive styles for the period cards, artwork analysis and completion controls.
+- [ ] Verify type-check, unit tests and production build on the current branch.
+- [ ] Review the rendered page at desktop and mobile widths and confirm the progress marks survive reload.
+
+**Exit criteria:** all nine periods remain navigable through search/filter controls, each period can be marked studied and unmarked, progress survives reload, sources open correctly, and project checks pass.

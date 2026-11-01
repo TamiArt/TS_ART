@@ -233,8 +233,11 @@ function HomePage({ progress, completedCount, total, nextLesson, onContinue, onN
 function LessonsPage({ onOpen, completed, moduleId, onSelectModule }: { onOpen: (lesson: Lesson) => void; completed: string[]; moduleId: number; onSelectModule: (id: number) => void }) {
   const module = curriculum.find((item) => item.id === moduleId) ?? curriculum[0];
   const moduleDone = module.lessons.filter((lesson) => completed.includes(lesson.id)).length;
-  return <div className="page-wrap inner-page">
-    <PageIntro eyebrow="LEARN · УЧЕБНАЯ ПРОГРАММА" title={<>Сначала — <em>основа.</em></>} description="Все 20 модулей содержат практические занятия. Выбирай тему, проходи уроки в своём темпе и возвращайся к упражнениям по мере необходимости." />
+  return <div className="page-wrap inner-page lessons-page">
+    <div className="lessons-intro-row">
+      <PageIntro eyebrow="LEARN · УЧЕБНАЯ ПРОГРАММА" title={<>Сначала — <em>основа.</em></>} description="Все 20 модулей содержат практические занятия. Выбирай тему, проходи уроки в своём темпе и возвращайся к упражнениям по мере необходимости." />
+      <aside className="side-info-card"><div className="info-drawing">✳</div><span className="eyebrow">ПОМНИ</span><h3>Не спеши к результату. Замечай процесс.</h3><p>У каждого урока есть цель, последовательность действий и критерии самопроверки. Они помогут понять, что получилось и что попробовать дальше.</p><div className="side-info-foot">ОБУЧЕНИЕ · БЕЗ СРАВНЕНИЯ</div></aside>
+    </div>
     <div className="module-picker">
       <label htmlFor="module-select">Выбрать модуль</label>
       <select id="module-select" value={module.id} onChange={(event) => onSelectModule(Number(event.target.value))}>
@@ -245,7 +248,7 @@ function LessonsPage({ onOpen, completed, moduleId, onSelectModule }: { onOpen: 
     <div className="content-columns"><div className="lesson-list-panel"><div className="panel-header"><span>МОДУЛЬ {String(module.id).padStart(2, "0")}</span><span>{module.lessons.length} урока · самостоятельный темп</span></div><h2>{module.title}</h2><p className="panel-description">{module.description}</p>
       {module.lessons.map((lesson, index) => <button className="lesson-row" key={lesson.id} onClick={() => onOpen(lesson)}><span className={`lesson-index ${completed.includes(lesson.id) ? "lesson-index-done" : ""}`}>{completed.includes(lesson.id) ? "✓" : String(index + 1).padStart(2, "0")}</span><span className="lesson-row-copy"><strong>{lesson.title}</strong><small>{lesson.kind === "practice" ? "Практика" : "Урок"} · {lesson.duration}</small></span><span className="lesson-row-arrow">↗</span></button>)}
       <div className="module-switcher"><button className="button button-outline" disabled={module.id === 1} onClick={() => onSelectModule(module.id - 1)}>← Предыдущий</button><button className="button button-dark" disabled={module.id === curriculum.length} onClick={() => onSelectModule(module.id + 1)}>Следующий модуль →</button></div>
-    </div><aside className="side-info-card"><div className="info-drawing">✳</div><span className="eyebrow">ПОМНИ</span><h3>Не спеши к результату. Замечай процесс.</h3><p>У каждого урока есть цель, последовательность действий и критерии самопроверки. Они помогут понять, что получилось и что попробовать дальше.</p><div className="side-info-foot">ОБУЧЕНИЕ · БЕЗ СРАВНЕНИЯ</div></aside></div>
+    </div></div>
   </div>;
 }
 
@@ -495,7 +498,7 @@ function LessonView({ lesson, moduleTitle, isCompleted, reflection, onReflection
 }
 
 function PageIntro({ eyebrow, title, description }: { eyebrow: string; title: ReactNode; description: string }) {
-  return <section className="page-intro"><div className="eyebrow"><span className="eyebrow-line" /> {eyebrow}</div><h1>{title}</h1><p>{description}</p><div className="intro-ornament">✳</div></section>;
+  return <section className={`page-intro ${eyebrow === "LEARN · УЧЕБНАЯ ПРОГРАММА" ? "page-intro--lessons" : ""}`}><div className="eyebrow"><span className="eyebrow-line" /> {eyebrow}</div><h1>{title}</h1><p>{description}</p>{eyebrow !== "LEARN · УЧЕБНАЯ ПРОГРАММА" && <div className="intro-ornament">✳</div>}</section>;
 }
 
 export default App;

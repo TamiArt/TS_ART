@@ -12,7 +12,7 @@ const blue = "#86aaca";
 type Props = { title: string; instruction: string };
 
 function Sheet({ children }: { children: ReactNode }) {
-  return <svg className="lesson-visual-svg" viewBox="0 0 240 150" role="img" aria-label="Учебный карандашный рисунок">
+  return <svg className="lesson-visual-svg pencil-study" viewBox="0 0 240 150" role="img" aria-label="Учебный рисунок простым карандашом">
     <rect x="9" y="7" width="222" height="136" rx="2" fill={paper} stroke="#e2dccf" />
     <path d="M15 14h6m-6 0v6m210-6h-6m6 0v6M15 136h6m-6 0v-6m210 6h-6m6 0v-6" fill="none" stroke="#d8d0c2" strokeWidth=".8" />
     {children}
@@ -59,15 +59,58 @@ function TopicDrawing({ title, instruction }: Props) {
   if (/простая рабочая среда/.test(text)) {
     const stageIndex = /организуй свет/.test(stage) ? 1 : /убери со стола/.test(stage) ? 2 : /пробные линии/.test(stage) ? 3 : /сохрани|подпиши/.test(stage) ? 4 : 0;
     return <Sheet>
-      <path d="M25 119h190" stroke={light} strokeWidth="1.1"/>
-      <path d="M42 105 181 35" stroke="#d6b98c" strokeWidth="10" strokeLinecap="round"/>
-      <path d="M42 105 181 35" stroke={pencil} strokeWidth="1.2" strokeLinecap="round"/>
-      <path d="M42 105l-9 12 15-6" fill="#d6b98c" stroke={pencil} strokeWidth="1"/>
-      <path d="M177 33l10-5 1 6-7 4" fill={ink} stroke={ink} strokeWidth="1"/>
-      {stageIndex === 1 && <g fill="none" stroke={terracotta} strokeWidth="1.2"><path d="M190 19 169 30m14-12 7 1-2 7"/><path d="M158 44 139 54" strokeDasharray="3 3"/></g>}
-      {stageIndex === 2 && <g fill="none" stroke={sage} strokeWidth="1.4"><path d="M36 38h37v18H36zM174 91h28v18h-28z"/><path d="M36 38l37 18m-37 0 37-18" strokeDasharray="2 3"/></g>}
-      {stageIndex === 3 && <g fill="none" stroke={pencil} strokeLinecap="round"><path d="M29 37q25-4 48 0" strokeWidth=".6"/><path d="M29 53q25-4 48 0" strokeWidth="1.3"/><path d="M29 69h49" strokeWidth="2"/><path d="M29 85h49" strokeWidth=".9" strokeDasharray="6 3"/></g>}
-      {stageIndex === 4 && <g><rect x="140" y="76" width="65" height="39" rx="2" fill="none" stroke={sage} strokeWidth="1.2"/><path d="M148 88h47m-47 7h35m-35 7h40" stroke={light} strokeWidth="1.2"/><path d="m184 25 5 5 9-11" fill="none" stroke={sage} strokeWidth="1.8"/></g>}
+      <path d="M24 119h192" stroke={light} strokeWidth="1.2"/>
+      {stageIndex === 0 && <g>
+        <rect x="41" y="33" width="106" height="76" rx="3" fill="#f5f0e5" stroke={light}/>
+        <path d="M52 44h83M52 51h58" stroke="#d7d0c2" strokeWidth="1"/>
+        <path d="M61 91 115 42" stroke="#d6b98c" strokeWidth="12" strokeLinecap="round"/>
+        <path d="M61 91 115 42" stroke={pencil} strokeWidth="1.2" strokeLinecap="round"/>
+        <path d="m61 91-7 12 13-7" fill="#d6b98c" stroke={pencil} strokeWidth="1"/>
+        <path d="m111 43 8-7 3 5-6 6" fill={ink} stroke={ink}/>
+        <circle cx="174" cy="44" r="18" fill="#e7eef0" stroke={blue} strokeWidth="1.4"/>
+        <path d="M163 44h22M174 33v22" stroke={blue} strokeWidth="1"/>
+        <path d="M158 71h32m-32 6h23" stroke={sage} strokeWidth="2" strokeLinecap="round"/>
+      </g>}
+      {stageIndex === 1 && <g>
+        <path d="M33 110h174" stroke="#b8a58c" strokeWidth="2"/>
+        <path d="M76 109V76l-8-28 14-3 10 31v33" fill="#e9e2d5" stroke={pencil} strokeWidth="1.4" strokeLinejoin="round"/>
+        <path d="M67 48q15-17 29 0l-6 12H73Z" fill="#d8c5a4" stroke={pencil} strokeWidth="1.3"/>
+        <path d="M76 60 54 99M82 60l21 39M91 61l30 28" stroke="#d8b778" strokeWidth="2" strokeLinecap="round" opacity=".85"/>
+        <rect x="117" y="84" width="72" height="26" rx="2" fill="#fffdf7" stroke={light}/>
+        <path d="M126 91h52m-52 6h39" stroke="#d9d3c8" strokeWidth="1"/>
+        <path d="M111 79 99 68m12 11 2-10" fill="none" stroke={terracotta} strokeWidth="1.5"/>
+      </g>}
+      {stageIndex === 2 && <g>
+        <path d="M28 110h184" stroke="#b8a58c" strokeWidth="2"/>
+        <rect x="47" y="72" width="51" height="37" rx="2" fill="#f0e8d8" stroke={light}/>
+        <path d="M54 80h36m-36 6h29m-29 6h32" stroke="#b9b1a3" strokeWidth="1.2"/>
+        <path d="M61 69v-9h23v9" fill="none" stroke={pencil} strokeWidth="1.3"/>
+        <path d="M120 103 142 80l18 23Z" fill="#e2e9e9" stroke={blue} strokeWidth="1.3"/>
+        <path d="M142 80v23" stroke={blue} strokeWidth="1"/>
+        <rect x="165" y="82" width="29" height="27" rx="2" fill="#e6ecdf" stroke={sage}/>
+        <path d="M171 89h17m-17 5h13" stroke={sage} strokeWidth="1"/>
+        <path d="M39 43h162" stroke={light} strokeDasharray="3 4"/>
+        <path d="m34 38 7 5-7 5m172-10-7 5 7 5" fill="none" stroke={terracotta} strokeWidth="1.4"/>
+      </g>}
+      {stageIndex === 3 && <g>
+        <rect x="32" y="25" width="176" height="83" rx="2" fill="#fffefa" stroke="#e3dccf"/>
+        <path d="M45 43q24-6 48 0" fill="none" stroke={pencil} strokeWidth=".7" strokeLinecap="round"/>
+        <path d="M45 56q24-5 48 0" fill="none" stroke={pencil} strokeWidth="1.4" strokeLinecap="round"/>
+        <path d="M45 69h48" fill="none" stroke={pencil} strokeWidth="2.4" strokeLinecap="round"/>
+        <path d="M45 82h48" fill="none" stroke={pencil} strokeWidth="1" strokeDasharray="5 3" strokeLinecap="round"/>
+        <path d="M112 41h73M112 54h56M112 67h78M112 80h65" stroke="#d6d0c4" strokeWidth=".8"/>
+        <path d="m119 95 12-5 8 3 11-7 13 5 10-4" fill="none" stroke={terracotta} strokeWidth="1.2" opacity=".8"/>
+      </g>}
+      {stageIndex === 4 && <g>
+        <rect x="62" y="19" width="116" height="95" rx="2" fill="#fffefa" stroke={light} strokeWidth="1.2"/>
+        <path d="M75 33h87" stroke="#d7d0c2" strokeWidth="1"/>
+        <path d="M80 67q7-20 20-8t21-2 20 8" fill="none" stroke={pencil} strokeWidth="1.5" strokeLinecap="round"/>
+        <path d="M80 78q18-5 33 0t29-1" fill="none" stroke={blue} strokeWidth="1.2" strokeLinecap="round"/>
+        <path d="M80 89h52" stroke="#d7d0c2" strokeWidth="1"/>
+        <path d="M80 99q17 3 32-3" fill="none" stroke={terracotta} strokeWidth="1.3" strokeLinecap="round"/>
+        <path d="m143 97 5 5 10-13" fill="none" stroke={sage} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+        <path d="M169 29v-7m-4 3h8" stroke={terracotta} strokeWidth="1.2"/>
+      </g>}
     </Sheet>;
   }
 
