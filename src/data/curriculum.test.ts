@@ -2,13 +2,14 @@ import { describe, expect, it } from "vitest";
 import { allLessons, curriculum } from "./curriculum";
 
 describe("TS·ART curriculum", () => {
-  it("contains all 20 modules in learning order", () => {
-    expect(curriculum).toHaveLength(20);
-    expect(curriculum.map((module) => module.id)).toEqual(Array.from({ length: 20 }, (_, index) => index + 1));
+  it("contains all 21 modules in learning order", () => {
+    expect(curriculum).toHaveLength(21);
+    expect(curriculum.map((module) => module.id)).toEqual(Array.from({ length: 21 }, (_, index) => index + 1));
   });
 
-  it("provides authored lessons in every module", () => {
-    expect(curriculum.every((module) => module.status === "available" && module.lessons.length > 0)).toBe(true);
+  it("provides authored lessons or a dedicated teaching component in every module", () => {
+    expect(curriculum.every((module) => module.status === "available" && (module.lessons.length > 0 || module.content === "oil-painting-techniques"))).toBe(true);
+    expect(curriculum.find((module) => module.content === "oil-painting-techniques")?.title).toBe("Техники масляной живописи");
     expect(allLessons).toHaveLength(85);
   });
 
