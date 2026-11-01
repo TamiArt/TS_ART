@@ -64,3 +64,6 @@
 .oil-mixer input[type=range]{min-height:32px;touch-action:pan-y}
 .oil-mixer button:focus-visible,.oil-mixer select:focus-visible,.oil-mixer input:focus-visible{outline-color:#555a3f}
 @media(max-width:420px){.oil-mixer{padding: 8px}.oil-mixer-result-meta{grid-template-columns:1fr 1fr;gap: 4px}.oil-mixer-task{padding: 6.5px}.oil-mixer-ratio-heading strong{font-size:12px}}
+
+.oil-mixer-brand-source{display:inline-block;margin-top:6px;color:#656b4f;font-size:12px;text-decoration:underline;text-underline-offset:3px}
+.oil-mixer-brand-source:hover{color:#343631}
