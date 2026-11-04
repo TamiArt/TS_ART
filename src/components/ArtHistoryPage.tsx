@@ -1,6 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
 import { artHistoryMilestones, artHistoryPeriods, artHistorySources, artworkStudies } from "../data/artHistory";
-import OilPaintingTechniques from "./OilPaintingTechniques";
 import "./art-history.css";
 
 const ART_HISTORY_PROGRESS_KEY = "ts-art-history-studied-v1";
@@ -97,8 +96,6 @@ export default function ArtHistoryPage() {
       </div>
       <p className="art-history-milestone-note">Хронология показывает главные сдвиги, но направления часто существовали одновременно. Ссылки ведут на конкретные произведения Gallerix там, где доступна отдельная карточка работы.</p>
     </section>
-
-    <OilPaintingTechniques />
 
     <section className="art-history-timeline-section">
       <div className="art-history-section-heading"><div><div className="eyebrow">КАРТА ЭПОХ</div><h2>От первых образов до наших дней</h2></div><span>{periods.length} из {artHistoryPeriods.length}</span></div>
