@@ -2,6 +2,12 @@ export type Pigment = { id: string; name: string; colourIndex: string; hex: stri
 export type StudyTask = "portrait" | "landscape" | "still-life";
 export type Recipe = { id: string; task: StudyTask; label: string; description: string; first: string; second: string; ratio: number; third?: string; thirdRatio?: number };
 
+/**
+ * Каталог масляных красок «Мастер-Класс» (Невская палитра).
+ * HEX — ориентировочные экранные выкраски, а не измеренные значения краски.
+ * Номера оттенков приведены по каталогу производителя; состав пигментов
+ * следует сверять с маркировкой конкретной тубы и актуальной упаковкой.
+ */
 export const pigments: Pigment[] = [
   { id: "titanium-white", name: "Титановые белила", colourIndex: "PW6", hex: "#f0e8d7", note: "Осветляют смесь; могут снижать насыщенность." },
   { id: "yellow-ochre", name: "Жёлтая охра", colourIndex: "PY43", hex: "#c49a45", note: "Приглушённый землистый жёлтый." },
@@ -46,15 +52,15 @@ export const taskOptions: { id: StudyTask; label: string; description: string }[
 ];
 
 export const recipes: Recipe[] = [
-  { id: "skin", task: "portrait", label: "Кожа и полутон", description: "Начни с охры и белил; красный оксид можно добавить малыми порциями для тепла.", first: "yellow-ochre", second: "titanium-white", ratio: 38, third: "red-oxide", thirdRatio: 10 },
+  { id: "skin", task: "portrait", label: "Кожа и полутон", description: "Начни с охры и белил; красный оксид можно добавить малыми порциями для тепла.", first: "yellow-ochre", second: "titanium-white", ratio: 38, third: "indian-red", thirdRatio: 10 },
   { id: "lips", task: "portrait", label: "Губы и румянец", description: "Малиновый и охра дают отправную точку; белила смягчают смесь.", first: "alizarin", second: "yellow-ochre", ratio: 65, third: "titanium-white", thirdRatio: 12 },
-  { id: "hair", task: "portrait", label: "Волосы", description: "Сиена и умбра создают тёплую основу; ультрамарин углубляет холодные участки.", first: "burnt-sienna", second: "burnt-umber", ratio: 55, third: "ultramarine", thirdRatio: 8 },
-  { id: "face-shadows", task: "portrait", label: "Тени лица", description: "Умбра с ультрамарином — ориентир для приглушённых теней; сверяйся с освещением.", first: "burnt-umber", second: "ultramarine", ratio: 62, third: "red-oxide", thirdRatio: 8 },
+  { id: "hair", task: "portrait", label: "Волосы", description: "Сиена и умбра создают тёплую основу; ультрамарин углубляет холодные участки.", first: "burnt-sienna", second: "raw-umber", ratio: 55, third: "ultramarine", thirdRatio: 8 },
+  { id: "face-shadows", task: "portrait", label: "Тени лица", description: "Умбра с ультрамарином — ориентир для приглушённых теней; сверяйся с освещением.", first: "raw-umber", second: "ultramarine", ratio: 62, third: "indian-red", thirdRatio: 8 },
   { id: "sky", task: "landscape", label: "Небо и воздух", description: "Голубой с белилами; небольшая охра может приглушить холодный оттенок у горизонта.", first: "cerulean", second: "titanium-white", ratio: 35, third: "yellow-ochre", thirdRatio: 5 },
   { id: "foliage", task: "landscape", label: "Листва", description: "Зелёный и охра дают природную основу; умбра помогает затемнить без простого добавления чёрного.", first: "viridian", second: "yellow-ochre", ratio: 55, third: "raw-umber", thirdRatio: 10 },
-  { id: "earth", task: "landscape", label: "Земля и горы", description: "Сиена с умброй — земляная база; ультрамарин помогает охладить дальний план.", first: "raw-sienna", second: "burnt-umber", ratio: 55, third: "ultramarine", thirdRatio: 8 },
+  { id: "earth", task: "landscape", label: "Земля и горы", description: "Сиена с умброй — земляная база; ультрамарин помогает охладить дальний план.", first: "raw-sienna", second: "raw-umber", ratio: 55, third: "ultramarine", thirdRatio: 8 },
   { id: "water", task: "landscape", label: "Вода и отражения", description: "Начни с синего и белил, затем настрой отражение по цвету окружения, а не только воды.", first: "ultramarine", second: "titanium-white", ratio: 40, third: "raw-umber", thirdRatio: 6 },
-  { id: "fruit", task: "still-life", label: "Фрукты и овощи", description: "Для красно-оранжевых предметов попробуй красный оксид с охрой; белила меняют светлоту.", first: "red-oxide", second: "yellow-ochre", ratio: 60, third: "titanium-white", thirdRatio: 8 },
+  { id: "fruit", task: "still-life", label: "Фрукты и овощи", description: "Для красно-оранжевых предметов попробуй пиррол красный с охрой; белила меняют светлоту.", first: "pyrrole-red", second: "yellow-ochre", ratio: 60, third: "titanium-white", thirdRatio: 8 },
   { id: "ceramic", task: "still-life", label: "Керамика", description: "Белила и умбра дают основу для тёплых нейтралей; ультрамарин охлаждает тень.", first: "titanium-white", second: "raw-umber", ratio: 72, third: "ultramarine", thirdRatio: 6 },
   { id: "fabric", task: "still-life", label: "Ткань", description: "Сочетай основной цвет ткани с небольшим количеством дополнительного или земляного пигмента.", first: "ultramarine", second: "alizarin", ratio: 55, third: "titanium-white", thirdRatio: 12 },
   { id: "glass-metal", task: "still-life", label: "Стекло и металл", description: "Для отражений смешивай нейтрали и оттенки окружения; один универсальный серый не подойдёт.", first: "ultramarine", second: "burnt-sienna", ratio: 52, third: "titanium-white", thirdRatio: 10 }

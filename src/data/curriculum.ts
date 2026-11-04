@@ -1,7 +1,7 @@
 import { foundationModules } from "./modules-foundations";
 import { paintingModules } from "./modules-painting";
 import { projectModules } from "./modules-projects";
-import type { Lesson, Module } from "./types";
+import { makeLesson as L, makeModule as M, type Lesson, type Module } from "./types";
 
 export type { Lesson, Module } from "./types";
 
