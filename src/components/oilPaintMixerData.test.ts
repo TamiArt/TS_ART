@@ -49,6 +49,41 @@ describe("oil mixer learning data", () => {
     }
   });
 
+
+  it("includes the requested oil paint colours without duplicate entries", () => {
+    const names = pigments.map((pigment) => pigment.name);
+    const ids = pigments.map((pigment) => pigment.id);
+    expect(new Set(names).size).toBe(names.length);
+    expect(new Set(ids).size).toBe(ids.length);
+    for (const name of [
+      "Кадмий лимонный",
+      "Кадмий жёлтый светлый",
+      "Кадмий красный светлый",
+      "Краплак розовый прочный",
+      "Умбра жжёная",
+      "Голубая ФЦ",
+      "Ультрамарин",
+      "Сажа газовая",
+      "Зелёная ФЦ",
+      "Бирюзовая",
+      "Жёлтая охра",
+      "Кадмий жёлтый средний",
+      "Изумрудная зелёная",
+      "Кобальт фиолетовый тёмный",
+      "Индиго",
+      "Марс коричневый тёмный прозрачный",
+      "Травяная зелёная",
+      "Кадмий жёлтый тёмный",
+      "Кадмий красный тёмный",
+      "Марс коричневый прозрачный",
+      "Марс оранжевый",
+      "Кобальт фиолетовый светлый",
+      "Небесно-голубой"
+    ]) {
+      expect(names, `missing requested pigment: ${name}`).toContain(name);
+    }
+  });
+
   it("falls back to the first known pigment for an unknown identifier", () => {
     expect(getPigment("not-a-real-pigment")).toEqual(pigments[0]);
   });
