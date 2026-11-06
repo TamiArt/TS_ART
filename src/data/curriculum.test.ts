@@ -10,7 +10,7 @@ describe("TS·ART curriculum", () => {
   it("provides authored lessons or a dedicated teaching component in every module", () => {
     expect(curriculum.every((module) => module.status === "available" && (module.lessons.length > 0 || module.content === "oil-painting-techniques"))).toBe(true);
     expect(curriculum.find((module) => module.content === "oil-painting-techniques")?.title).toBe("Техники масляной живописи");
-    expect(allLessons).toHaveLength(85);
+    expect(allLessons).toHaveLength(86);
   });
 
   it("uses unique lesson IDs and complete learning steps", () => {
@@ -36,6 +36,15 @@ describe("TS·ART curriculum", () => {
     expect(lesson?.steps[3]).toContain("второй промежуток");
     expect(lesson?.steps[4]).toContain("внешний силуэт");
     expect(lesson?.selfCheck).toHaveLength(2);
+  });
+
+  it("teaches staffage figures as secondary elements in landscape composition", () => {
+    const lesson = allLessons.find((item) => item.id === "m11-staffage-figures");
+    expect(lesson?.title).toBe("Стаффажные фигуры в пейзаже");
+    expect(lesson?.objective).toContain("второстепенные фигуры");
+    expect(lesson?.steps[0]).toContain("Staffage");
+    expect(lesson?.steps.some((step) => step.includes("масштаба, точки зрения"))).toBe(true);
+    expect(lesson?.selfCheck).toHaveLength(3);
   });
 
   it("includes a dedicated pigment testing sequence in Module 7", () => {
