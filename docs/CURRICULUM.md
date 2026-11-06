@@ -1,6 +1,6 @@
 # TS·ART Studio — Curriculum
 
-This programme map now has an authored first-draft lesson set in the app: 21 modules: 20 lesson-based modules plus one dedicated oil-painting techniques module; 86 authored lessons total. The sequence and lesson count are a working draft; review with beginners and qualified art educators is still required.
+This programme map now has an authored first-draft lesson set in the app: 21 modules: 20 lesson-based modules plus one dedicated oil-painting techniques module; 87 authored lessons total. The sequence and lesson count are a working draft; review with beginners and qualified art educators is still required.
 
 ## Current implementation status\n\n- All 21 modules are available in the app; the oil-painting techniques module is a dedicated interactive teaching section rather than a list of lesson records.
 - Open Studio, six Master Workshops and Portfolio notes are available as separate app sections.\n- Module 7 includes a Colour Lab sequence and the app has a separate local experiment journal.\n- Lesson text is a first draft, not yet validated by learner research or expert review.\n- Progress and notes are browser-local; there is no account or cloud sync.\n\n## Programme map
@@ -28,6 +28,12 @@ This programme map now has an authored first-draft lesson set in the app: 21 mod
 | 19 | Author project | Develop an idea, gather references, make studies, plan and revise a personal work. |
 | 20 | Final project and portfolio | Complete, document, reflect on, and curate a final project. |
 | 21 | Oil painting techniques | Study glazing, grisaille, imprimatura, underpainting, brushwork, texture, comparative examples, and safe material handling. |
+
+## Entry into the picture — Module 11
+
+**Вход в картину** — композиционный элемент или направление, которое помогает взгляду зрителя перейти с переднего плана в глубину изображения. Им могут быть тропинка или дорога, река и линия берега, ограда, ряд деревьев, мост, полоса света или цепочка камней. Как правило, передний план организуют так, чтобы он предлагал зрителю такой путь к главному мотиву. Это полезный приём, а не обязательное требование: некоторые пейзажи намеренно строятся без выраженного входа.
+
+Урок `m11-entry-into-picture` показывает три варианта: дорога, уходящая к дому или деревьям; линия реки и берега, ведущая к изгибу; ограда, ряд стволов или камни, задающие перспективный ритм. Практика предлагает сравнить два мини-эскиза — со случайным передним планом и с осмысленным направлением взгляда.
 
 ## Staffage figures — Module 11
 
