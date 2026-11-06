@@ -10,7 +10,7 @@ describe("TS·ART curriculum", () => {
   it("provides authored lessons or a dedicated teaching component in every module", () => {
     expect(curriculum.every((module) => module.status === "available" && (module.lessons.length > 0 || module.content === "oil-painting-techniques"))).toBe(true);
     expect(curriculum.find((module) => module.content === "oil-painting-techniques")?.title).toBe("Техники масляной живописи");
-    expect(allLessons).toHaveLength(86);
+    expect(allLessons).toHaveLength(87);
   });
 
   it("uses unique lesson IDs and complete learning steps", () => {
@@ -36,6 +36,17 @@ describe("TS·ART curriculum", () => {
     expect(lesson?.steps[3]).toContain("второй промежуток");
     expect(lesson?.steps[4]).toContain("внешний силуэт");
     expect(lesson?.selfCheck).toHaveLength(2);
+  });
+
+  it("teaches the foreground entry into a landscape composition", () => {
+    const lesson = allLessons.find((item) => item.id === "m11-entry-into-picture");
+    expect(lesson?.title).toBe("Вход в картину: как вести взгляд зрителя");
+    expect(lesson?.objective).toContain("передний план");
+    expect(lesson?.steps[0]).toContain("вход в картину");
+    expect(lesson?.steps.some((step) => step.includes("Пример 1 — дорога"))).toBe(true);
+    expect(lesson?.steps.some((step) => step.includes("Пример 2 — река"))).toBe(true);
+    expect(lesson?.steps.some((step) => step.includes("Пример 3 — ограда"))).toBe(true);
+    expect(lesson?.selfCheck).toHaveLength(4);
   });
 
   it("teaches staffage figures as secondary elements in landscape composition", () => {
