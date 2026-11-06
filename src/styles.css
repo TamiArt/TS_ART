@@ -806,3 +806,16 @@ button:disabled { cursor:not-allowed; opacity:.5 }
   .lesson-page--light-observation .check-list li { font-size: .96rem; }
 }
 
+
+
+/* Focused study block for the Alexander Ivanov landscape workshop */
+.workshop-card--featured{grid-column:1/-1}
+.ivanov-study-list{margin:22px 0 20px;padding:18px 20px;border:1px solid #e4dacb;border-radius:14px;background:#fbf8f1}
+.ivanov-study-list h3{margin:0 0 7px;color:#314b5a;font-family:var(--serif);font-size:21px;font-weight:500}
+.ivanov-study-list .section-hint{margin:0 0 14px;color:#746d62;font-size:13px;line-height:1.6}
+.ivanov-study-list ul{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 18px;margin:0;padding:0;list-style:none}
+.ivanov-study-list li{display:flex;flex-direction:column;gap:5px;padding:11px 0;border-top:1px solid #e8e0d4}
+.ivanov-study-list li a{color:#314b5a;font-weight:650;text-decoration:none}
+.ivanov-study-list li a:hover{text-decoration:underline;text-underline-offset:3px}
+.ivanov-study-list li span{color:#746d62;font-size:12px;line-height:1.55}
+@media(max-width:640px){.ivanov-study-list{padding:14px}.ivanov-study-list ul{grid-template-columns:1fr}}
