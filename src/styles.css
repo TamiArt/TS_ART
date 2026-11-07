@@ -17,6 +17,13 @@ button:disabled { cursor:not-allowed; opacity:.5 }
 .app-shell { min-height:100vh }
 
 .sidebar { width:248px; position:fixed; inset:0 auto 0 0; background:#f0ede5; border-right:1px solid #e5e0d6; padding: 15px 9.5px 10px; display:flex; flex-direction:column; z-index:20 }
+/* The sidebar content fits the viewport; clip its scroll container entirely so hover cannot reveal a horizontal scrollbar. */
+.sidebar { overflow:clip; scrollbar-width:none; -ms-overflow-style:none; }
+.sidebar::-webkit-scrollbar,
+.sidebar::-webkit-scrollbar-thumb,
+.sidebar::-webkit-scrollbar-track { display:none !important; width:0 !important; height:0 !important; background:transparent !important; }
+.main-nav { min-width:0; width:100%; }
+.nav-item { width:100%; min-width:0; overflow:clip; }
 
 .brand-lockup { border:0; background:transparent; text-align:left; padding: 0 4.5px 18px; color:var(--ink) }
 

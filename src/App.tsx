@@ -76,11 +76,10 @@ function App() {
 
   const navItems: Array<{ id: Page; label: string }> = [
     { id: "home", label: "Моя студия" },
-    { id: "learn", label: "Уроки" },
+    { id: "path", label: "Учебный маршрут" },
     { id: "art-history", label: "История искусства" },
     { id: "practice", label: "Мини-студия" },
     { id: "journal", label: "Дневник" },
-    { id: "path", label: "Учебный маршрут" },
     { id: "colourlab", label: "Colour Lab" },
     { id: "workshops", label: "Мастерские" },
     { id: "openstudio", label: "Открытая студия" },
@@ -99,7 +98,6 @@ function App() {
           {navItems.map((item) => (
             <button key={item.id} className={`nav-item ${page === item.id && !activeLesson ? "nav-item-active" : ""}`} onClick={() => navigate(item.id)}>
               <span className="nav-icon" aria-hidden="true">{icons[item.id]}</span>{item.label}
-              {item.id === "learn" && <span className="nav-count">{allLessons.length}</span>}
             </button>
           ))}
         </nav>
@@ -218,7 +216,7 @@ function HomePage({ progress, completedCount, total, nextLesson, onContinue, onN
       <section className="section-block modes-section">
         <div className="section-heading"><div><div className="eyebrow">ВЫБИРАЙ СВОЙ ФОРМАТ</div><h2>Чему уделим внимание?</h2></div></div>
         <div className="mode-grid">
-          <button className="mode-card mode-main" onClick={() => onNavigate("learn")}><span className="mode-number">01 / LEARN</span><span className="mode-icon">▤</span><h3>Учебный маршрут</h3><p>Последовательные уроки от первых наблюдений к самостоятельным работам.</p><span className="mode-arrow">↗</span></button>
+          <button className="mode-card mode-main" onClick={() => onNavigate("path")}><span className="mode-number">01 / LEARN</span><span className="mode-icon">▤</span><h3>Учебный маршрут</h3><p>Последовательные уроки от первых наблюдений к самостоятельным работам.</p><span className="mode-arrow">↗</span></button>
           <button className="mode-card mode-practice" onClick={() => onNavigate("practice")}><span className="mode-number">02 / PRACTICE</span><span className="mode-icon">✳</span><h3>Мини-студия</h3><p>Короткие упражнения на 3–7 минут. Маленькая практика — большой вклад.</p><span className="mode-arrow">↗</span></button>
           <button className="mode-card mode-journal" onClick={() => onNavigate("journal")}><span className="mode-number">03 / REFLECT</span><span className="mode-icon">✎</span><h3>Визуальный дневник</h3><p>Фиксируй открытия, замечай перемены и формируй собственный взгляд.</p><span className="mode-arrow">↗</span></button>
           <button className="mode-card mode-colourlab" onClick={() => onNavigate("colourlab")}><span className="mode-number">04 / EXPERIMENT</span><span className="mode-icon">◉</span><h3>Colour Lab</h3><p>Проверяй смеси реальных пигментов и веди журнал наблюдений.</p><span className="mode-arrow">↗</span></button>
