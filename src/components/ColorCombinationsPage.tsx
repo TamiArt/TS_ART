@@ -1,4 +1,5 @@
 import { useMemo, useRef, useState, type ChangeEvent } from "react";
+import WadaSanzoCatalog from "./WadaSanzoCatalog";
 
 type Swatch = { hex: string; name: string };
 type Palette = { id: string; name: string; colors: Swatch[] };
