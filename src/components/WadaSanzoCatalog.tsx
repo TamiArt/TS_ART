@@ -56,7 +56,7 @@ export default function WadaSanzoCatalog() {
   const copy = (value: string) => { void navigator.clipboard?.writeText(value); };
   const renderColorStrip = (ids: number[]) => <div className="wada-palette-strip">{ids.map(id => {
     const c = colorById.get(id)!;
-    return <button key={id} className="wada-color-chip" style={{background:c.hex}} title={c.name + " · " + c.hex} onClick={() => setSelectedColor(c)} aria-label={"Открыть цвет " + c.name}/>;
+    return <span key={id} className="wada-color-chip" style={{background:c.hex}} title={c.name + " · " + c.hex} aria-label={c.name}/>;
   })}</div>;
   const colorDetails = (c: WadaColor) => <div className="wada-color-values">
     <div><span>HEX</span><button onClick={() => copy(c.hex)}>{c.hex}</button></div>
