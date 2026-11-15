@@ -25,7 +25,6 @@ const familyOf = (color: WadaColor) => {
 };
 const rgbDistance = (a: number[], b: number[]) => Math.sqrt(a.reduce((sum, value, i) => sum + (value - b[i]) ** 2, 0));
 const hexRgb = (hex: string) => [1, 3, 5].map(i => parseInt(hex.slice(i, i + 2), 16));
-const rgbHex = (rgb: number[]) => "#" + rgb.map(v => Math.round(v).toString(16).padStart(2, "0")).join("").toUpperCase();
 
 export default function WadaSanzoCatalog() {
   const [tab, setTab] = useState<"palettes" | "colors" | "match">("palettes");
