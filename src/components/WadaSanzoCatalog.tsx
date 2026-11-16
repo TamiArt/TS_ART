@@ -26,6 +26,37 @@ const familyOf = (color: WadaColor) => {
 const rgbDistance = (a: number[], b: number[]) => Math.sqrt(a.reduce((sum, value, i) => sum + (value - b[i]) ** 2, 0));
 const hexRgb = (hex: string) => [1, 3, 5].map(i => parseInt(hex.slice(i, i + 2), 16));
 
+export function WadaHarmonySuggestions({baseColor,onUsePalette}:{baseColor:string;onUsePalette:(colors:string[],name:string)=>void}) {
+  const nearest = useMemo(() => {
+    const rgb = hexRgb(baseColor);
+    return [...colors].sort((a,b)=>rgbDistance(a.rgb,rgb)-rgbDistance(b.rgb,rgb)).slice(0,3);
+  }, [baseColor]);
+  const suggestedPalettes = useMemo(() => {
+    const ids = nearest[0]?.combinations ?? [];
+    return ids.slice(0,4).map(number => palettes.find(palette => palette.number === number)).filter((palette): palette is WadaPalette => Boolean(palette));
+  }, [nearest]);
+
+  return <section className="wada-auto-suggestions" aria-label="Приблизительные сочетания по Ваде Сандзо">
+    <div className="eyebrow">ДОПОЛНИТЕЛЬНЫЙ ПОДБОР · ВАДА САНДЗО</div>
+    <h3>Близкие цвета и оригинальные палитры</h3>
+    <p>Ищем ближайшие цифровые образцы из словаря Вады Сандзо по RGB. Это ориентир, а не точное совпадение с печатной книгой.</p>
+    <div className="wada-auto-nearest">{nearest.map((color,index)=><div className="wada-auto-nearest-item" key={color.id}>
+      <span style={{background:color.hex}}/>
+      <div><small>{index===0?"Ближайший образец": "Похожий образец"}</small><strong>{color.name}</strong><code>{color.hex.toUpperCase()}</code></div>
+    </div>)}</div>
+    <h4>Оригинальные сочетания с ближайшим цветом</h4>
+    <div className="wada-auto-palette-grid">{suggestedPalettes.map(palette=>{
+      const entries=palette.colors.map(id=>colorById.get(id)).filter((color):color is WadaColor=>Boolean(color));
+      return <article className="wada-auto-palette" key={palette.number}>
+        <div className="wada-auto-palette-strip">{entries.map(color=><span key={color.id} style={{background:color.hex}} title={color.name}/>)}</div>
+        <div className="wada-auto-palette-meta"><strong>Палитра № {String(palette.number).padStart(3,"0")}</strong><small>{entries.map(color=>color.name).join(" · ")}</small></div>
+        <button type="button" onClick={()=>onUsePalette(entries.map(color=>color.hex),"Вада Сандзо · палитра № "+palette.number)}>Использовать палитру</button>
+      </article>;
+    })}</div>
+    <small className="wada-auto-note">Источник цифровых образцов: A Dictionary of Color Combinations, 1933 · значения могут отличаться от оригинальной печати.</small>
+  </section>;
+}
+
 export default function WadaSanzoCatalog() {
   const [tab, setTab] = useState<"palettes" | "colors" | "match">("palettes");
   const [query, setQuery] = useState("");
