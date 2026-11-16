@@ -842,7 +842,7 @@ body {
   background-color: #247bb4 !important;
   background-image:
     linear-gradient(180deg, rgb(17 91 145 / 24%) 0%, rgb(25 67 91 / 8%) 48%, rgb(20 37 56 / 34%) 100%),
-    url("/illustrations/sidebar-greek-coast.svg") !important;
+    url("/illustrations/menuSantorini.png") !important;
   background-size: cover, 100% 100% !important;
   background-position: center, center top !important;
   background-repeat: no-repeat !important;
@@ -901,7 +901,7 @@ body {
     min-width: min(258px, 84vw);
     background-image:
       linear-gradient(180deg, rgb(17 91 145 / 22%), rgb(20 34 49 / 42%)),
-      url("/illustrations/sidebar-greek-coast.svg") !important;
+      url("/illustrations/menuSantorini.png") !important;
     background-size: cover, 100% 100% !important;
   }
   .main-content {
