@@ -912,3 +912,47 @@ body {
     flex-wrap: wrap;
   }
 }
+
+
+/* Dedicated artist workshops: readable study notes and practical assignments. */
+.artist-workshops-section { margin-top: 10px; }
+.artist-workshops-section > .section-heading { margin: 18px 0 14px; }
+.artist-workshop-card h2 { max-width: calc(100% - 28px); font-size: clamp(20px, 2vw, 25px); }
+.artist-workshop-card h3 {
+  margin: 3px 0 9px;
+  color: #3156a8;
+  font-family: var(--serif);
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.45;
+}
+.artist-workshop-card > p { color: #596782; font-size: 12px; line-height: 1.8; }
+.artist-workshop-works,
+.artist-workshop-practice {
+  width: 100%;
+  margin: 10px 0 8px;
+  padding-top: 9px;
+  border-top: 1px solid #e0e6f1;
+}
+.artist-workshop-works ul {
+  display: grid;
+  gap: 5px;
+  margin: 7px 0 0;
+  padding-left: 18px;
+  color: #465372;
+  font-size: 11px;
+  line-height: 1.65;
+}
+.artist-workshop-practice strong { color: #26395f; font-size: 12px; }
+.artist-workshop-practice p {
+  margin: 5px 0 0;
+  color: #596782;
+  font-size: 11px;
+  line-height: 1.8;
+}
+.artist-workshop-card .workshop-source { margin-top: 8px; }
+.artist-workshop-card > .text-link { display: inline-block; margin-top: 8px; }
+@media (max-width: 760px) {
+  .artist-workshop-card h2 { font-size: 22px; }
+  .artist-workshop-card h3 { font-size: 14px; }
+}
