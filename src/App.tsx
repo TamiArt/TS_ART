@@ -9,14 +9,15 @@ import {
   type StudioProject
 } from "./data/persistence";
 import OilPaintMixer from "./components/OilPaintMixer";
+import OilPaintingTechniques from "./components/OilPaintingTechniques";
 import LessonVisualGuide from "./components/LessonVisualGuide";
 import ArtHistoryPage from "./components/ArtHistoryPage";
-import OilPaintingTechniques from "./components/OilPaintingTechniques";
+import ColorCombinationsPage from "./components/ColorCombinationsPage";
 
-type Page = "home" | "learn" | "art-history" | "practice" | "journal" | "path" | "colourlab" | "openstudio" | "workshops" | "portfolio";
+type Page = "home" | "learn" | "art-history" | "practice" | "journal" | "path" | "colourlab" | "color-combinations" | "openstudio" | "workshops" | "portfolio";
 
 const icons: Record<Page, string> = {
-  home: "⌂", learn: "▤", "art-history": "◈", practice: "✳", journal: "✎", path: "↗", colourlab: "◉", openstudio: "✳", workshops: "◈", portfolio: "▧"
+  home: "⌂", learn: "▤", "art-history": "◈", practice: "✳", journal: "✎", path: "↗", colourlab: "◉", "color-combinations": "◌", openstudio: "✳", workshops: "◈", portfolio: "▧"
 };
 
 function App() {
@@ -81,6 +82,7 @@ function App() {
     { id: "practice", label: "Мини-студия" },
     { id: "journal", label: "Дневник" },
     { id: "colourlab", label: "Colour Lab" },
+    { id: "color-combinations", label: "Сочетание цветов" },
     { id: "workshops", label: "Мастерские" },
     { id: "openstudio", label: "Открытая студия" },
     { id: "portfolio", label: "Портфолио" }
@@ -150,6 +152,7 @@ function App() {
             {page === "practice" && <PracticePage practices={practices} completed={saved.completed} onOpen={openLesson} />}
             {page === "journal" && <JournalPage value={saved.journal} onChange={updateJournal} completedCount={completedCount} />}
             {page === "path" && <PathPage completed={saved.completed} onOpen={openLesson} onSelectModule={setActiveModuleId} onNavigate={navigate} />}
+            {page === "color-combinations" && <ColorCombinationsPage />}
             {page === "colourlab" && <ColourLabPage tests={saved.colourTests} onAdd={(test) => setSaved((current) => ({ ...current, colourTests: [test, ...current.colourTests] }))} onDelete={(id) => setSaved((current) => ({ ...current, colourTests: current.colourTests.filter((test) => test.id !== id) }))} />}
             {page === "openstudio" && <OpenStudioPage projects={saved.projects} onAdd={(project) => setSaved((current) => ({ ...current, projects: [project, ...current.projects] }))} onStatus={(id, status) => setSaved((current) => ({ ...current, projects: current.projects.map((project) => project.id === id ? { ...project, status } : project) }))} onDelete={(id) => setSaved((current) => ({ ...current, projects: current.projects.filter((project) => project.id !== id) }))} />}
             {page === "portfolio" && <PortfolioPage items={saved.portfolio} onAdd={(item) => setSaved((current) => ({ ...current, portfolio: [item, ...current.portfolio] }))} onDelete={(id) => setSaved((current) => ({ ...current, portfolio: current.portfolio.filter((item) => item.id !== id) }))} />}

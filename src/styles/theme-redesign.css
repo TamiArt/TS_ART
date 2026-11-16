@@ -928,404 +928,63 @@ body {
 }
 
 
-/* Match the supplied sidebar reference: open blue sky above, intact scenic image anchored at the bottom.
-   The landscape layer uses its natural aspect ratio (never cover/crop or stretch to the sidebar height). */
-.sidebar {
-  background-color: #62b5e2 !important;
-  background-image:
-    linear-gradient(180deg, #2189ca 0%, #66b8e0 24%, #c3e1ed 39%, transparent 51%),
-    url("/illustrations/menuSantorini.png") !important;
-  background-size: 100% 100%, 100% auto !important;
-  background-position: center top, center top !important;
-  background-repeat: no-repeat, no-repeat !important;
-  overflow: hidden;
-}
-.sidebar::before,
-.sidebar::after {
-  content: none !important;
-  display: none !important;
-}
-@media (max-width: 760px) {
-  .sidebar {
-    background-image:
-      linear-gradient(180deg, #2189ca 0%, #66b8e0 24%, #c3e1ed 39%, transparent 51%),
-      url("/illustrations/menuSantorini.png") !important;
-    background-size: 100% 100%, 100% auto !important;
-    background-position: center top, center top !important;
-    background-repeat: no-repeat, no-repeat !important;
-  }
-}
+/* Interactive color reference */
+.color-reference-page { max-width: 1180px; padding-top: 34px; }
+.color-reference-intro { padding: 12px 0 28px; max-width: 760px; }
+.color-reference-intro h1 { margin: 10px 0; font: 600 clamp(36px,5vw,54px)/1.05 Georgia,serif; color: #123b63; }
+.color-reference-intro p, .color-reference-section > p { color: #637b91; line-height: 1.7; max-width: 780px; }
+.color-reference-section { margin: 20px 0 26px; padding: clamp(20px,3vw,32px); border: 1px solid #f0ded2; border-radius: 18px; background: rgb(255 251 246 / 94%); box-shadow: 0 8px 24px rgb(70 60 50 / 5%); }
+.color-reference-section h2 { margin: 8px 0 10px; font: 600 clamp(24px,3vw,32px)/1.15 Georgia,serif; color: #123b63; }
+.color-section-heading { display:flex; justify-content:space-between; align-items:flex-end; gap:20px; flex-wrap:wrap; }
+.color-section-heading p { margin: 4px 0 0; color:#71879a; }
+.color-picker-control { display:flex; align-items:center; gap:10px; color:#526d84; font-size:13px; }
+.color-picker-control input, .draft-swatch input[type=color] { width:42px; height:38px; padding:3px; border:1px solid #e6d8ce; border-radius:8px; background:white; cursor:pointer; }
+.color-picker-control code { font-size:12px; }
+.color-scheme-tabs { display:flex; flex-wrap:wrap; gap:8px; margin:24px 0 18px; }
+.color-scheme-tabs button, .saved-palette-info button { border:1px solid #eadbd1; background:#fffaf4; color:#5e7181; border-radius:999px; padding:9px 13px; font-size:12px; }
+.color-scheme-tabs button.active { color:white; background:#267bbb; border-color:#267bbb; }
+.generated-swatches { display:grid; grid-template-columns:repeat(auto-fit,minmax(115px,1fr)); gap:10px; }
+.generated-swatch { padding:0; overflow:hidden; border:1px solid #eadfd7; border-radius:12px; background:#fff; text-align:left; color:#526477; cursor:pointer; }
+.generated-swatch span { display:block; height:94px; }
+.generated-swatch strong, .generated-swatch small { display:block; padding:0 10px; }
+.generated-swatch strong { margin-top:9px; font-size:13px; }
+.generated-swatch small { padding-bottom:10px; margin-top:3px; color:#8b9aaa; font-size:10px; }
+.color-scheme-description { margin:15px 0; color:#61788d; line-height:1.6; }
+.color-action, .color-upload { border:0; border-radius:999px; padding:11px 17px; background:#CC2055; color:white; font-weight:600; font-size:13px; cursor:pointer; }
+.color-action:disabled { opacity:.45; cursor:not-allowed; }
+.color-theory-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; margin-top:18px; }
+.color-theory-grid article { padding:16px; border-radius:12px; background:#f5eee8; }
+.color-theory-grid h3 { margin:0 0 8px; color:#123b63; font:600 17px Georgia,serif; }
+.color-theory-grid p { margin:0; color:#637b91; font-size:13px; line-height:1.6; }
+.color-reading { max-width:850px; line-height:1.75; color:#61788d; }
+.wada-principles { display:grid; gap:10px; margin:20px 0; }
+.wada-principles > div { display:flex; gap:14px; align-items:center; padding:13px 15px; background:#f6eee8; border-radius:12px; }
+.wada-principles b { color:#CC2055; font:600 22px Georgia,serif; }
+.wada-principles strong, .wada-principles small { display:block; }
+.wada-principles strong { color:#234c6d; }
+.wada-principles small { margin-top:4px; color:#71879a; line-height:1.5; }
+.color-source-note { color:#8a9298 !important; font-size:11px; line-height:1.55; }
+.draft-swatches { display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:10px; margin:18px 0; }
+.draft-swatch { display:flex; align-items:center; gap:8px; padding:9px; border:1px solid #eee0d6; border-radius:12px; }
+.draft-swatch > span { width:34px; height:34px; flex:0 0 34px; border-radius:8px; border:1px solid #00000012; }
+.draft-swatch input:not([type=color]) { width:90px; min-width:0; border:1px solid #eadfd7; border-radius:7px; padding:8px; font-size:12px; }
+.draft-swatch input[type=color] { width:34px; height:34px; }
+.draft-swatch button { border:0; background:transparent; color:#a35b65; font-size:21px; }
+.palette-save-row { display:flex; gap:10px; flex-wrap:wrap; }
+.palette-save-row input { min-width:220px; flex:1; border:1px solid #eadfd7; border-radius:999px; padding:10px 14px; }
+.color-upload { background:#267bbb; margin:8px 0; }
+.saved-palette-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:14px; margin-top:16px; }
+.saved-palette { overflow:hidden; border:1px solid #eee0d6; border-radius:13px; background:white; }
+.saved-palette-colors { display:flex; height:76px; }
+.saved-palette-colors button { flex:1; min-width:0; border:0; cursor:pointer; }
+.saved-palette-info { display:flex; flex-wrap:wrap; gap:7px; align-items:center; padding:12px; }
+.saved-palette-info strong { flex:1 0 100%; color:#234c6d; }
+.saved-palette-info button { padding:6px 10px; font-size:11px; }
+.color-notice { position:fixed; right:22px; bottom:22px; z-index:50; display:flex; gap:14px; align-items:center; max-width:min(520px,calc(100vw - 32px)); padding:12px 16px; border-radius:12px; background:#173e5b; color:white; box-shadow:0 8px 28px #142d4533; font-size:12px; }
+.color-notice button { border:0; background:transparent; color:white; font-size:18px; }
+@media(max-width:900px) { .color-theory-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+@media(max-width:560px) { .color-reference-section { padding:18px; } .color-theory-grid { grid-template-columns:1fr; } .generated-swatch span { height:72px; } }
 
 
-/* Keep sidebar and main content aligned at the top of the same app shell row.
-   Override any legacy flex/float/position rules that made main-content start below the sidebar. */
-.app-shell {
-  display: grid !important;
-  grid-template-columns: 258px minmax(0, 1fr) !important;
-  grid-template-rows: minmax(100vh, auto) !important;
-  align-items: start !important;
-  position: relative;
-  min-height: 100vh;
-}
-.app-shell > .sidebar {
-  grid-column: 1;
-  grid-row: 1;
-  align-self: stretch;
-  min-height: 100vh;
-  height: 100%;
-  margin: 0 !important;
-}
-.app-shell > main.main-content,
-.app-shell > .main-content {
-  grid-column: 2;
-  grid-row: 1;
-  align-self: start;
-  min-width: 0;
-  width: 100% !important;
-  margin: 0 !important;
-  padding-top: 0 !important;
-  position: relative;
-  top: 0 !important;
-  transform: none !important;
-}
-@media (max-width: 1050px) and (min-width: 761px) {
-  .app-shell {
-    grid-template-columns: 228px minmax(0, 1fr) !important;
-  }
-}
-@media (max-width: 760px) {
-  .app-shell {
-    grid-template-columns: minmax(0, 1fr) !important;
-    grid-template-rows: auto auto !important;
-  }
-  .app-shell > .sidebar {
-    grid-column: 1;
-    grid-row: 1;
-  }
-  .app-shell > main.main-content,
-  .app-shell > .main-content {
-    grid-column: 1;
-    grid-row: 2;
-  }
-}
-
-
-/* Use the prepared original crop at the sidebar bottom without cover or stretching.
-   Asset path: public/illustrations/menuSantorini.png */
-.sidebar {
-  background-color: #63b5e2 !important;
-  background-image:
-    linear-gradient(180deg, #2189ca 0%, #66b8e0 24%, #c3e1ed 39%, transparent 51%),
-    url("/illustrations/menuSantorini.png") !important;
-  background-size: 100% 100%, auto 58% !important;
-  background-position: center top, center top !important;
-  background-repeat: no-repeat, no-repeat !important;
-}
-@media (max-width: 760px) {
-  .sidebar {
-    background-size: 100% 100%, auto 58% !important;
-    background-position: center top, center top !important;
-  }
-}
-
-
-/* Sidebar: show the supplied Santorini artwork cleanly, without a blue overlay.
-   Keep the existing sidebar content in normal flow immediately after the image. */
-.sidebar {
-  background-color: transparent !important;
-  background-image: url("/illustrations/menuSantorini.png") !important;
-  background-size: 100% auto !important;
-  background-position: center top !important;
-  background-repeat: no-repeat !important;
-}
-.sidebar .sidebar-note {
-  margin-top: 0 !important;
-}
-
-
-/* Raise the inspirational text block in the sidebar instead of pinning it to the bottom. */
-.app-shell > .sidebar .sidebar-spacer {
-  flex: 0 0 24px !important;
-  min-height: 24px !important;
-}
-.app-shell > .sidebar .sidebar-note {
-  margin-top: 0 !important;
-}
-
-
-/* Keep the inspirational note and footer pinned to the bottom of the visible sidebar. */
-.app-shell > .sidebar {
-  position: fixed !important;
-  inset: 0 auto 0 0 !important;
-  height: 100vh !important;
-  height: 100dvh !important;
-  box-sizing: border-box !important;
-  display: flex !important;
-  flex-direction: column !important;
-  overflow: hidden !important;
-}
-.app-shell > .sidebar .sidebar-spacer {
-  flex: 1 1 auto !important;
-  min-height: 8px !important;
-}
-.app-shell > .sidebar .sidebar-note,
-.app-shell > .sidebar .sidebar-footer {
-  flex: 0 0 auto !important;
-  margin-top: 0 !important;
-}
-.app-shell > .sidebar .main-nav {
-  min-height: 0 !important;
-  flex: 0 1 auto !important;
-  overflow-y: auto !important;
-}
-@media (max-height: 700px) {
-  .app-shell > .sidebar .sidebar-spacer { min-height: 2px !important; }
-  .app-shell > .sidebar .brand-lockup { margin-bottom: 12px !important; }
-  .app-shell > .sidebar .main-nav { gap: 4px !important; }
-  .app-shell > .sidebar .nav-item { min-height: 36px !important; }
-  .app-shell > .sidebar .sidebar-note { padding-top: 7px !important; padding-bottom: 6px !important; }
-  .app-shell > .sidebar .sidebar-note p { margin-top: 3px !important; margin-bottom: 5px !important; }
-  .app-shell > .sidebar .sidebar-footer { padding-top: 6px !important; }
-}
-
-
-/* Improve contrast for the sidebar brand, section label, and all navigation items over the photo. */
-.app-shell > .sidebar {
-  background-color: #17364f !important;
-  background-image:
-    linear-gradient(180deg, rgb(8 35 58 / 48%) 0%, rgb(8 35 58 / 38%) 42%, rgb(8 35 58 / 50%) 100%),
-    url("/illustrations/menuSantorini.png") !important;
-  background-size: 100% 100%, 100% auto !important;
-  background-position: center top, center top !important;
-  background-repeat: no-repeat, no-repeat !important;
-}
-.app-shell > .sidebar .brand-mark,
-.app-shell > .sidebar .brand-caption,
-.app-shell > .sidebar .sidebar-label,
-.app-shell > .sidebar .nav-item,
-.app-shell > .sidebar .nav-icon,
-.app-shell > .sidebar .sidebar-footer {
-  color: #fff !important;
-  text-shadow: 0 1px 5px rgb(0 0 0 / 48%) !important;
-}
-.app-shell > .sidebar .nav-item {
-  background-color: rgb(8 35 58 / 18%) !important;
-  border: 1px solid rgb(255 255 255 / 18%) !important;
-}
-.app-shell > .sidebar .nav-item:hover {
-  background-color: rgb(255 255 255 / 20%) !important;
-}
-.app-shell > .sidebar .nav-item-active,
-.app-shell > .sidebar .nav-item-active:hover {
-  background-color: #CC2055 !important;
-  border-color: rgb(255 255 255 / 35%) !important;
-}
-.app-shell > .sidebar .nav-count {
-  color: #fff !important;
-  background: rgb(8 35 58 / 55%) !important;
-}
-@media (max-width: 760px) {
-  .app-shell > .sidebar {
-    background-size: 100% 100%, 100% auto !important;
-  }
-}
-
-
-/* Unselected sidebar links should have no visible outline; preserve the active highlight. */
-.app-shell > .sidebar .nav-item:not(.nav-item-active) {
-  border-color: transparent !important;
-}
-
-
-/* Lessons tab: full-width module panel and a two-column intro row. */
-.lessons-page { width:100%; max-width:none; }
-.lessons-page .lessons-intro-row {
-  display:grid;
-  grid-template-columns:minmax(0,1.45fr) minmax(280px,.8fr);
-  align-items:stretch;
-  gap:clamp(18px,2.2vw,34px);
-}
-.lessons-page .lessons-intro-row > .page-intro,
-.lessons-page .lessons-intro-row > section,
-.lessons-page .lessons-intro-row > div:first-child { min-width:0; }
-.lessons-page .lessons-intro-row .side-info-card {
-  align-self:stretch;
-  min-height:0;
-  margin:0;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-}
-.lessons-page .module-picker { width:100%; }
-.lessons-page .content-columns { grid-template-columns:minmax(0,1fr); width:100%; }
-.lessons-page .lesson-list-panel { width:100%; min-width:0; }
-@media(max-width:760px) {
-  .lessons-page .lessons-intro-row { grid-template-columns:minmax(0,1fr); }
-  .lessons-page .lessons-intro-row .side-info-card { min-height:auto; }
-}
-
-
-/* Lesson pages: full-width learning content with the support notes aligned to the title. */
-.main-content > .lesson-page {
-  width:100%;
-  max-width:none;
-}
-.lesson-page .lesson-layout {
-  width:100%;
-  max-width:none;
-  grid-template-columns:minmax(0,1fr);
-  gap:clamp(18px,2vw,28px);
-}
-.lesson-page .lesson-main {
-  width:100%;
-  max-width:none;
-  min-width:0;
-  display:contents;
-}
-.lesson-page .lesson-layout > .back-link { grid-row:1; }
-.lesson-page .lesson-layout > .lesson-main > .eyebrow,
-.lesson-page .lesson-layout > .lesson-main > h1,
-.lesson-page .lesson-layout > .lesson-main > .lesson-meta {
-  grid-column:1;
-}
-.lesson-page .lesson-aside {
-  grid-row:2;
-  display:grid;
-  grid-template-columns:minmax(150px,.7fr) repeat(2,minmax(0,1fr));
-  gap:12px;
-  align-self:stretch;
-  padding:0;
-}
-.lesson-page .lesson-aside .aside-art {
-  display:flex;
-  min-width:0;
-  min-height:150px;
-  align-self:stretch;
-}
-.lesson-page .lesson-aside .aside-tip {
-  margin:0;
-  min-width:0;
-}
-.lesson-page .lesson-objective,
-.lesson-page .lesson-section,
-.lesson-page .lesson-visual-guide,
-.lesson-page .reflection-box {
-  width:100%;
-  max-width:none;
-  min-width:0;
-}
-.lesson-page--light-observation .lesson-main { max-width:none; }
-@media(max-width:1050px) {
-  .lesson-page .lesson-aside { grid-template-columns:repeat(2,minmax(0,1fr)); }
-  .lesson-page .lesson-aside .aside-art { grid-column:1 / -1; min-height:120px; }
-}
-@media(max-width:760px) {
-  .lesson-page .lesson-aside { grid-template-columns:minmax(0,1fr); }
-  .lesson-page .lesson-aside .aside-art { grid-column:auto; }
-}
-
-
-/* Refined lesson support panel: a quiet sketchbook motif instead of the generic slogan graphic. */
-.lesson-page .lesson-aside .aside-art {
-  position:relative;
-  display:grid;
-  place-items:center;
-  min-height:168px;
-  overflow:hidden;
-  border:1px solid #d9d0c1;
-  border-radius:3px;
-  background:
-    linear-gradient(90deg, transparent 0 23px, rgb(174 151 122 / 12%) 24px, transparent 25px),
-    repeating-linear-gradient(0deg, transparent 0 23px, rgb(174 151 122 / 13%) 24px, transparent 25px),
-    #f5f0e7;
-}
-.lesson-page .lesson-aside .aside-art::before {
-  content:"";
-  position:absolute;
-  width:94px;
-  height:116px;
-  left:calc(50% - 47px);
-  top:25px;
-  border:1px solid #b9aa92;
-  border-radius:48% 48% 44% 44%;
-  transform:rotate(-11deg);
-  background:linear-gradient(145deg, rgb(255 255 255 / 72%), rgb(226 215 195 / 28%));
-  box-shadow:12px 9px 0 -5px #e8dfd0, 12px 9px 0 -4px #c8baa3;
-}
-.lesson-page .lesson-aside .aside-art::after {
-  content:"";
-  position:absolute;
-  width:48px;
-  height:72px;
-  left:calc(50% - 24px);
-  top:46px;
-  border-left:2px solid #9b9d7d;
-  border-radius:50%;
-  transform:rotate(24deg);
-  background:
-    radial-gradient(ellipse at 22% 27%, #b6b99a 0 13%, transparent 15%),
-    radial-gradient(ellipse at 76% 43%, #c4c7a7 0 14%, transparent 16%),
-    radial-gradient(ellipse at 25% 64%, #a9b08c 0 13%, transparent 15%);
-}
-.lesson-page .lesson-aside .aside-art .aside-orbit { display:none; }
-.lesson-page .lesson-aside .aside-art > span {
-  position:absolute;
-  z-index:3;
-  right:12px;
-  bottom:10px;
-  padding:4px 7px;
-  background:#f5f0e7;
-  color:#766b5a;
-  font-size:8px;
-  line-height:1.45;
-  letter-spacing:1.4px;
-  text-align:right;
-}
-.lesson-page .lesson-aside .aside-art > span em {
-  color:#8c7557;
-  font-size:10px;
-}
-.lesson-page .lesson-aside .aside-tip .eyebrow {
-  display:inline-flex;
-  align-items:center;
-  gap:7px;
-  padding:5px 9px;
-  border-radius:2px;
-  background:#e8edf0;
-  color:#254d65;
-  font-family:"DM Sans",sans-serif;
-  font-size:11px;
-  font-weight:800;
-  line-height:1.2;
-  letter-spacing:1.5px;
-}
-.lesson-page .lesson-aside .aside-tip .eyebrow::before {
-  content:"";
-  width:5px;
-  height:5px;
-  flex:0 0 5px;
-  border-radius:50%;
-  background:#c45a69;
-}
-.lesson-page .lesson-aside .aside-tip-muted .eyebrow {
-  background:#f0e8dc;
-  color:#76583f;
-}
-.lesson-page .lesson-aside .aside-tip-muted .eyebrow::before {
-  background:#b38a58;
-}
-.lesson-page .lesson-aside .aside-tip p {
-  margin-top:9px;
-  font-size:15px;
-  line-height:1.55;
-  color:#48483f;
-}
-.lesson-page .lesson-aside .aside-tip-muted p {
-  font-size:13px;
-  line-height:1.6;
-  color:#716c61;
-}
-@media(max-width:760px) {
-  .lesson-page .lesson-aside .aside-art { min-height:140px; }
-  .lesson-page .lesson-aside .aside-tip .eyebrow { font-size:10px; }
-}
+/* Wada Sanzo complete reference */
+.wada-catalog{scroll-margin-top:24px}.wada-catalog-heading{display:flex;justify-content:space-between;gap:24px;align-items:flex-start}.wada-catalog-heading h2{margin:6px 0}.wada-catalog-heading p{margin:0;color:var(--muted,#777)}.wada-catalog-counts{display:grid;grid-template-columns:auto auto;gap:2px 9px;align-items:baseline;text-align:right}.wada-catalog-counts strong{font-size:25px}.wada-catalog-counts span{font-size:12px;color:var(--muted,#777)}.wada-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:22px 0 16px}.wada-tabs button,.wada-filters select,.wada-filters input{border:1px solid var(--line,#ddd);border-radius:10px;padding:10px 13px;background:var(--surface,#fff);color:inherit}.wada-tabs button.active{background:var(--ink,#25313a);color:#fff;border-color:var(--ink,#25313a)}.wada-filters{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:18px}.wada-filters input{flex:1;min-width:220px}.wada-filters span{font-size:12px;color:var(--muted,#777);margin-left:auto}.wada-palette-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}.wada-palette-card,.wada-color-card{border:1px solid var(--line,#e4e1dc);border-radius:14px;overflow:hidden;background:var(--surface,#fff)}.wada-palette-card.selected,.wada-color-card.selected{border-color:var(--accent,#8a7466)}.wada-palette-open{width:100%;padding:13px;text-align:left;background:transparent;border:0;color:inherit;cursor:pointer}.wada-palette-number{display:block;font-size:11px;letter-spacing:.08em;color:var(--muted,#777);margin-bottom:9px}.wada-palette-strip{display:flex;height:54px;border-radius:8px;overflow:hidden;margin-bottom:9px}.wada-color-chip{flex:1;min-width:0;border:0;cursor:pointer}.wada-palette-names{display:block;font-size:13px;line-height:1.45;font-weight:600}.wada-palette-open small{display:block;margin-top:5px;color:var(--muted,#777)}.wada-palette-expanded{padding:0 13px 13px}.wada-expanded-color{display:flex;gap:10px;padding:10px 0;border-top:1px solid var(--line,#eee)}.wada-expanded-color>span{width:36px;min-width:36px;height:36px;border-radius:8px}.wada-expanded-color>div{min-width:0;flex:1}.wada-color-values{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;margin-top:6px}.wada-color-values div{display:flex;flex-direction:column;gap:2px}.wada-color-values span{font-size:9px;color:var(--muted,#777);letter-spacing:.08em}.wada-color-values button{padding:0;text-align:left;background:none;border:0;color:inherit;font:inherit;font-size:11px;cursor:pointer}.wada-color-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:10px}.wada-color-open{width:100%;display:grid;grid-template-columns:42px 1fr;grid-template-rows:auto auto;gap:2px 10px;padding:10px;text-align:left;align-items:center;background:none;border:0;color:inherit;cursor:pointer}.wada-color-open>span{grid-row:span 2;width:42px;height:42px;border-radius:9px}.wada-color-open b{font-size:12px}.wada-color-open small{font-size:10px;color:var(--muted,#777)}.wada-color-expanded{padding:0 10px 10px}.wada-color-expanded p{font-size:11px;line-height:1.5;color:var(--muted,#777)}.wada-color-expanded>button,.wada-more-matches{border:1px solid var(--line,#ddd);border-radius:8px;padding:8px 10px;background:transparent;color:inherit;cursor:pointer;font-size:12px}.wada-match-tool>h3{margin:24px 0 12px}.wada-match-tool>h3 small{color:var(--muted,#777);font-weight:400}.wada-match-picker{display:flex;align-items:center;gap:15px;flex-wrap:wrap;padding:15px;border:1px solid var(--line,#ddd);border-radius:13px}.wada-match-picker label{display:flex;align-items:center;gap:10px;font-weight:600}.wada-match-picker input{width:48px;height:42px;border:0;background:none;cursor:pointer}.wada-match-picker code{font-size:13px}.wada-match-picker p{flex-basis:100%;margin:0;color:var(--muted,#777);font-size:12px}.wada-nearest-card{display:flex;gap:16px;margin-top:14px;padding:15px;border-radius:14px;background:var(--surface-soft,#f6f4f0)}.wada-nearest-card>span{width:90px;min-width:90px;min-height:90px;border-radius:12px}.wada-nearest-card h3{margin:3px 0}.wada-nearest-card small{display:block;color:var(--muted,#777);font-size:11px}.wada-similar-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(125px,1fr));gap:9px}.wada-similar-grid button{display:grid;grid-template-columns:35px 1fr;gap:2px 8px;align-items:center;text-align:left;border:1px solid var(--line,#ddd);border-radius:10px;padding:8px;background:transparent;color:inherit;cursor:pointer}.wada-similar-grid span{grid-row:span 2;width:35px;height:35px;border-radius:7px}.wada-similar-grid b{font-size:11px}.wada-similar-grid small{font-size:10px;color:var(--muted,#777)}.wada-more-matches{margin-top:10px}.wada-data-credit{margin-top:18px;font-size:11px;line-height:1.6;color:var(--muted,#777)}.wada-data-credit a{color:inherit;text-decoration:underline}@media(max-width:600px){.wada-catalog-heading{display:block}.wada-catalog-counts{display:flex;justify-content:flex-start;gap:5px 8px;margin-top:12px}.wada-catalog-counts strong{font-size:18px}.wada-filters{display:grid;grid-template-columns:1fr}.wada-filters input{min-width:0}.wada-filters span{margin:0}.wada-palette-grid{grid-template-columns:1fr}.wada-color-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.wada-nearest-card>span{width:64px;min-width:64px;min-height:64px}}

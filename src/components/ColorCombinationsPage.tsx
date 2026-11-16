@@ -1,0 +1,65 @@
+import { useMemo, useRef, useState, type ChangeEvent } from "react";
+import WadaSanzoCatalog from "./WadaSanzoCatalog";
+
+type Swatch = { hex: string; name: string };
+type Palette = { id: string; name: string; colors: Swatch[] };
+const starter: Palette[] = [
+  { id: "sea-glass", name: "Морское стекло", colors: [{hex:"#264653",name:"Глубокий сине-зелёный"},{hex:"#2A9D8F",name:"Бирюзовый"},{hex:"#E9C46A",name:"Песочный"},{hex:"#F4A261",name:"Тёплый коралл"},{hex:"#E76F51",name:"Терракота"}] },
+  { id: "quiet-garden", name: "Тихий сад", colors: [{hex:"#344E41",name:"Лесной"},{hex:"#588157",name:"Шалфей"},{hex:"#A3B18A",name:"Оливковый"},{hex:"#DAD7CD",name:"Лён"},{hex:"#F5F1E8",name:"Слоновая кость"}] },
+  { id: "ink-blossom", name: "Чернила и цветы", colors: [{hex:"#22223B",name:"Чернильный"},{hex:"#4A4E69",name:"Серо-фиолетовый"},{hex:"#9A8C98",name:"Пыльная роза"},{hex:"#C9ADA7",name:"Розово-бежевый"},{hex:"#F2E9E4",name:"Молочный"}] }
+];
+const clamp=(v:number,min=0,max=360)=>Math.min(max,Math.max(min,v));
+const hexToRgb=(hex:string)=>{const n=parseInt(hex.replace("#",""),16);return {r:(n>>16)&255,g:(n>>8)&255,b:n&255};};
+const rgbToHex=(r:number,g:number,b:number)=>"#"+[r,g,b].map(v=>Math.round(clamp(v,0,255)).toString(16).padStart(2,"0")).join("").toUpperCase();
+const hexToHsl=(hex:string)=>{const {r:R,g:G,b:B}=hexToRgb(hex);const r=R/255,g=G/255,b=B/255,max=Math.max(r,g,b),min=Math.min(r,g,b),d=max-min;let h=0,s=0,l=(max+min)/2;if(d){s=d/(1-Math.abs(2*l-1));switch(max){case r:h=60*(((g-b)/d)%6);break;case g:h=60*((b-r)/d+2);break;default:h=60*((r-g)/d+4);}}return {h:(h+360)%360,s:s*100,l:l*100};};
+const hslToHex=(h:number,s:number,l:number)=>{s/=100;l/=100;const c=(1-Math.abs(2*l-1))*s,x=c*(1-Math.abs((h/60)%2-1)),m=l-c/2;let a=[0,0,0];if(h<60)a=[c,x,0];else if(h<120)a=[x,c,0];else if(h<180)a=[0,c,x];else if(h<240)a=[0,x,c];else if(h<300)a=[x,0,c];else a=[c,0,x];return rgbToHex((a[0]+m)*255,(a[1]+m)*255,(a[2]+m)*255);};
+const harmony=(base:string,mode:string)=>{const {h,s,l}=hexToHsl(base);const offsets:Record<string,number[]>={complementary:[0,180],analogous:[-30,0,30],triadic:[0,120,240],split:[0,150,210],tetradic:[0,90,180,270],monochrome:[0,0,0,0]};return offsets[mode].map((o,i)=>hslToHex((h+o+360)%360,mode==="monochrome"?clamp(s-(i-1.5)*12,18,95):s,mode==="monochrome"?clamp(l+(i-1.5)*15,12,92):l));};
+const schemes=[["complementary","Комплементарная","Два цвета напротив на цветовом круге. Контрастная пара: один цвет обычно ведущий, второй — акцент."],["analogous","Аналоговая","Соседние оттенки. Создают спокойное, цельное впечатление; добавь различия по светлоте."],["triadic","Триада","Три цвета на равном расстоянии. Держи один главным, два других используй дозированно."],["split","Раздельно-комплементарная","Базовый цвет плюс два соседа его противоположного. Контраст мягче, чем у прямой пары."],["tetradic","Тетрада","Четыре оттенка из двух комплементарных пар. Нужен баланс и доминирующий цвет."],["monochrome","Монохромная","Один тон в разных светлоте и насыщенности. Хороша для лаконичных и многослойных решений."]] as const;
+
+function extractPalette(file:File,onResult:(colors:string[])=>void,onError:(message:string)=>void){
+ const image=new Image(),url=URL.createObjectURL(file);
+ image.onload=()=>{try{const scale=Math.min(1,320/Math.max(image.naturalWidth,image.naturalHeight));const w=Math.max(1,Math.round(image.naturalWidth*scale)),h=Math.max(1,Math.round(image.naturalHeight*scale));const canvas=document.createElement("canvas");canvas.width=w;canvas.height=h;const ctx=canvas.getContext("2d",{willReadFrequently:true});if(!ctx)throw new Error("Не удалось обработать изображение");ctx.drawImage(image,0,0,w,h);const data=ctx.getImageData(0,0,w,h).data;const bins=new Map<string,{count:number,r:number,g:number,b:number}>();for(let i=0;i<data.length;i+=16){const a=data[i+3];if(a<100)continue;const r=Math.round(data[i]/32)*32,g=Math.round(data[i+1]/32)*32,b=Math.round(data[i+2]/32)*32,key=[r,g,b].join(",");const v=bins.get(key)??{count:0,r:0,g:0,b:0};v.count++;v.r+=data[i];v.g+=data[i+1];v.b+=data[i+2];bins.set(key,v);}const colors=[...bins.values()].sort((a,b)=>b.count-a.count).slice(0,5).map(v=>rgbToHex(v.r/v.count,v.g/v.count,v.b/v.count));if(!colors.length)throw new Error("Не удалось извлечь цвета");onResult(colors);}catch(e){onError(e instanceof Error?e.message:"Ошибка обработки");}finally{URL.revokeObjectURL(url);}};image.onerror=()=>{URL.revokeObjectURL(url);onError("Не удалось открыть это изображение");};image.src=url;
+}
+
+export default function ColorCombinationsPage(){
+ const [base,setBase]=useState("#2A7F8E"),[scheme,setScheme]=useState("complementary"),[palettes,setPalettes]=useState<Palette[]>(()=>{try{const v=localStorage.getItem("tsart-color-palettes");return v?JSON.parse(v) as Palette[]:starter;}catch{return starter;}});
+ const [draft,setDraft]=useState<string[]>(["#2A7F8E","#E9C46A","#E76F51"]),[paletteName,setPaletteName]=useState("Моя палитра"),[imageColors,setImageColors]=useState<string[]>([]),[imageName,setImageName]=useState(""),[notice,setNotice]=useState("");
+ const fileRef=useRef<HTMLInputElement>(null);
+ const generated=useMemo(()=>harmony(base,scheme),[base,scheme]);
+ const persist=(next:Palette[])=>{setPalettes(next);try{localStorage.setItem("tsart-color-palettes",JSON.stringify(next));}catch{setNotice("Не удалось сохранить в браузере. Экспортируй палитру вручную.");}};
+ const addColor=()=>setDraft(v=>v.length<8?[...v,"#A3B18A"]:v);
+ const updateDraft=(i:number,value:string)=>setDraft(v=>v.map((c,n)=>n===i?value.toUpperCase():c));
+ const copy=(value:string)=>{void navigator.clipboard?.writeText(value).then(()=>setNotice(value+" скопирован"));};
+ const savePalette=(colors:string[],name:string)=>{const next=[{id:crypto.randomUUID(),name:name.trim()||"Моя палитра",colors:colors.map((hex,i)=>({hex,name:"Цвет "+(i+1)}))},...palettes];persist(next);setNotice("Палитра сохранена");};
+ const handleFile=(event:ChangeEvent<HTMLInputElement>)=>{const file=event.target.files?.[0];if(!file)return;if(!file.type.startsWith("image/")){setNotice("Выбери файл изображения");return;}setImageName(file.name);extractPalette(file,colors=>{setImageColors(colors);setDraft(colors);setNotice("Извлечено "+colors.length+" цветов · изображение уменьшено до 320 px по длинной стороне");},setNotice);event.target.value="";};
+ return <div className="page-wrap color-reference-page">
+  <section className="color-reference-intro"><div className="eyebrow">ЦВЕТ · ГАРМОНИЯ · ЭКСПЕРИМЕНТ</div><h1>Сочетание цветов</h1><p>Интерактивная мастерская: изучай цветовые отношения, собирай гармоничные схемы и сохраняй собственные палитры.</p></section>
+  <section className="color-reference-section"><div className="color-section-heading"><div><span className="eyebrow">01 / ЦВЕТОВОЙ КРУГ</span><h2>Подбери сочетание</h2><p>Выбери основной цвет — схема автоматически перестроится.</p></div><label className="color-picker-control">Основной цвет <input type="color" value={base} onChange={e=>setBase(e.target.value)}/><code>{base}</code></label></div>
+   <div className="color-scheme-tabs">{schemes.map(([id,label])=><button key={id} className={scheme===id?"active":""} onClick={()=>setScheme(id)}>{label}</button>)}</div>
+   <div className="generated-swatches">{generated.map((hex,i)=><button key={i} className="generated-swatch" onClick={()=>copy(hex)} title="Скопировать HEX"><span style={{background:hex}}/><strong>{hex}</strong><small>Нажми, чтобы скопировать</small></button>)}</div>
+   <p className="color-scheme-description">{schemes.find(s=>s[0]===scheme)?.[2]}</p>
+   <button className="color-action" onClick={()=>savePalette(generated,"Схема: "+schemes.find(s=>s[0]===scheme)?.[1])}>Сохранить эту схему</button>
+  </section>
+  <section className="color-reference-section"><div className="eyebrow">02 / ТЕОРИЯ ЦВЕТА</div><h2>Как читать цветовые отношения</h2><div className="color-theory-grid">
+   <article><h3>Цветовой тон</h3><p>Положение цвета на круге: красный, жёлтый, синий и промежуточные оттенки. Именно тон определяет, какие цвета будут родственными или контрастными.</p></article>
+   <article><h3>Светлота</h3><p>Насколько цвет близок к белому или чёрному. Даже сложная палитра становится понятнее, когда в ней есть светлые, средние и тёмные значения.</p></article>
+   <article><h3>Насыщенность</h3><p>Насколько оттенок яркий или приглушённый. Сочетай активный цвет с более спокойными, чтобы сохранить визуальный баланс.</p></article>
+   <article><h3>Тёплое и холодное</h3><p>Тёплые оттенки часто воспринимаются ближе и энергичнее, холодные — дальше и спокойнее. Это относительное ощущение, зависящее от соседних цветов.</p></article>
+  </div></section>
+  <section className="color-reference-section"><div className="eyebrow">03 / САНДЗО ВАДА</div><h2>Гармония через наблюдение</h2><p className="color-reading">Японский художник и исследователь цвета Вада Сандзо (1883–1967) опубликовал «A Dictionary of Color Combinations» в 1933 году. Его подход ценен не только цветовыми парами: он показывает, как небольшие группы оттенков работают вместе как цельная композиция. Смотри на соотношение площадей, светлоту и характер соседства — не только на сами HEX-коды.</p>
+   <div className="wada-principles"><div><b>01</b><span><strong>Собирай группу, а не пару</strong><small>Проверяй, как оттенки звучат вместе в палитре из нескольких цветов.</small></span></div><div><b>02</b><span><strong>Меняй пропорции</strong><small>Один оттенок может занимать большую площадь, другой — работать маленьким акцентом.</small></span></div><div><b>03</b><span><strong>Ищи нюансы</strong><small>Сравнивай близкие по тону оттенки с разной светлотой и насыщенностью.</small></span></div></div>
+   <p className="color-source-note">Справочный раздел вдохновлён историческим словарём Вады Сандзо. Это авторское учебное изложение, а не копия полного каталога оригинальных цветовых образцов и палитр.</p>
+  </section>
+  <WadaSanzoCatalog />
+  <section className="color-reference-section"><div className="color-section-heading"><div><div className="eyebrow">04 / СОБСТВЕННЫЕ ПАЛИТРЫ</div><h2>Создай свою палитру</h2><p>Добавляй цвета, меняй их и сохраняй коллекции в этом браузере.</p></div><button className="color-action" onClick={addColor} disabled={draft.length>=8}>+ Добавить цвет</button></div>
+   <div className="draft-swatches">{draft.map((hex,i)=><div className="draft-swatch" key={i}><span style={{background:hex}}/><input aria-label={"HEX цвет "+(i+1)} value={hex} onChange={e=>updateDraft(i,e.target.value)} pattern="^#[0-9A-Fa-f]{6}$"/><input aria-label={"Выбрать цвет "+(i+1)} type="color" value={/^#[0-9A-F]{6}$/i.test(hex)?hex:"#ffffff"} onChange={e=>updateDraft(i,e.target.value)}/><button onClick={()=>setDraft(v=>v.filter((_,n)=>n!==i))} aria-label="Удалить цвет">×</button></div>)}</div>
+   <div className="palette-save-row"><input value={paletteName} onChange={e=>setPaletteName(e.target.value)} aria-label="Название палитры"/><button className="color-action" onClick={()=>savePalette(draft.filter(c=>/^#[0-9A-F]{6}$/i.test(c)),paletteName)} disabled={!draft.length||draft.some(c=>!/^#[0-9A-F]{6}$/i.test(c))}>Сохранить палитру</button></div>
+  </section>
+  <section className="color-reference-section"><div className="eyebrow">05 / ЦВЕТ ИЗ ИЗОБРАЖЕНИЯ</div><h2>Извлеки палитру из картинки</h2><p>Загрузи фото, иллюстрацию или референс. Перед анализом изображение автоматически уменьшается до 320 px по длинной стороне, затем извлекаются наиболее часто встречающиеся цвета. Исходный файл не отправляется на сервер.</p>
+   <input ref={fileRef} type="file" accept="image/*" onChange={handleFile} hidden/><button className="color-upload" onClick={()=>fileRef.current?.click()}>↑ Загрузить изображение</button>
+   {imageName&&<p className="color-source-note">Источник: {imageName}</p>}{imageColors.length>0&&<><div className="generated-swatches">{imageColors.map((hex,i)=><button className="generated-swatch" key={i} onClick={()=>copy(hex)}><span style={{background:hex}}/><strong>{hex}</strong></button>)}</div><button className="color-action" onClick={()=>savePalette(imageColors,"Из изображения: "+imageName)}>Сохранить палитру изображения</button></>}
+  </section>
+  <section className="color-reference-section"><div className="eyebrow">06 / МОЯ КОЛЛЕКЦИЯ</div><h2>Сохранённые палитры</h2>{palettes.length===0?<p>Пока нет сохранённых палитр.</p>:<div className="saved-palette-grid">{palettes.map(p=><article className="saved-palette" key={p.id}><div className="saved-palette-colors">{p.colors.map((c,i)=><button key={i} style={{background:c.hex}} title={c.hex} onClick={()=>copy(c.hex)}/>)}</div><div className="saved-palette-info"><strong>{p.name}</strong><button onClick={()=>{setDraft(p.colors.map(c=>c.hex));setPaletteName(p.name);}}>Редактировать</button><button onClick={()=>persist(palettes.filter(x=>x.id!==p.id))}>Удалить</button></div></article>)}</div>}</section>
+  {notice&&<div className="color-notice" role="status">{notice}<button onClick={()=>setNotice("")} aria-label="Закрыть">×</button></div>}
+ </div>;
+}
