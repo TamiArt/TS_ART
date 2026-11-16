@@ -857,23 +857,29 @@ body {
 .page-content {
   display: block !important;
   position: relative;
-  margin-left: 258px !important;
+  margin: 0 0 0 258px !important;
+  padding-top: 78px;
   width: calc(100% - 258px) !important;
   min-width: 0;
   min-height: 100vh;
 }
 .topbar {
   display: flex;
-  position: relative !important;
-  inset: auto !important;
-  top: auto !important;
+  position: fixed !important;
+  top: 0 !important;
+  left: 258px !important;
+  right: 0 !important;
+  bottom: auto !important;
+  inset: 0 0 auto 258px !important;
   transform: none !important;
   order: initial !important;
-  width: 100%;
+  width: auto !important;
   min-width: 0;
   min-height: 78px;
+  height: 78px;
   margin: 0 !important;
   box-sizing: border-box;
+  z-index: 19;
 }
 .page-content > .page-wrap {
   width: 100%;
@@ -889,6 +895,10 @@ body {
     width: 228px;
     min-width: 228px;
   }
+  .topbar {
+    left: 228px !important;
+    inset: 0 0 auto 228px !important;
+  }
   .page-content {
     margin-left: 228px !important;
     width: calc(100% - 228px) !important;
@@ -903,13 +913,19 @@ body {
       url("/illustrations/menuSantorini.png") !important;
     background-size: cover, 100% 100% !important;
   }
-  .page-content {
-    margin-left: 0 !important;
-    width: 100% !important;
-  }
   .topbar {
+    left: 0 !important;
+    right: 0 !important;
+    inset: 0 0 auto 0 !important;
+    width: 100% !important;
+    height: 56px;
     min-height: 56px;
     flex-wrap: wrap;
+  }
+  .page-content {
+    margin-left: 0 !important;
+    padding-top: 56px;
+    width: 100% !important;
   }
 }
 
