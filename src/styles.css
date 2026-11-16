@@ -14,8 +14,6 @@ button:focus-visible,textarea:focus-visible { outline:2px solid #b36e4f; outline
 
 button:disabled { cursor:not-allowed; opacity:.5 }
 
-.app-shell { min-height:100vh }
-
 .sidebar { width:248px; position:fixed; inset:0 auto 0 0; background:#f0ede5; border-right:1px solid #e5e0d6; padding: 15px 9.5px 10px; display:flex; flex-direction:column; z-index:20 }
 /* The sidebar content fits the viewport; clip its scroll container entirely so hover cannot reveal a horizontal scrollbar. */
 .sidebar { overflow:clip; scrollbar-width:none; -ms-overflow-style:none; }
