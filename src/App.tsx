@@ -9,6 +9,7 @@ import {
   type StudioProject
 } from "./data/persistence";
 import OilPaintMixer from "./components/OilPaintMixer";
+import OilPaintingTechniques from "./components/OilPaintingTechniques";
 import LessonVisualGuide from "./components/LessonVisualGuide";
 import ArtHistoryPage from "./components/ArtHistoryPage";
 import ColorCombinationsPage from "./components/ColorCombinationsPage";
