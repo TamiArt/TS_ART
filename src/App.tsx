@@ -114,13 +114,13 @@ function App() {
 
       {mobileMenuOpen && <button className="mobile-scrim" aria-label="Закрыть меню" onClick={() => setMobileMenuOpen(false)} />}
 
-      <main className="main-content">
-        <header className="topbar">
+      <header className="topbar">
           <button className="mobile-menu-button" onClick={() => setMobileMenuOpen((value) => !value)} aria-label="Открыть меню">☰</button>
           <div className="breadcrumb">TS·ART STUDIO <span>/</span> {activeLesson ? "ТЕКУЩИЙ УРОК" : navItems.find((item) => item.id === page)?.label.toUpperCase()}</div>
           <div className="topbar-right"><span className="focus-label"><span /> ПРОСТРАНСТВО ДЛЯ ПРАКТИКИ</span><div className="avatar">T</div></div>
         </header>
 
+      <main className="page-content">
         {activeLesson ? (
           <LessonView
             lesson={activeLesson}
