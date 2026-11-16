@@ -176,3 +176,152 @@
   .history-artwork-columns { grid-template-columns:1fr; gap: 3.5px; }
   .history-artwork-columns p { font-size:12px; }
 }
+
+
+/* Study completion: lightweight progress feedback that matches the editorial art-history cards. */
+.history-progress-track {
+  width:min(100%,420px);
+  height:5px;
+  margin-top:10px;
+  overflow:hidden;
+  border-radius:99px;
+  background:#ded8cc;
+}
+.history-progress-track > span {
+  display:block;
+  height:100%;
+  border-radius:inherit;
+  background:var(--accent,#c45a69);
+  transition:width .25s ease;
+}
+.history-studied-mark {
+  display:inline-block;
+  margin-left:4px;
+  color:#2f7467;
+  font-weight:800;
+}
+.history-completion-row {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+  margin-top:14px;
+  padding:14px 0 2px;
+  border-top:1px solid var(--line);
+}
+.history-completion-row > div { min-width:0; }
+.history-completion-row strong {
+  display:block;
+  color:var(--ink,#263b46);
+  font-size:13px;
+  line-height:1.4;
+}
+.history-completion-row p {
+  margin:4px 0 0;
+  color:var(--muted,#777267);
+  font-size:11px;
+  line-height:1.5;
+}
+.history-completion-row .button {
+  flex:0 0 auto;
+  min-height:38px;
+  white-space:nowrap;
+}
+@media(max-width:760px) {
+  .history-progress-track { margin-top:7px; }
+  .history-completion-row { align-items:stretch; flex-direction:column; gap:8px; }
+  .history-completion-row .button { width:100%; }
+}
+@media(prefers-reduced-motion:reduce) {
+  .history-progress-track > span { transition:none; }
+}
+
+
+/* Expanded educational content for each art-history period. */
+.history-era-profile {
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+  gap:12px;
+  margin:12px 0 15px;
+}
+.history-era-profile > div {
+  min-width:0;
+  padding:13px;
+  border:1px solid #e1d9cc;
+  background:#faf7f0;
+}
+.history-era-profile h3 {
+  margin:0 0 9px;
+  color:var(--ink,#263b46);
+  font-family:var(--serif);
+  font-size:20px;
+  font-weight:500;
+  line-height:1.25;
+}
+.history-era-characteristics ul {
+  display:grid;
+  gap:8px;
+  margin:0;
+  padding-left:18px;
+}
+.history-era-characteristics li {
+  padding-left:2px;
+  color:#5f5b52;
+  font-size:12px;
+  line-height:1.6;
+}
+.history-era-artists ul {
+  display:grid;
+  gap:9px;
+  margin:0;
+  padding:0;
+  list-style:none;
+}
+.history-era-artists li {
+  display:grid;
+  gap:3px;
+  padding-bottom:8px;
+  border-bottom:1px solid #e7e0d5;
+}
+.history-era-artists li:last-child { padding-bottom:0; border-bottom:0; }
+.history-era-artists li strong {
+  color:#38566a;
+  font-size:12px;
+  line-height:1.4;
+}
+.history-era-artists li span {
+  color:#696458;
+  font-size:11px;
+  line-height:1.55;
+}
+.history-era-note {
+  margin:10px 0 0;
+  color:#8a8172;
+  font-size:10px;
+  line-height:1.5;
+}
+@media(max-width:760px) {
+  .history-era-profile { grid-template-columns:1fr; gap:7px; margin:9px 0 11px; }
+  .history-era-profile > div { padding:10px; }
+  .history-era-profile h3 { font-size:19px; }
+  .history-era-characteristics ul { gap:6px; }
+}
+
+.history-recent-timeline{margin:18px 0;padding:17px;border:1px solid #ded5c7;background:#f6f1e8}.history-recent-heading{margin-bottom:14px}.history-recent-heading h3{margin:6px 0 5px;color:var(--ink,#263b46);font-family:var(--serif);font-size:clamp(22px,2.5vw,30px);font-weight:500;line-height:1.2}.history-recent-heading p{max-width:700px;margin:0;color:#746d61;font-size:12px;line-height:1.6}.history-recent-list{display:grid;gap:0}.history-recent-item{display:grid;grid-template-columns:minmax(105px,.28fr) minmax(0,1fr);gap:15px;padding:14px 0;border-top:1px solid #dfd6c8}.history-recent-date{color:#a14d5c;font-size:12px;font-weight:800;line-height:1.5}.history-recent-copy h4{margin:0 0 5px;color:#314b5a;font-size:14px;line-height:1.4}.history-recent-copy p{margin:0;color:#625d53;font-size:12px;line-height:1.65}.history-recent-artists{margin-top:7px;color:#766b5b;font-size:11px;line-height:1.6}.history-recent-artists strong{color:#38566a}@media(max-width:600px){.history-recent-timeline{padding:12px}.history-recent-item{grid-template-columns:1fr;gap:4px;padding:11px 0}.history-recent-date{font-size:11px}}
+
+/* Chronological milestones: overview is separate from the existing detailed study blocks. */
+.art-history-milestones{margin:28px 0 36px;padding:clamp(16px,3vw,28px);border:1px solid #e2d9cb;border-radius:18px;background:#fbf8f1}
+.art-history-milestone-list{display:grid;gap:0}
+.art-history-milestone{display:grid;grid-template-columns:minmax(155px,.34fr) minmax(0,1fr);gap:clamp(14px,3vw,28px);padding:19px 0;border-top:1px solid #e2d9cb}
+.art-history-milestone-date{display:flex;flex-direction:column;gap:7px;color:#a14d5c;font-size:12px;font-weight:800;line-height:1.5}
+.art-history-milestone-date small{color:#817666;font-size:11px;font-weight:500}
+.art-history-milestone-body h3{margin:0 0 7px;color:#314b5a;font-family:var(--serif);font-size:clamp(18px,2vw,23px);font-weight:500}
+.art-history-milestone-body>p{margin:0;color:#625d53;font-size:13px;line-height:1.7}
+.art-history-milestone-works{display:flex;flex-wrap:wrap;align-items:stretch;gap:8px;margin-top:12px}
+.art-history-milestone-works>strong{width:100%;color:#766b5b;font-size:11px}
+.art-history-milestone-works a{display:flex;flex-direction:column;gap:3px;min-width:130px;padding:9px 11px;border:1px solid #e2d9cb;border-radius:10px;background:#fffdf8;color:#314b5a;text-decoration:none}
+.art-history-milestone-works a:hover{border-color:#a14d5c;background:#fff}
+.art-history-milestone-works a span{font-size:11px;color:#817666}
+.art-history-milestone-works a em{font-size:12px;font-style:normal;font-weight:700;line-height:1.4}
+.art-history-milestone-note{margin:14px 0 0;color:#817666;font-size:11px;line-height:1.6}
+@media(max-width:600px){.art-history-milestones{padding:14px}.art-history-milestone{grid-template-columns:1fr;gap:8px;padding:14px 0}.art-history-milestone-works a{flex:1 1 135px}}

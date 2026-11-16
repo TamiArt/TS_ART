@@ -10,7 +10,7 @@ export default function OilPaintMixer() {
   const initial = recipes[0];
   const [firstId, setFirstId] = useState(initial.first);
   const [secondId, setSecondId] = useState(initial.second);
-  const [thirdId, setThirdId] = useState(initial.third ?? "red-oxide");
+  const [thirdId, setThirdId] = useState(initial.third ?? "indian-red");
   const [firstPercent, setFirstPercent] = useState(initial.ratio);
   const [thirdPercent, setThirdPercent] = useState(initial.thirdRatio ?? 10);
   const [useThird, setUseThird] = useState(false);
@@ -30,7 +30,7 @@ export default function OilPaintMixer() {
     setRecipeId(recipe.id);
     setFirstId(recipe.first);
     setSecondId(recipe.second);
-    setThirdId(recipe.third ?? "red-oxide");
+    setThirdId(recipe.third ?? "indian-red");
     setFirstPercent(recipe.ratio);
     setThirdPercent(recipe.thirdRatio ?? 10);
     setUseThird(false);
@@ -55,7 +55,7 @@ export default function OilPaintMixer() {
         <div>
           <span className="oil-mixer-eyebrow">TS·ART STUDIO · COLOUR LAB</span>
           <h2 id="oil-mixer-title">Смешай <em>свой оттенок.</em></h2>
-          <p>Сначала выбери художественную задачу, затем конкретный цветовой этюд. Настрой два пигмента или добавь третий.</p>
+          <p>Палитра масляных красок «Мастер-Класс» · ЗХК «Невская палитра». Выбирай реальные фирменные оттенки по названию и номеру тубы, затем смешивай два или три пигмента.</p><a className="oil-mixer-brand-source" href="https://www.nevskayapalitra.ru/katalog/paints/product_type-is-maslyanye-kraski/brand-is-master-klass/apply" target="_blank" rel="noreferrer">Каталог производителя ↗</a>
         </div>
         <span className="oil-mixer-mark" aria-hidden="true">◉</span>
       </div>

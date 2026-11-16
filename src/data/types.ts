@@ -15,6 +15,7 @@ export type Module = {
   description: string;
   status: "available" | "planned";
   lessons: Lesson[];
+  content?: "oil-painting-techniques";
 };
 
 export function makeModule(id: number, title: string, description: string, lessons: Lesson[]): Module {

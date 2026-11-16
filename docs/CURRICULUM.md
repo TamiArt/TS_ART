@@ -1,8 +1,8 @@
 # TS·ART Studio — Curriculum
 
-This programme map now has an authored first-draft lesson set in the app: 20 modules and 84 lessons total (8 in Module 1, 4 in each other module). The sequence and lesson count are a working draft; review with beginners and qualified art educators is still required.
+This programme map now has an authored first-draft lesson set in the app: 21 modules: 20 lesson-based modules plus one dedicated oil-painting techniques module; 87 authored lessons total. The sequence and lesson count are a working draft; review with beginners and qualified art educators is still required.
 
-## Current implementation status\n\n- All 20 modules are interactive in the app.
+## Current implementation status\n\n- All 21 modules are available in the app; the oil-painting techniques module is a dedicated interactive teaching section rather than a list of lesson records.
 - Open Studio, six Master Workshops and Portfolio notes are available as separate app sections.\n- Module 7 includes a Colour Lab sequence and the app has a separate local experiment journal.\n- Lesson text is a first draft, not yet validated by learner research or expert review.\n- Progress and notes are browser-local; there is no account or cloud sync.\n\n## Programme map
 
 | # | Module | Main outcomes |
@@ -17,7 +17,7 @@ This programme map now has an authored first-draft lesson set in the app: 20 mod
 | 8 | Oil painting foundations | Choose and handle materials, prepare a support, understand safe and responsible practice. |
 | 9 | Brushwork, edges, layers, glazing, texture | Control marks, edges, layering, and surface effects. |
 | 10 | Still life | Combine construction, value, local colour, cast shadows, and reflections. |
-| 11 | Landscape and plein air | Observe and simplify landscape masses, atmosphere, depth, and changing light. |
+| 11 | Landscape and plein air | Observe and simplify landscape masses, atmosphere, depth, changing light, and the use of secondary staffage figures. |
 | 12 | Sky, clouds, water | Analyse and paint changing atmospheric forms, reflections, and water movement. |
 | 13 | Plants, trees, forest | Build organic structure, group foliage, and represent light through complex natural forms. |
 | 14 | Anatomy, figure, gesture, volume | Observe gesture and proportion; construct the figure as connected masses. |
@@ -27,6 +27,19 @@ This programme map now has an authored first-draft lesson set in the app: 20 mod
 | 18 | One problem in traditional and digital media | Compare media by solving the same visual problem in two workflows. |
 | 19 | Author project | Develop an idea, gather references, make studies, plan and revise a personal work. |
 | 20 | Final project and portfolio | Complete, document, reflect on, and curate a final project. |
+| 21 | Oil painting techniques | Study glazing, grisaille, imprimatura, underpainting, brushwork, texture, comparative examples, and safe material handling. |
+
+## Entry into the picture — Module 11
+
+**Вход в картину** — композиционный элемент или направление, которое помогает взгляду зрителя перейти с переднего плана в глубину изображения. Им могут быть тропинка или дорога, река и линия берега, ограда, ряд деревьев, мост, полоса света или цепочка камней. Как правило, передний план организуют так, чтобы он предлагал зрителю такой путь к главному мотиву. Это полезный приём, а не обязательное требование: некоторые пейзажи намеренно строятся без выраженного входа.
+
+Урок `m11-entry-into-picture` показывает три варианта: дорога, уходящая к дому или деревьям; линия реки и берега, ведущая к изгибу; ограда, ряд стволов или камни, задающие перспективный ритм. Практика предлагает сравнить два мини-эскиза — со случайным передним планом и с осмысленным направлением взгляда.
+
+## Staffage figures — Module 11
+
+**Стаффажные фигуры** (от немецкого *Staffage* — «наполнять, украшать картины») — второстепенные изображения людей, животных, птиц или транспорта, которые художник вводит в пейзаж, архитектурную композицию или графику. Они могут помогать передать масштаб сооружений и пространства, глубину, движение и ощущение жизни. Обычно стаффаж подчинён главному мотиву: его размер, перспектива, контраст и степень детализации должны согласовываться с окружением и замыслом композиции.
+
+В уроке `m11-staffage-figures` ученик изучает определение, размещает фигуры на подходящем плане с учётом перспективы и масштаба, а затем оценивает, поддерживают ли они главный мотив, не перетягивая внимание.
 
 ## Module 1 — first production milestone
 

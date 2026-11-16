@@ -177,7 +177,15 @@ export const curriculum: Module[] = [
   },
   ...foundationModules,
   ...paintingModules,
-  ...projectModules
+  ...projectModules,
+  {
+    id: 21,
+    title: "Техники масляной живописи",
+    description: "Изучи послойную живопись, прозрачность, подмалёвок, фактуру и безопасную работу с масляными материалами.",
+    status: "available",
+    lessons: [],
+    content: "oil-painting-techniques"
+  }
 ];
 
 export const allLessons = curriculum.flatMap((module) =>

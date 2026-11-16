@@ -2,14 +2,15 @@ import { describe, expect, it } from "vitest";
 import { allLessons, curriculum } from "./curriculum";
 
 describe("TS·ART curriculum", () => {
-  it("contains all 20 modules in learning order", () => {
-    expect(curriculum).toHaveLength(20);
-    expect(curriculum.map((module) => module.id)).toEqual(Array.from({ length: 20 }, (_, index) => index + 1));
+  it("contains all 21 modules in learning order", () => {
+    expect(curriculum).toHaveLength(21);
+    expect(curriculum.map((module) => module.id)).toEqual(Array.from({ length: 21 }, (_, index) => index + 1));
   });
 
-  it("provides authored lessons in every module", () => {
-    expect(curriculum.every((module) => module.status === "available" && module.lessons.length > 0)).toBe(true);
-    expect(allLessons).toHaveLength(85);
+  it("provides authored lessons or a dedicated teaching component in every module", () => {
+    expect(curriculum.every((module) => module.status === "available" && (module.lessons.length > 0 || module.content === "oil-painting-techniques"))).toBe(true);
+    expect(curriculum.find((module) => module.content === "oil-painting-techniques")?.title).toBe("Техники масляной живописи");
+    expect(allLessons).toHaveLength(87);
   });
 
   it("uses unique lesson IDs and complete learning steps", () => {
@@ -35,6 +36,26 @@ describe("TS·ART curriculum", () => {
     expect(lesson?.steps[3]).toContain("второй промежуток");
     expect(lesson?.steps[4]).toContain("внешний силуэт");
     expect(lesson?.selfCheck).toHaveLength(2);
+  });
+
+  it("teaches the foreground entry into a landscape composition", () => {
+    const lesson = allLessons.find((item) => item.id === "m11-entry-into-picture");
+    expect(lesson?.title).toBe("Вход в картину: как вести взгляд зрителя");
+    expect(lesson?.objective).toContain("передний план");
+    expect(lesson?.steps[0]).toContain("вход в картину");
+    expect(lesson?.steps.some((step) => step.includes("Пример 1 — дорога"))).toBe(true);
+    expect(lesson?.steps.some((step) => step.includes("Пример 2 — река"))).toBe(true);
+    expect(lesson?.steps.some((step) => step.includes("Пример 3 — ограда"))).toBe(true);
+    expect(lesson?.selfCheck).toHaveLength(4);
+  });
+
+  it("teaches staffage figures as secondary elements in landscape composition", () => {
+    const lesson = allLessons.find((item) => item.id === "m11-staffage-figures");
+    expect(lesson?.title).toBe("Стаффажные фигуры в пейзаже");
+    expect(lesson?.objective).toContain("второстепенные фигуры");
+    expect(lesson?.steps[0]).toContain("Staffage");
+    expect(lesson?.steps.some((step) => step.includes("масштаба, точки зрения"))).toBe(true);
+    expect(lesson?.selfCheck).toHaveLength(3);
   });
 
   it("includes a dedicated pigment testing sequence in Module 7", () => {
