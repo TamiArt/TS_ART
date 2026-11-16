@@ -89,7 +89,7 @@ function App() {
   ];
 
   return (
-    <div className="app-shell">
+    <>
       <aside className={`sidebar ${mobileMenuOpen ? "sidebar-open" : ""}`}>
         <button className="brand-lockup" onClick={() => navigate("home")} aria-label="TS ART Studio — на главную">
           <span className="brand-mark">TS<span>·</span>ART</span>
@@ -162,7 +162,7 @@ function App() {
         <footer className="page-footer"><span>TS·ART STUDIO</span><span>SEE. FEEL. CREATE.</span><span>Учись в своём ритме.</span></footer>
       </main>
       {toast && <div className="toast" role="status">{toast}</div>}
-    </div>
+    </>
   );
 }
 
