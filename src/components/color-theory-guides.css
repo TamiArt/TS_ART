@@ -1,0 +1,28 @@
+.color-guide{margin:18px 0;padding:clamp(14px,2.5vw,22px);border:1px solid #e2d9cb;border-radius:14px;background:#fbf8f1;color:#514b42}
+.color-guide-heading{max-width:760px;margin-bottom:15px}
+.color-guide-heading h3{margin:6px 0;color:#314b5a;font-family:var(--serif);font-size:clamp(20px,2.5vw,26px);font-weight:500;line-height:1.25}
+.color-guide-heading p,.color-harmony-notes p,.color-dimensions-grid p,.wada-guide-facts p,.wada-guide-practice p{margin:0;color:#625d53;font-size:12px;line-height:1.7}
+.color-wheel-layout{display:grid;grid-template-columns:minmax(220px,320px) minmax(0,1fr);align-items:center;gap:20px}
+.color-wheel-svg{display:block;width:100%;max-width:320px;margin:auto}
+.color-wheel-center{fill:#4e5a5e;font-size:10px;font-weight:700;letter-spacing:1px}
+.color-wheel-legend{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.color-wheel-key{display:flex;align-items:center;gap:8px;min-width:0}
+.color-wheel-key>span{flex:0 0 20px;width:20px;height:20px;border-radius:50%;border:1px solid #ffffff}
+.color-wheel-key div{display:grid;gap:1px;min-width:0}
+.color-wheel-key strong{color:#45545a;font-size:11px;font-weight:600}
+.color-wheel-key small{color:#8a7d6c;font-size:10px}
+.color-harmony-notes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin-top:14px}
+.color-harmony-notes article,.color-dimensions-grid article,.wada-guide-facts article{padding:12px;border:1px solid #e2d9cb;border-radius:9px;background:#fffdf8}
+.color-harmony-notes strong,.wada-guide-facts strong{display:block;margin-bottom:4px;color:#38566a;font-size:12px}
+.color-dimensions-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.color-dimensions-grid h4{margin:0 0 9px;color:#38566a;font-size:13px}
+.color-dimension-swatches{display:flex;overflow:hidden;border-radius:7px;margin-bottom:9px}
+.color-dimension-swatches i{display:block;flex:1;min-width:0;height:34px}
+.wada-guide-facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:14px 0}
+.wada-guide-facts strong{font-family:var(--serif);font-size:21px}
+.wada-guide-practice{padding:14px;border-left:3px solid #a14d5c;background:#f2ece1}
+.wada-guide-practice>strong{display:block;margin-bottom:7px;color:#314b5a;font-size:13px}
+.wada-guide-practice ol{margin:0 0 10px;padding-left:19px;color:#625d53;font-size:12px;line-height:1.7}
+.wada-guide-sources{display:flex;flex-wrap:wrap;gap:8px 16px;margin-top:13px}
+.wada-guide-sources a{color:#8e4d56;font-size:11px;text-decoration:underline;text-underline-offset:3px}
+@media(max-width:680px){.color-wheel-layout{grid-template-columns:1fr}.color-wheel-svg{max-width:280px}.color-harmony-notes,.color-dimensions-grid,.wada-guide-facts{grid-template-columns:1fr}.color-wheel-legend{grid-template-columns:repeat(2,minmax(0,1fr))}}
