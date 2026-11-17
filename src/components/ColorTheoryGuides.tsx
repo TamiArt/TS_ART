@@ -59,7 +59,7 @@ export function ColorDimensionsGuide() {
 
 export function WadaSanzoGuide() {
   return <section className="color-guide wada-guide" aria-labelledby="wada-guide-title">
-    <div className="color-guide-heading"><span className="eyebrow">ИСТОРИЯ ЦВЕТА · ЯПОНИЯ</span><h3 id="wada-guide-title">Вада Сандзо (Wada Sanzō), 1883–1967</h3><p>Японский художник, дизайнер костюмов, преподаватель и исследователь цвета. Его работа показывает, что цветовые сочетания можно не только интуитивно подбирать, но и систематически изучать.</p></div>
+    <div className="color-guide-heading"><span className="eyebrow">ИСТОРИЯ ЦВЕТА · ЯПОНИЯ</span><h3 id="wada-guide-title">Сандзо Вада (Wada Sanzō), 1883–1967</h3><p>Японский художник, дизайнер костюмов, преподаватель и исследователь цвета. Его работа показывает, что цветовые сочетания можно не только интуитивно подбирать, но и систематически изучать.</p></div>
     <div className="wada-guide-facts">
       <article><strong>1927</strong><p>Основание Японской ассоциации стандартных цветов.</p></article>
       <article><strong>1933–1934</strong><p>Публикация шеститомного справочника цветовых сочетаний «Haishoku Sōkan».</p></article>
