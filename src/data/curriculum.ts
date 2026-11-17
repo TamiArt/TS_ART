@@ -1,6 +1,7 @@
 import { foundationModules } from "./modules-foundations";
 import { paintingModules } from "./modules-painting";
 import { projectModules } from "./modules-projects";
+import { colorModules } from "./modules-color";
 import type { Lesson, Module } from "./types";
 
 export type { Lesson, Module } from "./types";
@@ -185,7 +186,8 @@ export const curriculum: Module[] = [
     status: "available",
     lessons: [],
     content: "oil-painting-techniques"
-  }
+  },
+  ...colorModules
 ];
 
 export const allLessons = curriculum.flatMap((module) =>
