@@ -1,5 +1,5 @@
 import { useMemo, useRef, useState, type ChangeEvent } from "react";
-import WadaSanzoCatalog from "./WadaSanzoCatalog";
+import WadaSanzoCatalog, { WadaHarmonySuggestions } from "./WadaSanzoCatalog";
 
 type Swatch = { hex: string; name: string };
 type Palette = { id: string; name: string; colors: Swatch[] };
@@ -8,6 +8,7 @@ const starter: Palette[] = [
   { id: "quiet-garden", name: "Тихий сад", colors: [{hex:"#344E41",name:"Лесной"},{hex:"#588157",name:"Шалфей"},{hex:"#A3B18A",name:"Оливковый"},{hex:"#DAD7CD",name:"Лён"},{hex:"#F5F1E8",name:"Слоновая кость"}] },
   { id: "ink-blossom", name: "Чернила и цветы", colors: [{hex:"#22223B",name:"Чернильный"},{hex:"#4A4E69",name:"Серо-фиолетовый"},{hex:"#9A8C98",name:"Пыльная роза"},{hex:"#C9ADA7",name:"Розово-бежевый"},{hex:"#F2E9E4",name:"Молочный"}] }
 ];
+const normalizeHex=(value:string)=>{const raw=value.trim().replace(/^#/,"");if(/^[0-9a-f]{3}$/i.test(raw))return "#"+[...raw].map(char=>char+char).join("").toUpperCase();if(/^[0-9a-f]{6}$/i.test(raw))return "#"+raw.toUpperCase();return null;};
 const clamp=(v:number,min=0,max=360)=>Math.min(max,Math.max(min,v));
 const hexToRgb=(hex:string)=>{const n=parseInt(hex.replace("#",""),16);return {r:(n>>16)&255,g:(n>>8)&255,b:n&255};};
 const rgbToHex=(r:number,g:number,b:number)=>"#"+[r,g,b].map(v=>Math.round(clamp(v,0,255)).toString(16).padStart(2,"0")).join("").toUpperCase();
@@ -22,10 +23,12 @@ function extractPalette(file:File,onResult:(colors:string[])=>void,onError:(mess
 }
 
 export default function ColorCombinationsPage(){
- const [base,setBase]=useState("#2A7F8E"),[scheme,setScheme]=useState("complementary"),[palettes,setPalettes]=useState<Palette[]>(()=>{try{const v=localStorage.getItem("tsart-color-palettes");return v?JSON.parse(v) as Palette[]:starter;}catch{return starter;}});
+ const [base,setBase]=useState("#2A7F8E"),[baseHexInput,setBaseHexInput]=useState("#2A7F8E"),[scheme,setScheme]=useState("complementary"),[palettes,setPalettes]=useState<Palette[]>(()=>{try{const v=localStorage.getItem("tsart-color-palettes");return v?JSON.parse(v) as Palette[]:starter;}catch{return starter;}});
  const [draft,setDraft]=useState<string[]>(["#2A7F8E","#E9C46A","#E76F51"]),[paletteName,setPaletteName]=useState("Моя палитра"),[imageColors,setImageColors]=useState<string[]>([]),[imageName,setImageName]=useState(""),[notice,setNotice]=useState("");
  const fileRef=useRef<HTMLInputElement>(null);
  const generated=useMemo(()=>harmony(base,scheme),[base,scheme]);
+ const updateBaseHex=(value:string)=>{setBaseHexInput(value);const normalized=normalizeHex(value);if(normalized)setBase(normalized);};
+ const commitBaseHex=()=>{const normalized=normalizeHex(baseHexInput);if(normalized){setBase(normalized);setBaseHexInput(normalized);}else setBaseHexInput(base);};
  const persist=(next:Palette[])=>{setPalettes(next);try{localStorage.setItem("tsart-color-palettes",JSON.stringify(next));}catch{setNotice("Не удалось сохранить в браузере. Экспортируй палитру вручную.");}};
  const addColor=()=>setDraft(v=>v.length<8?[...v,"#A3B18A"]:v);
  const updateDraft=(i:number,value:string)=>setDraft(v=>v.map((c,n)=>n===i?value.toUpperCase():c));
@@ -34,11 +37,12 @@ export default function ColorCombinationsPage(){
  const handleFile=(event:ChangeEvent<HTMLInputElement>)=>{const file=event.target.files?.[0];if(!file)return;if(!file.type.startsWith("image/")){setNotice("Выбери файл изображения");return;}setImageName(file.name);extractPalette(file,colors=>{setImageColors(colors);setDraft(colors);setNotice("Извлечено "+colors.length+" цветов · изображение уменьшено до 320 px по длинной стороне");},setNotice);event.target.value="";};
  return <div className="page-wrap color-reference-page">
   <section className="color-reference-intro"><div className="eyebrow">ЦВЕТ · ГАРМОНИЯ · ЭКСПЕРИМЕНТ</div><h1>Сочетание цветов</h1><p>Интерактивная мастерская: изучай цветовые отношения, собирай гармоничные схемы и сохраняй собственные палитры.</p></section>
-  <section className="color-reference-section"><div className="color-section-heading"><div><span className="eyebrow">01 / ЦВЕТОВОЙ КРУГ</span><h2>Подбери сочетание</h2><p>Выбери основной цвет — схема автоматически перестроится.</p></div><label className="color-picker-control">Основной цвет <input type="color" value={base} onChange={e=>setBase(e.target.value)}/><code>{base}</code></label></div>
+  <section className="color-reference-section"><div className="color-section-heading"><div><span className="eyebrow">01 / ЦВЕТОВОЙ КРУГ</span><h2>Автоматический подбор цвета</h2><p>Выбери основной цвет — получи сочетания по классическим правилам цветовой гармонии и близкие варианты из словаря Вады Сандзо.</p></div><div className="color-picker-control"><label htmlFor="main-color-picker">Основной цвет</label><input id="main-color-picker" type="color" value={base} onChange={e=>{setBase(e.target.value.toUpperCase());setBaseHexInput(e.target.value.toUpperCase());}}/><label htmlFor="main-color-hex">HEX</label><input id="main-color-hex" className="color-hex-input" type="text" value={baseHexInput} onChange={e=>updateBaseHex(e.target.value)} onBlur={commitBaseHex} onKeyDown={e=>{if(e.key==="Enter"){commitBaseHex();e.currentTarget.blur();}}} placeholder="#2A7F8E" maxLength={7} autoCapitalize="characters" spellCheck={false} aria-describedby="main-color-hex-hint"/><span id="main-color-hex-hint" className="sr-only">Введи шестизначный HEX-код, например #2A7F8E. Можно без символа решётки.</span></div></div>
    <div className="color-scheme-tabs">{schemes.map(([id,label])=><button key={id} className={scheme===id?"active":""} onClick={()=>setScheme(id)}>{label}</button>)}</div>
    <div className="generated-swatches">{generated.map((hex,i)=><button key={i} className="generated-swatch" onClick={()=>copy(hex)} title="Скопировать HEX"><span style={{background:hex}}/><strong>{hex}</strong><small>Нажми, чтобы скопировать</small></button>)}</div>
    <p className="color-scheme-description">{schemes.find(s=>s[0]===scheme)?.[2]}</p>
    <button className="color-action" onClick={()=>savePalette(generated,"Схема: "+schemes.find(s=>s[0]===scheme)?.[1])}>Сохранить эту схему</button>
+   <WadaHarmonySuggestions baseColor={base} onUsePalette={(colors,name)=>{setDraft(colors);setPaletteName(name);setNotice("Палитра Вады Сандзо добавлена в редактор вашей палитры");}}/>
   </section>
   <section className="color-reference-section"><div className="eyebrow">02 / ТЕОРИЯ ЦВЕТА</div><h2>Как читать цветовые отношения</h2><div className="color-theory-grid">
    <article><h3>Цветовой тон</h3><p>Положение цвета на круге: красный, жёлтый, синий и промежуточные оттенки. Именно тон определяет, какие цвета будут родственными или контрастными.</p></article>

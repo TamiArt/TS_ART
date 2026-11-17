@@ -35,7 +35,6 @@ a:focus-visible {
 }
 a { text-underline-offset: .2em; }
 
-.app-shell { background: transparent; }
 .sidebar {
   background: rgb(240 236 227 / 96%);
   border-right-color: var(--line);
@@ -173,7 +172,7 @@ input:hover, textarea:hover, select:hover { border-color: #c9b9a4; }
 
 @media (min-width: 1101px) {
   .sidebar { padding: 24px 15px 16px; }
-  .main-content { margin-left: 248px; }
+  .page-content { margin-left: 248px; }
 }
 @media (max-width: 1100px) {
   .topbar { padding-inline: 18px; }
@@ -646,7 +645,6 @@ body {
   background: #f6f6f3;
   color: #123b63;
 }
-.app-shell { background: #fff8ef; }
 .sidebar {
   width: 258px;
   min-width: 258px;
@@ -700,7 +698,7 @@ body {
 }
 .sidebar-note p { color: white !important; }
 .sidebar-footer { color: #eef8ff !important; }
-.main-content { background: #fff8ef; }
+.page-content { background: #fff8ef; }
 .topbar {
   min-height: 78px;
   padding-inline: clamp(22px, 4vw, 54px);
@@ -835,96 +833,177 @@ body {
 }
 
 
-/* Stable layout + single-source sidebar background.
-   Keep the existing document flow: header is already the first child of main-content.
-   Remove the layered placeholder photos/overlays that caused image bleed-through. */
-.app-shell {
-  min-height: 100vh;
+/* Explicit app-shell grid: sidebar, topbar and page content occupy separate tracks. */
+html,
+body,
+#root {
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
 }
-.sidebar {
-  width: 258px;
-  min-width: 258px;
-  background-color: #247bb4 !important;
-  background-image: linear-gradient(
-    180deg,
-    #1685c8 0%,
-    #68b9db 28%,
-    #b8dce1 48%,
-    #f2d0ad 62%,
-    #d89a7c 78%,
-    #526c7b 100%
-  ) !important;
-  background-size: 100% 100% !important;
-  background-position: center top !important;
-  background-repeat: no-repeat !important;
+
+#root {
+  display: grid;
+  grid-template-columns: 258px minmax(0, 1fr);
+  grid-template-rows: 78px minmax(0, 1fr);
+  grid-template-areas:
+    "sidebar topbar"
+    "sidebar content";
+  min-height: 100vh;
   isolation: isolate;
 }
-.sidebar::before {
-  content: none !important;
-  display: none !important;
-  background: none !important;
-  background-image: none !important;
-  opacity: 0 !important;
+
+.sidebar {
+  grid-area: sidebar;
+  position: fixed;
+  inset: 0 auto 0 0;
+  width: 258px;
+  min-width: 258px;
+  height: 100vh;
+  background-color: #247bb4 !important;
+  background-image:
+    linear-gradient(180deg, rgb(17 91 145 / 24%) 0%, rgb(25 67 91 / 8%) 48%, rgb(20 37 56 / 34%) 100%),
+    url("/illustrations/menuSantorini.png") !important;
+  background-size: cover, 100% 100% !important;
+  background-position: center, center top !important;
+  background-repeat: no-repeat !important;
+  isolation: isolate;
+  z-index: 20;
 }
+
+.sidebar::before,
 .sidebar::after {
   content: none !important;
   display: none !important;
   background: none !important;
   background-image: none !important;
 }
-.main-content {
-  display: block !important;
-  position: relative;
-  margin-left: 258px !important;
-  width: calc(100% - 258px) !important;
-  min-width: 0;
-  min-height: 100vh;
-}
+
 .topbar {
+  grid-area: topbar;
   display: flex;
   position: relative !important;
   inset: auto !important;
   top: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+  left: auto !important;
   transform: none !important;
   order: initial !important;
-  width: 100%;
+  width: 100% !important;
   min-width: 0;
   min-height: 78px;
+  height: 78px;
   margin: 0 !important;
   box-sizing: border-box;
+  z-index: 1;
 }
-.main-content > .page-wrap {
+
+.page-content {
+  grid-area: content;
+  display: block !important;
+  position: relative;
+  width: 100% !important;
+  min-width: 0;
+  min-height: calc(100vh - 78px);
+  margin: 0 !important;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.page-content > .page-wrap {
   width: 100%;
   min-width: 0;
   margin: 0 auto;
   box-sizing: border-box;
 }
-.main-content > .lesson-page {
+
+.page-content > .lesson-page {
   min-width: 0;
 }
+
 @media (max-width: 1050px) and (min-width: 761px) {
+  #root {
+    grid-template-columns: 228px minmax(0, 1fr);
+  }
   .sidebar {
     width: 228px;
     min-width: 228px;
   }
-  .main-content {
-    margin-left: 228px !important;
-    width: calc(100% - 228px) !important;
-  }
 }
+
 @media (max-width: 760px) {
+  #root {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: 56px minmax(0, 1fr);
+    grid-template-areas:
+      "topbar"
+      "content";
+  }
   .sidebar {
+    grid-area: auto;
+    position: fixed;
+    inset: 0 auto 0 0;
     width: min(258px, 84vw);
     min-width: min(258px, 84vw);
-  }
-  .main-content {
-    margin-left: 0 !important;
-    width: 100% !important;
+    height: 100vh;
+    background-image:
+      linear-gradient(180deg, rgb(17 91 145 / 22%), rgb(20 34 49 / 42%)),
+      url("/illustrations/menuSantorini.png") !important;
+    background-size: cover, 100% 100% !important;
   }
   .topbar {
     min-height: 56px;
-    flex-wrap: wrap;
+    height: 56px;
+    flex-wrap: nowrap;
   }
+  .page-content {
+    min-height: calc(100vh - 56px);
+  }
+}
+
+
+/* Dedicated artist workshops: readable study notes and practical assignments. */
+.artist-workshops-section { margin-top: 10px; }
+.artist-workshops-section > .section-heading { margin: 18px 0 14px; }
+.artist-workshop-card h2 { max-width: calc(100% - 28px); font-size: clamp(20px, 2vw, 25px); }
+.artist-workshop-card h3 {
+  margin: 3px 0 9px;
+  color: #3156a8;
+  font-family: var(--serif);
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.45;
+}
+.artist-workshop-card > p { color: #596782; font-size: 12px; line-height: 1.8; }
+.artist-workshop-works,
+.artist-workshop-practice {
+  width: 100%;
+  margin: 10px 0 8px;
+  padding-top: 9px;
+  border-top: 1px solid #e0e6f1;
+}
+.artist-workshop-works ul {
+  display: grid;
+  gap: 5px;
+  margin: 7px 0 0;
+  padding-left: 18px;
+  color: #465372;
+  font-size: 11px;
+  line-height: 1.65;
+}
+.artist-workshop-practice strong { color: #26395f; font-size: 12px; }
+.artist-workshop-practice p {
+  margin: 5px 0 0;
+  color: #596782;
+  font-size: 11px;
+  line-height: 1.8;
+}
+.artist-workshop-card .workshop-source { margin-top: 8px; }
+.artist-workshop-card > .text-link { display: inline-block; margin-top: 8px; }
+@media (max-width: 760px) {
+  .artist-workshop-card h2 { font-size: 22px; }
+  .artist-workshop-card h3 { font-size: 14px; }
 }
 
 
@@ -938,8 +1017,9 @@ body {
 .color-section-heading { display:flex; justify-content:space-between; align-items:flex-end; gap:20px; flex-wrap:wrap; }
 .color-section-heading p { margin: 4px 0 0; color:#71879a; }
 .color-picker-control { display:flex; align-items:center; gap:10px; color:#526d84; font-size:13px; }
-.color-picker-control input, .draft-swatch input[type=color] { width:42px; height:38px; padding:3px; border:1px solid #e6d8ce; border-radius:8px; background:white; cursor:pointer; }
-.color-picker-control code { font-size:12px; }
+.color-picker-control input[type=color], .draft-swatch input[type=color] { width:42px; height:38px; padding:3px; border:1px solid #e6d8ce; border-radius:8px; background:white; cursor:pointer; }
+.color-picker-control .color-hex-input { width:104px; height:38px; padding:0 10px; border:1px solid #e6d8ce; border-radius:8px; background:white; color:#29465f; font:12px/1.2 monospace; letter-spacing:.04em; }
+.color-picker-control .color-hex-input:focus { outline:2px solid rgb(38 123 187 / 25%); border-color:#267bbb; }
 .color-scheme-tabs { display:flex; flex-wrap:wrap; gap:8px; margin:24px 0 18px; }
 .color-scheme-tabs button, .saved-palette-info button { border:1px solid #eadbd1; background:#fffaf4; color:#5e7181; border-radius:999px; padding:9px 13px; font-size:12px; }
 .color-scheme-tabs button.active { color:white; background:#267bbb; border-color:#267bbb; }
@@ -988,3 +1068,27 @@ body {
 
 /* Wada Sanzo complete reference */
 .wada-catalog{scroll-margin-top:24px}.wada-catalog-heading{display:flex;justify-content:space-between;gap:24px;align-items:flex-start}.wada-catalog-heading h2{margin:6px 0}.wada-catalog-heading p{margin:0;color:var(--muted,#777)}.wada-catalog-counts{display:grid;grid-template-columns:auto auto;gap:2px 9px;align-items:baseline;text-align:right}.wada-catalog-counts strong{font-size:25px}.wada-catalog-counts span{font-size:12px;color:var(--muted,#777)}.wada-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:22px 0 16px}.wada-tabs button,.wada-filters select,.wada-filters input{border:1px solid var(--line,#ddd);border-radius:10px;padding:10px 13px;background:var(--surface,#fff);color:inherit}.wada-tabs button.active{background:var(--ink,#25313a);color:#fff;border-color:var(--ink,#25313a)}.wada-filters{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:18px}.wada-filters input{flex:1;min-width:220px}.wada-filters span{font-size:12px;color:var(--muted,#777);margin-left:auto}.wada-palette-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}.wada-palette-card,.wada-color-card{border:1px solid var(--line,#e4e1dc);border-radius:14px;overflow:hidden;background:var(--surface,#fff)}.wada-palette-card.selected,.wada-color-card.selected{border-color:var(--accent,#8a7466)}.wada-palette-open{width:100%;padding:13px;text-align:left;background:transparent;border:0;color:inherit;cursor:pointer}.wada-palette-number{display:block;font-size:11px;letter-spacing:.08em;color:var(--muted,#777);margin-bottom:9px}.wada-palette-strip{display:flex;height:54px;border-radius:8px;overflow:hidden;margin-bottom:9px}.wada-color-chip{flex:1;min-width:0;border:0;cursor:pointer}.wada-palette-names{display:block;font-size:13px;line-height:1.45;font-weight:600}.wada-palette-open small{display:block;margin-top:5px;color:var(--muted,#777)}.wada-palette-expanded{padding:0 13px 13px}.wada-expanded-color{display:flex;gap:10px;padding:10px 0;border-top:1px solid var(--line,#eee)}.wada-expanded-color>span{width:36px;min-width:36px;height:36px;border-radius:8px}.wada-expanded-color>div{min-width:0;flex:1}.wada-color-values{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;margin-top:6px}.wada-color-values div{display:flex;flex-direction:column;gap:2px}.wada-color-values span{font-size:9px;color:var(--muted,#777);letter-spacing:.08em}.wada-color-values button{padding:0;text-align:left;background:none;border:0;color:inherit;font:inherit;font-size:11px;cursor:pointer}.wada-color-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:10px}.wada-color-open{width:100%;display:grid;grid-template-columns:42px 1fr;grid-template-rows:auto auto;gap:2px 10px;padding:10px;text-align:left;align-items:center;background:none;border:0;color:inherit;cursor:pointer}.wada-color-open>span{grid-row:span 2;width:42px;height:42px;border-radius:9px}.wada-color-open b{font-size:12px}.wada-color-open small{font-size:10px;color:var(--muted,#777)}.wada-color-expanded{padding:0 10px 10px}.wada-color-expanded p{font-size:11px;line-height:1.5;color:var(--muted,#777)}.wada-color-expanded>button,.wada-more-matches{border:1px solid var(--line,#ddd);border-radius:8px;padding:8px 10px;background:transparent;color:inherit;cursor:pointer;font-size:12px}.wada-match-tool>h3{margin:24px 0 12px}.wada-match-tool>h3 small{color:var(--muted,#777);font-weight:400}.wada-match-picker{display:flex;align-items:center;gap:15px;flex-wrap:wrap;padding:15px;border:1px solid var(--line,#ddd);border-radius:13px}.wada-match-picker label{display:flex;align-items:center;gap:10px;font-weight:600}.wada-match-picker input{width:48px;height:42px;border:0;background:none;cursor:pointer}.wada-match-picker code{font-size:13px}.wada-match-picker p{flex-basis:100%;margin:0;color:var(--muted,#777);font-size:12px}.wada-nearest-card{display:flex;gap:16px;margin-top:14px;padding:15px;border-radius:14px;background:var(--surface-soft,#f6f4f0)}.wada-nearest-card>span{width:90px;min-width:90px;min-height:90px;border-radius:12px}.wada-nearest-card h3{margin:3px 0}.wada-nearest-card small{display:block;color:var(--muted,#777);font-size:11px}.wada-similar-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(125px,1fr));gap:9px}.wada-similar-grid button{display:grid;grid-template-columns:35px 1fr;gap:2px 8px;align-items:center;text-align:left;border:1px solid var(--line,#ddd);border-radius:10px;padding:8px;background:transparent;color:inherit;cursor:pointer}.wada-similar-grid span{grid-row:span 2;width:35px;height:35px;border-radius:7px}.wada-similar-grid b{font-size:11px}.wada-similar-grid small{font-size:10px;color:var(--muted,#777)}.wada-more-matches{margin-top:10px}.wada-data-credit{margin-top:18px;font-size:11px;line-height:1.6;color:var(--muted,#777)}.wada-data-credit a{color:inherit;text-decoration:underline}@media(max-width:600px){.wada-catalog-heading{display:block}.wada-catalog-counts{display:flex;justify-content:flex-start;gap:5px 8px;margin-top:12px}.wada-catalog-counts strong{font-size:18px}.wada-filters{display:grid;grid-template-columns:1fr}.wada-filters input{min-width:0}.wada-filters span{margin:0}.wada-palette-grid{grid-template-columns:1fr}.wada-color-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.wada-nearest-card>span{width:64px;min-width:64px;min-height:64px}}
+
+
+/* Automatic suggestions based on the Sanzo Wada color dictionary */
+.wada-auto-suggestions { margin-top:26px; padding:20px; border:1px solid #e8d9cf; border-radius:15px; background:#fffdf9; }
+.wada-auto-suggestions h3 { margin:7px 0; color:#234c6d; font:600 21px Georgia,serif; }
+.wada-auto-suggestions>p { margin:0 0 15px; color:#71879a; font-size:13px; line-height:1.55; }
+.wada-auto-nearest { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; }
+.wada-auto-nearest-item { display:flex; align-items:center; gap:10px; min-width:0; padding:10px; border:1px solid #eee5de; border-radius:11px; background:#fff; }
+.wada-auto-nearest-item>span { width:42px; min-width:42px; height:42px; border-radius:9px; }
+.wada-auto-nearest-item>div { display:grid; gap:2px; min-width:0; }
+.wada-auto-nearest-item small,.wada-auto-nearest-item code { color:#71879a; font-size:10px; }
+.wada-auto-nearest-item strong { overflow-wrap:anywhere; color:#29465f; font-size:12px; }
+.wada-auto-suggestions h4 { margin:20px 0 10px; color:#29465f; font-size:14px; }
+.wada-auto-palette-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:10px; }
+.wada-auto-palette { overflow:hidden; border:1px solid #eee5de; border-radius:11px; background:#fff; }
+.wada-auto-palette-strip { display:flex; height:48px; }
+.wada-auto-palette-strip span { flex:1; min-width:0; }
+.wada-auto-palette-meta { display:grid; gap:4px; padding:10px 10px 0; }
+.wada-auto-palette-meta strong { color:#29465f; font-size:12px; }
+.wada-auto-palette-meta small { min-height:32px; color:#71879a; font-size:10px; line-height:1.4; }
+.wada-auto-palette>button { margin:8px 10px 10px; padding:7px 10px; border:1px solid #d9e5ed; border-radius:8px; background:#f4f8fb; color:#315c7c; font-size:11px; cursor:pointer; }
+.wada-auto-note { display:block; margin-top:12px; color:#8493a0; font-size:10px; line-height:1.5; }
+@media(max-width:640px){.wada-auto-suggestions{padding:14px}.wada-auto-nearest{grid-template-columns:1fr}.wada-auto-palette-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:420px){.wada-auto-palette-grid{grid-template-columns:1fr}}

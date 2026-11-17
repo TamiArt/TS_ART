@@ -89,7 +89,7 @@ function App() {
   ];
 
   return (
-    <div className="app-shell">
+    <>
       <aside className={`sidebar ${mobileMenuOpen ? "sidebar-open" : ""}`}>
         <button className="brand-lockup" onClick={() => navigate("home")} aria-label="TS ART Studio — на главную">
           <span className="brand-mark">TS<span>·</span>ART</span>
@@ -114,13 +114,13 @@ function App() {
 
       {mobileMenuOpen && <button className="mobile-scrim" aria-label="Закрыть меню" onClick={() => setMobileMenuOpen(false)} />}
 
-      <main className="main-content">
-        <header className="topbar">
+      <header className="topbar">
           <button className="mobile-menu-button" onClick={() => setMobileMenuOpen((value) => !value)} aria-label="Открыть меню">☰</button>
           <div className="breadcrumb">TS·ART STUDIO <span>/</span> {activeLesson ? "ТЕКУЩИЙ УРОК" : navItems.find((item) => item.id === page)?.label.toUpperCase()}</div>
           <div className="topbar-right"><span className="focus-label"><span /> ПРОСТРАНСТВО ДЛЯ ПРАКТИКИ</span><div className="avatar">T</div></div>
         </header>
 
+      <main className="page-content">
         {activeLesson ? (
           <LessonView
             lesson={activeLesson}
@@ -162,7 +162,7 @@ function App() {
         <footer className="page-footer"><span>TS·ART STUDIO</span><span>SEE. FEEL. CREATE.</span><span>Учись в своём ритме.</span></footer>
       </main>
       {toast && <div className="toast" role="status">{toast}</div>}
-    </div>
+    </>
   );
 }
 
@@ -489,6 +489,58 @@ function WorkshopsPage({ onOpen }: { onOpen: (lessonId: string) => void }) {
     { id: "analysis", icon: "◈", label: "06 · ВИЗУАЛЬНЫЙ АНАЛИЗ", title: "Исследование художественного решения", problem: "Как учиться у мастера, не копируя работу механически?", task: "Сначала опиши наблюдаемые факты, затем выбери одну задачу — свет, композицию, цвет или края — и создай собственный этюд.", lesson: "m16-master-study", source: "Проверяй авторство, название, датировку и материал по музейным или научным каталогам. Не выдавай интерпретацию за установленный факт." },
     { id: "ivanov", icon: "✧", label: "07 · МАСТЕР ПЕЙЗАЖА", title: "Александр Андреевич Иванов: видеть природу", problem: "Как превратить наблюдение отдельного природного мотива в цельный, выразительный пейзаж?", task: "Изучи этюды Иванова как самостоятельные произведения: сравни воду и камни, дерево, морской горизонт и растительность. Проследи, как свет объединяет предметы в единую среду.", lesson: "m16-master-study", source: "Александр Андреевич Иванов (1806–1858) — русский живописец, автор «Явления Христа народу». Его многочисленные натурные пейзажные этюды создавались в том числе в ходе работы над большой картиной, но обладают самостоятельной художественной ценностью. В них особенно важны наблюдение конкретного состояния природы, тонкие отношения цвета и света, отражения и фактура." }
   ];
+  const artistWorkshops = [
+    {
+      id: "shishkin",
+      artist: "Иван Иванович Шишкин",
+      years: "1832–1898",
+      theme: "Конструкция природы и точность наблюдения",
+      focus: "Изучаем, как художник строит пейзаж крупными планами, связывает стволы и кроны в ритм, передаёт породу дерева, фактуру коры и травы, не теряя цельности пространства.",
+      works: ["Рожь · 1878", "Дубы · 1887", "Корабельная роща · 1898"],
+      task: "Сделай графический разбор лесного мотива: выдели передний, средний и дальний планы; обозначь направление стволов; сгруппируй листву в крупные массы. Затем напиши этюд, в котором детали подчинены общей глубине.",
+      question: "Какие повторения создают ритм, а какие различия помогают увидеть конкретные деревья?"
+    },
+    {
+      id: "kuindzhi",
+      artist: "Архип Иванович Куинджи",
+      years: "1841–1910",
+      theme: "Световой эффект и сила цветового контраста",
+      focus: "Исследуем, как яркое световое пятно воспринимается на фоне больших тёмных масс, как соотносятся небо, отражение и силуэт, и почему впечатление света зависит от окружения, а не только от самого светлого участка.",
+      works: ["Украинская ночь · 1876", "Берёзовая роща · 1879", "Лунная ночь на Днепре · 1880"],
+      task: "Раздели лист на три тональные массы и отметь источник света. Подбери ограниченную палитру из тёплого светлого, холодного светлого и нескольких тёмных оттенков; проверь, как меняется ощущение свечения при изменении контраста.",
+      question: "Что делает свет убедительным: максимальная яркость пятна или точное соотношение света и окружающей темноты?"
+    },
+    {
+      id: "korovin",
+      artist: "Константин Алексеевич Коровин",
+      years: "1861–1939",
+      theme: "Пленэр, цветовое впечатление и живой мазок",
+      focus: "Рассматриваем импрессионистическую работу с изменчивым освещением, цветными рефлексами и обобщённой формой. Важны не механическое перечисление деталей, а быстрый захват состояния среды и цельность цветовых отношений.",
+      works: ["Зимой · 1894", "Белая ночь в Северной Норвегии · 1890-е", "Портрет артистки Т. С. Любатович · 1880-е"],
+      task: "Выбери городской или природный мотив и сделай короткий этюд ограниченным числом крупных мазков. Сначала зафиксируй общую температуру света и цветовые отношения, затем добавь несколько акцентов, которые удерживают композицию.",
+      question: "Какие детали можно опустить, чтобы сохранить ощущение места, времени суток и воздуха?"
+    },
+    {
+      id: "polenov",
+      artist: "Василий Дмитриевич Поленов",
+      years: "1844–1927",
+      theme: "Воздушная среда, архитектура и повседневный мотив",
+      focus: "Изучаем, как архитектурные формы, сад, двор и освещение складываются в единое пространство. Обращаем внимание на ясность композиции, естественные цветовые отношения и связь ближнего плана с глубиной.",
+      works: ["Московский дворик · 1878", "Бабушкин сад · 1878", "Заросший пруд · 1880"],
+      task: "Построй композицию из архитектуры, растительности и светлого пространства. Проверь перспективные направления, затем объедини предметы общими цветовыми отношениями и оставь мелкие детали только в смысловых акцентах.",
+      question: "Как связать архитектуру и природу так, чтобы они воспринимались одной средой?"
+    },
+    {
+      id: "levitan",
+      artist: "Исаак Ильич Левитан",
+      years: "1860–1900",
+      theme: "Лирический пейзаж и эмоциональное состояние природы",
+      focus: "Исследуем, как настроение возникает из композиции, тонального строя, состояния неба и воды, масштаба пространства и сдержанного цветового ритма. Не сводим картину к набору узнаваемых предметов.",
+      works: ["Над вечным покоем · 1894", "Золотая осень · 1895", "Март · 1895"],
+      task: "Выбери состояние природы — тишина, ожидание, ясность или тревога. Создай три композиционных эскиза одного мотива с разным горизонтом и распределением крупных светлых и тёмных масс; выбери тот, который точнее передаёт задуманное состояние.",
+      question: "Какие композиционные и тональные решения создают настроение ещё до появления подробностей?"
+    }
+  ];
   const ivanovStudies = [
     { title: "Вода и скалы", detail: "1846–1847 · вода, рябь, прозрачность и неподвижные прибрежные камни", url: "https://my.tretyakov.ru/app/masterpiece/21043" },
     { title: "Море со скалой на горизонте", detail: "Конец 1840-х · морской горизонт, вечерний свет и переходы цвета неба и воды", url: "https://my.tretyakov.ru/app/masterpiece/20271" },
@@ -500,6 +552,36 @@ function WorkshopsPage({ onOpen }: { onOpen: (lessonId: string) => void }) {
   return <div className="page-wrap inner-page">
     <PageIntro eyebrow="MASTER WORKSHOPS · ВИЗУАЛЬНЫЕ ИССЛЕДОВАНИЯ" title={<>Смотри глубже. <em>Пробуй сама.</em></>} description="Мастерская — не биография художника и не копирование ради копирования. Это короткое исследование конкретной художественной задачи с переходом к собственной практике." />
     <div className="workshop-notice"><strong>Метод мастерской</strong><span>Наблюдение → визуальная схема → собственный этюд → рефлексия. Исторические сведения нужно подтверждать источниками; интерпретации обозначай как интерпретации.</span></div>
+    <section className="artist-workshops-section">
+      <div className="section-heading">
+        <div>
+          <div className="eyebrow">РУССКИЙ ПЕЙЗАЖ · ПЯТЬ АВТОРСКИХ ПОДХОДОВ</div>
+          <h2>Мастерские художников</h2>
+        </div>
+      </div>
+      <div className="workshop-grid artist-workshop-grid">
+        {artistWorkshops.map((workshop) => <article className="workshop-card artist-workshop-card" key={workshop.id}>
+          <div className="workshop-label">{workshop.years}</div>
+          <div className="workshop-mark">✳</div>
+          <h2>{workshop.artist}</h2>
+          <h3>{workshop.theme}</h3>
+          <p>{workshop.focus}</p>
+          <div className="artist-workshop-works">
+            <span className="eyebrow">ПРОИЗВЕДЕНИЯ ДЛЯ АНАЛИЗА</span>
+            <ul>{workshop.works.map((work) => <li key={work}>{work}</li>)}</ul>
+          </div>
+          <div className="artist-workshop-practice">
+            <strong>Практическое задание</strong>
+            <p>{workshop.task}</p>
+          </div>
+          <div className="workshop-source">
+            <span className="eyebrow">ВОПРОС ДЛЯ НАБЛЮДЕНИЯ</span>
+            <p>{workshop.question}</p>
+          </div>
+          <a className="text-link" href="https://rusmuseumvrm.ru/collections/painting/19_20/index.php?lang=ru" target="_blank" rel="noreferrer">Открыть каталог Русского музея ↗</a>
+        </article>)}
+      </div>
+    </section>
     <div className="workshop-grid">{workshops.map((workshop) => <article className={`workshop-card ${workshop.id === "ivanov" ? "workshop-card--featured" : ""}`} key={workshop.id}><div className="workshop-label">{workshop.label}</div><div className="workshop-mark">{workshop.icon}</div><h2>{workshop.title}</h2><p className="workshop-question">{workshop.problem}</p><p>{workshop.task}</p><div className="workshop-source"><span className="eyebrow">ИСТОЧНИК И ПРОВЕРКА</span><p>{workshop.source}</p></div>{workshop.id === "ivanov" && <div className="ivanov-study-list"><h3>Этюды для внимательного изучения</h3><p className="section-hint">Открой работу в музейном каталоге. Смотри не только на предмет, но и на отношения света, цвета, фактуры и пространства.</p><ul>{ivanovStudies.map((study) => <li key={study.title}><a href={study.url} target="_blank" rel="noreferrer">{study.title} ↗</a><span>{study.detail}</span></li>)}</ul></div>}<button className="button button-outline" onClick={() => onOpen(workshop.lesson)}>Открыть связанный урок <span>↗</span></button></article>)}</div>
   </div>;
 }

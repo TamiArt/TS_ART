@@ -14,8 +14,6 @@ button:focus-visible,textarea:focus-visible { outline:2px solid #b36e4f; outline
 
 button:disabled { cursor:not-allowed; opacity:.5 }
 
-.app-shell { min-height:100vh }
-
 .sidebar { width:248px; position:fixed; inset:0 auto 0 0; background:#f0ede5; border-right:1px solid #e5e0d6; padding: 15px 9.5px 10px; display:flex; flex-direction:column; z-index:20 }
 /* The sidebar content fits the viewport; clip its scroll container entirely so hover cannot reveal a horizontal scrollbar. */
 .sidebar { overflow:clip; scrollbar-width:none; -ms-overflow-style:none; }
@@ -63,7 +61,7 @@ button:disabled { cursor:not-allowed; opacity:.5 }
 
 .status-dot,.focus-label span { width:6px; height:6px; border-radius:50%; background:#8b936e; display:inline-block }
 
-.main-content { margin-left: 124px; min-height:100vh }
+.page-content { margin-left: 124px; min-height:100vh }
 
 .topbar { min-height:52px; height:auto; border-bottom:1px solid var(--line); display:flex; align-items:center; justify-content:space-between; gap:12px; padding:7px 2.05%; background:rgba(247,245,240,.88) }
 
@@ -465,7 +463,7 @@ button:disabled { cursor:not-allowed; opacity:.5 }
 
 @media(max-width:1100px) {
   .sidebar { width:215px; padding-left: 7px; padding-right: 7px }
-  .main-content { margin-left: 107.5px }
+  .page-content { margin-left: 107.5px }
   .hero { grid-template-columns:1fr .8fr; gap: 5px }
   .hero h1 { font-size:42px }
   .art-paper { height:230px }
@@ -484,7 +482,7 @@ button:disabled { cursor:not-allowed; opacity:.5 }
   .sidebar { transform:translateX(-100%); transition:transform .25s ease; width:260px; box-shadow:none }
   .sidebar-open { transform:translateX(0); box-shadow:15px 0 40px #1e1c1520 }
   .mobile-scrim { display:block; position:fixed; inset:0; background:#24221966; border:0; z-index:15 }
-  .main-content { margin-left: 0 }
+  .page-content { margin-left: 0 }
   .topbar { min-height:50px; padding: 6px 9px; gap:6px }
   .mobile-menu-button { display:block; border:0; background:transparent; font-size:19px; color:#666154; padding: 2.5px 5px 2.5px 0 }
   .breadcrumb { font-size:10px; letter-spacing:.35px; max-width:calc(100vw - 95px) }
@@ -739,7 +737,7 @@ button:disabled { cursor:not-allowed; opacity:.5 }
 /* Responsive shell: the sidebar never occupies the content column. */
 @media (min-width: 1101px) {
   .sidebar { width: 248px; }
-  .main-content { margin-left: 248px; min-width: 0; }
+  .page-content { margin-left: 248px; min-width: 0; }
 }
 
 @media (max-width: 1100px) {
@@ -754,7 +752,7 @@ button:disabled { cursor:not-allowed; opacity:.5 }
     transform: translateX(0);
     box-shadow: 15px 0 40px #1e1c1520;
   }
-  .main-content { margin-left: 0; min-width: 0; width: 100%; }
+  .page-content { margin-left: 0; min-width: 0; width: 100%; }
   .mobile-menu-button {
     display: block;
     flex: 0 0 auto;
@@ -780,7 +778,7 @@ button:disabled { cursor:not-allowed; opacity:.5 }
 
 @media (max-width: 760px) {
   .sidebar { width: min(260px, 86vw); }
-  .main-content { margin-left: 0; }
+  .page-content { margin-left: 0; }
 }
 
 /* Readable typography for the requested lesson only. */
